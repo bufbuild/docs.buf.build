@@ -74,10 +74,10 @@ If you wish to add authentication to your continuous integration jobs, we recomm
 
 Access the secret token as specified by your CI provider and make it available as an environment variable: [`BUF_TOKEN`](#buf_token)
 
-If this is not possible, you can also login via the CLI:
+If this is not possible, you can also login via the CLI (assuming `BUF_API_TOKEN` and `BUF_USER` are set):
 
 ```terminal
-$ echo ${BUF_API_TOKEN} | buf registry login --token-stdin
+$ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 
 You can now use any of the authenticated `buf` commands, such as `buf push`.

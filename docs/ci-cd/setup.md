@@ -132,10 +132,11 @@ For example:
   - [GitHub Actions](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 You can then access the token in your job using an environment variable, which allows you to create a
-`.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`:
+`.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`
+and your username as `BUF_USER`:
 
 ```terminal
-$ echo ${BUF_API_TOKEN} | buf registry login --token-stdin
+$ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 
 For more details on authenticating to the `BSR`, please see [Authentication](../bsr/authentication.md).
