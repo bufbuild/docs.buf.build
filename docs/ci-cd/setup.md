@@ -141,6 +141,13 @@ $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdi
 
 For more details on authenticating to the `BSR`, please see [Authentication](../bsr/authentication.md).
 
+## CI caching
+
+To enable caching of modules downloaded by the `buf` CLI, you can either configure caching of the `~/.cache`
+directory, or set the `BUF_CACHE_DIR` environment variable to a directory of your choice and cache that directory.
+
+For more information about module caching, see the [Module Cache docs](../bsr/overview.md#module-cache).
+
 ## Wrapping up
 
 Now that you've set up `buf` to run lint checks and detect breaking changes in your CI/CD environment,
