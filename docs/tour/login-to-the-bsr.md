@@ -51,6 +51,9 @@ You'll be prompted for your username, as well as the token and you'll end up wit
 machine buf.build
     login <USERNAME>
     password <TOKEN>
+machine go.buf.build
+    login <USERNAME>
+    password <TOKEN>
 ```
 
 You can logout at any time with the following command:

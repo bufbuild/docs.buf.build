@@ -134,8 +134,8 @@ For example:
 You can then access the token in your job using an environment variable, which allows you to create a
 `.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`:
 
-```sh
-echo -e "machine buf.build\npassword ${BUF_API_TOKEN}" >> ~/.netrc
+```terminal
+$ echo ${BUF_API_TOKEN} | buf registry login --token-stdin
 ```
 
 For more details on authenticating to the `BSR`, please see [Authentication](../bsr/authentication.md).

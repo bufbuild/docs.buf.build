@@ -11,7 +11,7 @@ The generated source code is hosted in the BSR Go module proxy.
 
 ## BSR Go module proxy
 
-The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref/mod#goproxy-protocol) for Protobuf modules by generating assets on-the-fly. 
+The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref/mod#goproxy-protocol) for Protobuf modules by generating assets on-the-fly.
 
 The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to the following format:
 
@@ -84,11 +84,19 @@ require (
 
 To generate Go code from private modules you'll need to make sure the Go tooling is correctly configured.
 
-1. Update `.netrc` file:
+1. Login to the BSR:
 
-The `go` tool uses[`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and so you'll add an entry for `go.buf.build`. You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user)
+The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
+You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
+
+```terminal
+$ buf registry login
+```
 
 ```sh title="~/.netrc"
+machine buf.build
+    login <USERNAME>
+    password <TOKEN>
 machine go.buf.build
     login <USERNAME>
     password <TOKEN>
