@@ -7,17 +7,17 @@ title: User Management
 
 ## Organization Roles
 	
-### **`Owner`**
+### Owner
 
 - Users that require unrestricted access to the organization, its settings and all resources owned by the organization. 
 - Can delete organization. All resources such as repositories, templates and plugins must be deleted before the organization can be deleted.
 
-### **`Admin`**
+### Admin
 
 - Can manage user roles, except owners.
 - Can add and delete resources such as [repositories](../bsr/overview.md#module), [templates](../bsr/remote-generation/concepts/#template) and [plugins](../bsr/remote-generation/concepts/#plugin).
 
-### **`Member`**
+### Member
 
 - Can view resources and users within the organization.
 
@@ -29,7 +29,7 @@ Every organization has a set of base resource roles that apply to all members of
 
 | Repository | Template | Plugin |
 |:--|:--|:--|
-|`write`  | `write` | `write` |
+| **Write**  | **Write** | **Write** |
 
 Organization owners can modify the base resource roles depending on the requirements of the organization.
 
@@ -46,20 +46,20 @@ The most common use-cases for explicit resource roles are:
 
 When computing the role on a resource, the highest role will take precedence. Example, an organization has `write` as the base repository role, and the user was granted the `admin` role on a specific repository. The final computed user role on the repository will be `admin`.
 
-### **`Owner`**
+### Owner
 
 - Unrestricted access to the resource.
 
-### **`Admin`**
+### Admin
 
 - Can update the resource settings and deprecation notices.
 - Can manage resource roles, except owners.
 - Can delete the resource.
 
-### **`Write`**
+### Write
 
 - Can perform modifying operations, except for deletes.
 
-### **`Read`**
+### Read
 
 - Can view the resource.
