@@ -44,9 +44,9 @@ Resource roles are explicit roles granted to a user on an individual resource, s
 The most common use-cases for explicit resource roles are:
 
 - Outside collaborators. This is useful when users outside your organization require access to specific resource(s) within the organization, but you do not want them to be a member of the organization.
-- Elevated permissions for organization members. This is useful when the organization base resource roles are set to `read` and specific user(s) require `write` or `admin` permissions. 
+- Elevated permissions for organization members. This is useful when the organization base resource roles are set to **Read** and specific user(s) require **Write** or **Admin** permissions. 
 
-When computing the role on a resource, the highest role will take precedence. For example, an organization has `write` as the base repository role, and the user was granted the `admin` role on a specific repository. The final computed user role on the repository will be `admin`.
+When computing the role on a resource, the highest role will take precedence. For example, an organization has **Write** as the base repository role, and the user was granted the **Admin** role on a specific repository. The final computed user role on the repository will be `admin`.
 
 ### Owner
 
