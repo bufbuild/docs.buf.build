@@ -78,6 +78,7 @@
         "bsr/authentication",
         "bsr/usage",
         "bsr/documentation",
+        "bsr/user-management",
         {
           "type": "category",
           "label": "Remote Generation",
