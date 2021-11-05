@@ -21,7 +21,8 @@ Every user that is part of an organization will have an explicit role. Note that
 
 ### Member
 
-- Can view resources and users within the organization.
+- Can view the organization and its members.
+- Have the [Base resource role](#base-resource-roles) over the organizations resources, which defaults to [Write](#write).
 
 ### Base resource roles
 
