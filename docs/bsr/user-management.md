@@ -25,7 +25,7 @@ Every user that is part of an organization will have an explicit role. Note that
 
 ### Base resource roles
 
-> *Base resource roles coming soon.*
+> *Configurable base resource roles are coming soon.*
 
 Every organization has a set of base resource roles that apply to all members of the organization. The following are the default roles:
 
@@ -51,16 +51,19 @@ When computing the role on a resource, the highest role will take precedence. Fo
 ### Owner
 
 - Unrestricted access to the resource.
+- Can delete the resource.
 
 ### Admin
 
 - Can update the resource settings and deprecation notices.
 - Can manage resource roles, except owners.
-- Can delete the resource.
 
 ### Write
 
-- Can perform modifying operations, except for deletes.
+- Can perform write operations on resources, such as:
+  -  pushing to a repository 
+  -  creating tags
+  -  updating template versions and plugins
 
 ### Read
 
