@@ -40,9 +40,11 @@ Organization owners can modify the base resource roles depending on the requirem
 
 > *Resource roles coming soon.*
 
-Resource roles are explicit roles granted to a user on an individual resource, such as a repository, template or plugin.
+Resources such as repositories, templates and plugins are owned by either an individual user or an organization. In the case of user-owned resources, the user is granted the `Owner` role and for organization-owned resources members inherit the [base resource roles](#base-resource-roles) as defined by the organization.
 
-The most common use-cases for explicit resource roles are:
+However, in some situations you'll need to give additional permissions to individual users over a user- or organization-owned resource.
+
+The most common use-cases are:
 
 - Outside collaborators. This is useful when users outside your organization require access to specific resource(s) within the organization, but you do not want them to be a member of the organization.
 - Elevated permissions for organization members. This is useful when the organization base resource roles are set to **Read** and specific user(s) require the **Write** or **Admin** role for specific resource(s). 
