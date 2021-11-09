@@ -50,7 +50,7 @@ syntax = "proto3";
 // 
 // Important, for historical reasons this package 
 // must use Celsius as the default unit.
-package weather;
+package weather.v1;
 ```
 
 <div align="center">
