@@ -34,6 +34,25 @@ You can quickly navigate from the docs to the Protobuf file by clicking the file
 
 Each type definition will have a unique placeholder within the page, an anchor tag, making it easy to share links referencing the exact item.
 
+### Package comments
+
+When sharing packages it is often useful to provide an overview of the package. You can do so by adding comments above the `package` directive in the .proto file.
+
+Package comments are not merged. Files are parsed alphabetically, and only the first file with a non-empty comment will be displayed in the generation documentation.
+
+The following is an example as displayed in the screenshot.
+
+```proto
+syntax = "proto3";
+
+// Package weather describes the weather service and 
+// all corresponding RPCs.
+// 
+// Important, for historical reasons this package 
+// must use Celsius as the default unit.
+package weather;
+```
+
 <div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-1.png')}/>
+  <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-1_v2.png')}/>
 </div>
