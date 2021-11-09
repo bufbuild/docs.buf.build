@@ -64,9 +64,9 @@ When computing the role on a resource, the highest role will take precedence. Fo
 ### Write
 
 - Can perform write operations on resources, such as:
-  -  pushing to a repository 
-  -  creating tags
-  -  updating template versions and plugins
+  -  Pushing to a repository 
+  -  Creating tags
+  -  Updating template versions and plugins
 
 ### Read
 
