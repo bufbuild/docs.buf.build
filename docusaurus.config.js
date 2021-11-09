@@ -38,6 +38,7 @@ module.exports = {
   // Ref: https://docusaurus.io/docs/2.0.0-beta.3/api/themes/configuration
   themeConfig: {
     algolia: {
+      appId: process.env.ALGOLIA_APP_ID || 'none',
       apiKey: process.env.ALGOLIA_API_KEY || 'none',
       indexName: process.env.ALGOLIA_INDEX_NAME || 'none',
     },
