@@ -40,19 +40,6 @@ When sharing packages it is often useful to provide an overview of the package. 
 
 Comments on the package directive are not merged across files. Files are parsed alphabetically, and only the first file with a non-empty comment will be displayed in the generated documentation.
 
-The following is an example that matches the screenshot.
-
-```proto
-syntax = "proto3";
-
-// Package weather describes the weather service and 
-// all corresponding RPCs.
-// 
-// Important, for historical reasons this package 
-// must use Celsius as the default unit.
-package weather.v1;
-```
-
 <div align="center">
   <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-1_v2.png')}/>
 </div>
