@@ -13,13 +13,13 @@ As a best practice, when referencing remote plugins we recommend including the v
 
 ## Supported plugins
 
-### protoc-based plugins
+### `protoc`-based plugins
 
 The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. A full list can be found here:
 
 https://buf.build/protocolbuffers/plugins
 
-This is powerful because you no longer need to have `protoc` installed. All the benefits of code generation using the `buf` CLI and remote plugins without the headache of managing `protoc`.
+This is powerful because you no longer need to have `protoc` installed. All the benefits of code generation using `buf` and remote plugins without the headache of managing `protoc`.
 
 ### gRPC plugins
 
@@ -29,11 +29,15 @@ https://buf.build/grpc/plugins
 
 ### Example
 
-The following is an example of remote plugin execution, all you need is `buf`, a `buf.gen.yaml` file and a module of your choice.
+The following is an example of remote plugin execution, all you need to get started:
 
-We'll use the [https://buf.build/acme/petapis](acme/petapis) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we're using a hosted module to illustrate remote plugin execution.
+- `buf`
+- A `buf.gen.yaml` file 
+- A module of your choice
 
-Next, create a `buf.gen.yaml` file with the following contents: 
+We'll use the [acme/petapis](https://buf.build/acme/petapis) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we'll use a hosted module to illustrate remote plugin execution.
+
+Create a template file with the following contents: 
 
 ```yaml title=buf.gen.yaml
 version: v1
@@ -52,7 +56,7 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-Note we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found here](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote). 
+Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found here](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote). 
 
 It is possible to reference both local and remote plugins within a single template.
 
