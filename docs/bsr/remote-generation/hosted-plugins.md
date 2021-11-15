@@ -79,4 +79,6 @@ What you should end up with is the following structure:
 
 ## Wrapping up
 
-...
+Remote plugin execution simplifies the process of generating code for your Protobuf API. It also has the added benefit of enforcing reproducible outputs by eliminating differences in the environment where generation is executed, such as a developer's local machine or a continues integration environment.
+
+Bring your own Protobuf files, or publish them to the BSR, and then generate the corresponding client and server code in your language of choice with hosted plugins on the BSR. You get all the benefits of code generation without the headache of managing plugins.
