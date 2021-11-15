@@ -54,7 +54,7 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found here](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote).
+Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found in the buf.gen.yaml docs](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote).
 
 > As a best practice, when referencing remote plugins we recommend including the version of the plugin to ensure reproducible code generation.
 
