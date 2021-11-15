@@ -83,4 +83,4 @@ Remote plugin execution simplifies the process of generating code for your Proto
 
 All code generation takes place in a **secure environment** on the BSR.
 
-Bring your own Protobuf files, or publish them to the BSR, and then generate the corresponding client and server code in your language of choice with hosted plugins on the BSR. You get all the benefits of code generation without the headache of managing plugins.
+Bring your own Protobuf files, or publish them to the BSR, and then generate the corresponding client and server code in your language of choice with hosted plugins on the BSR. You get all the benefits of code generation without the headache of managing plugins or `protoc` versions.
