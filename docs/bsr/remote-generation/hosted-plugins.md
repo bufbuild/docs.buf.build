@@ -27,7 +27,7 @@ https://buf.build/grpc/plugins
 
 ### Example
 
-The following is an example of remote plugin execution, all you need to get started:
+The following is an example of remote plugin execution, and this is all you need to get started:
 
 - `buf`
 - A [`buf.gen.yaml`](../../configuration/v1/buf-gen-yaml.md) file 
