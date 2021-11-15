@@ -9,8 +9,6 @@ The remote plugin execution feature makes it possible to execute Protobuf plugin
 
 By isolating and centralizing code generation from its environment, you eliminate an entire class of problems caused by subtle differences across specific versions of `protoc` and custom Protobuf plugins.
 
-As a best practice, when referencing remote plugins we recommend including the version of the plugin to ensure reproducible code generation.
-
 ## Supported plugins
 
 ### `protoc`-based plugins
@@ -32,10 +30,10 @@ https://buf.build/grpc/plugins
 The following is an example of remote plugin execution, all you need to get started:
 
 - `buf`
-- A `buf.gen.yaml` file 
-- A module of your choice
+- A [`buf.gen.yaml`](../../configuration/v1/buf-gen-yaml.md) file 
+- An [input](../../reference/inputs.md) of your choice
 
-We'll use the [acme/petapis](https://buf.build/acme/petapis) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we'll use a hosted module to illustrate remote plugin execution.
+We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweather) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we'll use a hosted module to illustrate remote plugin execution.
 
 Create a template file with the following contents: 
 
@@ -56,17 +54,15 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found here](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote). 
+Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found here](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote).
 
-It is possible to reference both local and remote plugins within a single template.
+> As a best practice, when referencing remote plugins we recommend including the version of the plugin to ensure reproducible code generation.
 
-The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given module. Once execution is finished the output is written out to disk.
+It is possible to reference both local and remote plugins within a single template. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given module. Once execution is finished the output is written out to disk.
 
 ```terminal
-$ buf generate buf.build/acme/petapis --include-imports
+$ buf generate buf.build/demolab/theweather
 ```
-
-The acme/petapis module has a dependency on the acme/paymentapis and googleapis/googleapis so we include the `--include-imports` flag to resolve those dependencies.
 
 What you should end up with is the following structure:
 
@@ -75,19 +71,12 @@ What you should end up with is the following structure:
 ├── buf.gen.yaml
 └── gen
     └── go
-        ├── google
-        │   └── type
-        │       ├── datetime.pb.go
-        │       └── money.pb.go
-        ├── payment
-        │   └── v1alpha1
-        │       └── payment.pb.go
-        ├── pet
-        │   └── v1
-        │       ├── pet.pb.go
-        │       └── pet_grpc.pb.go
         └── weather
             └── v1
                 ├── weather.pb.go
                 └── weather_grpc.pb.go
 ```
+
+## Wrapping up
+
+...
