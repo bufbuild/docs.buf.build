@@ -17,7 +17,7 @@ The Buf team has developed tooling to automatically sync and publish all of the 
 
 https://buf.build/protocolbuffers/plugins
 
-This is powerful because you no longer need to have `protoc` installed. All the benefits of code generation using `buf` and remote plugins without the headache of managing `protoc`.
+This is powerful because you no longer need to have `protoc` installed. It provides all the benefits of code generation using `buf` and remote plugins without the headache of managing `protoc`.
 
 ### gRPC plugins
 
