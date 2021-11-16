@@ -3,6 +3,9 @@ id: remote-plugin-execution
 title: Remote Plugin Execution
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Remote Plugin Execution
 
 The remote plugin execution feature makes it possible to execute Protobuf plugins remotely in a secure environment on the BSR, as opposed to invoking plugins on your local machine.
@@ -25,7 +28,7 @@ In addition to the plugins mentioned above, we're also adding support for popula
 
 https://buf.build/grpc/plugins
 
-### Example
+## Example
 
 The following is an example of remote plugin execution, and this is all you need to get started:
 
@@ -37,12 +40,24 @@ We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweathe
 
 Create a template file with the following contents: 
 
+<Tabs
+  groupId="language-selection"
+  defaultValue="go"
+  values={[
+    {label: 'Go', value: 'go'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Java', value: 'java'},
+  ]}>
+  <TabItem value="go">
+
 ```yaml title=buf.gen.yaml
 version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/org/repo/gen/go
+    default: github.com/organization/repository/gen/go
 plugins:
   - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
     out: gen/go
@@ -53,6 +68,65 @@ plugins:
       - paths=source_relative
       - require_unimplemented_servers=false
 ```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```yaml title=buf.gen.yaml
+version: v1
+managed:
+  enabled: true
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/js:v3.19.1-1
+    out: gen/js
+  - remote: buf.build/grpc/plugins/node:v1.11.2-1
+    out: gen/js
+```
+
+  </TabItem>
+  <TabItem value="python">
+
+```yaml title=buf.gen.yaml
+version: v1
+managed:
+  enabled: true
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/python:v3.19.1-1
+    out: gen/python
+  - remote: buf.build/grpc/plugins/python:v1.41.1-1
+    out: gen/python
+```
+  
+  </TabItem>
+  <TabItem value="ruby">
+
+```yaml title=buf.gen.yaml
+version: v1
+managed:
+  enabled: true
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/ruby:v3.19.1-1
+    out: gen/ruby
+  - remote: buf.build/grpc/plugins/ruby:v1.41.1-1
+    out: gen/ruby
+```
+
+  </TabItem>
+  <TabItem value="java">
+
+```yaml title=buf.gen.yaml
+version: v1
+managed:
+  enabled: true
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/java:v3.19.1-1
+    out: gen/java
+  - remote: buf.build/grpc/plugins/java:v1.42.1-1
+    out: gen/java
+```
+
+  </TabItem>
+</Tabs>
 
 Note, we're using the `remote` key instead of `name` to reference a remote plugin, instead of a local one. More information can be [found in the buf.gen.yaml docs](https://docs.buf.build/configuration/v1/buf-gen-yaml#name-or-remote).
 
@@ -66,6 +140,18 @@ $ buf generate buf.build/demolab/theweather
 
 What you should end up with is the following structure:
 
+<Tabs
+  groupId="language-selection"
+  defaultValue="go"
+  values={[
+    {label: 'Go', value: 'go'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Java', value: 'java'},
+  ]}>
+  <TabItem value="go">
+
 ```bash
 .
 ├── buf.gen.yaml
@@ -76,6 +162,71 @@ What you should end up with is the following structure:
                 ├── weather.pb.go
                 └── weather_grpc.pb.go
 ```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```bash
+.
+├── buf.gen.yaml
+└── gen
+    └── js
+        ├── getweatherrequest.js
+        ├── getweatherresponse.js
+        └── weather
+            └── v1
+                └── weather_grpc_pb.js
+```
+
+  </TabItem>
+  <TabItem value="python">
+
+```bash
+.
+├── buf.gen.yaml
+└── gen
+    └── python
+        └── weather
+            └── v1
+                ├── weather_pb2.py
+                └── weather_pb2_grpc.py
+```
+  
+  </TabItem>
+  <TabItem value="ruby">
+
+```bash
+.
+├── buf.gen.yaml
+└── gen
+    └── ruby
+        └── weather
+            └── v1
+                ├── weather_pb.rb
+                └── weather_services_pb.rb
+```
+
+  </TabItem>
+  <TabItem value="java">
+
+```bash
+.
+├── buf.gen.yaml
+└── gen
+    └── java
+        └── com
+            └── weather
+                └── v1
+                    ├── GetWeatherRequest.java
+                    ├── GetWeatherRequestOrBuilder.java
+                    ├── GetWeatherResponse.java
+                    ├── GetWeatherResponseOrBuilder.java
+                    ├── WeatherProto.java
+                    └── WeatherServiceGrpc.java
+```
+
+  </TabItem>
+</Tabs>
 
 ## Wrapping up
 
