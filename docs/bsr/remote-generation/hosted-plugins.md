@@ -29,7 +29,7 @@ https://buf.build/grpc/plugins
 
 The following is an example of remote plugin execution, and this is all you need to get started:
 
-- `buf`
+- The `buf` CLI
 - A [`buf.gen.yaml`](../../configuration/v1/buf-gen-yaml.md) file 
 - An [input](../../reference/inputs.md) of your choice
 
@@ -58,7 +58,7 @@ Note, we're using the `remote` key instead of `name` to reference a remote plugi
 
 > As a best practice, when referencing remote plugins we recommend including the version of the plugin to ensure reproducible code generation.
 
-It is possible to reference both local and remote plugins within a single template. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given module. Once execution is finished the output is written out to disk.
+It is possible to reference both local and remote plugins within a single template file. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given module. Once execution is finished the output is written out to disk.
 
 ```terminal
 $ buf generate buf.build/demolab/theweather
