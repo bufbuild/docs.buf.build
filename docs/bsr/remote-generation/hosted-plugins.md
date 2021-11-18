@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Remote Plugin Execution
 
-One of the greatest challenges with code generation is managing `protoc` and custom Protobuf plugins. There is a high barrier to entry for developers due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem gets compounded as you scale out code generation across many developers. 
+One of the greatest challenges with Protobuf code generation is the complexity of working with `protoc` and custom plugins. Time and time again we've heard that developers want the benefits of code generation, but the existing tooling gets in the way.
+
+There is a high barrier to entry for developers due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem gets compounded as you scale out code generation across many developers.
 
 Every organization and open source project develops homegrown tooling in an effort to simplify the developer experience and maintain consistent output across developers. A handful of organizations might get a workable solution, but these remain brittle and difficult to maintain over time. Furthermore, domain knowledge of these homegrown solutions gets lost and upgrade paths become challenging.
 
@@ -165,7 +167,7 @@ Note, we're using the `remote` key instead of `name` to reference a remote plugi
 
 > As a best practice, when referencing remote plugins we recommend including the version of the plugin to ensure reproducible code generation.
 
-It is possible to reference both local and remote plugins within a single template file. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given module. Once execution is finished the output is written out to disk.
+It is possible to reference both local and remote plugins within a single template file. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given input. Once execution is finished the output is written out to disk.
 
 ```terminal
 $ buf generate buf.build/demolab/theweather
