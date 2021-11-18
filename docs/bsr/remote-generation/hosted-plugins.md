@@ -8,35 +8,68 @@ import TabItem from '@theme/TabItem';
 
 # Remote Plugin Execution
 
-The remote plugin execution feature makes it possible to execute Protobuf plugins remotely in a secure environment on the BSR, as opposed to invoking plugins on your local machine.
+One of the greatest challenges with code generation is managing `protoc` and custom Protobuf plugins. There is a high barrier to entry for developers due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem gets compounded as you scale out code generation across many developers. 
 
-By isolating and centralizing code generation from its environment, you eliminate an entire class of problems caused by subtle differences across specific versions of `protoc` and custom Protobuf plugins.
+Every organization and open source project develops homegrown tooling in an effort to simplify the developer experience and maintain consistent output across developers. A handful of organizations might get a workable solution, but these remain brittle and difficult to maintain over time. Furthermore, domain knowledge of these homegrown solutions gets lost and upgrade paths become challenging.
 
-## Supported plugins
+At Buf, we believe code generation is a key building block and the Protobuf ecosystem deserves a proper solution.
+
+The **remote plugin execution** feature makes it possible to remotely generate source code using hosted plugins in an isolated environment on the BSR. By isolating code generation from its environment, you eliminate an entire class of problems caused by subtle differences across specific compiler versions and custom Protobuf plugins.
+
+All you need to get started is:
+
+- The `buf` CLI
+- A [`buf.gen.yaml`](../../configuration/v1/buf-gen-yaml.md) file
+- An [input](../../reference/inputs.md) of your choice
+
+With this setup a single developer or thousands of developers at a large organization are able to achieve stable and reproducible code generation, while enjoying a simplified developer experience.
+
+The Buf team has published a set of [Official plugins](#official-plugins) for you to use, starting with all the built-in `protoc` Protobuf plugins and popular ones such as gRPC plugins. 
+
+- Interested in publishing your own community plugin? Check out [Authoring a Plugin](plugin-example.md)
+- To learn more about Buf Plugins check out the [Key concepts docs](concepts.md)
+
+## Official plugins
 
 ### `protoc`-based plugins
 
-The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. A full list can be found here:
+The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. The following is a list of supported `protoc`-based plugins:
 
-https://buf.build/protocolbuffers/plugins
+- https://buf.build/protocolbuffers/plugins/go
+- https://buf.build/protocolbuffers/plugins/java
+- https://buf.build/protocolbuffers/plugins/python
+- https://buf.build/protocolbuffers/plugins/cpp
+- https://buf.build/protocolbuffers/plugins/csharp
+- https://buf.build/protocolbuffers/plugins/js
+- https://buf.build/protocolbuffers/plugins/objc
+- https://buf.build/protocolbuffers/plugins/php
+- https://buf.build/protocolbuffers/plugins/ruby
+- https://buf.build/protocolbuffers/plugins/kotlin
 
-This is powerful because you no longer need to have `protoc` installed. It provides all the benefits of code generation using `buf` and remote plugins without the headache of managing `protoc`.
+This is powerful because you no longer need to have `protoc` installed, or understand how to invoke it (a daunting task in and of itself). Furthermore you don't need to install additional plugins not already built-in to the `protoc` compiler, such as [protoc-gen-go](https://pkg.go.dev/github.com/golang/protobuf/protoc-gen-go).
 
 ### gRPC plugins
 
-In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. A full list can be found here:
+In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. The following is a list of supported gRPC plugins:
 
-https://buf.build/grpc/plugins
+- https://buf.build/grpc/plugins/go
+- https://buf.build/grpc/plugins/java
+- https://buf.build/grpc/plugins/python
+- https://buf.build/grpc/plugins/cpp
+- https://buf.build/grpc/plugins/csharp
+- https://buf.build/grpc/plugins/node
+- https://buf.build/grpc/plugins/web
+- https://buf.build/grpc/plugins/objc
+- https://buf.build/grpc/plugins/php
+- https://buf.build/grpc/plugins/ruby
 
 ## Example
 
-The following is an example of remote plugin execution, and this is all you need to get started:
-
-- The `buf` CLI
-- A [`buf.gen.yaml`](../../configuration/v1/buf-gen-yaml.md) file 
-- An [input](../../reference/inputs.md) of your choice
+The following is an example of remote plugin execution.
 
 We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweather) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we'll use a hosted module to illustrate remote plugin execution.
+
+A remote plugin can have a version specified, as is done below, or it can be omitted, if you want to always use the latest version of the plugin.
 
 Create a template file with the following contents: 
 
@@ -231,7 +264,5 @@ What you should end up with is the following structure:
 ## Wrapping up
 
 Remote plugin execution simplifies the process of generating code for your Protobuf API. It also has the added benefit of enforcing reproducible outputs by eliminating differences in the environment where generation takes place, such as a developer's local machine or across continuous integration environments.
-
-All code generation takes place in a **secure environment** on the BSR.
 
 Bring your own Protobuf files, or publish them to the BSR, and then generate the corresponding client and server code in your language of choice with hosted plugins on the BSR. You get all the benefits of code generation without the headache of managing plugins or `protoc` versions.
