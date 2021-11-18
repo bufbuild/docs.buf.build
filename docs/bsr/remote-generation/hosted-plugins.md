@@ -26,7 +26,7 @@ All you need to get started is:
 
 With this setup a single developer or thousands of developers at a large organization are able to achieve stable and reproducible code generation, while enjoying a simplified developer experience.
 
-The Buf team has published a set of [Official plugins](#official-plugins) for you to use, starting with all the built-in `protoc` Protobuf plugins and popular ones such as gRPC plugins. 
+The Buf team has published a set of [official plugins](#official-plugins) for you to use, starting with all the built-in `protoc` Protobuf plugins and popular ones such as gRPC plugins. 
 
 - Interested in publishing your own community plugin? Check out [Authoring a Plugin](plugin-example.md)
 - To learn more about Buf Plugins check out the [Key concepts docs](concepts.md)
