@@ -119,6 +119,8 @@ plugins:
       - binary
   - remote: buf.build/grpc/plugins/node:v1.11.2-1
     out: gen/js
+    opt:
+      - import_style=commonjs
 ```
 
   </TabItem>
