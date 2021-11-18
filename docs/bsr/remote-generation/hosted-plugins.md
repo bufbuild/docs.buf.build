@@ -114,6 +114,9 @@ managed:
 plugins:
   - remote: buf.build/protocolbuffers/plugins/js:v3.19.1-1
     out: gen/js
+    opt:
+      - import_style=commonjs
+      - binary
   - remote: buf.build/grpc/plugins/node:v1.11.2-1
     out: gen/js
 ```
@@ -206,11 +209,10 @@ What you should end up with is the following structure:
 ├── buf.gen.yaml
 └── gen
     └── js
-        ├── getweatherrequest.js
-        ├── getweatherresponse.js
         └── weather
             └── v1
-                └── weather_grpc_pb.js
+                ├── weather_grpc_pb.js
+                └── weather_pb.js
 ```
 
   </TabItem>
