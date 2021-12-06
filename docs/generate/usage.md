@@ -112,7 +112,7 @@ $ buf generate --template data/generate.yaml
 $ buf generate --template '{"version":"v1","plugins":[{"name":"go","out":"gen/go"}]}'
 
 # Download the repository, compile it, and generate per the generate.yaml template.
-$ buf generate https://github.com/foo/bar.git --generate data/generate.yaml
+$ buf generate https://github.com/foo/bar.git --template data/generate.yaml
 
 # Generate to the bar/ directory, prepending bar/ to the out directives in the template.
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
