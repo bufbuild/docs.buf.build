@@ -76,8 +76,8 @@ Once done, revert the breaking change:
 
 ```protobuf title=pet/v1/pet.proto {2-3}
  message Pet {
--  PetType pet_type = 1;
-+  string pet_type = 1;
+-  string pet_type = 1;
++  PetType pet_type = 1;
    string pet_id = 2;
    string name = 3;
  }
