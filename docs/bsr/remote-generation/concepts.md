@@ -48,7 +48,10 @@ A **template** is a collection of **plugins** and associated configuration. It i
 
 They belong to an **owner** and can be public or private. Public templates are available to anyone, while private templates are only available to the owner or members of the owning organization. 
 
-> Buf maintains an official set of templates for [grpc/go](https://buf.build/grpc/templates/go) and [protocolbuffers/go](https://buf.build/protocolbuffers/templates/go)
+Buf maintains several official templates:
+
+- https://buf.build/grpc/templates/go
+- https://buf.build/protocolbuffers/templates/go
 
 A template **version** defines the plugin versions to use. This allows a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
 

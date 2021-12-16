@@ -44,6 +44,11 @@ but shouldn't be specific to an input module. For example, you may create a temp
 JavaScript for Node.js, and one that generates JavaScript optimized for web browsers. Neither of these concepts 
 are specific to a given input module, and they could be reused by others.
 
+Buf maintains several official templates:
+
+- https://buf.build/grpc/templates/go
+- https://buf.build/protocolbuffers/templates/go
+
 ## Remote Generation Registries
 
 With a specific Template version and a specific Module version, the BSR has enough information
