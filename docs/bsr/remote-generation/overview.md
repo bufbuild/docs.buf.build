@@ -29,15 +29,9 @@ a binary Protobuf encoded
 [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/b24d0c2b7aeb2923d6e8e0c23946e7e2f493053b/src/google/protobuf/compiler/plugin.proto#L68-L96)
 on standard in, and the output is a binary encoded
 [CodeGeneratorResponse](https://github.com/protocolbuffers/protobuf/blob/b24d0c2b7aeb2923d6e8e0c23946e7e2f493053b/src/google/protobuf/compiler/plugin.proto#L99-L118)
-on standard out. Thery are designed to be shared, and their packaging should be as generic as possible.
+on standard out. They are designed to be shared, and their packaging should be as generic as possible.
 
-It's unlikely you will interact with plugins directly. Instead you'll use one or more plugins as
-building blocks within templates that will run against a module to produce generated code.
-
-Buf maintains several official plugins:
-
-- [library/go](https://buf.build/library/plugins/go):
-based on the official Go Protobuf plugin, [`protoc-gen-go`](https://pkg.go.dev/google.golang.org/protobuf)
+> Buf maintains a number of official plugins for various languages and grpc. See the [official plugins](https://docs.buf.build/bsr/remote-generation/remote-plugin-execution#official-plugins) for more details.
 
 ## Hosted templates
 
@@ -49,20 +43,6 @@ Templates, like plugins, are intended to be shared. They should express a partic
 but shouldn't be specific to an input module. For example, you may create a template that generates
 JavaScript for Node.js, and one that generates JavaScript optimized for web browsers. Neither of these concepts 
 are specific to a given input module, and they could be reused by others.
-
-Buf maintains several official templates:
-
-* [library/go](https://buf.build/library/templates/go):
-generates the module and dependencies using the official Go Protobuf plugin,
-[`protoc-gen-go`](https://pkg.go.dev/google.golang.org/protobuf).
-This is useful if you want to depend on a package which doesn't contain any Protobuf services.
-* [library/go-grpc](https://buf.build/library/templates/go-grpc):
-generates the module and dependencies using the official Go Protobuf plugin,
-[`protoc-gen-go`](https://pkg.go.dev/google.golang.org/protobuf)
-and the official Go gRPC plugin,
-[`protoc-gen-go-grpc`](https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc).
-This is useful if you want to depend on a package which contains Protobuf services,
-as well as other definitions.
 
 ## Remote Generation Registries
 

@@ -9,7 +9,7 @@ A BSR Template is a collection of one or more plugins that facilitates remote co
 
 In this example we'll create a `twirp-go` template by combining 2 existing BSR plugins:
 
-- An officially supported BSR plugin: [`library/go`](https://buf.build/library/plugins/go).
+- An officially supported BSR plugin: [`protocolbuffers/go`](https://buf.build/protocolbuffers/plugins/go).
 - A community plugin: [`demolab/twirp`](https://buf.build/demolab/plugins/twirp).
 
 > The `demolab/twirp` plugin was prepared in the [Authoring a Plugin](plugin-example.md) section.

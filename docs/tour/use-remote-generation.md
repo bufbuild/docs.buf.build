@@ -51,7 +51,7 @@ With module `buf.build/$BUF_USER/petapis` and template `buf.build/library/templa
 becomes:
 
 ```
-go.buf.build/library/go-grpc/$BUF_USER/petapis
+go.buf.build/grpc/go/$BUF_USER/petapis
 ```
 
 Update your import paths like so:
@@ -67,7 +67,7 @@ Update your import paths like so:
 -    // This import path is based on the name declaration in the go.mod,
 -    // and the gen/proto/go output location in the buf.gen.yaml.
 -    petv1 "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1"
-+    petv1 "go.buf.build/library/go-grpc/$BUF_USER/petapis/pet/v1"
++    petv1 "go.buf.build/grpc/go/$BUF_USER/petapis/pet/v1"
      "google.golang.org/grpc"
  )
 ```
@@ -84,7 +84,7 @@ Update your import paths like so:
 -    // This import path is based on the name declaration in the go.mod,
 -    // and the gen/proto/go output location in the buf.gen.yaml.
 -    petv1 "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1"
-+    petv1 "go.buf.build/library/go-grpc/$BUF_USER/petapis/pet/v1"
++    petv1 "go.buf.build/grpc/go/$BUF_USER/petapis/pet/v1"
      "google.golang.org/grpc"
  )
 ```
@@ -93,9 +93,9 @@ Now if you run the following command, you'll notice that the remote-generated li
 
 ```terminal
 $ go mod tidy
-go: finding module for package go.buf.build/library/go-grpc/$BUF_USER/petapis/pet/v1
-go: found go.buf.build/library/go-grpc/$BUF_USER/petapis/pet/v1 in go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.4
-go: downloading go.buf.build/library/go-grpc/$BUF_USER/paymentapis v1.4.1
+go: finding module for package go.buf.build/grpc/go/$BUF_USER/petapis/pet/v1
+go: found go.buf.build/grpc/go/$BUF_USER/petapis/pet/v1 in go.buf.build/grpc/go/$BUF_USER/petapis v1.4.4
+go: downloading go.buf.build/grpc/go/$BUF_USER/paymentapis v1.4.1
 ```
 
 With this, the Go/gRPC client and server stubs are included in your `go.mod` just like
@@ -191,7 +191,7 @@ module github.com/bufbuild/buf-tour/petstore
 go 1.16
 
 require (
-	go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.4
+	go.buf.build/grpc/go/$BUF_USER/petapis v1.4.4
 	google.golang.org/genproto v0.0.0-20210811021853-ddbe55d93216 // indirect
 	google.golang.org/grpc v1.40.0
 )
@@ -233,8 +233,8 @@ Now, edit your `go.mod` to use the latest version (i.e. the 5th commit):
  go 1.16
 
  require (
--    go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.4
-+    go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.5
+-    go.buf.build/grpc/go/$BUF_USER/petapis v1.4.4
++    go.buf.build/grpc/go/$BUF_USER/petapis v1.4.5
      google.golang.org/genproto v0.0.0-20210811021853-ddbe55d93216 // indirect
      google.golang.org/grpc v1.40.0
  )
@@ -248,8 +248,8 @@ $ go mod tidy
 ```
 
 ```sh title="go.sum" {1-4}
--go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.4 h1:Ay1b0VFvLsey21ylibis+lP8wBiDd5RUipDnQG6nCvY=
--go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.4/go.mod h1:aKE843ItBFu7UPuaxuUJvNpqC2hjVagPYiJ20n9dBJQ=
-+go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.5 h1:kW63uI3YuRvHb4WPrn7dJQLUaMHuNE3x/912DpzwloE=
-+go.buf.build/library/go-grpc/$BUF_USER/petapis v1.4.5/go.mod h1:aKE843ItBFu7UPuaxuUJvNpqC2hjVagPYiJ20n9dBJQ=
+-go.buf.build/grpc/go/$BUF_USER/petapis v1.4.4 h1:Ay1b0VFvLsey21ylibis+lP8wBiDd5RUipDnQG6nCvY=
+-go.buf.build/grpc/go/$BUF_USER/petapis v1.4.4/go.mod h1:aKE843ItBFu7UPuaxuUJvNpqC2hjVagPYiJ20n9dBJQ=
++go.buf.build/grpc/go/$BUF_USER/petapis v1.4.5 h1:kW63uI3YuRvHb4WPrn7dJQLUaMHuNE3x/912DpzwloE=
++go.buf.build/grpc/go/$BUF_USER/petapis v1.4.5/go.mod h1:aKE843ItBFu7UPuaxuUJvNpqC2hjVagPYiJ20n9dBJQ=
 ```
