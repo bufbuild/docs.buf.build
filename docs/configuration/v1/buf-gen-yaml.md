@@ -108,7 +108,7 @@ This field is **exclusive** with `remote` and will only work with `name` for loc
 
 #### `strategy`
 
-You `strategy` of a plugin is **optional**, and specifies the generation `strategy` for `buf generate` to use.
+Your `strategy` of a plugin is **optional**, and specifies the generation `strategy` for `buf generate` to use.
 For example, we can add a `strategy` to one of the plugins in the configuration shown above like so:
 
 ```yaml title="buf.gen.yaml"
