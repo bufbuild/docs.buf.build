@@ -79,7 +79,7 @@ managed:
     override:
       buf.build/acme/weather: github.com/acme/weather/gen/proto/go
   override:
-    JAVA_PACKAGE_PREFIX:
+    JAVA_PACKAGE:
       acme/weather/v1/weather.proto: "org"
 plugins:
   - name: go
