@@ -38,7 +38,16 @@ The module `name` is composed of three parts — the remote, owner, and reposito
 
     Every repository is identified by its module name, allowing it to be imported by other modules and uniquely identified within the BSR.
 
-Many organizations with public Protobuf files are already using the BSR, and some of the bigger ones are officially maintained by Buf. These include [googleapis/googleapis](https://buf.build/googleapis/googleapis/docs), [envoyproxy/protoc-gen-validate](https://buf.build/envoyproxy/protoc-gen-validate/docs), and others.
+Many organizations with public Protobuf files are already using the BSR, and some of the bigger ones are officially maintained by Buf. These include
+
+* [googleapis/googleapis](https://buf.build/googleapis/googleapis)
+* [envoyproxy/protoc-gen-validate](https://buf.build/envoyproxy/protoc-gen-validate)
+* [envoyproxy/envoy](https://buf.build/envoyproxy/envoy)
+* [gogo/protobuf](https://buf.build/gogo/protobuf)
+* [cncf/xds](https://buf.build/cncf/xds)
+* [opentelemetry/opentelemetry](https://buf.build/opentelemetry/opentelemetry)
+* [opencensus/opencensus](https://buf.build/opencensus/opencensus)
+* [grpc/grpc](https://buf.build/grpc/grpc)
 
 ## Documentation
 
