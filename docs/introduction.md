@@ -57,7 +57,7 @@ The tool is currently available on an open-source basis. The `buf` CLI incorpora
 
 The Buf Schema Registry ([BSR](bsr/introduction.md)) is a hosted SaaS platform that serves as your organization’s source of truth for your Protobuf APIs. The BSR
 enables you to centrally maintain compatibility and manage dependencies, while enabling your clients to consume APIs reliably and efficiently.
-Similar to `npm` for JavaScript, `pip` for Python, or `cargo` for Rust, the BSR is _finally_ bring dependency management to your Protobuf APIs.
+Similar to `npm` for JavaScript, `pip` for Python, or `cargo` for Rust, the BSR _finally_ brings dependency management to your Protobuf APIs.
 
 Over time, our goal is to make the BSR the only tool you need to manage your Protobuf workflow from end to end. To that end, there's a lot we
 are planning with the BSR. For a quick overview, see our [roadmap](roadmap.md).
