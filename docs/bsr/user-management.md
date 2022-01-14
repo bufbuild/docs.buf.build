@@ -26,8 +26,6 @@ Every user that is part of an organization will have an explicit role. Note that
 
 ### Base resource roles
 
-> *Configurable base resource roles are coming soon.*
-
 Every organization has a set of base resource roles that apply to all members of the organization. The following are the default roles:
 
 | Repository | Template | Plugin |
