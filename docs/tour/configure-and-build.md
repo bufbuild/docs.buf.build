@@ -93,8 +93,9 @@ Before we continue, let's verify that everything is set up properly:
 $ buf build
 ```
 
-The above command should have exit code 0 and no output. This means that all of the `.proto` files
-defined in the current directory successfully compile.
+The above command should have exit code 0 and no output (you can check the exit code by
+running `echo $?`). This means that all of the `.proto` files defined in the current
+directory successfully compile.
 
 Plus, you can see some interesting details about the compiled artifact with a few flags and
 [jq](https://stedolan.github.io/jq). This command displays a list of the Protobuf packages used
@@ -104,15 +105,7 @@ in this project:
 $ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package'
 ```
 
-The output you should see:
-
-```terminal
-"google.protobuf"
-"google.type"
-"pet.v1"
-```
-
-That output indicates that these packages are used in the project:
+The output indicates that these packages are used in the project:
 
 Package name | Meaning
 :------------|:-------
