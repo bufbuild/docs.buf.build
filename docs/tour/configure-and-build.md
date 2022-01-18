@@ -97,16 +97,29 @@ The above command should have exit code 0 and no output. This means that all of 
 defined in the current directory successfully compile.
 
 Plus, you can see some interesting details about the compiled artifact with a few flags and
-[jq](https://stedolan.github.io/jq):
+[jq](https://stedolan.github.io/jq). This command displays a list of the Protobuf packages used
+in this project:
 
 ```terminal
-$ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+$ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package'
+```
+
+The output you should see:
+
+```terminal
 "google.protobuf"
 "google.type"
 "pet.v1"
 ```
 
-In this case, we see three packages: the [Well-Known Types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf),
-a dependency on a `google` API, and the `pet.v1` API itself. We'll come back to this later.
+That output indicates that these packages are used in the project:
+
+Package name | Meaning
+:------------|:-------
+`google.protobuf` | A dependency on the [Well-Known Types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
+`google.type` | A dependency on a Google API
+`pet.v1` | The pet store API itself
+
+We'll come back to the `pet.v1` package later.
 
 [tour_repo]: https://github.com/bufbuild/buf-tour.git
