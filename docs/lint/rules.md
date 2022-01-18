@@ -555,20 +555,6 @@ extra category enforces that no developer accidentally adds a streaming RPC if y
 support them. Additionally, streaming RPCs have a number of issues in general usage. See [this
 discussion](https://github.com/twitchtv/twirp/issues/70#issuecomment-470367807) for more details.
 
-### `UNARY_RPC`
-
-This is an extra top-level category that outlaws streaming RPCs.
-
-This `UNARY_RPC` category includes the following rules:
-
-- `RPC_NO_CLIENT_STREAMING` checks that RPCs are not client streaming.
-- `RPC_NO_SERVER_STREAMING` checks that RPCs are not server streaming.
-
-Some RPC protocols do not allow streaming RPCs, for example [Twirp](https://twitchtv.github.io/twirp). This
-extra category enforces that no developer accidentally adds a streaming RPC if your setup does not
-support them. Additionally, streaming RPCs have a number of issues in general usage. See [this
-discussion](https://github.com/twitchtv/twirp/issues/70#issuecomment-470367807) for more details.
-
 ### `PACKAGE_NO_IMPORT_CYCLE`
 
 This is an extra uncategorized rule that detects package import cycles. The Protobuf compiler outlaws circular
