@@ -8,14 +8,20 @@ with the following command:
 
 ```terminal
 $ buf ls-files
+```
+
+This prints this list of `.proto` files managed by `buf` per the
+[build configuration](../configuration/v1/buf-yaml.md#build):
+
+```
 google/type/datetime.proto
 pet/v1/pet.proto
 ```
 
-This will print a list of all `.proto` files managed by `buf` per the
-[build configuration](../configuration/v1/buf-yaml.md#build). The `build.excludes` value allows you to
-remove certain directories from being built, but it's not generally
-necessary, nor is it recommended.
+
+The [`build.excludes`](/configuration/v1/buf-yaml#excludes) parameter
+enables you to remove certain directories from being built, but this is neither
+necessary nor recommended.
 
 ## 2.1 Remote Inputs {#remote-inputs}
 
