@@ -511,7 +511,7 @@ service BazEndpoint {}
 
 ### `COMMENTS`
 
-This is an "extra top-level" category that enforces that comments are present on various parts
+This is an extra top-level category that enforces that comments are present on various parts
 of your Protobuf schema.
 
 The `COMMENTS` category includes the following rules:
@@ -543,7 +543,7 @@ lint:
 
 ### `UNARY_RPC`
 
-This is an "extra top-level" category that outlaws streaming RPCs.
+This is an extra top-level category that outlaws streaming RPCs.
 
 This `UNARY_RPC` category includes the following rules:
 
@@ -554,6 +554,64 @@ Some RPC protocols do not allow streaming RPCs, for example [Twirp](https://twit
 extra category enforces that no developer accidentally adds a streaming RPC if your setup does not
 support them. Additionally, streaming RPCs have a number of issues in general usage. See [this
 discussion](https://github.com/twitchtv/twirp/issues/70#issuecomment-470367807) for more details.
+
+### `UNARY_RPC`
+
+This is an extra top-level category that outlaws streaming RPCs.
+
+This `UNARY_RPC` category includes the following rules:
+
+- `RPC_NO_CLIENT_STREAMING` checks that RPCs are not client streaming.
+- `RPC_NO_SERVER_STREAMING` checks that RPCs are not server streaming.
+
+Some RPC protocols do not allow streaming RPCs, for example [Twirp](https://twitchtv.github.io/twirp). This
+extra category enforces that no developer accidentally adds a streaming RPC if your setup does not
+support them. Additionally, streaming RPCs have a number of issues in general usage. See [this
+discussion](https://github.com/twitchtv/twirp/issues/70#issuecomment-470367807) for more details.
+
+### `PACKAGE_NO_IMPORT_CYCLE`
+
+This is an extra uncategorized rule that detects package import cycles. The Protobuf compiler outlaws circular
+file imports, but it's still possible to introduce package cycles, such as the following:
+
+```sh
+.
+├── bar
+│   ├── four.proto
+│   └── three.proto
+└── foo
+    ├── one.proto
+    └── two.proto
+```
+
+```protobuf
+# foo/one.proto
+syntax = "proto3";
+
+package foo;
+
+import "bar/three.proto";
+
+message One {
+    bar.Three three = 3;
+}
+```
+
+```protobuf
+# bar/four.proto
+syntax = "proto3";
+
+package bar;
+
+import "foo/one.proto";
+
+message Four {
+    foo.One one = 1;
+}
+```
+
+These packages successfully compile, but this file structure introduces problems for languages that rely on
+package-based imports (e.g. Go). If possible, **this rule should always be configured**.
 
 ## What we left out
 
