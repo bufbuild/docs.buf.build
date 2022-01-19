@@ -97,3 +97,17 @@ All styles live in `src/css/custom.css` and CSS module files in `src/theme/`.
 If a style cannot be manipulated in `custom.css` as required, theme components
 can be [overridden](https://docusaurus.io/docs/2.0.0-beta.3/typescript-support#swizzling-typescript-theme-components)
 and [wrapped](https://docusaurus.io/docs/2.0.0-beta.3/using-themes#wrapping-theme-components).
+
+## Custom components
+
+There are a few custom components that you may find useful when working on the docs:
+
+### `Image`
+
+Use this component for embedding images. Here's an example:
+
+```jsx
+<Image src="/images/weird-al.png" alt="Funniest guy ever" />
+```
+
+Required fields are `alt` and `src`.
