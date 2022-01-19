@@ -3,15 +3,13 @@ id: overview
 title: Overview
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import Image from '@site/src/components/Image';
 
 ## Module
 
 A **module** is a collection of Protobuf files that are configured, built, and versioned as a logical unit. By moving away from individual `.proto` files, the **module** simplifies file discovery and eliminates the need for complex build scripts to `-I` include, exclude, and configure your Protobuf sources.
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/module_2_with_yaml.png')}/>
-</div>
+<Image alt="BSR module" src="/img/bsr/module_2_with_yaml.png" caption="How modules map to Buf YAML configs" />
 
 Storing modules in the BSR, a Protobuf-aware registry, protects you from publishing broken builds. Module consumers have confidence that modules they pull will compile. Something that is not possible with traditional version control systems.
 
@@ -26,9 +24,7 @@ name: buf.build/acme/weather
 
 The module `name` is composed of three parts — the remote, owner, and repository: `<remote>/<owner>/<repository>`
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/module_name.png')}  height="150px"/>
-</div>
+<Image alt="BSR module" src="/img/bsr/module_name.png" width={50} caption="The format of module names" />
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.
@@ -53,7 +49,7 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 Every push to the BSR will autogenerate documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
 
-For more information, see [Generated documentation](documentation.md).
+For more information, see [Generated documentation](documentation).
 
 ## Dependencies
 

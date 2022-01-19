@@ -4,7 +4,7 @@ title: Overview
 description: The BSR supports remote code generation, which means you fetch generated source code like any other dependency.
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import Image from '@site/src/components/Image';
 
 > Remote code generation is an **experimental feature**. We started with Go and have plans to add support for other languages. [Let us know what language we should tackle next](../../contact.md).
 
@@ -18,9 +18,7 @@ Furthermore, if you have Protobuf-based services your clients shouldn't have to 
 with code generation. They should be able to consume your API immediately. *And* it should
 be as simple as pulling a generated client from their language's registry, that's it!
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/remote-code-gen.png')} width="75%" />
-</div>
+<Image alt="BSR module" src="/img/bsr/remote-code-gen.png" width={75} caption="The Buf Schema Registry's remote generation process" />
 
 ## Hosted plugins
 
