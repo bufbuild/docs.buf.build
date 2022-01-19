@@ -90,6 +90,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
+figure {
+    text-align: center;    
+}
+
 figcaption {
     font-weight: 100;
     font-size: 1.2rem;
