@@ -3,13 +3,12 @@ id: documentation
 title: Generated Documentation
 ---
 
+import Image from '@site/src/components/Image';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The BSR comes with complete documentation for your Protobuf files through a browsable UI with syntax highlighting, one click navigation between definitions and references. Navigate to a repository within the BSR and click the **Docs** tab. 
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-3.png')}/>
-</div>
+<Image alt="BSR module" src="/img/bsr/gen_docs-3.png" />
 
 For an example see the `demolab/theweather` module by visiting [https://buf.build/demolab/theweather/docs](https://buf.build/demolab/theweather/docs).
 
@@ -22,9 +21,7 @@ To accomplish this, you add a `buf.md` file to the same directory as your module
 The `buf.md` file is analogous to a GitHub repository's `README.md` and currently supports all of the
 [CommonMark](https://commonmark.org) syntax.
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-2.png')}/>
-</div>
+<Image alt="BSR module" src="/img/bsr/gen_docs-2.png" />
 
 ## Package documentation
 
@@ -40,6 +37,4 @@ When sharing packages it is often useful to provide an overview of the package. 
 
 Comments on the package directive are not merged across files. Files are parsed alphabetically, and only the first file with a non-empty comment will be displayed in the generated documentation.
 
-<div align="center">
-  <img alt="BSR module" src={useBaseUrl('/img/bsr/gen_docs-1_v2.png')}/>
-</div>
+<Image alt="BSR module" src="/img/bsr/gen_docs-1_v2.png" />
