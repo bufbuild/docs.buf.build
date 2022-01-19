@@ -89,3 +89,9 @@ h1, h2, h3, h4, h5, h6 {
 html[data-theme='dark'] .docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+figcaption {
+    font-weight: 100;
+    font-size: 1.2rem;
+    text-align: right;
+}

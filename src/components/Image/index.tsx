@@ -4,13 +4,24 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 type Props = {
   alt: string;
   src: string;
+  caption?: string;
 };
 
-const Image = ({ alt, src }: Props) => {
+const Image = ({ alt, src, caption }: Props) => {
+  const url: string = useBaseUrl(src);
+
   return (
-    <div align="center">
-      <img alt={alt} src={useBaseUrl(src)}/>
-    </div>
+    <figure>
+      <a href={url} target="_blank">
+        <img alt={alt} src={url} />
+      </a>
+
+      {caption && (
+        <figcaption>
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 
