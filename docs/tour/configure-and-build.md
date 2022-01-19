@@ -103,9 +103,13 @@ in this project:
 
 ```terminal
 $ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package'
+---
+"google.protobuf"
+"google.type"
+"pet.v1"
 ```
 
-The output indicates that these packages are used in the project:
+As you can see from the output, these packages are used in the project:
 
 Package name | Meaning
 :------------|:-------
@@ -114,5 +118,6 @@ Package name | Meaning
 `pet.v1` | The pet store API itself
 
 We'll come back to the `pet.v1` package later.
+
 
 [tour_repo]: https://github.com/bufbuild/buf-tour.git

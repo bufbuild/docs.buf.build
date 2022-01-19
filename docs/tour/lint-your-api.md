@@ -7,11 +7,7 @@ You can run all of the configured lint rules with the following:
 
 ```terminal
 $ buf lint
-```
-
-The output:
-
-```
+---
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
 pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_case, such as "pet_id".
 pet/v1/pet.proto:49:9:Service name "PetStore" should be suffixed with "Service".
@@ -35,11 +31,7 @@ You can also output lint failures as JSON:
 
 ```terminal
 $ buf lint --error-format=json
-```
-
-The output:
-
-```json
+---
 {"path":"google/type/datetime.proto","start_line":17,"start_column":1,"end_line":17,"end_column":21,"type":"PACKAGE_VERSION_SUFFIX","message":"Package name \"google.type\" should be suffixed with a correctly formed version, such as \"google.type.v1\"."}
 {"path":"pet/v1/pet.proto","start_line":44,"start_column":10,"end_line":44,"end_column":15,"type":"FIELD_LOWER_SNAKE_CASE","message":"Field name \"petID\" should be lower_snake_case, such as \"pet_id\"."}
 {"path":"pet/v1/pet.proto","start_line":49,"start_column":9,"end_line":49,"end_column":17,"type":"SERVICE_SUFFIX","message":"Service name \"PetStore\" should be suffixed with \"Service\"."}
@@ -125,15 +117,11 @@ fix the failures with the following updates:
  }
 ```
 
-You can verify that two of the failures are resolved by linting again:
+You can verify that two of the failures are resolved by linting again and seeing only one remaining error:
 
 ```terminal
 $ buf lint
-```
-
-The remaining error:
-
-```
+---
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
 ```
 
@@ -162,11 +150,7 @@ all existing lint errors and correct them over time:
 
 ```terminal
 $ buf lint --error-format=config-ignore-yaml
-```
-
-The suggested YAML configuration:
-
-```yaml
+---
 version: v1
 lint:
   ignore_only:
@@ -183,16 +167,16 @@ the original lint failures if you reference a `tar.gz` archive from the `main` b
 
 ```terminal
 $ buf lint "https://github.com/bufbuild/buf-tour/archive/main.tar.gz#strip_components=1,subdir=start/petapis" --config buf.yaml
-```
-
-This returns two lint failures:
-
-```
+---
 start/petapis/pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_case, such as "pet_id".
 start/petapis/pet/v1/pet.proto:49:9:Service name "PetStore" should be suffixed with "Service".
 ```
 
-  * The `strip_components` option specifies the number of directories to strip for `tar` or `zip` inputs.
+:::note
+The `strip_components` option specifies the number of directories to strip for `tar` or `zip` inputs.
+:::
 
-> For remote locations that require authentication, see [HTTPS Authentication](../reference/inputs.md#https) and
-> [SSH Authentication](../reference/inputs.md#ssh) for more details.
+:::note Remote authentication
+For remote locations that require authentication, see [HTTPS Authentication](../reference/inputs.md#https) and
+[SSH Authentication](../reference/inputs.md#ssh) for more details.
+:::

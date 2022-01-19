@@ -8,11 +8,7 @@ You can list all of the `.proto` files managed by `buf` per the
 
 ```terminal
 $ buf ls-files
-```
-
-This prints the following list of files:
-
-```
+---
 google/type/datetime.proto
 pet/v1/pet.proto
 ```
@@ -27,19 +23,17 @@ The `ls-files` command also works with remote inputs, such as the following:
 
 ```terminal
 $ buf ls-files git://github.com/bufbuild/buf-tour.git#branch=main,subdir=start/petapis
+---
+start/petapis/google/type/datetime.proto
+start/petapis/pet/v1/pet.proto
 ```
+
+Some things to note from the remote input:
 
 * The `branch` option specifies the branch to clone for git inputs. In this case, use
   the `main` branch.
 * The `subdir` option specifies a sub-directory to use within a `git`, `tar`, or `zip` input.
   In this case, target the `start/petapis` sub-directory.
-
-That should output this list of `.proto` files:
-
-```
-start/petapis/google/type/datetime.proto
-start/petapis/pet/v1/pet.proto
-```
 
 Here, `buf` is listing the files from a [`git`](/reference/inputs#git) archive, so you'll notice that the result includes the
 `start/petapis/` prefix, which is the relative filepath from the root of the `git` archive.
