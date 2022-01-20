@@ -6,8 +6,9 @@ title: 1 Configure and Build
 We'll start our tour by configuring `buf` and building the `.proto` files that define
 the pet store API, which specifies a way to create, get, and delete pets in the store.
 
-Clone the [`bufbuild/buf-tour`][tour_repo] repository from GitHub and navigate to the
-`petapis` directory, which contains the pet store's `.proto` files:
+Clone the [`bufbuild/buf-tour`](https://github.com/bufbuild/buf-tour.git) repository
+from GitHub and navigate to the `petapis` directory, which contains the pet store's
+`.proto` files:
 
 ```terminal
 $ git clone https://github.com/bufbuild/buf-tour.git
@@ -118,6 +119,3 @@ Package name | Meaning
 `pet.v1` | The pet store API itself
 
 We'll come back to the `pet.v1` package later.
-
-
-[tour_repo]: https://github.com/bufbuild/buf-tour.git
