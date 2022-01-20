@@ -39,7 +39,7 @@ $ buf lint --error-format=json
 
 ## 3.1 Lint Exceptions {#lint-exceptions}
 
-The [`DEFAULT`](/lint/rules#default) lint category failures we're seeing come from these rules:
+The [`DEFAULT`](/lint/rules#default) lint category failures come from these rules:
 
 * [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#package_version_suffix)
 * [`FIELD_LOWER_SNAKE_CASE`](../lint/rules.md#field_lower_snake_case)
