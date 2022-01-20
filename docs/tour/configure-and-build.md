@@ -11,7 +11,7 @@ Clone the [`bufbuild/buf-tour`][tour_repo] repository from GitHub and navigate t
 
 ```terminal
 $ git clone https://github.com/bufbuild/buf-tour.git
-$ cd buf-tour/start/petapias
+$ cd buf-tour/start/petapis
 ```
 
 ## 1.1 Configure `buf` {#configure-buf}
