@@ -40,7 +40,7 @@ files: {
 		}
 		_default: {
 			version: fields.version.type.string.default
-			deps: fields.deps.type.string_array.default
+			deps:    fields.deps.type.string_array.default
 		}
 	}
 

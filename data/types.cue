@@ -1,6 +1,7 @@
 package data
 
 import "encoding/yaml"
+
 import "strings"
 
 // Root type declarations
