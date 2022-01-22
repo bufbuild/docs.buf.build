@@ -7,7 +7,7 @@ files: {
       		responsible for the module's name, dependencies, and [`lint`](\(urls.lint)) and
       		[`breaking`](\(urls.breaking)) configuration.
       		"""
-		config: {
+		fields: {
 			version: {
 				description: "Defines the current Buf version."
 				required:    true
@@ -33,8 +33,14 @@ files: {
 					as well as a [reference](\(urls.reference)), which is either a tag or a commit.
 					"""
 
-				type: string_array: {}
+				type: string_array: {
+					default: []
+				}
 			}
+		}
+		_default: {
+			version: fields.version.type.string.default
+			deps: fields.deps.type.string_array.default
 		}
 	}
 

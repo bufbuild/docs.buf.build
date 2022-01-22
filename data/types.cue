@@ -1,5 +1,6 @@
 package data
 
+import "encoding/yaml"
 import "strings"
 
 // Root type declarations
@@ -20,14 +21,19 @@ files: #ConfigFileMap
 	description: #Str
 	version:     #Version | *#V1
 	docs_path:   "/configuration/\(version)/\(_url_encoded_name)"
-	config:      #ParamMap
+	fields:      #Fields
+	_default?:   _
+
+	if _default != _|_ {
+		default: yaml.Marshal(_default)
+	}
 
 	_url_encoded_name: strings.Replace(name, ".", "-", -1)
 }
 
 #ConfigFileMap: [Name=#Str]: #ConfigFile & {name: Name}
 
-#Param: {
+#Field: {
 	#Type: {
 		#TypeBool: {}
 
@@ -37,6 +43,7 @@ files: #ConfigFileMap
 		}
 
 		#TypeStringArray: {
+			default?: [...#Str]
 			example?: [#Str, ...#Str]
 		}
 
@@ -51,4 +58,4 @@ files: #ConfigFileMap
 	type:        #Type
 }
 
-#ParamMap: [Name=#Str]: #Param & {name: Name}
+#Fields: [Name=#Str]: #Field & {name: Name}
