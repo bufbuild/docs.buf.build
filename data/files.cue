@@ -19,19 +19,19 @@ files: {
 
 			name: {
 				description: """
-          A unique identifier for your module. Must be a valid [module name](\(urls.module)) and is
-          directly associated with the repository that owns it.
-          """
+					A unique identifier for your module. Must be a valid [module name](\(urls.module)) and is
+					directly associated with the repository that owns it.
+					"""
 				required:    false
 				type: string: {}
 			}
 
 			deps: {
 				description: """
-          Declares one or more [modules](\(urls.module)) that your own module depends on. Each
-          `deps` entry **must** be a module reference and is directly associated with a repository
-          as well as a [reference](\(urls.reference)), which is either a tag or a commit.
-          """
+					Declares one or more [modules](\(urls.module)) that your own module depends on. Each
+					`deps` entry **must** be a module reference and is directly associated with a repository
+					as well as a [reference](\(urls.reference)), which is either a tag or a commit.
+					"""
 
 				type: string_array: {}
 			}
@@ -40,9 +40,9 @@ files: {
 
 	"buf.lock": {
 		description: """
-      Contains the [module](\(urls.module))'s dependency manifest and represents a single,
-      reproducible build of your module's dependencies.
-      """
+			Contains the [module](\(urls.module))'s dependency manifest and represents a single,
+			reproducible build of your module's dependencies.
+			"""
 	}
 
 	"buf.gen.yaml": {
