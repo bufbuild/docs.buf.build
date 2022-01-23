@@ -6,6 +6,7 @@ package data
 
 // Arg formats
 #Commit:       "buf.build/{owner}/{repository}:{commit}"
+#Directory:    "directory"
 #Input:        "input"
 #Organization: "buf.build/{organization}"
 #Plugin:       "buf.build/{owner}/plugins/{plugin}"
@@ -18,7 +19,7 @@ package data
 	#Enum: [Name=_]: #String
 
 	#Args: [...{
-		#Format: #Commit | #Input | #Organization | #Plugin | #Repository | #Target | #Tag | #Template
+		#Format: #Commit | #Directory | #Input | #Organization | #Plugin | #Repository | #Target | #Tag | #Template
 
 		description: #String
 		required:    bool | *false

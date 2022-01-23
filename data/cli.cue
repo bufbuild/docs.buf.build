@@ -49,7 +49,7 @@ buf_cli: {
 
 			commands: {
 				registry: {
-					description: _vals.registry
+					description: _vals.registry_desc
 
 					commands: {
 						commit: {
@@ -495,8 +495,70 @@ buf_cli: {
 			}
 		}
 
+		config: {
+			description: "Interaction with the configuration of Buf."
+
+			commands: {
+				init: {
+					description: "Initialize and write a new `buf.yaml` configuration file."
+
+					flags: {
+						doc: {
+							description: "Write inline documentation in the form of comments in the resulting configuration file."
+						}
+					}
+
+					options: {
+						output: {
+							description: "The directory to write the configuration file to."
+							type:        "string"
+							default:     "."
+						}
+					}
+				}
+
+				"ls-breaking-rules": {
+					description: "List breaking rules."
+
+					flags: {
+						all: _vals.all_flag
+					}
+
+					options: {
+						config: _vals.lint_config_opt
+
+						format: _vals.lint_format_opt
+
+						version: _vals.lint_version_opt
+					}
+				}
+
+				"ls-lint-rules": {
+					description: "List lint rules."
+
+					flags: {
+						all: _vals.all_flag
+					}
+
+					options: {
+						config: _vals.lint_config_opt
+
+						format: _vals.lint_format_opt
+
+						version: _vals.lint_version_opt
+					}
+				}
+
+				"migrate-v1beta1": {
+					description: "Migrate any `v1beta1` configuration files in the directory to the latest version."
+
+					args: [_vals.directory_arg]
+				}
+			}
+		}
+
 		registry: {
-			description: _vals.registry
+			description: _vals.registry_desc
 
 			commands: {
 				login: {
@@ -536,10 +598,18 @@ buf_cli: {
 }
 
 _vals: {
-	registry: "Interact with the Buf Schema Registry (BSR)."
+	registry_desc: "Interact with the Buf Schema Registry (BSR)."
+
+	all_flag: {
+		description: "List all rules and not just those currently configured."
+	}
 	commit_arg: {
 		description: "The commit."
 		format:      #Commit
+	}
+	directory_arg: {
+		description: "The directory."
+		format:      #Directory
 	}
 	config_opt: {
 		description: "The template config file or data to use. Must be in either YAML or JSON format."
@@ -579,6 +649,25 @@ _vals: {
 	input_arg: {
 		description: "The input."
 		format:      #Input
+	}
+	lint_config_opt: {
+		description: "The config file or data to use. If `--all` or `--version` is specified, this is ignored."
+		type:        "string"
+	}
+	lint_format_opt: {
+		description: "The format to print rules as."
+		enum: {
+			text: "Text"
+			json: "JSON"
+		}
+		default: "text"
+	}
+	lint_version_opt: {
+		description: "List all the rules for the given configuration version. Implies `--all`."
+		enum: {
+			v1beta: "v1beta1"
+			v1:     "v1"
+		}
 	}
 	message_opt: {
 		description: """
