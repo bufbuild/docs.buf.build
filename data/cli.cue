@@ -424,16 +424,7 @@ buf_cli: {
 				against: {
 					description: "The source, module, or image to check against."
 					required:    true
-					enum: {
-						bin:       "Binary"
-						dir:       "Directory"
-						git:       "Git"
-						json:      "JSON"
-						"mod":     "Module"
-						protofile: "Protocol Buffers file"
-						tar:       "Tarball"
-						zip:       "ZIP archive"
-					}
+					enum: _vals.format_enum
 				}
 
 				"against-config": {
@@ -584,9 +575,7 @@ buf_cli: {
 			args: [_vals.input_arg]
 
 			flags: {
-				"include-imports": {
-					description: "Also generate all imports except Well-known Types."
-				}
+				"include-imports": _vals.include_imports_flag
 			}
 
 			options: {
@@ -611,6 +600,107 @@ buf_cli: {
 					description: "The generation template file or data to use. Must be in either YAML or JSON format."
 					type: "string"
 				}
+			}
+		}
+
+		lint: {
+			description: "Check that the input location passes lint checks."
+
+			args: [_vals.input_arg]
+
+			flags: {
+				
+			}
+
+			options: {
+				config: {
+					description: "The config file or data to use."
+					type: "string"
+				}
+
+				"error-format": _vals.error_format_opt
+
+				"exclude-path": _vals.exclude_path_opt
+
+				path: _vals.path_opt
+			}
+		}
+
+		"ls-files": {
+			description: "List all Protobuf files for the input."
+
+			flags: {
+				"as-import-paths": {
+					description: "Strip local directory paths and print file paths as they are imported."
+				}
+
+				"include-imports": _vals.include_imports_flag
+			}
+
+			options: {
+				config: {
+					description: "The config file or data to use."
+					type: "string"
+				}
+
+				"error-format": _vals.error_format_opt
+
+				input: {
+					description: "The source or image to list the files from."
+					enum: _vals.format_enum
+				}
+			}
+		}
+
+		"mod": {
+			description: "Configure and update Buf modules."
+
+			commands: {
+				"clear-cache": {
+					description: "Clear the module cache."
+					alias: "cc"
+				}
+
+				prune: {
+					description: """
+						Prune unused dependencies from the `buf.lock` file.
+
+						The first argument is the directory of the local module to prune. If no
+						argument is specified, defaults to `.`.
+						"""
+
+					args: [_vals.directory_arg]
+				}
+
+				update: {
+					description: """
+						Update the module's dependencies. Updates the `buf.lock` file.
+
+						Gets the latest digests for the specified references in the config file and
+						writes them and their transitive dependencies to the `buf.lock` file. The
+						first argument is the directory of the local module to update. If no
+						argument is specified, defaults to `.`.
+						"""
+					
+					args: [_vals.directory_arg]
+				}
+			}
+		}
+
+		// protoc: TODO
+
+		push: {
+			description: """
+				Push a module to a registry.
+
+				The first argument is the source to push. The first argument must be one of format
+				[dir,git,protofile,tar,zip].
+				"""
+
+			args: [_vals.source_arg]
+
+			options: {
+				"error-format": _vals.error_format_opt
 			}
 		}
 
@@ -697,6 +787,16 @@ _vals: {
 			Force deletion without confirming. Use with caution.
 			"""
 	}
+	format_enum: {
+		bin:       "Binary"
+		dir:       "Directory"
+		git:       "Git"
+		json:      "JSON"
+		"mod":     "Module"
+		protofile: "Protocol Buffers file"
+		tar:       "Tarball"
+		zip:       "ZIP archive"
+	}
 	format_opt: {
 		description: "The output format to use."
 
@@ -705,6 +805,9 @@ _vals: {
 			JSON: "JSON."
 		}
 		default: "text"
+	}
+	include_imports_flag: {
+		description: "Also generate all imports except Well-known Types."
 	}
 	input_arg: {
 		description: "The input."
@@ -770,6 +873,10 @@ _vals: {
 	}
 	reverse_flag: {
 		description: "Reverse the results."
+	}
+	source_arg: {
+		description: "The source."
+		format: #Source
 	}
 	tag_arg: {
 		description: "The tag."

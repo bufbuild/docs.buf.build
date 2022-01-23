@@ -11,6 +11,7 @@ package data
 #Organization: "buf.build/{organization}"
 #Plugin:       "buf.build/{owner}/plugins/{plugin}"
 #Repository:   "buf.build/{owner}/{repository}"
+#Source:       "source"
 #Tag:          "tag"
 #Target:       "buf.build/{owner}/{repo}[:{ref}]"
 #Template:     "buf.build/{owner}/templates/{template}"
@@ -19,7 +20,8 @@ package data
 	#Enum: [Name=_]: #String
 
 	#Args: [...{
-		#Format: #Commit | #Directory | #Input | #Organization | #Plugin | #Repository | #Target | #Tag | #Template
+		#Format: #Commit | #Directory | #Input | #Organization | #Plugin |
+			#Repository | #Source| #Target | #Tag | #Template
 
 		description: #String
 		required:    bool | *false
@@ -60,6 +62,7 @@ package data
 	#Command: {
 		name:        #String
 		description: #String
+		alias?:      #String
 		args?:       #Args
 		flags?:      #Flags
 		options?:    #Options
