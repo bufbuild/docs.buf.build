@@ -6,6 +6,7 @@ package data
 
 // Arg formats
 #Commit:       "buf.build/{owner}/{repository}:{commit}"
+#Input: "input"
 #Organization: "buf.build/{organization}"
 #Plugin:       "buf.build/{owner}/plugins/{plugin}"
 #Repository:   "buf.build/{owner}/{repository}"
@@ -17,7 +18,7 @@ package data
 	#Enum: [Name=_]: #String
 
 	#Args: [...{
-		#Format: #Commit | #Organization | #Plugin | #Repository | #Target | #Tag | #Template
+		#Format: #Commit | #Input | #Organization | #Plugin | #Repository | #Target | #Tag | #Template
 
 		description: #String
 		required:    bool | *false
@@ -36,13 +37,14 @@ package data
 	}
 
 	#Options: [Option=string]: {
-		#Type: "duration" | "enum" | "uint32" | "string"
+		#Type: "duration" | "enum" | "uint32" | "string" | "strings"
 
 		option:      "--\(Option)"
 		description: #String
 		enum?:       #Enum
 		type:        #Type
 		default?:    #String | #Duration | uint32
+		required: bool | *false
 
 		if enum != _|_ {
 			type: "enum"

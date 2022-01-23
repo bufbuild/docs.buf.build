@@ -24,6 +24,10 @@ _vals: {
 		}
 		default: "text"
 	}
+	input_arg: {
+		description: "The input."
+		format: #Input
+	}
 	message_opt: {
 		description: """
 			The deprecation message to display with deprecation
@@ -480,6 +484,77 @@ buf_cli: {
 							}
 						}
 					}
+				}
+			}
+		}
+
+		breaking: {
+			description: """
+				Check that the input location has no breaking changes compared to the against
+				location.
+				"""
+
+			args: [_vals.input_arg]
+
+			flags: {
+				"exclude-imports": {
+					description: "Exclude imports from breaking change detection."
+				}
+
+				"limit-to-input-files": {
+					description: "Only run breaking changes against the files in the input."
+				}
+			}
+
+			options: {
+				against: {
+					description: "The source, module, or image to check against."
+					required: true
+					enum: {
+						bin: "Binary"
+						dir: "Directory"
+						git: "Git"
+						json: "JSON"
+						"mod": "Module"
+						protofile: "Protocol Buffers file"
+						tar: "Tarball"
+						zip: "ZIP archive"
+					}
+				}
+
+				"against-config": {
+					description: "The config file or data to use for the against source, module, or image."
+
+					type: "string"
+				}
+
+				config: _vals.config_opt
+
+				"error-format": {
+					description: "The format for build errors or check violations, printed to stdout."
+					enum: {
+						text: "Text"
+						json: "JSON"
+						msvs: "MSVS"
+					}
+					default: "text"
+				}
+
+				"exclude-path": {
+					description: """
+						Exclude specific files or directories, for example `proto/a/a.proto` or
+						`proto/a`. If multiple paths are specified, the union is taken.
+						"""
+					
+					type: "strings"
+				}
+
+				"paths": {
+					description: """
+						Limit to specific files or directories, for example `proto/a/a.proto` or
+						`proto/a`. If multiple paths are specified, the union is taken.
+						"""
+					type: "strings"
 				}
 			}
 		}
