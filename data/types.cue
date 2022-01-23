@@ -1,66 +1,8 @@
 package data
 
-import "encoding/yaml"
-
-import "strings"
-
-// Root type declarations
-urls:    #StringMap
-files:   #ConfigFiles
-buf_cli: #CLI
-
-// A non-empty string (because the standard string type allows for empty)
-#String: !=""
-#StringMap: [#String]: #String
-
-// Helper values
-#V1Beta1: "v1beta1"
-#V1:      "v1"
-#Version: #V1Beta1 | #V1
-
-#ConfigFile: {
-	name:        #String
-	description: #String
-	version:     #Version | *#V1
-	docs_path:   "/configuration/\(version)/\(_url_encoded_name)"
-	fields:      #Fields
-	_default?:   _
-
-	if _default != _|_ {
-		default: yaml.Marshal(_default)
-	}
-
-	_url_encoded_name: strings.Replace(name, ".", "-", -1)
-}
-
-#ConfigFiles: [Name=#String]: #ConfigFile & {name: Name}
-
-#Field: {
-	#Type: {
-		#TypeBool: {}
-
-		#TypeString: {
-			default?: #String
-			allowed?: [#String, ...#String]
-		}
-
-		#TypeStringArray: {
-			default?: [...#String]
-			example?: [#String, ...#String]
-		}
-
-		{"bool": #TypeBool} |
-		{"string": #TypeString} |
-		{"string_array": #TypeStringArray}
-	}
-
-	name:        #String
-	description: #String
-	required:    bool | *false
-	type:        #Type
-}
-
-#Fields: [Name=#String]: #Field & {name: Name}
+// Helper types
+#Duration: "^([0-9]+(ms|ns|d|h|m|s))+$"
+#String:   !=""
 
 #CLI: {
 	#Enum: [Name=_]: #String
@@ -83,11 +25,10 @@ buf_cli: #CLI
 		description: #String
 		enum?:       #Enum
 		type:        #OptionType
-		default?:    #String | int
+		default?:    #String | #Duration | int
 
 		if enum != _|_ {
-			type:    "enum"
-			default: #String
+			type: "enum"
 		}
 
 		_short?: #String
@@ -97,11 +38,11 @@ buf_cli: #CLI
 	}
 
 	#Command: {
-		name:         #String
-		description:  #String
-		flags?:       #Flags
-		options?:     #Options
-		subcommands?: #Commands
+		name:        #String
+		description: #String
+		flags:       #Flags
+		options?:    #Options
+		commands?:   #Commands
 	}
 
 	#Commands: [Command=string]: #Command & {name: Command}

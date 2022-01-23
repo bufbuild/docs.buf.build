@@ -1,5 +1,9 @@
 package data
 
+_vals: {
+	registry: "Interact with the Buf Schema Registry (BSR)."
+}
+
 buf_cli: {
 	name: "buf"
 
@@ -19,11 +23,15 @@ buf_cli: {
 
 			_short: "v"
 		}
+
+		version: {
+			description: "Print the Buf CLI version."
+		}
 	}
 
 	options: {
 		"log-format": {
-			description: "TODO"
+			description: "The output format for log messages."
 			default:     "color"
 			enum: {
 				text:  "Text output"
@@ -33,17 +41,27 @@ buf_cli: {
 		}
 
 		timeout: {
-			description: "TODO"
+			description: "The duration until timing out."
 			type:        "duration"
-			default:     "20ms"
+			default:     "2m0s"
 		}
 	}
 
 	commands: {
-		registry: {
-			description: "Interact with the Buf Schema Registry (BSR)."
+		beta: {
+			description: "Beta commands. Unstable and likely to change."
 
-			subcommands: {
+			commands: {
+				registry: {
+					description: _vals.registry
+				}
+			}
+		}
+
+		registry: {
+			description: _vals.registry
+
+			commands: {
 				login: {
 					description: """
 						Log into the Buf Schema Registry (BSR).
@@ -52,7 +70,7 @@ buf_cli: {
 						these credentials.
 						"""
 
-					flags: {
+					_flags: {
 						"token-stdin": {
 							description: """
                 Read the token from stdin. By default, this command prompts for a token.
@@ -68,13 +86,13 @@ buf_cli: {
 					}
 				}
 
-        logout: {
-          description: """
-            Log out of the Buf Schema Registry (BSR).
+				logout: {
+					description: """
+						Log out of the Buf Schema Registry (BSR).
 
-            This removes any BSR credentials from your `.netrc` file.
-            """
-        }
+						This removes any BSR credentials from your `.netrc` file.
+						"""
+				}
 			}
 		}
 	}
