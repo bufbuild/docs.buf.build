@@ -413,9 +413,7 @@ buf_cli: {
 			args: [_vals.input_arg]
 
 			flags: {
-				"exclude-imports": {
-					description: "Exclude imports from breaking change detection."
-				}
+				"exclude-imports": _vals.exclude_imports_flag
 
 				"limit-to-input-files": {
 					description: "Only run breaking changes against the files in the input."
@@ -557,6 +555,65 @@ buf_cli: {
 			}
 		}
 
+		export: {
+			description: "Export the files from the input location."
+
+			args: [_vals.input_arg]
+
+			flags: {
+				"exclude-imports": _vals.exclude_imports_flag
+			}
+
+			options: {
+				config: _vals.config_opt
+
+				"exclude-path": _vals.exclude_path_opt
+
+				output: {
+					description: "The direectory to write the files to."
+					type: "string"
+				}
+
+				path: _vals.path_opt
+			}
+		}
+
+		generate: {
+			description: "Generate stubs for protoc plugins using a template."
+
+			args: [_vals.input_arg]
+
+			flags: {
+				"include-imports": {
+					description: "Also generate all imports except Well-known Types."
+				}
+			}
+
+			options: {
+				config: _vals.config_opt
+
+				"error-format": _vals.error_format_opt
+
+				"exclude-path": _vals.exclude_path_opt
+
+				output: {
+					description: """
+						The base directory to generate to. This is prepended to the out
+						directories in the generation template.
+						"""
+					type: "string"
+					default: "."
+				}
+
+				path: _vals.path_opt
+
+				template: {
+					description: "The generation template file or data to use. Must be in either YAML or JSON format."
+					type: "string"
+				}
+			}
+		}
+
 		registry: {
 			description: _vals.registry_desc
 
@@ -623,6 +680,9 @@ _vals: {
 			msvs: "MSVS"
 		}
 		default: "text"
+	}
+	exclude_imports_flag: {
+		description: "Exclude imports from breaking change detection."
 	}
 	exclude_path_opt: {
 		description: """
