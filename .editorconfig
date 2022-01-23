@@ -1,0 +1,6 @@
+# https://editorconfig.org
+root = true
+
+[*.cue]
+indent_style = tab
+indent_size = 4
