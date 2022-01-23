@@ -1,89 +1,5 @@
 package data
 
-_vals: {
-	registry: "Interact with the Buf Schema Registry (BSR)."
-	commit_arg: {
-		description: "The commit."
-		format:      #Commit
-	}
-	config_opt: {
-		description: "The template config file or data to use. Must be in either YAML or JSON format."
-		type:        "string"
-	}
-	force_flag: {
-		description: """
-			Force deletion without confirming. Use with caution.
-			"""
-	}
-	format_opt: {
-		description: "The output format to use."
-
-		enum: {
-			text: "Plaintext."
-			JSON: "JSON."
-		}
-		default: "text"
-	}
-	input_arg: {
-		description: "The input."
-		format: #Input
-	}
-	message_opt: {
-		description: """
-			The deprecation message to display with deprecation
-			warnings.
-			"""
-		type: "string"
-	}
-	organization_arg: {
-		description: "The organization."
-		format:      #Organization
-	}
-	page_size_opt: {
-		description: "The page size."
-		type:        "uint32"
-		default:     10
-	}
-	page_token_opt: {
-		description: """
-			The page token. If more results are available, a
-			`next_page` key will be present in the `--format=json`
-			output.
-			"""
-		type: "string"
-	}
-	plugin_arg: {
-		description: "The plugin."
-		format:      #Plugin
-	}
-	repository_arg: {
-		description: "The repository."
-		format:      #Repository
-	}
-	reverse_flag: {
-		description: "Reverse the results."
-	}
-	tag_arg: {
-		description: "The tag."
-		format:      #Tag
-	}
-	target_arg: {
-		description: "The target."
-		format:      #Target
-	}
-	template_arg: {
-		description: "The template."
-		format:      #Template
-	}
-	visibility_opt: {
-		description: "The plugin's visibility setting."
-		enum: {
-			private: "Make the plugin private."
-			public:  "Make the plugin public."
-		}
-	}
-}
-
 buf_cli: {
 	name: "buf"
 
@@ -509,16 +425,16 @@ buf_cli: {
 			options: {
 				against: {
 					description: "The source, module, or image to check against."
-					required: true
+					required:    true
 					enum: {
-						bin: "Binary"
-						dir: "Directory"
-						git: "Git"
-						json: "JSON"
-						"mod": "Module"
+						bin:       "Binary"
+						dir:       "Directory"
+						git:       "Git"
+						json:      "JSON"
+						"mod":     "Module"
 						protofile: "Protocol Buffers file"
-						tar: "Tarball"
-						zip: "ZIP archive"
+						tar:       "Tarball"
+						zip:       "ZIP archive"
 					}
 				}
 
@@ -530,32 +446,52 @@ buf_cli: {
 
 				config: _vals.config_opt
 
-				"error-format": {
-					description: "The format for build errors or check violations, printed to stdout."
-					enum: {
-						text: "Text"
-						json: "JSON"
-						msvs: "MSVS"
-					}
-					default: "text"
+				"error-format": _vals.error_format_opt
+
+				"exclude-path": _vals.exclude_path_opt
+
+				"path": _vals.path_opt
+			}
+		}
+
+		build: {
+			description: "Build all files from the input location and output an image."
+
+			flags: {
+				"as-file-descriptor-set": {
+					description: """
+						Outputs as a `google.protobuf.FileDescriptorSet` instead of an image.
+
+						Note that images are wire compatible with `FileDescriptorSet`s. This flag,
+						however, strips the additional metadata for Buf usage.
+						"""
 				}
 
-				"exclude-path": {
-					description: """
-						Exclude specific files or directories, for example `proto/a/a.proto` or
-						`proto/a`. If multiple paths are specified, the union is taken.
-						"""
-					
-					type: "strings"
+				"exclude-imports": {
+					description: "Exclude imports."
 				}
 
-				"paths": {
-					description: """
-						Limit to specific files or directories, for example `proto/a/a.proto` or
-						`proto/a`. If multiple paths are specified, the union is taken.
-						"""
-					type: "strings"
+				"exclude-source-info": {
+					description: "Exclude source info."
 				}
+			}
+
+			options: {
+				config: _vals.config_opt
+
+				"error-format": _vals.error_format_opt
+
+				"exclude-path": _vals.exclude_path_opt
+
+				output: {
+					description: "The location to write the image to. Must be one of format bin or json."
+
+					type: "string"
+
+					default: "/dev/null"
+				}
+
+				path: _vals.path_opt
 			}
 		}
 
@@ -595,6 +531,114 @@ buf_cli: {
 						"""
 				}
 			}
+		}
+	}
+}
+
+_vals: {
+	registry: "Interact with the Buf Schema Registry (BSR)."
+	commit_arg: {
+		description: "The commit."
+		format:      #Commit
+	}
+	config_opt: {
+		description: "The template config file or data to use. Must be in either YAML or JSON format."
+		type:        "string"
+	}
+	error_format_opt: {
+		description: "The format for build errors or check violations, printed to stdout."
+		enum: {
+			text: "Text"
+			json: "JSON"
+			msvs: "MSVS"
+		}
+		default: "text"
+	}
+	exclude_path_opt: {
+		description: """
+			Exclude specific files or directories, for example `proto/a/a.proto` or
+			`proto/a`. If multiple paths are specified, the union is taken.
+			"""
+
+		type: "strings"
+	}
+	force_flag: {
+		description: """
+			Force deletion without confirming. Use with caution.
+			"""
+	}
+	format_opt: {
+		description: "The output format to use."
+
+		enum: {
+			text: "Plaintext."
+			JSON: "JSON."
+		}
+		default: "text"
+	}
+	input_arg: {
+		description: "The input."
+		format:      #Input
+	}
+	message_opt: {
+		description: """
+			The deprecation message to display with deprecation
+			warnings.
+			"""
+		type: "string"
+	}
+	organization_arg: {
+		description: "The organization."
+		format:      #Organization
+	}
+	page_size_opt: {
+		description: "The page size."
+		type:        "uint32"
+		default:     10
+	}
+	page_token_opt: {
+		description: """
+			The page token. If more results are available, a
+			`next_page` key will be present in the `--format=json`
+			output.
+			"""
+		type: "string"
+	}
+	path_opt: {
+		description: """
+			Limit to specific files or directories, for example `proto/a/a.proto` or
+			`proto/a`. If multiple paths are specified, the union is taken.
+			"""
+		type: "strings"
+	}
+	plugin_arg: {
+		description: "The plugin."
+		format:      #Plugin
+	}
+	repository_arg: {
+		description: "The repository."
+		format:      #Repository
+	}
+	reverse_flag: {
+		description: "Reverse the results."
+	}
+	tag_arg: {
+		description: "The tag."
+		format:      #Tag
+	}
+	target_arg: {
+		description: "The target."
+		format:      #Target
+	}
+	template_arg: {
+		description: "The template."
+		format:      #Template
+	}
+	visibility_opt: {
+		description: "The plugin's visibility setting."
+		enum: {
+			private: "Make the plugin private."
+			public:  "Make the plugin public."
 		}
 	}
 }

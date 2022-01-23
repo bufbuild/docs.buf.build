@@ -6,7 +6,7 @@ package data
 
 // Arg formats
 #Commit:       "buf.build/{owner}/{repository}:{commit}"
-#Input: "input"
+#Input:        "input"
 #Organization: "buf.build/{organization}"
 #Plugin:       "buf.build/{owner}/plugins/{plugin}"
 #Repository:   "buf.build/{owner}/{repository}"
@@ -44,7 +44,7 @@ package data
 		enum?:       #Enum
 		type:        #Type
 		default?:    #String | #Duration | uint32
-		required: bool | *false
+		required:    bool | *false
 
 		if enum != _|_ {
 			type: "enum"
