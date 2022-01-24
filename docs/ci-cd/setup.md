@@ -56,7 +56,7 @@ curl -sSL \
 chmod +x "$CACHE_BIN/buf"
 ```
 
-This script sends a request to the `buf` Github Releases using [`curl`](https://curl.se/docs)
+This script sends a request to the `buf` GitHub Releases using [`curl`](https://curl.se/docs)
 for the given `BUF_VERSION` and operating system. The binary is then given executable permission.
 
 </TabItem>
