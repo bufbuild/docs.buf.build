@@ -26,6 +26,10 @@ build: install
 serve: build
 	npm run serve
 
+.PHONY: start
+start:
+	npm run start
+
 .PHONY: run
 run: install
 	npm run start
