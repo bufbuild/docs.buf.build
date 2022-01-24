@@ -47,7 +47,7 @@ For example, change the type of the `Pet.pet_type` field from `PetType` to `stri
 ## 4.2 Run `buf breaking` {#run-buf-breaking}
 
 Now, you can verify that this is a breaking change against the local `main` branch. You'll also
-notice errors related to the changes we made in the [previous step](lint-your-api.md):
+notice errors related to the changes you made in the [previous step](lint-your-api.md):
 
 ```terminal
 $ buf breaking --against ../../.git#branch=main,subdir=start/petapis
@@ -58,7 +58,7 @@ pet/v1/pet.proto:44:3:Field "1" with name "pet_id" on message "DeletePetRequest"
 pet/v1/pet.proto:44:10:Field "1" on message "DeletePetRequest" changed name from "petID" to "pet_id".
 ```
 
-Similarly, we can target a [`zip`][zip] archive from the remote repository:
+Similarly, you can target a [`zip`][zip] archive from the remote repository:
 
 ```terminal
 $ buf breaking \
