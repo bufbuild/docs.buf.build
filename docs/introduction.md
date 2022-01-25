@@ -3,18 +3,6 @@ id: introduction
 title: Introduction
 ---
 
-:::success Here is the title
-This was a success.
-:::
-
-:::info Information
-Here is some info.
-:::
-
-:::note Note
-Here is some note info.
-:::
-
 Buf’s long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
 are defined consistently, in a way that service owners and clients can depend on.
 
