@@ -12,6 +12,9 @@ module.exports = {
           path: 'docs',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.json'),
+          admonitions: {
+            icons: "none",
+          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
