@@ -65,8 +65,6 @@
   --ifm-color-info: rgba(52, 152, 219, 0.1);
   --ifm-color-danger: rgba(231, 76, 60, 0.1);
   --ifm-color-warning: rgba(230, 126, 34, 0.1);
-
-  --default-text-color: rgb(14, 15, 20);
 }
 
 /* Infima v0.2.0-alpha.26 does not apply it's heading font family variable to
@@ -118,7 +116,7 @@ figcaption {
 
 /* Admonition blocks */
 .admonition {
-  color: var(--default-text-color);
+  color: var(--ifm-font-color-base);
 }
 
 .admonition.admonition-success,
@@ -141,4 +139,11 @@ figcaption {
 
 .admonition.admonition-warning {
   border: 2px solid #e67e22;
+}
+
+/* Markdown blockquotes */
+blockquote {
+  color: rgb(0, 0, 0);
+  background-color: rgb(246, 248, 250);
+  border-left: 4px solid var(--ifm-color-primary);
 }
