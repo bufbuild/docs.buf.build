@@ -111,3 +111,39 @@ Use this component for embedding images. Here's an example:
 ```
 
 Required fields are `alt` and `src`.
+
+### Admonition blocks
+
+The Buf docs support five admonition blocks:
+
+Block type | Color scheme
+:----------|:------------
+`note` | Gray
+`tip` | Green
+`info` | Blue
+`warning` | Orange
+`danger` | Red
+
+Here's an example `note` block:
+
+```markdown
+:::note
+Here is something to keep in mind.
+:::
+```
+
+Admonition blocks support pretty much anything available in standard Markdown:
+
+```markdown
+:::note
+Here is some **bold text**. Here is some `code`. Here is a [link](https://example.com).
+:::
+```
+
+To supply a custom title:
+
+```markdown
+:::danger Please don't do this
+No really, we mean it
+:::
+```

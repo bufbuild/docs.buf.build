@@ -61,8 +61,10 @@
      */
 
   /* Admonition colors (derived from https://github.com/favoloso/remarkable-admonitions/blob/master/styles/docusaurus-admonitions.css) */
-  --ifm-color-success: rgba(46, 204, 113, 0.1); /* Lime 200 */
+  --ifm-color-success: rgba(46, 204, 113, 0.1);
   --ifm-color-info: rgba(52, 152, 219, 0.1);
+  --ifm-color-danger: rgba(231, 76, 60, 0.1);
+  --ifm-color-warning: rgba(230, 126, 34, 0.1);
 
   --default-text-color: rgb(14, 15, 20);
 }
@@ -115,18 +117,28 @@ figcaption {
 }
 
 /* Admonition blocks */
-.admonition.admonition-success {
-  border: 1.5px solid rgb(0, 200, 83);
+.admonition {
   color: var(--default-text-color);
+}
+
+.admonition.admonition-success,
+.admonition.admonition-tip {
+  border: 2px solid rgb(0, 200, 83);
 }
 
 .admonition.admonition-info {
-  border: 1.5px solid #3498db;
-  color: var(--default-text-color);
+  border: 2px solid #3498db;
 }
 
 .admonition.admonition-note {
-  border: 1.5px solid #9ca3af;
+  border: 2px solid #9ca3af;
   background-color: #f3f4f6;
-  color: var(--default-text-color);
+}
+
+.admonition.admonition-danger {
+  border: 2px solid #e74c3c;
+}
+
+.admonition.admonition-warning {
+  border: 2px solid #e67e22;
 }
