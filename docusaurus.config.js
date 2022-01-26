@@ -167,7 +167,7 @@ module.exports = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
-      additionalLanguages: ['protobuf'],
+      additionalLanguages: ['editorconfig', 'protobuf'],
     },
   },
   customFields: {
