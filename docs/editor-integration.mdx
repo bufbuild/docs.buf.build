@@ -33,13 +33,12 @@ problems, be sure to run a module-wide `buf lint` as part of your [CI](ci-cd/set
 
 ## Visual Studio Code  [![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/bufbuild.vscode-buf?color=2048ff&label=Buf&logo=visual-studio-code&style=flat-squar)](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf)
 
-The Visual Studio Code extension can be downloaded from the in-editor extension browser under the name "Buf",
-or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf).
+The Visual Studio Code extension can be downloaded from the in-editor extension browser under the name "Buf"
+or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf). You need to have `buf` [installed](installation.mdx) to use it.
 
-To use VSCode integration, `buf` must be [installed](installation.mdx).
+Our Buf extension currently supports [linting] your `.proto` files. It runs `buf lint --path` on save and reveals errors on a per-file basis. To detect package-level problems, be sure to run a module-wide `buf lint` as part of your CI process.
 
-The extension runs `buf lint --path` on save and will reveal errors on a per-file basis. To detect package-level
-problems, be sure to run a module-wide `buf lint` as part of your CI process.
+The roadmap for the extension includes full Language Server Protocol ([LSP]) support, formatting, syntax highlighting, and more.
 
 > `buf` is executed in the root of your workspace, which means `buf` will be configured by the [`buf.yaml`](configuration/v1/buf-yaml) or
 > [`buf.work.yaml`](configuration/v1/buf-work-yaml) in the root of your workspace.
@@ -99,3 +98,6 @@ path/to/file.proto(1,10) : error COMPILE : syntax value must be "proto2" or "pro
 
 </TabItem>
 </Tabs>
+
+[linting]: https://docs.buf.build/lint/overview
+[lsp]: https://code.visualstudio.com/api/language-extensions/language-server-extension-guide

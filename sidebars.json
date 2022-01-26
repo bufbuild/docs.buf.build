@@ -96,7 +96,7 @@
             "bsr/remote-generation/remote-plugin-execution",
             "bsr/remote-generation/consume-generated-go-code"
           ],
-          "collapsed": true
+          "collapsed": false
         }
       ],
       "collapsed": false
