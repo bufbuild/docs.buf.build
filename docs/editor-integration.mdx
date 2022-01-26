@@ -61,7 +61,19 @@ Make sure `buf` is [installed](installation.mdx) on your PATH, then configure yo
 > `buf` is executed in your project root, which means `buf` will be configured by the
 > [`buf.yaml`](configuration/v1/buf-yaml) or [`buf.work.yaml`](configuration/v1/buf-work-yaml) in your project root.
 
-## Other
+## editorconfig suggestions
+
+If you use [EditorConfig] files to enforce consistent styles in your code, we recommend the following settings for your `.proto` files:
+
+```yaml
+[*.proto]
+indent_size = 2
+indent_style = space
+```
+
+These settings aren't semantically meaningful in Protobuf but are commonly used throughout the ecosystem.
+
+## Formatting options
 
 `buf` supports the following formatting options (passed using the `--error-format` flag) to support other integrations:
 
@@ -99,5 +111,6 @@ path/to/file.proto(1,10) : error COMPILE : syntax value must be "proto2" or "pro
 </TabItem>
 </Tabs>
 
+[editorconfig]: https://editorconfig.org
 [linting]: https://docs.buf.build/lint/overview
 [lsp]: https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
