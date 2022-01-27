@@ -17,7 +17,7 @@ you'd like to see.
 
 One of the promises of BSR is to allow the generation of your APIs on demand. At a high level,
 we want to enable modules to have stubs generated on-demand, for every version, for every possible
-Protobuf plugin, with consumtion via language-native mechanisms.
+Protobuf plugin, with consumption via language-native mechanisms.
 
 This feature is currently available for Buf's *experimental* [Go Module Proxy](bsr/remote-generation/overview.md#go-module-proxy).
 Given a module (e.g. `buf.build/acme/weather`), you can consume generated code for:

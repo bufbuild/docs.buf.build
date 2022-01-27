@@ -42,7 +42,7 @@ values are `v1beta1` and `v1`.
 ### `plugins`
 
 Each entry in the `buf.gen.yaml` `plugins` key is a `protoc` plugin configuration, which is a
-program that generates code by interacting with the compiled reprsentation of your module.
+program that generates code by interacting with the compiled representation of your module.
 
 #### `name` or `remote`
 
@@ -64,7 +64,7 @@ to using the latest version available for the requested remote plugin.
 #### `out`
 
 The `out` of a plugin is **required**, and controls where the generated files are deposited for a given plugin.
-Although aboslute paths are supported, this configuration is traditionally a relative output directory that
+Although absolute paths are supported, this configuration is traditionally a relative output directory that
 depends on where `buf generate` is run. For example, running `buf generate` from the root of the `tree`
 shown above would result in a new `gen/proto/go` directory within the same root:
 
@@ -238,7 +238,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
 > concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
-> delcaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
+> declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
 > collide (i.e. a lot of Protobuf packages will contain the `v1` suffix).
 
 ##### `except`

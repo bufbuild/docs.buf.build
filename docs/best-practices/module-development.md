@@ -6,7 +6,7 @@ title: Module Development
 The Buf Schema Registry ([BSR](../bsr/overview.md)) automatically enforces that your
 [module](../bsr/overview.md#module) compiles when it is pushed, but there are other best practices
 that can't be enforced that you should consider when you are developing your modules. We'll go
-over what these best practies are, and why they're important to keep in mind.
+over what these best practices are, and why they're important to keep in mind.
 
 ## Module Layout
 

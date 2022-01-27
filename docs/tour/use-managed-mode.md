@@ -17,7 +17,7 @@ so that they never have to be written in the Protobuf source file itself.
 
 One of the largest drawbacks of Protobuf is the hardcoding of language-specific
 options within Protobuf definitions themselves. For example, consider the
-`go_package` option we've been using throughtout the tour:
+`go_package` option we've been using throughout the tour:
 
 ```protobuf title="petapis/pet/v1/pet.proto" {5}
 syntax = "proto3";

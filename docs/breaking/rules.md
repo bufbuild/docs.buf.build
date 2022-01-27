@@ -172,7 +172,7 @@ number. While deleting an enum value or message field is not directly a wire-bre
 change, re-using these numbers in the future will result in either bugs (in the
 case of enums) or actual wire incompatibilities (in the case of messages, if the type
 differs). This is a JSON breaking change for enum values if enum values are serialized
-as ints (which is an option). Protobuf provides the ability to [reserve](https://developers.google.com/protocol-buffers/docs/proto3#reserved)
+as integers (which is an option). Protobuf provides the ability to [reserve](https://developers.google.com/protocol-buffers/docs/proto3#reserved)
 numbers to prevent them being re-used in the future. For example:
 
 ```protobuf
@@ -218,7 +218,7 @@ message Bar {
 }
 ```
 
-Note is is significantly easier to just deprecated enum values and message fields.
+Note that it is significantly easier to just deprecate enum values and message fields.
 
 ### `RPC_NO_DELETE`
 
@@ -286,7 +286,7 @@ may not have been aware some of these options existed - if so, put them in your 
 
 This checks that a given enum value has the same name for each enum value number. For example
 You cannot change `FOO_ONE = 1` to `FOO_TWO = 1`. Doing so will result in potential JSON
-incompatibilites and broken source code.
+incompatibilities and broken source code.
 
 Note that for enums with `allow_alias` set, this verifies that the set of names in the
 current definition covers the set of names in the previous definition. For example,

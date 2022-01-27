@@ -9,7 +9,7 @@ interact with the [BSR](../bsr/introduction.md) to manage our `PetStoreService` 
 ## 6.1 Login {#login}
 
 Visit [https://buf.build/login](https://buf.build/login) and you will be prompted with a few
-different login options, including Google, Github, and traditional email and password.
+different login options, including Google, GitHub, and traditional email and password.
 After you have successfully authenticated, you'll be prompted to select a username
 and complete your registration. If successful, you should see that you're logged-in
 and your username will be rendered in the upper right-hand corner.

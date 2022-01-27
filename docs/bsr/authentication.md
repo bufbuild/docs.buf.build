@@ -68,7 +68,7 @@ For more information on `.netrc`, check out the [curl documentation](https://eve
 ## CI authentication
 
 If you wish to add authentication to your continuous integration jobs, we recommend storing the token in your providers secret storage, if possible. Such as:
-[Github Actions](https://docs.github.com/en/actions/reference/encrypted-secrets#about-encrypted-secrets),
+[GitHub Actions](https://docs.github.com/en/actions/reference/encrypted-secrets#about-encrypted-secrets),
 [Travis CI](https://docs.travis-ci.com/user/environment-variables/#defining-encrypted-variables-in-travisyml),
 [CircleCI](https://circleci.com/docs/2.0/env-vars/).
 
@@ -82,4 +82,4 @@ $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdi
 
 You can now use any of the authenticated `buf` commands, such as `buf push`.
 
-> Note that we have [official Github Actions](../ci-cd/github-actions.md) which makes it easy to configure authentication for CI jobs.
+> Note that we have [official GitHub Actions](../ci-cd/github-actions.md) which makes it easy to configure authentication for CI jobs.

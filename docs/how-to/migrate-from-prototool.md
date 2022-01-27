@@ -32,7 +32,7 @@ and migration.
 
 ## Prototool Cons
 
-- By far the biggest con of Prototool is that it both uses uses a third-party Protobuf parser
+- By far the biggest con of Prototool is that it both uses a third-party Protobuf parser
   that is not tested to cover every edge case of the Protobuf grammar, while additionally shelling
   out to `protoc` to verify that files are valid. The third-party Protobuf parser Prototool uses has
   had issues in the past with breakages, and as this parser does not verify that what it is parsing is

@@ -3,7 +3,7 @@ id: images
 title: Images
 ---
 
-Throughout the documentation, you will occassionally see references to **Images**. We'll go over what
+Throughout the documentation, you will occasionally see references to **Images**. We'll go over what
 Images are, how they are used, and the various options associated with them here.
 
 ## Protobuf plugins: how they work

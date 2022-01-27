@@ -170,7 +170,7 @@ represented as **monotonically increasing integers**.
 
   - For hosted Templates we enforce a version of the form `v1`, `v2`, `vN...`.
   - For Protobuf modules we use the **commit sequence ID**. This ID is an integer that uniquely
-    idenfities a commit. It is calculated by counting the number of commits since the first commit
+    identifies a commit. It is calculated by counting the number of commits since the first commit
     of a module (i.e. the first commit has a sequence ID of `1`, the second commit has a sequence ID
     of `2`, and so on).
 
