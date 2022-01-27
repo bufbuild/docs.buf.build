@@ -76,7 +76,7 @@ of the two inputs. Both template versions, and Protobuf module versions, can be 
 increasing integers**.
 
 - For hosted Templates we enforce a version of the form `v1`, `v2`, `vn...`.
-- For Protobuf modules we use the module reference sequence ID. This ID is an integer that uniquely idenfities a commit. It is calculated by counting the number of commits since the first commit of a module.
+- For Protobuf modules we use the module reference sequence ID. This ID is an integer that uniquely identifies a commit. It is calculated by counting the number of commits since the first commit of a module.
 
 With these simplified versioning schemes we create a synthetic version which takes the
 following form:

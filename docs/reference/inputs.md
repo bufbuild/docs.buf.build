@@ -128,10 +128,10 @@ Examples:
 A tarball. The path to this tarball can be either a local file, a remote http/https location, or
 `-` for stdin.
 
-Use `compression=gzip` to specify that the tarball is is compressed with Gzip. This is automatically
+Use `compression=gzip` to specify that the tarball is compressed with Gzip. This is automatically
 detected if the file extension is `.tgz` or `.tar.gz`.
 
-Use `compression=zstd` to specify that the tarball is is compressed with Zstandard. This is automatically
+Use `compression=zstd` to specify that the tarball is compressed with Zstandard. This is automatically
 detected if the file extension is `.tar.zst`.
 
 The `strip_components` and `subdir` options are optional. Note that `strip_components` is applied
@@ -366,7 +366,7 @@ The format of an Input can be explicitly set as described above.
 ## Deprecated Formats
 
 The following formats are deprecated. They will continue to work forever, but we recommend
-updating if you are explictly specifying any of these.
+updating if you are explicitly specifying any of these.
 
 | Format | Replacement |
 | --- | --- |

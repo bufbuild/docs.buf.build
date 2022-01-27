@@ -158,7 +158,7 @@ The `SENSIBLE` category outlaws certain Protobuf features that you should never 
 Protobuf development. It includes the following rules:
 
 - `ENUM_NO_ALLOW_ALIAS` checks that enums do not have the allow_alias option set.
-- `FIELD_NO_DESCRIPTOR` checks that field names are are not name capitalization of "descriptor" with any number of prefix or suffix underscores.
+- `FIELD_NO_DESCRIPTOR` checks that field names are not name capitalization of "descriptor" with any number of prefix or suffix underscores.
 - `IMPORT_NO_PUBLIC` checks that imports are not public.
 - `IMPORT_NO_WEAK` checks that imports are not weak.
 - `PACKAGE_DEFINED` checks that all files with have a package defined.

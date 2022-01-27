@@ -19,7 +19,7 @@ $ buf push
 Failure: pet/v1/pet.proto:5:8:payment/v1alpha1/payment.proto: does not exist.
 ```
 
-However, we can sucessfully build the module locally:
+However, we can successfully build the module locally:
 
 ```
 $ buf build

@@ -42,6 +42,10 @@ upgrade:
 clean:
 	git clean -xdf
 
+.PHONY: lint
+lint:
+	vale docs
+
 .PHONY: updateversion
 updateversion:
 ifndef VERSION

@@ -9,7 +9,7 @@ title: Key Concepts
 
 A **plugin** is used by the BSR remote generation to generate assets given Protobuf definitions. They are based on the established concept of Protobuf plugins in local generation, such as [`protoc-gen-go`](https://pkg.go.dev/google.golang.org/protobuf@v1.27.1/cmd/protoc-gen-go).
 
-They belong to an **owner** and may be public or private. Public plugins are available to anyone, while private plugins are only availabe to the owner or members of the owning organization. Plugins are often referenced together with their owners name, for example, `library/plugins/protoc-gen-go` (or in some contexts just `library/protoc-gen-go`), is used to reference the `protoc-gen-go` plugin maintained by Buf.
+They belong to an **owner** and may be public or private. Public plugins are available to anyone, while private plugins are only available to the owner or members of the owning organization. Plugins are often referenced together with their owners name, for example, `library/plugins/protoc-gen-go` (or in some contexts just `library/protoc-gen-go`), is used to reference the `protoc-gen-go` plugin maintained by Buf.
 
 A plugin has instantiations at different **versions**. These versions often map directly to the versions of the existing plugin executables. For example, the `library/protoc-gen-go` plugin has a version `v1.27.1-1` matching the [`v1.27.1` release](https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.27.1) of the official Go Protobuf plugin.
 

@@ -7,7 +7,7 @@ Without the [BSR](../bsr/overview.md), depending on other Protobuf APIs is a pai
 For example, if you want to use [googleapis](https://github.com/googleapis/googleapis),
 you're expected to clone the Git repository, and manually copy the `.proto` file(s) you
 need in order to compile your `.proto` files. Worse, this workflow is prone to API drift,
-where the latest `googleapis` code evolves and is therefore inconsitent with
+where the latest `googleapis` code evolves and is therefore inconsistent with
 your local copy. This is exactly what we have in the current `PetStoreService` - the
 `google/type/datetime.proto` is copied in order to build the [module](../bsr/overview.md#module).
 

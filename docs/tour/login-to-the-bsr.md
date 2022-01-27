@@ -9,10 +9,10 @@ You've gone over many of the primary `buf` commands, so now you'll shift gears a
 ## 6.1 Log in {#login}
 
 Visit [https://buf.build/login][login] and you'll be prompted with a few different login options,
-including Google, GitHub, and traditional email and password.
-After you have successfully authenticated, you'll be prompted to select a username
-and complete your registration. If successful, you should see that you're logged in
-and that your username is rendered in the upper right-hand corner.
+including Google, GitHub, and traditional email and password. After you've successfully
+authenticated, you'll be prompted to select a username and complete your registration. If
+successful, you should see that you're logged in and that your username is rendered in the upper
+right-hand corner.
 
 Throughout this tour, you'll see references to the `BUF_USER` environment variable as your
 newly created BSR username. Once you have completed registration, export this value
