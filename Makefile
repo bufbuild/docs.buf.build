@@ -44,7 +44,7 @@ clean:
 
 .PHONY: lint
 lint:
-	vale --ext ".md,.mdx" docs
+	vale docs
 
 .PHONY: updateversion
 updateversion:

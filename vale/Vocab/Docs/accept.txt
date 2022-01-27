@@ -68,6 +68,7 @@ js
 json
 jsongz
 jstype
+junegunn
 kotlin
 linux
 lockdir
@@ -76,8 +77,11 @@ mailto
 Makefile
 md
 messag
+minisig
+minisign
 mkdir
 mktemp
+msvs
 mux
 mv
 myplugin
@@ -93,6 +97,7 @@ opentelemetry
 parsable
 petstore
 php
+png
 prereleases
 prepended
 prepending
@@ -108,7 +113,6 @@ rpc
 se
 semver
 src
-stderr
 stdin
 stdout
 stedolan
@@ -138,16 +142,21 @@ uniq
 unreferenced
 Uri
 usingcurl
+usr
 vendored
 vendoring
+vimrc
+Vm
 vn
 wc
 workdir
 www
 xargs
 xds
+xvzf
 yaml
 zeroable
+zsh
 zstandard
 zst
 zstd
