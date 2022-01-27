@@ -23,10 +23,8 @@ so that you can copy and paste commands.
 $ export BUF_USER=<YOUR_BUF_USER>
 ```
 
-:::note
-Any time the `$BUF_USER` placeholder is used within a file, such as [`buf.yaml`](../configuration/v1/buf-yaml.md),
-you need to manually replace it with your local value of `BUF_USER`.
-:::
+> Any time the `$BUF_USER` placeholder is used within a file, such as [`buf.yaml`](../configuration/v1/buf-yaml.md),
+> you need to manually replace it with your local value of `BUF_USER`.
 
 ## 6.2 Create an API Token {#create-an-api-token}
 
@@ -70,9 +68,7 @@ All existing BSR credentials removed from $HOME/.netrc.
 
 For more information on `.netrc`, check out the [curl documentation](https://everything.curl.dev/usingcurl/netrc).
 
-:::note
-If you're developing on a Windows machine, the credentials file is `%HOME%/_netrc`.
-:::
+> If you're developing on a Windows machine, the credentials file is `%HOME%/_netrc`.
 
 [bsr]: /bsr/introduction.md
 [login]: https://buf.build/login

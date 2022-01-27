@@ -20,10 +20,8 @@ so you'll need to install them.
 These plugins are special in that they're built into to the `protoc` binary, so if you don't already
 have `protoc` on your `$PATH`, see the [installation guide][install_protoc].
 
-:::note
-For other `protoc` plugins, such as `protoc-gen-go` and `protoc-gen-go-grpc`, it's **not** required
-to have `protoc` installed in your `PATH`.
-:::
+> For other `protoc` plugins, such as `protoc-gen-go` and `protoc-gen-go-grpc`, it's **not** required
+> to have `protoc` installed in your `PATH`.
 
 ## 5.2 Configure a `buf.gen.yaml` {#configure-a-bufgenyaml}
 
@@ -63,10 +61,8 @@ Run this command, targeting the input defined in the `petapis` directory:
 $ buf generate petapis
 ```
 
-:::note
-If a `--template` isn't explicitly specified, the `buf.gen.yaml` found in the current directory is used by
+> If a `--template` isn't explicitly specified, the `buf.gen.yaml` found in the current directory is used by
 default.
-:::
 
 If successful, you'll notice a few new files in the `gen/proto/cpp` and `gen/proto/java` directories
 (as configured by the `buf.gen.yaml` created above):

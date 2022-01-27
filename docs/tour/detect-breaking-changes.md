@@ -71,10 +71,8 @@ pet/v1/pet.proto:44:3:Field "1" with name "pet_id" on message "DeletePetRequest"
 pet/v1/pet.proto:44:10:Field "1" on message "DeletePetRequest" changed name from "petID" to "pet_id".
 ```
 
-:::note
-For remote locations that require authentication, see [HTTPSAuthentication](../reference/inputs.md#https) and
-[SSH Authentication](../reference/inputs.md#ssh) for more details.
-:::
+> For remote locations that require authentication, see [HTTPSAuthentication](../reference/inputs.md#https)
+> and [SSH Authentication](../reference/inputs.md#ssh) for more details.
 
 ## 4.3 Revert Changes {#revert-changes}
 
