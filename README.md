@@ -166,7 +166,7 @@ The Buf documentation uses the [Vale] linter for its prose sources. The current 
 To lint the docs, install Vale and run:
 
 ```terminal
-vale --ext ".md,.mdx" docs
+vale docs
 
 # Alternatively:
 make lint
