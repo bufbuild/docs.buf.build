@@ -42,6 +42,10 @@ upgrade:
 clean:
 	git clean -xdf
 
+.PHONY: lint
+lint:
+	vale --ext ".md,.mdx" docs
+
 .PHONY: updateversion
 updateversion:
 ifndef VERSION

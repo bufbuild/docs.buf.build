@@ -158,5 +158,25 @@ No really, we mean it
 :::
 ```
 
+## Linting the documentation
+
+The Buf documentation uses the [Vale] linter for its prose sources. The current Vale config is in
+[`.vale.ini`][./.vale.ini] and Vale-related assets are in the [`vale`][./vale] directory.
+
+To lint the docs, install Vale and run:
+
+```terminal
+vale --ext ".md,.mdx" docs
+
+# Alternatively:
+make lint
+```
+
+The only check that's currently run is a standard spelling check. Any words that we want Vale to
+ignore need to be added to the [`accept.txt`](./vale/Vocab/Docs/accept.txt) file.
+
+Linting is currently performed on an ad hoc basis.
+
 [buf]: https://buf.build
 [node]: https://nodejs.org
+[vale]: https://docs.errata.ai
