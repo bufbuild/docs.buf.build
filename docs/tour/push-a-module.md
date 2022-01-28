@@ -13,9 +13,9 @@ Before we continue, it's important that we cover some basic terminology.
 
 ### 7.1.1 Modules {#modules}
 
-The **module** is the core primitive of Buf and the BSR. A module is a collection of Protobuf
+**Modules** are the core primitive of Buf and the BSR. A module is a collection of Protobuf
 files that are configured, built, and versioned as a logical unit. You created a module when
-you initialized a [`buf.yaml`](../configuration/v1/buf-yaml.md) in the beginning of the tour.
+you initialized a [`buf.yaml`](../configuration/v1/buf-yaml.md) at the beginning of the tour.
 
 ### 7.1.2 Repositories {#repositories}
 
@@ -27,23 +27,27 @@ no concept of a repository "clone". In other words, repositories do not exist in
 
 ### 7.1.3 Module Names {#module-names}
 
-A module has a `name`, and has three components:
+A module has a `name` and three other components:
 
   - **Remote**: The DNS name for the server hosting the BSR, i.e. `buf.build`.
   - **Owner**: The user or organization that owns the repository.
   - **Repository**: The repository's name.
 
-For example:
+Some example module names broken down into components:
 
-  - The module `buf.build/alice/tools` has a remote `buf.build`, owner `alice`, and repository `tools`.
-  - The module `buf.build/acme/weather` has a remote `buf.build`, owner `acme`, and repository `weather`.
+Name | Remote | Owner | Repository
+:----|:-------|:------|:----------
+`buf.build/alice/tools` | `buf.build` | `alice` | `tools`
+`buf.build/acme/weather` | `buf.build` | `acme` | `weather`
+`my-private-bsr.io/omnicorp/biz` | `my-private-bsr.io` | `omnicorp` | `biz`
 
 ## 7.2 Create a Repository {#create-a-repository}
 
-Create a `petapis` repository with the following command:
+Create a new `petapis` repository for your module with the following command:
 
 ```terminal
 $ buf beta registry repository create buf.build/$BUF_USER/petapis --visibility public
+---
 Full name                    Created
 buf.build/$BUF_USER/petapis  ...
 ```
@@ -72,10 +76,11 @@ Update your `buf.yaml` so that its `name` matches the repository you just create
 ## 7.4 Push the Module {#push-the-module}
 
 Push the module to the `buf.build/$BUF_USER/petapis` repository with the following command (in the
-`petapis` directory containing the `buf.yaml`):
+`petapis` directory containing your `buf.yaml`):
 
 ```terminal
 $ buf push
+---
 19bcefa1a736428d9e64d21c9191b213
 ```
 

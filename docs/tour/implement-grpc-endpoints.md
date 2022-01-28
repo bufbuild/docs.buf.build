@@ -3,27 +3,29 @@ id: implement-grpc-endpoints
 title: 11 Implement gRPC Endpoints
 ---
 
-In this section, we'll implement a `PetStoreService` client and server, which can be
-run on the command line.
+In this section, you'll implement a `PetStoreService` client and server, both of which you can run
+on the command line.
 
 ## 11.1 Initialize a `go.mod` {#initialize-a-gomod}
 
-Before we write any Go code, we'll initialize a `go.mod` with the `go mod init` command:
+Before you write Go code, initialize a `go.mod` file with the `go mod init` command:
 
 ```terminal
 $ go mod init github.com/bufbuild/buf-tour/petstore
 ```
 
-Similar to the `buf.yaml`, the `go.mod` file tracks our code's Go dependencies.
+Similar to the `buf.yaml` config file, the `go.mod` file tracks your code's Go dependencies.
 
 ## 11.2 Implement the Server {#implement-the-server}
 
-We can implement a simple server in `server/main.go` with the following:
+You can start implementing a simple server by creating a `server/main.go` file:
 
 ```terminal
 $ mkdir server
 $ touch server/main.go
 ```
+
+Copy and paste this content into that file:
 
 ```go title="server/main.go"
 package main
@@ -80,12 +82,14 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 
 ## 11.3 Implement the Client {#implement-the-client}
 
-We can also implement a simple client in `client/main.go` with the following:
+You can start implementing a simple client by creating `client/main.go` file:
 
 ```terminal
 $ mkdir client
 $ touch client/main.go
 ```
+
+Copy and paste this content into that file:
 
 ```go title="client/main.go"
 package main
