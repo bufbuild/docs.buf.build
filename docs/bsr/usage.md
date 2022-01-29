@@ -15,7 +15,8 @@ Follow the prompts to enter your username and password (API Token). This will ad
 
 ## Push a Module
 
-The only requirement to push to the BSR is to have a module that [builds](../build/usage.md) successfully, i.e., you should be able to run `buf build` successfully on your module.
+The only requirement to push to the BSR is to have a module that [builds](../build/usage.md)
+successfully, meaning that you should be able to run `buf build` successfully on your module.
 
 Before you can push a module into the BSR there needs to exist a repository, owned by either a user or an organization, the user has access to. A repository can be created either through the UI or from the command line with `buf`.
 
@@ -31,7 +32,7 @@ Alternatively, use the **CLI** run the following command:
 $ buf beta registry repository create <MODULE_NAME> --visibility [public,private]
 ```
 
-The module name takes the form `<remote>/<owner>/<repository_name>` (e.g. `buf.build/acme/weather`).<br/>
+The module name takes the form `<remote>/<owner>/<repository_name>` (for example, `buf.build/acme/weather`).<br/>
 The `--visibility` flag is **required** and must be one of: `private` or `public`.
 
 **2. Configure a name**

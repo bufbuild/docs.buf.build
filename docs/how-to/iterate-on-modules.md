@@ -34,7 +34,7 @@ $ buf lint
 $ buf generate
 ```
 
-Once you're satisfied with the changes, save the change in your VCS (e.g. a Git repository)
+Once you're satisfied with the changes, save the change in your VCS (such as a Git repository)
 like you would with regular code. If the module is published to the BSR, you can push a new
 version using the following command:
 

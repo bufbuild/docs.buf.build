@@ -20,7 +20,7 @@ we want to enable modules to have stubs generated on-demand, for every version, 
 Protobuf plugin, with consumption via language-native mechanisms.
 
 This feature is currently available for Buf's *experimental* [Go Module Proxy](bsr/remote-generation/overview.md#go-module-proxy).
-Given a module (e.g. `buf.build/acme/weather`), you can consume generated code for:
+Given a module, such as `buf.build/acme/weather`, you can consume generated code for:
 
   - Plugin `protoc-gen-go` version `1.4.0`
   - Plugin `protoc-gen-go-grpc` version `1.0.0`
@@ -60,8 +60,8 @@ their customers.
 
 It's only a matter of time until the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell) manifests itself
 in dependency management systems. Historically, these issues can only be verified at build time because the dependency management
-solution attempts a "best effort", i.e. the developer tries to compile their code after their dependencies have been resolved, but
-fails to do so because of backwards-incompatible API changes.
+solution attempts a "best effort" whereby the developer tries to compile their code after their dependencies have been resolved but
+fails to do so due to backwards-incompatible API changes.
 
 By virtue of Protobuf API compatibility, rules and Buf's powerful compatibility tooling, the BSR is uniquely positioned to
 solve this problem. The BSR receives all of the dependencies requested for a specific module, and can systematically
@@ -109,7 +109,7 @@ But we recognize that we can do a lot more in this area, such as formatting your
 on save (via the formatter mentioned above), and a fully-fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
-With this, you will be able to leverage more editor features, such as auto-completion and
+With this, you will be able to use more editor features, such as auto-completion and
 jump-to-definition, to further improve your Protobuf productivity.
 
 ### Protobuf standard library

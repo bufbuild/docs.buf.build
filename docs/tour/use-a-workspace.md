@@ -9,17 +9,17 @@ This is a great start, but product requirements always evolve and new
 features need to be built over time.
 
 In this section, we'll see how to incorporate another dependency into
-our `PetStoreService` API, and leverage a [workspace](../reference/workspaces.md) to make
+our `PetStoreService` API, and use a [workspace](../reference/workspaces.md) to make
 our lives easier.
 
 ## 12.1 Create `paymentapis` {#create-paymentapis}
 
-The next feature we will build is used to purchase pets, i.e. the
+The next feature we build will enable people to purchase pets by calling a
 `PurchasePet` endpoint. This endpoint requires some information about
 payment systems, so we should create another module for it so that it
 can be shared by other APIs later on. This logical separation is common
 for monetary orders and payment providers. This logical separation is common
-in larger organizations, e.g. the payments team in the `acme` organization
+in larger organizations, for example the payments team in the `acme` organization
 owns the `buf.build/acme/paymentapis` module.
 
 We don't want the `.proto` files specific to `paymentapis` to coexist within

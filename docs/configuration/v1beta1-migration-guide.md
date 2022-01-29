@@ -176,7 +176,8 @@ top-level categories are `MINIMAL`, `BASIC`, and `DEFAULT`. The changes are desc
 
 The `FILE_SAME_PACKAGE` breaking rule now belongs to the `FILE`, `PACKAGE`, `WIRE_JSON`, and `WIRE` categories.
 Previously, the `FILE_SAME_PACKAGE` rule only belonged to the `FILE` category, but this rule actually protects
-against `WIRE`-level compatibility because the method path can change (i.e. gRPC).
+against `WIRE`-level compatibility because the method path can change (as often happens with gRPC,
+for example).
 
 ### FILE_SAME_TYPE breaking rule
 

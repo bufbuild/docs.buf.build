@@ -1,0 +1,7 @@
+extends: existence
+message: Consider removing '%s' or replacing it with something like 'that is'
+level: warning
+ignorecase: true
+tokens:
+  - '\bi\.e\b'
+  - '\bi\.e.\b'

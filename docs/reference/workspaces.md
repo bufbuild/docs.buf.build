@@ -107,12 +107,12 @@ location outside of your `buf.work.yaml`. For example, `../external` is invalid.
 
 Each directory is included as an independent module, such that all of the Protobuf files defined within
 the `paymentapis` and `petapis` directories are included in the workspace, relative to the respective module
-root (i.e. `paymentapis/acme/payment/v2/payment.proto` is included in the workspace as `acme/payment/v2/payment.proto`).
+root (that is, `paymentapis/acme/payment/v2/payment.proto` is included in the workspace as `acme/payment/v2/payment.proto`).
 
 ## File discovery
 
 If a `buf.work.yaml` file exists in a parent directory (up to the root of the filesystem), the workspace defined
-in the `buf.work.yaml` file is enabled for the given `buf` operation (e.g. `buf build`).
+in the `buf.work.yaml` file is enabled for the given `buf` operation (for example `buf build`).
 
 With this, modules can import from one another, and a variety of commands work on multiple modules rather than
 one. For example, if `buf lint` is run for an [input](../reference/inputs.md) that contains a `buf.work.yaml`,

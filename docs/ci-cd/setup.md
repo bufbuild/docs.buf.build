@@ -19,7 +19,7 @@ the [GitHub Actions guide](github-actions.md) instead.
 This guide is also supplemented by the [buf-example](https://github.com/bufbuild/buf-example)
 repository, which provides a functional example for integrating `buf` into [CircleCI](https://circleci.com),
 [TravisCI](https://travis-ci.org), or [GitHub Actions](https://github.com/features/actions).
-For a quick solution that leverages a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
+For a quick solution that uses a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
 please refer to [buf-example](https://github.com/bufbuild/buf-example)!
 
 ## Installation

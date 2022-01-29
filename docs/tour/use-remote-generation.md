@@ -37,7 +37,7 @@ to use [https://buf.build/library/templates/go-grpc](https://buf.build/library/t
 which is one of the BSR's [hosted templates](../bsr/remote-generation/overview.md#hosted-templates).
 
 In short, the `go-grpc` template acts exactly like the local `buf.gen.yaml` template we just removed,
-(i.e. it executes the `protoc-gen-go` and `protoc-gen-go-grpc` plugins).
+executing the `protoc-gen-go` and `protoc-gen-go-grpc` plugins.
 
 The [Go module path](../bsr/remote-generation/overview.md#the-go-module-path) we need to use is derived
 from the name of the module we want to generate *for*, as well as the name of the template we want to
@@ -171,7 +171,7 @@ represented as **monotonically increasing integers**.
   - For hosted Templates we enforce a version of the form `v1`, `v2`, `vN...`.
   - For Protobuf modules we use the **commit sequence ID**. This ID is an integer that uniquely
     identifies a commit. It is calculated by counting the number of commits since the first commit
-    of a module (i.e. the first commit has a sequence ID of `1`, the second commit has a sequence ID
+    of a module (the first commit has a sequence ID of `1`, the second commit has a sequence ID
     of `2`, and so on).
 
 With these simplified versioning schemes we create a synthetic version which takes the following form:
@@ -225,7 +225,7 @@ $ buf push
 8535a2784a3a48f6b72f2cb80eb49ac7
 ```
 
-Now, edit your `go.mod` to use the latest version (i.e. the 5th commit):
+Now, edit your `go.mod` to use the latest version (the 5th commit):
 
 ```sh title="go.mod" {6-7}
  module github.com/bufbuild/buf-tour/petstore
