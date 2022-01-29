@@ -30,7 +30,7 @@ breaking:
 
 Next, you'll need to introduce a breaking change. First, make a change that's breaking at the
 [`WIRE`][wire] level. This is the most fundamental type of breaking change as it changes how the
-Protobuf messages are encoded in transit (i.e. "on the wire"). This type of breaking change affects
+Protobuf messages are encoded in transit ("on the wire"). This type of breaking change affects
 _all_ users in _all_ languages.
 
 For example, change the type of the `Pet.pet_type` field from `PetType` to `string`:

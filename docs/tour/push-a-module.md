@@ -29,7 +29,7 @@ no concept of a repository "clone". In other words, repositories do not exist in
 
 A module has a `name` and three other components:
 
-  - **Remote**: The DNS name for the server hosting the BSR, i.e. `buf.build`.
+  - **Remote**: The DNS name for the server hosting the BSR, such as `buf.build`.
   - **Owner**: The user or organization that owns the repository.
   - **Repository**: The repository's name.
 

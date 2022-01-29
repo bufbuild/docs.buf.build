@@ -239,7 +239,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
 > concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
 > declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
-> collide (i.e. a lot of Protobuf packages will contain the `v1` suffix).
+> collide (a lot of Protobuf packages contain the `v1` suffix).
 
 ##### `except`
 

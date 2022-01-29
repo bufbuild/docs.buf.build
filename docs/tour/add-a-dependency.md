@@ -117,7 +117,7 @@ This is the BSR's dependency management in action! A few things happened here, s
   3. When another `buf` command is run, `buf` downloads the `buf.build/googleapis/googleapis` module to the
      local [module cache](../bsr/overview.md#module-cache).
   4. Finally, now that `buf` has all of the dependencies it needs, it can successfully build the module
-     (i.e. with `google/type/datetime.proto` included).
+     (as `google/type/datetime.proto` is included).
 
 In summary, `buf` can resolve the dependencies specified in your `buf.yaml`'s `deps` key and include
 the imports required to build your module. **You don't have to manually copy `.proto` files anymore!**

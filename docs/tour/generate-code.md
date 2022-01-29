@@ -107,7 +107,7 @@ start/
 
 [Managed Mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
 to set all of the file options in your module according to an opinionated set of values suitable for each of the
-supported Protobuf languages (e.g. Go, Java, C#, etc.). The file options are written *on the fly* by
+supported Protobuf languages, such as Go, Java, and C#. The file options are written *on the fly* by
 `buf` so that you don't need to include them in your Protobuf source files.
 
 These options aren't derived from your Protobuf definitions as an API *producer*. Instead, these

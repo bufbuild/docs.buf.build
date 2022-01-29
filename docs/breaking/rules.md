@@ -399,11 +399,12 @@ This does the following:
 
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`, `WIRE`**
 
-This checks that no field changes it's label, i.e. `optional, required, repeated`. Changing to/from
-optional/required and repeated will be a generated source code and JSON breaking change. Changing
-to/from optional and repeated is actually not a wire-breaking change, however changing to/from
-optional and required is. Given that it's unlikely to be advisable in any situation to change your
-label, and that there is only one exception, we find it best to just outlaw this entirely.
+This checks that no field changes its label. The available labels are `optional`, `required`,
+and `repeated`. Changing to/from optional/required and repeated will be a generated source code and
+JSON breaking change. Changing to/from optional and repeated is actually not a wire-breaking change, 
+however changing to/from optional and required is. Given that it's unlikely to be advisable in any
+situation to change your label, and that there is only one exception, we find it best to just forbid
+this entirely.
 
 ### `FIELD_SAME_ONEOF`
 
@@ -444,7 +445,7 @@ Deleting a reserved value that future versions of your Protobuf schema can then 
 numbers in these ranges, and if these ranges are reserved, it was because an enum value
 or field was deleted.
 
-Note that moving from i.e. `reserved 3 to 6`; to `reserved 2 to 8;` would technically be fine,
+Note that moving from `reserved 3 to 6;` to `reserved 2 to 8;`, for example, would technically be fine,
 however Buf will still fail in this case - making sure all ranges are covered is truly a pain,
 we have no other excuse. We could fix this in the future. For now, just do `reserved 3 to 6, 2, 7 to
 8;` to pass breaking change detection.

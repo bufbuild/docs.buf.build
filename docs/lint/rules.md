@@ -597,7 +597,7 @@ message Four {
 ```
 
 These packages successfully compile, but this file structure introduces problems for languages that rely on
-package-based imports (e.g. Go). If possible, **this rule should always be configured**.
+package-based imports, such as Go. If possible, **this rule should always be configured**.
 
 ## What we left out
 
