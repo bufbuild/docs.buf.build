@@ -1,6 +1,8 @@
+# Lint rule for i.e.
+# Inspired by Buildkite: https://github.com/buildkite/docs/blob/main/vale/Buildkite/eg.yml
 extends: existence
 message: Consider replacing '%s' with 'for example' or 'such as'
-level: warning
+level: error
 ignorecase: true
 tokens:
   - '\be\.g\b'

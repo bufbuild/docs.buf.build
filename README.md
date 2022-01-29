@@ -172,8 +172,11 @@ vale docs
 make lint
 ```
 
-The only check that's currently run is a standard spelling check. Any words that we want Vale to
-ignore need to be added to the [`accept.txt`](./vale/Vocab/Docs/accept.txt) file.
+There are currently two checks in place:
+
+* A standard spelling check. Any words that we want Vale to ignore need to be added to the
+  [`accept.txt`](./vale/Vocab/Docs/accept.txt) file.
+* A check for e.g. and i.e.
 
 Linting is currently performed on an ad hoc basis.
 
