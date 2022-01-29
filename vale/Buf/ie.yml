@@ -1,4 +1,4 @@
-# Lint rule for i.e.
+# Lint rule for "i.e."
 # Inspired by Buildkite: https://github.com/buildkite/docs/blob/main/vale/Buildkite/ie.yml
 extends: existence
 message: Consider removing '%s' or replacing it with something like 'that is'
