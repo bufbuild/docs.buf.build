@@ -121,6 +121,9 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o b
 The paths in the template and the `-o` flag will be interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
 
+For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).
+
+
 ## Limit to specific files
 
 By default, `buf` builds all files under the `buf.yaml` configuration file. You can instead manually specify
