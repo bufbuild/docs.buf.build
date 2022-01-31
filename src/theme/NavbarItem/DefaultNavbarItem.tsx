@@ -11,10 +11,8 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React, {useEffect, useState} from 'react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import React from 'react';
 import type {Props} from '@theme/NavbarItem/DefaultNavbarItem';
-import {fetchGithubStargazerCount} from "./fetch-github-stargazer-count";
 import OriginalNavbarItem from '@theme-original/NavbarItem/DefaultNavbarItem';
 
 import styles from './DefaultNavbarItem.module.css';
@@ -51,26 +49,8 @@ function DefaultNavbarItem(props: Props): JSX.Element {
 
     const label = typeof props.label === "string" ? props.label : "GitHub";
 
-    const [bufStargazerCount, setBufStargazerCount] = useState(label);
-
-    useEffect(() => {
-        let cancelled = false;
-        if (bufAppearance === "github") {
-            const githubUrl = props.prependBaseUrlToHref ? useBaseUrl(props.href, {forcePrependBaseUrl: true}) : props.href;
-            fetchGithubStargazerCount(githubUrl, label)
-                .then(count => {
-                    if (!cancelled) {
-                        setBufStargazerCount(count);
-                    }
-                });
-        }
-        return () => {
-            cancelled = true;
-        };
-    });
-
     if (bufAppearance === "github") {
-        return <OriginalNavbarItem className={classNames.join(" ")} {...props} label={bufStargazerCount} />;
+        return <OriginalNavbarItem className={classNames.join(" ")} {...props} label={props.starGazers} />;
     }
 
     return <OriginalNavbarItem className={classNames.join(" ")} {...props} />;
