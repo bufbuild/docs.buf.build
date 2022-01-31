@@ -47,7 +47,7 @@ generate *with*:
 go.buf.build/TEMPLATE_OWNER/TEMPLATE_NAME/MODULE_OWNER/MODULE_NAME
 ```
 
-With module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/template/go`, the result
+With module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, the result
 becomes:
 
 ```
