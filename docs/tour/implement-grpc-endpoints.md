@@ -14,11 +14,12 @@ Before you write Go code, initialize a `go.mod` file with the `go mod init` comm
 $ go mod init github.com/bufbuild/buf-tour/petstore
 ```
 
-Similar to the `buf.yaml` config file, the `go.mod` file tracks your code's Go dependencies.
+Similar to the [`buf.yaml`](/v1/buf-yaml) config file, the `go.mod` file tracks your code's Go
+dependencies.
 
 ## 11.2 Implement the Server {#implement-the-server}
 
-You can start implementing a simple server by creating a `server/main.go` file:
+You can start implementing a server by creating a `server/main.go` file:
 
 ```terminal
 $ mkdir server
@@ -82,7 +83,7 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 
 ## 11.3 Implement the Client {#implement-the-client}
 
-You can start implementing a simple client by creating `client/main.go` file:
+You can start implementing a client by creating a `client/main.go` file:
 
 ```terminal
 $ mkdir client
@@ -133,8 +134,8 @@ func run() error {
 
 ## 11.4 Resolve Go Dependencies {#resolve-go-dependencies}
 
-Now that both the `client` and `server` code exists, we'll need to run the following command to resolve
-some of the dependencies we need for the generated code:
+Now that you have code for both a client and a server, run this command to resolve
+some of the dependencies you need for the generated code:
 
 ```terminal
 $ go mod tidy
@@ -156,25 +157,27 @@ You should notice the following changes (the version pins may differ):
 
 ## 11.5 Call `PutPet` {#call-putpet}
 
-With the `server/main.go` and `client/main.go` implementations shown above, we can run the server and
+With the `server/main.go` and `client/main.go` implementations shown above, run the server and
 call the `PutPet` endpoint from the client.
 
-First, run the server with the following:
+First, run the server:
 
 ```terminal
 $ go run server/main.go
+---
 ... Listening on 127.0.0.1:8080
 ```
 
-In a separate terminal, run the client and you'll notice the following:
+In a separate terminal, run the client and you should see a success message:
 
 ```terminal
 $ go run client/main.go
+---
 ... Connected to 127.0.0.1:8080
 ... Successfully PutPet
 ```
 
-You'll also notice the following in the server logs (in the other terminal running the server):
+You'll also notice this in the server logs (in the other terminal running the server):
 
 ```terminal
 $ go run server/main.go

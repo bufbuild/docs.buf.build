@@ -9,7 +9,7 @@ fetching the `.proto` files you need. If you wanted to use
 Git repository and copy the `.proto` file(s) you need in order to compile your own `.proto` files.
 And if `googleapis` has its own external dependencies, then you need to fetch those as well.
 
-Even worse, this way of managing dependencies is prone to API drift, where where the `googleapis`
+Even worse, this way of managing dependencies is prone to API drift, where the `googleapis`
 code may evolve over time, leaving your local copies inconsistent with the latest version and your
 modules thus out of date. It turns out that this is exactly what you did with the `PetStoreService`:
 the `google/type/datetime.proto` file is actually present in your local directory and currently
@@ -27,7 +27,7 @@ dependencies:
 $ rm -rf google
 ```
 
-Now remove the `google/type/datetime.proto` reference from your [`buf.yaml`](../configuration/v1/buf-yaml.md):
+Now remove the `google/type/datetime.proto` reference from your[`buf.yaml`](../configuration/v1/buf-yaml.md):
 
 ```yaml title="buf.yaml" {5-6}
  version: v1

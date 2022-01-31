@@ -8,22 +8,20 @@ pushed to the [BSR](../bsr/overview.md) to implement a gRPC client and server in
 That's a great start, but product requirements always evolve and new features need to be built over
 time.
 
-In this section, we'll see how to incorporate another dependency into
-our `PetStoreService` API, and use a [workspace](../reference/workspaces.md) to make
-our lives easier.
+In this section, you'll incorporate another dependency into your `PetStoreService` API
+and use a [workspace](../reference/workspaces.md) to make better organize your Protobuf
+definitions.
 
 ## 12.1 Create `paymentapis` {#create-paymentapis}
 
-The next feature we build will enable people to purchase pets by calling a
-`PurchasePet` endpoint. This endpoint requires some information about
-payment systems, so we should create another module for it so that it
-can be shared by other APIs later on. This logical separation is common
-for monetary orders and payment providers. This logical separation is common
-in larger organizations, for example the payments team in the `acme` organization
-owns the `buf.build/acme/paymentapis` module.
+The next feature you'll build will enable people to purchase pets by calling a `PurchasePet`
+endpoint. This endpoint requires some information about payment systems, so you'll create a separate
+module for it that can be shared by other APIs. This is the kind of logical separate you often
+find in larger organizations, where one team would own a `paymentapis` module while another would
+own `petapis`.
 
-You don't want the `.proto` files specific to `paymentapis` to coexist within
-`petapis`, so make another directory for it and initialize a module there:
+You can enact a separation like this by creating a separate directory and initializing a Buf module
+there:
 
 ```terminal
 $ mkdir paymentapis
@@ -31,7 +29,7 @@ $ cd paymentapis
 $ buf config init
 ```
 
-With this, you should have the following:
+That creates this config file:
 
 ```yaml title="paymentapis/buf.yaml"
 version: v1
@@ -43,7 +41,7 @@ breaking:
     - FILE
 ```
 
-You can also `name` the module like this:
+You can also provide a `name` for the module:
 
 ```yaml title="paymentapis/buf.yaml" {2}
  version: v1
