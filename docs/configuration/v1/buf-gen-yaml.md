@@ -27,7 +27,7 @@ plugins:
   - name: go
     out: gen/proto/go
     opt: paths=source_relative
-  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
+  - remote: buf.build/grpc/plugins/go:v1.2.0-1
     out: gen/proto/go
     opt:
       - paths=source_relative
@@ -57,8 +57,8 @@ executed by `buf`. This can be overridden with the [path](#path) option shown be
 
 In the case of `<remote>`, this allows you to run `buf generate` with a remote plugin, using the fully-qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
-example shown above, the `go-grpc` plugin managed by `buf.build/library` is being used as a part of the generation,
-and does not require a local installation of the `go-grpc` plugin. If no version is specified, the generation will default
+example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
+and does not require a local installation of the `go` plugin. If no version is specified, the generation will default
 to using the latest version available for the requested remote plugin.
 
 #### `out`

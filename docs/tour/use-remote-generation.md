@@ -33,7 +33,7 @@ client/main.go:10:2: no required module provides package github.com/bufbuild/buf
 ## 16.2 Depend on `go.buf.build` {#depend-on-gobufbuild}
 
 We can depend on the same Go/gRPC client and server stubs by adapting our import paths
-to use [https://buf.build/library/templates/go-grpc](https://buf.build/library/templates/go-grpc),
+to use [https://buf.build/grpc/templates/go](https://buf.build/grpc/templates/go),
 which is one of the BSR's [hosted templates](../bsr/remote-generation/overview.md#hosted-templates).
 
 In short, the `go-grpc` template acts exactly like the local `buf.gen.yaml` template we just removed,
@@ -47,7 +47,7 @@ generate *with*:
 go.buf.build/TEMPLATE_OWNER/TEMPLATE_NAME/MODULE_OWNER/MODULE_NAME
 ```
 
-With module `buf.build/$BUF_USER/petapis` and template `buf.build/library/template/go-grpc`, the result
+With module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/template/go`, the result
 becomes:
 
 ```

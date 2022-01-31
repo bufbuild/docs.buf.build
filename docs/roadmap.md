@@ -28,7 +28,7 @@ Given a module, such as `buf.build/acme/weather`, you can consume generated code
 All via a `go` command that results in a Go module:
 
 ```sh
-$ go get go.buf.build/library/go-grpc/acme/weather
+$ go get go.buf.build/grpc/go/acme/weather
 ```
 
 Similar mechanisms will exist for other languages, such as:
