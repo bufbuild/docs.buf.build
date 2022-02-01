@@ -6,7 +6,7 @@ title: Images
 Throughout the documentation, you will occasionally see references to **Images**. We'll go over what
 Images are, how they are used, and the various options associated with them here.
 
-## Protobuf plugins: how they work
+## How Protobuf Plugins work
 
 First we need to provide a short overview of how Protobuf plugins work.
 
@@ -44,8 +44,7 @@ to `protoc`.
 compiled Protobuf schema. They are also the primary artifact that protoc produces.**
 
 That is to say that everything you do with `protoc`, and any plugins you use, talk in terms of FileDescriptorSets.
-Of note, they are how [gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) works
-under the hood as well.
+[gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) uses them under the hood as well.
 
 ## How do I create FileDescriptorSets with protoc?
 

@@ -168,7 +168,7 @@ the authors are being honest, we can't remember if it's the first `-I` or second
 we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
-have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google)
+have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
 has it's own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
 While these are usually in sync, the `google.api` schema can change. If we allowed the following:
 
@@ -223,7 +223,7 @@ However, `buf build` also supports outputting [FileDescriptorSets](https://githu
 and [Images](../reference/images.md), which is Buf's custom extension of the FileDescriptorSet. Better yet, these outputs
 can be formatted in a variety of ways.
 
-Per the [input documentation](../reference/inputs.md), `buf build` can deduce the output format by the file extension. For example,
+Per the [input documentation](../reference/inputs.md#automatically-derived-formats), `buf build` can deduce the output format by the file extension. For example,
 
 ```sh
 $ buf build -o image.bin

@@ -124,8 +124,8 @@ GitHub where tarballs and zip archives can be retrieved for any commit or branch
 ```sh
 # Assuming your repo is github.com/foo/bar and COMMIT is a variable storing the commit
 # to compare against
-$ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.tar.gz#strip_components=1'
-$ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.zip#strip_components=1'
+$ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.tar.gz#strip_components=1"
+$ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.zip#strip_components=1"
 ```
 
 ## Deleted references

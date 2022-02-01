@@ -3,9 +3,9 @@ id: add-a-dependency
 title: 9 Add a Dependency
 ---
 
-Without the [BSR](../bsr/overview.md), depending on other Protobuf APIs is a painful, manual process.
-For example, if you want to use [googleapis](https://github.com/googleapis/googleapis),
-you're expected to clone the Git repository, and manually copy the `.proto` file(s) you
+Without the [BSR](../bsr/overview.md) depending on other Protobuf APIs is a painful, manual process.
+For example, if you want to use [googleapis](https://github.com/googleapis/googleapis)
+you're expected to clone the Git repository and manually copy the `.proto` file(s) you
 need in order to compile your `.proto` files. Worse, this workflow is prone to API drift,
 where the latest `googleapis` code evolves and is therefore inconsistent with
 your local copy. This is exactly what we have in the current `PetStoreService` - the
@@ -125,7 +125,7 @@ you can specify it like so:
  version: v1
  deps:
 -  - buf.build/googleapis/googleapis
-+  - buf.build/googleapis/googleapis:1c473ad9220a49bca9320f4cc690eba5
++  - buf.build/googleapis/googleapis:d75c1d1eb41c490aa9b0b9e7f41dbd02
  lint:
    use:
      - DEFAULT
@@ -141,7 +141,7 @@ With that said, restore the `buf.yaml` file to its previous state before we cont
 ```yaml title="buf.yaml" {3-4}
  version: v1
  deps:
--  - buf.build/googleapis/googleapis:1c473ad9220a49bca9320f4cc690eba5
+-  - buf.build/googleapis/googleapis:d75c1d1eb41c490aa9b0b9e7f41dbd02
 +  - buf.build/googleapis/googleapis
  lint:
    use:

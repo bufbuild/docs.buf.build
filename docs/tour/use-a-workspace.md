@@ -200,7 +200,7 @@ Adapt the `PetStoreService` with the `PurhcasePet` endpoint like so:
 
  option go_package = "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1;petv1";
 
- +import "payment/v1alpha1/payment.proto";
++import "payment/v1alpha1/payment.proto";
  import "google/type/datetime.proto";
 
  ...

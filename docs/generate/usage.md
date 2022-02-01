@@ -67,10 +67,6 @@ invocation, with results from each invocation combined before writing the result
 
 ## Run generate
 
-You can run `buf generate` on your module by specifying the filepath to
-the directory containing the `buf.yaml`. In the above example, you can target
-the `buf.build/acme/petapis` input defined in the current directory like so:
-
 ```sh
 $ buf generate
 ```
