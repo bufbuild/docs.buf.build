@@ -17,9 +17,13 @@ import OriginalNavbarItem from '@theme-original/NavbarItem/DefaultNavbarItem';
 
 import styles from './DefaultNavbarItem.module.css';
 
+interface NavbarProps extends Props {
+    stargazers?: number;
+}
+
 // We are handling different "appearances" here. They mostly just style the nav bar item, but
 // "github" also fetches the stargazer count for the link URL and sets the result as a link label.
-function DefaultNavbarItem(props: Props): JSX.Element {
+function DefaultNavbarItem(props: NavbarProps): JSX.Element {
     let bufAppearance;
     [bufAppearance, props] = extractBufAppearance(props);
     let classNames: string[] = [styles.hideExternalLinkIcon];
@@ -50,7 +54,7 @@ function DefaultNavbarItem(props: Props): JSX.Element {
     const label = typeof props.label === "string" ? props.label : "GitHub";
 
     if (bufAppearance === "github") {
-        return <OriginalNavbarItem className={classNames.join(" ")} {...props} label={props.starGazers} />;
+        return <OriginalNavbarItem className={classNames.join(" ")} {...props} label={props.stargazers} />;
     }
 
     return <OriginalNavbarItem className={classNames.join(" ")} {...props} />;
