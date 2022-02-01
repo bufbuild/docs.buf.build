@@ -106,7 +106,7 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
           bufAppearance: 'github',
-          starGazers: 3805,
+          starGazers: 3511,
         },
       ],
     },
@@ -173,6 +173,6 @@ module.exports = {
   },
   customFields: {
     // Used to configure the release version downloaded from the installation.mdx buttons
-    downloadRelease: '1.0.0-rc11',
+    downloadRelease: '1.0.0-rc12',
   },
 };
