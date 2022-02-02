@@ -5,9 +5,9 @@ title: Overview
 
 Bazel rules for `buf` are available at the [rules_buf](https://github.com/bufbuild/rules_buf) repo. 
 It currently supports:
-* [Lint](/lint/overview) and [Breaking Change Detection](/breaking/overview) 
-as [bazel test rules](https://docs.bazel.build/versions/main/skylark/rules.html#executable-rules-and-test-rules).
-* `buf` as a [bazel toolchain](https://docs.bazel.build/versions/main/toolchains.html).
+* [Lint](/lint/overview) and [breaking change detection](/breaking/overview) 
+as [test rules](https://docs.bazel.build/versions/main/skylark/rules.html#executable-rules-and-test-rules).
+* `buf` as a [toolchain](https://docs.bazel.build/versions/main/toolchains.html).
 * [Gazelle](https://github.com/bazelbuild/bazel-gazelle) extension to generate the rules.
 
 ## Setup
@@ -20,7 +20,7 @@ http_archive(
     name = "rules_buf",
     sha256 = "<SHA256>",
     urls = [        
-        "https://github.com/bufbuild/rules_buf/releases/download/<VERSION>/rules_go-<VERSION>.zip",
+        "https://github.com/bufbuild/rules_buf/releases/download/<VERSION>/rules_buf-<VERSION>.zip",
     ],
 )
 
@@ -44,13 +44,13 @@ rules_proto_toolchains()
 
 The rules work alongside `proto_library` rules. All the rules are configured using the `buf.yaml` file. 
 
-Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For workspaces this has to be done for each `buf.yaml` file.
+Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a `buf.work.yaml` that references to multiple `buf.yaml` files, this has to be done for each `buf.yaml` file independently.
 
 > We highly recommend using the [gazelle extension](gazelle) to generate these rules.
 
 ### `buf_lint_test`
 
-`buf_lint_test` is a bazel test rule that lints `proto_library` targets. It can accept multiple `proto_library` targets. 
+`buf_lint_test` is a test rule that lints one or more `proto_library` targets.
 
 #### Example
 
@@ -78,7 +78,7 @@ $ bazel test :foo_proto_lint
 
 ### `buf_breaking_test`
 
-`buf_breaking_test` is a bazel test rule that checks `proto_library` targets for breaking changes. It can accept multiple `proto_library` targets. It requires an [image](/reference/images) file to check against.
+`buf_breaking_test` is a test rule that checks one or more `proto_library` targets for breaking changes. It requires an [image](/reference/images) file to check against.
 
 #### Example
 
@@ -107,7 +107,7 @@ $ bazel test :foo_proto_breaking
 
 ## Toolchains
 
-The `buf` tool is packaged as a bazel [toolchain](https://docs.bazel.build/versions/main/toolchains.html). It can be used to create custom rules that depend on `buf`.
+The `buf` tool is packaged as a [toolchain](https://docs.bazel.build/versions/main/toolchains.html). It can be used to create custom rules that depend on `buf`.
 
 #### Example
 
