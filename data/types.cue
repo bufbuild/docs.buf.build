@@ -21,7 +21,7 @@ package data
 
 	#Args: [...{
 		#Format: #Commit | #Directory | #Input | #Organization | #Plugin |
-			#Repository | #Source| #Target | #Tag | #Template
+			#Repository | #Source | #Target | #Tag | #Template
 
 		description: #String
 		required:    bool | *false

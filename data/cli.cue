@@ -424,7 +424,7 @@ buf_cli: {
 				against: {
 					description: "The source, module, or image to check against."
 					required:    true
-					enum: _vals.format_enum
+					enum:        _vals.format_enum
 				}
 
 				"against-config": {
@@ -562,7 +562,7 @@ buf_cli: {
 
 				output: {
 					description: "The direectory to write the files to."
-					type: "string"
+					type:        "string"
 				}
 
 				path: _vals.path_opt
@@ -590,7 +590,7 @@ buf_cli: {
 						The base directory to generate to. This is prepended to the out
 						directories in the generation template.
 						"""
-					type: "string"
+					type:    "string"
 					default: "."
 				}
 
@@ -598,7 +598,7 @@ buf_cli: {
 
 				template: {
 					description: "The generation template file or data to use. Must be in either YAML or JSON format."
-					type: "string"
+					type:        "string"
 				}
 			}
 		}
@@ -609,13 +609,13 @@ buf_cli: {
 			args: [_vals.input_arg]
 
 			flags: {
-				
+
 			}
 
 			options: {
 				config: {
 					description: "The config file or data to use."
-					type: "string"
+					type:        "string"
 				}
 
 				"error-format": _vals.error_format_opt
@@ -640,14 +640,14 @@ buf_cli: {
 			options: {
 				config: {
 					description: "The config file or data to use."
-					type: "string"
+					type:        "string"
 				}
 
 				"error-format": _vals.error_format_opt
 
 				input: {
 					description: "The source or image to list the files from."
-					enum: _vals.format_enum
+					enum:        _vals.format_enum
 				}
 			}
 		}
@@ -658,7 +658,7 @@ buf_cli: {
 			commands: {
 				"clear-cache": {
 					description: "Clear the module cache."
-					alias: "cc"
+					alias:       "cc"
 				}
 
 				prune: {
@@ -681,7 +681,7 @@ buf_cli: {
 						first argument is the directory of the local module to update. If no
 						argument is specified, defaults to `.`.
 						"""
-					
+
 					args: [_vals.directory_arg]
 				}
 			}
@@ -876,7 +876,7 @@ _vals: {
 	}
 	source_arg: {
 		description: "The source."
-		format: #Source
+		format:      #Source
 	}
 	tag_arg: {
 		description: "The tag."

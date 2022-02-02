@@ -1,4 +1,5 @@
 SHELL := /usr/bin/env bash -o pipefail
+CUE   = ./scripts/cue.sh
 
 UNAME_OS := $(shell uname -s)
 
@@ -18,7 +19,7 @@ install:
 	npm install
 
 .PHONY: build
-build: install
+build: install cue-build
 	rm -rf build
 	npm run build
 
@@ -45,6 +46,19 @@ clean:
 .PHONY: lint
 lint:
 	vale docs
+
+# CUE commands
+.PHONY: cue-build
+cue-build:
+	$(CUE) build
+
+.PHONY: cue-fmt
+cue-fmt:
+	$(CUE) fmt
+
+.PHONY: cue-vet
+cue-vet:
+	$(CUE) vet
 
 .PHONY: updateversion
 updateversion:

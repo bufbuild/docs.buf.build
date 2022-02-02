@@ -3,6 +3,10 @@ id: introduction
 title: Introduction
 ---
 
+import BufCli from "@site/src/components/BufCli";
+
+<BufCli />
+
 Buf’s long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
 are defined consistently, in a way that service owners and clients can depend on.
 
