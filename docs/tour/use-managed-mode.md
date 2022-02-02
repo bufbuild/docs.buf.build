@@ -74,7 +74,7 @@ the next section.
 
 To configure Managed Mode, add the [`managed.enabled`](/configuration/v1/buf-gen-yaml#enabled)
 option to your `buf.gen.yaml` template and set a package prefix with the
-[`managed`](/v1/buf-gen-yaml#go_package_prefix) parameter.
+[`managed`](/configuration/v1/buf-gen-yaml#go_package_prefix) parameter.
 
 > The `go_package` option is [notoriously complicated][go_prefix]. To generate code using plugins
 > like `protoc-gen-go` and `protoc-gen-grpc`, Go repositories **must** contain a [go.mod][go.mod]

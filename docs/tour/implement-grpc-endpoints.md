@@ -14,8 +14,8 @@ Before you write Go code, initialize a `go.mod` file with the `go mod init` comm
 $ go mod init github.com/bufbuild/buf-tour/petstore
 ```
 
-Similar to the [`buf.yaml`](/v1/buf-yaml) config file, the `go.mod` file tracks your code's Go
-dependencies.
+Similar to the [`buf.yaml`](/configuration/v1/buf-yaml) config file, the `go.mod` file tracks your
+code's Go dependencies.
 
 ## 11.2 Implement the Server {#implement-the-server}
 
