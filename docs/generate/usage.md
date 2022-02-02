@@ -67,8 +67,18 @@ invocation, with results from each invocation combined before writing the result
 
 ## Run generate
 
+To generate for a buf module in your current directory, simply run:
+
 ```sh
 $ buf generate
+```
+
+You can also run `buf generate` on a module by specifying the filepath to the
+directory containing the `buf.yaml`. For example, if you have a `buf.yaml` in
+directory foo, you can generate using:
+
+```sh
+$ buf generate foo
 ```
 
 The `buf generate` command will:
@@ -100,6 +110,9 @@ The following section describes several common cases for `buf generate`:
 ```sh
 # Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.
 $ buf generate
+
+# Uses the buf.build/acme/petapis module as input, using a `buf.gen.yaml` in the current directory.
+$ buf generate buf.build/acme/petapis
 
 # Uses the current directory as input, and explicitly specifies a custom template in another directory.
 $ buf generate --template data/generate.yaml

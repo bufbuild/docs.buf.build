@@ -223,7 +223,7 @@ However, `buf build` also supports outputting [FileDescriptorSets](https://githu
 and [Images](../reference/images.md), which is Buf's custom extension of the FileDescriptorSet. Better yet, these outputs
 can be formatted in a variety of ways.
 
-`buf build` can deduce the output format by the file extension. For example,
+`buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
 
 ```sh
 $ buf build -o image.bin
