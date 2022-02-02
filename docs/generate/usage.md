@@ -74,8 +74,8 @@ $ buf generate
 ```
 
 You can also run `buf generate` on a module by specifying the filepath to the
-directory containing the `buf.yaml`. For example, if you have a `buf.yaml` in
-directory foo, you can generate using:
+directory containing the proto root. For example if your protos are in directory
+`foo`:
 
 ```sh
 $ buf generate foo
