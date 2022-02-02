@@ -1,15 +1,7 @@
 ---
-id: build-systems
-title: Build Systems
+id: setup
+title: Overview
 ---
-:::note TODO
-Add intro
-:::
-
-We currently provide Bazel integration. Please [contact us](contact) if you are interested in this, 
-or other build systems.
-
-## Bazel
 
 Bazel rules for `buf` are available at the [rules_buf](https://github.com/bufbuild/rules_buf) repo. 
 It currently supports:

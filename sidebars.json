@@ -173,7 +173,22 @@
       "collapsed": false
     },
     "editor-integration",
-    "build-systems",
+    {
+      "type": "category",
+      "label": "Build Systems",
+      "items": [
+        {
+          "type": "category",
+          "label": "Bazel",
+          "items": [
+            "build-systems/bazel/setup",
+            "build-systems/bazel/gazelle"
+          ],
+          "collapsed": false
+        }
+      ],
+      "collapsed": false
+    },
     "roadmap",
     "faq",
     "contact"
