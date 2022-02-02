@@ -10,14 +10,14 @@ our `.proto` files altogether.
 As discussed in [Generate Code](generate-code.md), **Managed Mode** is a
 [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to
 set all of the file options in your module according to an opinionated set of values suitable for each
-of the supported Protobuf languages (e.g. Go, Java, C#, etc.). The file options are written *on the fly*
+of the supported Protobuf languages, such as Go, Java, and C#. The file options are written *on the fly*
 so that they never have to be written in the Protobuf source file itself.
 
 ## 13.1 Remove `go_package` {#remove-go_package}
 
 One of the largest drawbacks of Protobuf is the hardcoding of language-specific
 options within Protobuf definitions themselves. For example, consider the
-`go_package` option we've been using throughtout the tour:
+`go_package` option we've been using throughout the tour:
 
 ```protobuf title="petapis/pet/v1/pet.proto" {5}
 syntax = "proto3";

@@ -9,7 +9,7 @@ issues associated with gRPC. `buf` continues to support generation of gRPC clien
 via Protobuf plugins. See [generate usage](../generate/usage.md) for more information.
 
 However, `buf` can provide [FileDescriptorSets](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
-usable by gRPC CLI tools on the fly, which is very useful when [gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection)
+usable by gRPC CLI tools on the fly, which is very useful when [gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md)
 is not available on a server, which is the common case.
 
 ## grpcurl

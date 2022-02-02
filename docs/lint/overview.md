@@ -23,10 +23,10 @@ Features of `buf`'s linter include:
   rules into logical categories. While we recommend using the `DEFAULT` set of lint rules, `buf`
   allows you to easily understand and select the exact set of rules your organization needs.
 
-- **Editor integration**. The default error output is easily parseable by any editor, making the
+- **Editor integration**. The default error output is easily parsable by any editor, making the
   feedback loop for lint errors very short. Currently, we provide
   [Vim and Visual Studio Code integration](../editor-integration.mdx), but will extend this in the
-  future to include other editors such as Emacs and Intellij IDEs.
+  future to include other editors such as Emacs and IntelliJ IDEs.
 
 - **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all
   available cores to compile your Protobuf schema, while still maintaining deterministic output. Additionally files

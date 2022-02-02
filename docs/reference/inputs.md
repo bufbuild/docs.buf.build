@@ -88,8 +88,8 @@ Examples:
   - `https://github.com/googleapis/googleapis#format=git` explicitly sets the Format to `git`. In
     this case however, note that `https://github.com/googleapis/googleapis.git` has the
     same effect; the `.git` suffix is used to infer the Format (see below for derived Formats).
-  - `-#format=json` explicitly sets the Format to `json`, i.e. read from stdin as JSON, or in the case
-    of `buf build --output`, write to stdout as JSON.
+  - `-#format=json` explicitly sets the Format to `json`, which reads from stdin as JSON, or in the case
+    of `buf build --output`, writes to stdout as JSON.
 
 ### Other options
 
@@ -128,10 +128,10 @@ Examples:
 A tarball. The path to this tarball can be either a local file, a remote http/https location, or
 `-` for stdin.
 
-Use `compression=gzip` to specify that the tarball is is compressed with Gzip. This is automatically
+Use `compression=gzip` to specify that the tarball is compressed with Gzip. This is automatically
 detected if the file extension is `.tgz` or `.tar.gz`.
 
-Use `compression=zstd` to specify that the tarball is is compressed with Zstandard. This is automatically
+Use `compression=zstd` to specify that the tarball is compressed with Zstandard. This is automatically
 detected if the file extension is `.tar.zst`.
 
 The `strip_components` and `subdir` options are optional. Note that `strip_components` is applied
@@ -358,15 +358,15 @@ There are also **two special cases**:
   - If the path is `/dev/null` on Linux or Mac, or `nul` for Windows, this is
     interpreted as the `bin` format.
 
-**If no format can be automatically derived, the `dir` format is assumed**, i.e. `buf` assumes the path
-is a path to a local directory.
+**If no format can be automatically derived, the `dir` format is assumed**, meaning that `buf`
+assumes that the path is a path to a local directory.
 
 The format of an Input can be explicitly set as described above.
 
 ## Deprecated Formats
 
 The following formats are deprecated. They will continue to work forever, but we recommend
-updating if you are explictly specifying any of these.
+updating if you are explicitly specifying any of these.
 
 | Format | Replacement |
 | --- | --- |

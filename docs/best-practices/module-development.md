@@ -6,7 +6,7 @@ title: Module Development
 The Buf Schema Registry ([BSR](../bsr/overview.md)) automatically enforces that your
 [module](../bsr/overview.md#module) compiles when it is pushed, but there are other best practices
 that can't be enforced that you should consider when you are developing your modules. We'll go
-over what these best practies are, and why they're important to keep in mind.
+over what these best practices are, and why they're important to keep in mind.
 
 ## Module Layout
 
@@ -14,7 +14,7 @@ The module is a versioned unit of Protobuf files, but it's best to *also* incorp
 a certain level of versioning in its directory and package structure.
 
 Suppose that you are implementing the `buf.build/acme/pkg` module, which only contains a single `.proto`
-file initially. Rather than placing this file at the root of the module (i.e. adjacent to the
+file initially. Rather than placing this file at the root of the module (adjacent to the
 [`buf.yaml`](../configuration/v1/buf-yaml.md) and [`buf.lock`](../configuration/v1/buf-lock.md)
 files), this file should still be nested within a directory and defined with a package that attempts to make
 it unique across other module dependencies.
@@ -59,7 +59,7 @@ compile. In other words, it's impossible for the compiler to distinguish between
 
 Do **not** push backwards-incompatible changes to your module.
 
-There are clearly exceptions to this rule for packages in-development (e.g. `alpha` and `beta`),
+There are clearly exceptions to this rule for packages in-development (such as `alpha` and `beta`),
 but module authors should do everything they can to maintain compatibility in their module.
 
 If, for example, the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell)
@@ -76,9 +76,9 @@ If you absolutely must roll out a breaking change to your API, there are ways yo
 so without breaking compatibility with your earlier module versions.
 
 In the [Module Layout](#module-layout) example above, you'll notice the use of
-a versioned filepath (i.e. it contains a `v1` element). In this case, the filepath reflects
+a versioned filepath (it contains a `v1` element). In this case, the filepath reflects
 a versioned package that should be used in the Protobuf files in that directory
-(i.e. `acme.pkg.v1`).
+(`acme.pkg.v1`).
 
 This has two key benefits:
 

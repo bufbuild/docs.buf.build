@@ -172,11 +172,7 @@ start/petapis/pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_ca
 start/petapis/pet/v1/pet.proto:49:9:Service name "PetStore" should be suffixed with "Service".
 ```
 
-:::note
-The `strip_components` option specifies the number of directories to strip for `tar` or `zip` inputs.
-:::
+> The `strip_components` option specifies the number of directories to strip for `tar` or `zip` inputs.
 
-:::note Remote authentication
-For remote locations that require authentication, see [HTTPS Authentication](../reference/inputs.md#https) and
-[SSH Authentication](../reference/inputs.md#ssh) for more details.
-:::
+> For remote locations that require authentication, see [HTTPS Authentication](../reference/inputs.md#https) and
+> [SSH Authentication](../reference/inputs.md#ssh) for more details.

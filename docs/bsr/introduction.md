@@ -75,7 +75,7 @@ Here are a few ways to get moving:
     Dive directly into the docs to get familiar with the BSR and the various components.
 
   - **[Usage](usage.md)** <br/>
-    Learn how to run `buf` commands that leverage the BSR.
+    Learn how to run `buf` commands that use the BSR.
 
   - **[The Tour](../tour/introduction.md)** <br/>
     The tour will give you an overview of the BSR, and takes approximately 20 minutes to complete.

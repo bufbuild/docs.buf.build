@@ -19,7 +19,7 @@ the [GitHub Actions guide](github-actions.md) instead.
 This guide is also supplemented by the [buf-example](https://github.com/bufbuild/buf-example)
 repository, which provides a functional example for integrating `buf` into [CircleCI](https://circleci.com),
 [TravisCI](https://travis-ci.org), or [GitHub Actions](https://github.com/features/actions).
-For a quick solution that leverages a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
+For a quick solution that uses a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
 please refer to [buf-example](https://github.com/bufbuild/buf-example)!
 
 ## Installation
@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 
 PROJECT=<your-project-name>
 # Use your desired buf version
-BUF_VERSION=1.0.0-rc11
+BUF_VERSION=1.0.0-rc12
 # buf will be cached to ~/.cache/your-project-name.
 CACHE_BIN=$HOME/.cache/$(PROJECT)
 
@@ -56,7 +56,7 @@ curl -sSL \
 chmod +x "$CACHE_BIN/buf"
 ```
 
-This script sends a request to the `buf` Github Releases using [`curl`](https://curl.se/docs)
+This script sends a request to the `buf` GitHub Releases using [`curl`](https://curl.se/docs)
 for the given `BUF_VERSION` and operating system. The binary is then given executable permission.
 
 </TabItem>

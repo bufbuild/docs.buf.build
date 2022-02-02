@@ -12,6 +12,9 @@ module.exports = {
           path: 'docs',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.json'),
+          admonitions: {
+            icons: "none",
+          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -102,7 +105,8 @@ module.exports = {
           href: 'https://github.com/bufbuild/buf',
           label: 'GitHub',
           position: 'right',
-          bufAppearance: 'github'
+          bufAppearance: 'github',
+          stargazers: 3511,
         },
       ],
     },
@@ -164,11 +168,11 @@ module.exports = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
-      additionalLanguages: ['protobuf'],
+      additionalLanguages: ['editorconfig', 'protobuf'],
     },
   },
   customFields: {
     // Used to configure the release version downloaded from the installation.mdx buttons
-    downloadRelease: '1.0.0-rc6',
+    downloadRelease: '1.0.0-rc12',
   },
 };

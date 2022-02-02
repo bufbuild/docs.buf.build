@@ -27,7 +27,7 @@ plugins:
   - name: go
     out: gen/proto/go
     opt: paths=source_relative
-  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
+  - remote: buf.build/grpc/plugins/go:v1.2.0-1
     out: gen/proto/go
     opt:
       - paths=source_relative
@@ -42,7 +42,7 @@ values are `v1beta1` and `v1`.
 ### `plugins`
 
 Each entry in the `buf.gen.yaml` `plugins` key is a `protoc` plugin configuration, which is a
-program that generates code by interacting with the compiled reprsentation of your module.
+program that generates code by interacting with the compiled representation of your module.
 
 #### `name` or `remote`
 
@@ -57,14 +57,14 @@ executed by `buf`. This can be overridden with the [path](#path) option shown be
 
 In the case of `<remote>`, this allows you to run `buf generate` with a remote plugin, using the fully-qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
-example shown above, the `go-grpc` plugin managed by `buf.build/library` is being used as a part of the generation,
-and does not require a local installation of the `go-grpc` plugin. If no version is specified, the generation will default
+example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
+and does not require a local installation of the `go` plugin. If no version is specified, the generation will default
 to using the latest version available for the requested remote plugin.
 
 #### `out`
 
 The `out` of a plugin is **required**, and controls where the generated files are deposited for a given plugin.
-Although aboslute paths are supported, this configuration is traditionally a relative output directory that
+Although absolute paths are supported, this configuration is traditionally a relative output directory that
 depends on where `buf generate` is run. For example, running `buf generate` from the root of the `tree`
 shown above would result in a new `gen/proto/go` directory within the same root:
 
@@ -238,8 +238,8 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
 > concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
-> delcaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
-> collide (i.e. a lot of Protobuf packages will contain the `v1` suffix).
+> declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
+> collide (a lot of Protobuf packages contain the `v1` suffix).
 
 ##### `except`
 

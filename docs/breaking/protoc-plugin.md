@@ -36,10 +36,10 @@ For example:
 }
 ```
 
-  - `against_input` is required and limited to [image formats](../reference/images.md), i.e the
-    format must be `bin` or `json`, and cannot be `dir`, `git`, `tar`, `zip`, etc.
+  - `against_input` is required and limited to [image formats](../reference/images.md). The
+    format must be `bin` or `json` and cannot be `dir`, `git`, `tar`, `zip`, etc.
   - `limit_to_input_files` says to limit checks to those files under build by `protoc` in the
-     current invocation, i.e. the `file_to_generate` in the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto).
+     current invocation, in this case the `file_to_generate` in the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto).
      Generally, you will want to set this option when using this plugin. We do not make this
      the default to have symmetry with `buf breaking`.
 

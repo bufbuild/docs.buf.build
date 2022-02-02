@@ -4,7 +4,7 @@ title: Managed Mode
 ---
 
 **Managed Mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to set all of the file
-options in your module according to an opinionated set of values suitable for each of the supported Protobuf languages (e.g. Go, Java, C#, etc.).
+options in your module according to an opinionated set of values suitable for each of the supported Protobuf languages, such as Go, Java, and C#.
 The file options are written *on the fly* so that they never have to be written in the Protobuf source file itself.
 
 ## Background
@@ -147,8 +147,8 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
 > concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
-> delcaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
-> collide (i.e. a lot of Protobuf packages will contain the `v1` suffix).
+> declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
+> collide (a lot of Protobuf packages contain the `v1` suffix).
 
 ##### `except`
 
@@ -216,7 +216,7 @@ option ruby_package = "Acme::Weather::V1";
 ## File option overrides
 
 You might find that several of the options set by **Managed Mode** are not what you want. This is particularly relevant for options that
-influence the content of the generated code, and are less focused on the generated package and/or file layout (e.g. `java_package`).
+influence the content of the generated code, and are less focused on the generated package and/or file layout (such as `java_package`).
 For this reason, **Managed Mode** lets users override the values of several options, including `cc_enable_arenas`, `java_multiple_files`,
 `java_string_check_utf8`, and `optimize_for`.
 

@@ -19,7 +19,7 @@ your Protobuf management strategy for you, so you can focus on what matters.
 Traditionally, adopting Protobuf presents a number of challenges across the API lifecycle. These are the problems we aim to solve:
 
   - **API designs are often inconsistent**: Writing maintainable, consistent Protobuf APIs isn't as widely understood as writing maintainable JSON/REST-based APIs.
-    With no standards enforcement, inconsistency can arise across an organization's Protobuf APIs, and design decisions can inadvertantly affect your API's future
+    With no standards enforcement, inconsistency can arise across an organization's Protobuf APIs, and design decisions can inadvertently affect your API's future
     iterability.
 
   - **Dependency management is usually an afterthought**: Protobuf files are vendored manually, with an error-prone copy-and-paste process from GitHub repositories.

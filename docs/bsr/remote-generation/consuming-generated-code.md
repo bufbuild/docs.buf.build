@@ -104,7 +104,7 @@ machine go.buf.build
 
 2. Go Environment Configuration
 
-The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy, i.e., https://proxy.golang.org.
+The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
 
 Set this environment variable.
 

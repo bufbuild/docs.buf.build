@@ -38,15 +38,17 @@ For more on the `buf.gen.yaml` file, refer to the [`buf.gen.yaml`](v1/buf-gen-ya
 
 The `buf.work.yaml` file is used to define a [workspace](../reference/workspaces.md), which is an advanced local development feature. In
 short, the `buf.work.yaml` file makes it possible to consolidate one or more modules into a single buildable unit.
-Workspaces also allow users to run `buf` operations across multiple modules with a single execution (e.g. `buf lint`).
+Workspaces also allow users to run `buf` operations across multiple modules with a single execution
+(such as `buf lint`).
 
 For more on the `buf.work.yaml` file, refer to the [`buf.work.yaml`](v1/buf-work-yaml.md) page!
 
 ## Default configuration
 
-The default configuration location is dependent on the [input](../reference/inputs.md). If `buf` is executed with an input that
-contains `buf.{mod,lock,work}` files, those files will be used for the given operation (i.e. `buf lint` will use the
-`lint` configuration found in the input's `buf.yaml`, if it exists).
+The default configuration location depends on the [input](../reference/inputs.md). If `buf` is executed with an input that
+contains `buf.{mod,lock,work}` files, those files are used for the given operation. Running `buf
+lint`, for example, would use the `lint` configuration found in the inputs `buf.yaml`, if it
+exists.
 
 If a `buf.yaml` file is not contained in the input, `buf` operates as if there is a `buf.yaml` file with the
 [default values](v1/buf-yaml.md#default-values). The `buf.{lock,work}` files do not have a default value.
