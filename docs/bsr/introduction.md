@@ -5,7 +5,7 @@ title: Introduction
 
 Welcome to the **Buf Schema Registry (BSR)**! This overview covers what the BSR is and the challenges it aims to solve within the Protobuf ecosystem. If you just want to see the BSR in action with code examples, check out [The tour](../tour/introduction.md).
 
-## What is BSR?
+## What is the BSR?
 
 The BSR stores and manages Protobuf files as versioned [modules](overview.md#module), so that individuals and organizations can consume and publish their APIs easier than ever before.
 
