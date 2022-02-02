@@ -73,9 +73,9 @@ To generate for the input in your current directory, simply run:
 $ buf generate
 ```
 
-You can also run `buf generate` on a module by specifying the filepath to the
-directory containing the proto root. For example if your protos are in directory
-`foo`:
+You can also run `buf generate` on an input by specifying the filepath to the
+directory containing the root of your `.proto` definitions. For example if all of
+your `.proto` files are in directory `foo`:
 
 ```sh
 $ buf generate foo
