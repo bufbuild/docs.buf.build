@@ -67,7 +67,7 @@ invocation, with results from each invocation combined before writing the result
 
 ## Run generate
 
-To generate for a buf module in your current directory, simply run:
+To generate for the input in your current directory, simply run:
 
 ```sh
 $ buf generate
