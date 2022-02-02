@@ -126,12 +126,13 @@ breaking:
 The `ignore_unstable_packages` key is **optional**, and ignores packages with a last component that is one of
 the unstable forms recognized by [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#package_version_suffix):
 
+  - `v\d+(alpha|beta)\d*`
+  - `v\d+p\d+(alpha|beta)\d*`
   - `v\d+test.*`
-  - `v\d+(alpha|beta)\d+`
-  - `v\d+p\d+(alpha|beta)\d+`
 
 For example, if this option is set, the following packages will be ignored:
 
+  - `foo.bar.v1alpha`
   - `foo.bar.v1alpha1`
   - `foo.bar.v1beta1`
   - `foo.bar.v1test`

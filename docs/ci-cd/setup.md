@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 
 PROJECT=<your-project-name>
 # Use your desired buf version
-BUF_VERSION=1.0.0-rc11
+BUF_VERSION=1.0.0-rc12
 # buf will be cached to ~/.cache/your-project-name.
 CACHE_BIN=$HOME/.cache/$(PROJECT)
 
