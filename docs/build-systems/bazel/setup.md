@@ -10,10 +10,10 @@ as [bazel test rules](https://docs.bazel.build/versions/main/skylark/rules.html#
 * `buf` as a [bazel toolchain](https://docs.bazel.build/versions/main/toolchains.html).
 * [Gazelle](https://github.com/bazelbuild/bazel-gazelle) extension to generate [Lint](lint/overview) and [Breaking Change Detection](breaking/overview) rules.
 
-### Setup
+## Setup
 
 Add the following snippet to the `WORKSPACE` file replacing the `<SHA256>` and `<VERSION>` with those of a [specific release](https://github.com/bufbuild/rules_buf/releases):
-```starlark
+```starlark title="WORKSPACE"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -40,59 +40,93 @@ rules_proto_toolchains()
 > `rules_proto` is required and is loaded as part of `rules_buf_dependencies`.
 > To use a specific version of `rules_proto` load it before `rules_buf`
 
-### Gazelle (Preferred)
+## Rules
 
-Next, we recommend setting up the gazelle extension to generate all the rules. If you prefer hand written  Setup gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
+The rules work alongside `proto_library` rules. All the rules are configured using the `buf.yaml` file. 
 
-Once that is done, modify the `BUILD` file with the `gazelle` target likewise:
+Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For workspaces this has to be done for each `buf.yaml` file.
+
+> We highly recommend using the [gazelle extension](/build-systems/bazel/gazelle) to generate these rules.
+
+### `buf_lint_test`
+
+`buf_lint_test` is a bazel test rule that lints `proto_library` targets. It can accept multiple `proto_library` targets. 
+
+#### Example
+
 ```starlark
-load("@bazel_gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
-gazelle_binary(
-    name = "gazelle-buf",    
-    languages = DEFAULT_LANGUAGES + [
-        "@rules_buf//gazelle/buf:buf",
-    ],
+proto_library(
+    name = "foo_proto",
+    srcs = ["pet.proto"],
+    deps = ["@go_googleapis//google/type:datetime_proto"],
 )
 
-gazelle(
-    name = "gazelle",
-    gazelle = ":gazelle-buf",
+buf_lint_test(
+    name = "foo_proto_lint",    
+    targets = [":foo_proto"],
+    config = "buf.yaml",
 )
 ```
 
-Now export the `buf.yaml` file by adding `exports_files(["buf.yaml"])` to the `BUILD` file.
-> Refer to [workspace](#workspace) section for instructions on workspaces
-
-Now run `gazelle`:
-
-```terminal
-bazel run //:gazelle
+This can be run as:
+```
+$ bazel test :foo_proto_lint
 ```
 
-This should now generate the lint rules for all proto packages.
+### `buf_breaking_test`
 
-Try out the generated lint tests by running a lint test target likewise:
-```terminal
-bazel test //path/to/proto:foo_proto_lint
-```
+`buf_breaking_test` is a bazel test rule that checks `proto_library` targets for breaking changes. It can accept multiple `proto_library` targets. It requires an [image](/reference/images) file to check against.
 
-#### Breaking Change Detection
+#### Example
 
-To generate breaking change detection rules we will need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to an [image](/reference/images) target:
 ```starlark
-# gazelle:buf_breaking_against //:against_image_file
+load("@rules_buf//buf:defs.bzl", "buf_breaking_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "foo_proto",
+    srcs = ["foo.proto"],
+)
+
+buf_breaking_test(
+    name = "foo_proto_breaking",
+    # Image file to check against.
+    against = "//:image.bin",
+    targets = [":foo_proto"],
+    config = ":buf.yaml",
+)
 ```
-The directive should be in the `BUILD` file at the root of the buf [module](bsr/overview#module).
 
-Now run `gazelle` again:
-```terminal
-bazel run //:gazelle
+This can be run as:
+```
+$ bazel test :foo_proto_breaking
 ```
 
-Now you should see a `buf_breaking_test` rule in the `BUILD` file.
+## Toolchains
 
-### Workspaces
+The `buf` tool is packaged as a bazel [toolchain](https://docs.bazel.build/versions/main/toolchains.html). It can be used to create custom rules that depend on `buf`.
 
-### Toolchains
+#### Example
 
+```starlark
+def _buf_ls_files_impl(ctx):
+    buf = ctx.toolchains["//bar_tools:toolchain_type"].cli
+    ...
+    ctx.actions.run(
+        ...
+        arguments = ["ls-files"],
+        executable = buf,
+    )
+
+buf_ls_files = rule(
+    implementation = _buf_ls_files_impl,
+    attrs = {
+        "srcs": attr.label_list(allow_files = True),  
+        ...      
+    },
+    toolchains = ["//:toolchain_type"]
+)
+```

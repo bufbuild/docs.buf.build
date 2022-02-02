@@ -9,30 +9,31 @@ title: Gazelle
 After [setting up](/build-systems/bazel/setup) `rules_buf`. Setup Gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
 
 Once that is done, modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
-```starlark
-load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
+```starlark title="BUIlD" {1-2,4-14,18}
+-load("@bazel_gazelle//:def.bzl", "gazelle")
++load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
-gazelle_binary(
-    name = "gazelle-buf",    
-    languages = [
-        # Loads the native proto extension
-        "@bazel_gazelle//language/proto:go_default_library"
-        # Loads the Buf extension
-        #
-        # NOTE: This needs to be loaded after the proto language
-        "@rules_buf//gazelle/buf:buf",
-    ],
-)
++gazelle_binary(
++    name = "gazelle-buf",    
++    languages = [
++        # Loads the native proto extension
++        "@bazel_gazelle//language/proto:go_default_library"
++        # Loads the Buf extension
++        #
++        # NOTE: This needs to be loaded after the proto language
++        "@rules_buf//gazelle/buf:buf",
++    ],
++)
 
 gazelle(
     name = "gazelle",
-    gazelle = ":gazelle-buf",
++    gazelle = ":gazelle-buf",
 )
 ```
 
 Export the `buf.yaml` file by adding `exports_files(["buf.yaml"])` to the `BUILD` file.
 
-> Workspaces require additional setup. Refer to the [Workspace](#workspace) section for instructions.
+> For workspaces do this for each `buf.yaml` file.
 
 Now run Gazelle
 ```terminal
@@ -94,3 +95,27 @@ Running the following command should show `buf_breaking_test` rules generated in
 ```terminal
 $ bazel query 'kind(buf_breaking_test, //...)'
 ```
+
+### Example: Module vs Package mode
+
+Let's consider a buf module with the following directory structure:
+
+```terminal
+├── buf.yaml
+├── BUILD
+├── foo
+│   └── v1
+│       ├── foo.proto
+│       └── BUILD
+└── bar
+    └── v1
+        ├── bar.proto
+        └── BUILD
+```
+#### Module mode
+
+Single `buf_breaking_test` rule is generated in `BUILD`. If a breaking change occurs in either `foo.proto` or `bar.proto` the test will catch that. Even if `foo.proto` is deleted the test will catch that.
+
+#### Package mode
+
+`buf_breaking_test` rules are generated in both `foo/v1/BUILD` and `bar/v1/BUILD` against their respective `proto_library` targets. If a breaking change occurs in either `foo.proto` or `bar.proto` the tests will catch that. But if either `foo.proto` or `bar.proto` is deleted the tests will fail to catch that.
