@@ -5,7 +5,7 @@ title: Configuration
 
 `buf`'s breaking change detector is configured through a [`buf.yaml`](../configuration/v1/buf-yaml.md) file
 that is placed at the root of the Protobuf source files it defines. If `buf breaking` is executed for an [input](../reference/inputs.md)
-that contains a `buf.yaml` file, its `breaking` configuration will be used for the given operation.
+that contains a `buf.yaml` file, its `breaking` configuration is used for the given operation.
 
 If a `buf.yaml` file is not contained in the input, `buf` operates as if there is a
 `buf.yaml` file with the [default values](#default-values).
@@ -49,12 +49,12 @@ breaking:
 rules are generally meant to work in unison to detect a category of breaking change, as opposed
 to merely being independent rules.
 
-Usually, you will use one of the following values for `use`:
+You should usually choose one of the following values for `use`:
 
-- `[FILE]` which will enforce that generated stubs do not break on a per-file basis.
-- `[PACKAGE]` which will enforce that generated stubs do not break on a per-package basis.
-- `[WIRE]` which will enforce that wire compatibility is not broken.
-- `[WIRE_JSON]` which will enforce that wire and JSON wire compatibility are not broken.
+- `[FILE]` enforces that generated stubs do not break on a per-file basis.
+- `[PACKAGE]` enforces that generated stubs do not break on a per-package basis.
+- `[WIRE]` enforces that wire compatibility is not broken.
+- `[WIRE_JSON]` enforces that wire and JSON wire compatibility are not broken.
 
 See the [overview](overview.md) for a longer description of the purpose of each category.
 
@@ -63,7 +63,7 @@ The default value is the single item `FILE`, which is what we recommend.
 ### `except`
 
 The `except` key is **optional**, and removes IDs or categories from the `use` list. **We do not recommend using
-this option in general**. For example, the following will result in all breaking rules in the `FILE` breaking
+this option in general**. For example, the following results in all breaking rules in the `FILE` breaking
 category being used except for `FILE_NO_DELETE`:
 
 ```yaml title="buf.yaml"
@@ -79,7 +79,7 @@ breaking:
 
 The `ignore` key is **optional**, and allows directories or files to be excluded from all breaking
 rules when running `buf breaking`. The specified directory or file paths **must** be relative to the
-`buf.yaml`. For example, the breaking result in `foo/bar.proto` will be ignored with the following:
+`buf.yaml`. For example, the breaking result in `foo/bar.proto` is ignored with the following:
 
 ```yaml title="buf.yaml"
 version: v1

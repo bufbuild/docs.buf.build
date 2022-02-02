@@ -46,7 +46,7 @@ Buf provides three "main top-level" categories of increasing strictness:
 - `BASIC`
 - `DEFAULT`
 
-These provide the majority of lint rules you will want to apply.
+These provide the majority of lint rules you may want to apply.
 
 Additionally, Buf provides "extra top-level" categories, currently:
 
@@ -103,7 +103,7 @@ assuming we have a single [root](buf-yaml.md#roots), `proto`:
 with many Protobuf plugins across various languages if you do not do this.
 
 This also has the effect of allowing imports to self-document their package, for example
-you will know that the import `foo/bar/bat/v1/bat.proto` has types in the package
+you know that the import `foo/bar/bat/v1/bat.proto` has types in the package
 `foo.bar.bat.v1`.
 
 There is no downside to maintaining this structure, and in fact many languages explicitly
@@ -124,7 +124,7 @@ The `PACKAGE_AFFINITY` category includes the following rules:
 - `PACKAGE_SAME_RUBY_PACKAGE` checks that all files with a given package have the same value for the ruby_package option.
 - `PACKAGE_SAME_SWIFT_PREFIX` checks that all files with a given package have the same value for the swift_prefix option.
 
-Each of these rules will also verify that if a given option is used in one file in a given
+Each of these rules also verifies that if a given option is used in one file in a given
 package, it is used in every file.
 
 For example, if we have file `foo_one.proto`:
@@ -288,7 +288,7 @@ lint:
     - STYLE_DEFAULT
 ```
 
-As per it's name, `DEFAULT` is also the default set of lint rules used by Buf if no
+As per its name, `DEFAULT` is also the default set of lint rules used by Buf if no
 configuration is present, and **represents the our baseline enforced recommendations for modern
 Protobuf development without being overly burdensome**.
 
@@ -329,8 +329,8 @@ message Bar {
 
 Protobuf enums use C++ scoping rules, which makes it not possible to have two enums in the same
 package with the same enum value name (an exception is when enums are nested, in which case this
-rule applies within the given message). While you may think that a given enum value name will
-always be unique across a package, APIs can develop over years, and there are countless examples
+rule applies within the given message). While you may expect a given enum value to always be
+unique across a package, APIs can develop over years, and there are countless examples
 of developers having to compromise on their enum names due to backwards compatibility issues.
 For example, you might have the following enum:
 
@@ -351,8 +351,8 @@ Two years later, you have an enum in the same package you want to add, but can't
 // This is a made up example, bear with us.
 enum SecureProtocol {
   SECURE_PROTOCOL_UNSPECIFIED = 0;
-  // If this enum is in the same package as Scheme, this will
-  // produce a protoc compile-time error!
+  // If this enum is in the same package as Scheme, this produces
+  // a protoc compile-time error!
   HTTPS = 1;
   ...
 }
@@ -373,7 +373,7 @@ The suffix is [configurable](../../lint/configuration.md).
 
 All enums should have a zero value. Proto3 does not differentiate between set and unset fields,
 so if an enum field is not explicitly set, it defaults to the zero value. If an explicit
-zero value is not part of the enum definition, this will default to the actual zero value
+zero value is not part of the enum definition, this defaults to the actual zero value
 of the enum. For example, if you had:
 
 ```protobuf
@@ -387,7 +387,7 @@ message Uri {
 }
 ```
 
-Then any `Uri` with `scheme` not explicitly set will default to `SCHEME_FTP`.
+Any `Uri` with `scheme` not explicitly set defaults to `SCHEME_FTP`.
 
 ##### `FILE_LOWER_SNAKE_CASE`
 
@@ -493,7 +493,7 @@ lint:
   service_suffix: Endpoint
 ```
 
-The `SERVICE_SUFFIX` rule will enforce the following naming instead:
+The `SERVICE_SUFFIX` rule enforces the following naming instead:
 
 ```protobuf
 service FooEndpoint {}
@@ -575,5 +575,5 @@ enum Scheme {
 }
 ```
 
-The above will result in generated code in certain languages defaulting to `SCHEME_FTP` instead of
+The above results in generated code in certain languages defaulting to `SCHEME_FTP` instead of
 `SCHEME_UNSPECIFIED`.

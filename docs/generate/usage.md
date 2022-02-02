@@ -75,14 +75,14 @@ the `buf.build/acme/petapis` input defined in the current directory like so:
 $ buf generate
 ```
 
-The `buf generate` command will:
+The `buf generate` command:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
   - Executes the configured `plugins` according to each `strategy`.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default.
+Any errors are printed out in a `file:line:column:message` format by default.
 For example:
 
 ```sh
@@ -118,7 +118,7 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
 ```
 
-The paths in the template and the `-o` flag will be interpreted as relative to your
+The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
 
 For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).

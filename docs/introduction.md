@@ -66,7 +66,7 @@ are planning with the BSR. For a quick overview, see our [roadmap](roadmap.md).
 
 To install `buf`, please see the [installation](installation.mdx) page.
 
-Next, we recommend completing the [tour](tour/introduction.md). The tour will give you an overview of most of the existing functionality of Buf, and takes
+Next, we recommend completing the [tour](tour/introduction.md). The tour provides an overview of most of the existing functionality of Buf and takes
 approximately 20 minutes to complete.
 
 After completing the tour, check out the remainder of the documentation for your specific areas of interest. We've aimed to provide as much documentation

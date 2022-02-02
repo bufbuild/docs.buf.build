@@ -9,7 +9,7 @@ This document is purposefully concise, and is meant as a short reference for
 developers to refer to when writing Protobuf schemas.
 
 The requirements follow the [`DEFAULT`](../lint/rules.md#default) lint category. For details on each
-rule and it's rationale, see that documentation. Within this Style Guide, we provide
+rule and its rationale, see that documentation. Within this Style Guide, we provide
 links under (Why?) where relevant for each check.
 
 These recommendations are not enforced by the [BSR](../bsr/overview.md), but are rather for reference.
@@ -145,7 +145,7 @@ Over-document, and use complete sentences for comments. Put documentation above
 the type, instead of inline.
 
 Avoid widely-used keywords for all types, especially packages. For example, if your
-package name is `foo.internal.bar`, the `internal` component will block importing
+package name is `foo.internal.bar`, the `internal` component blocks importing
 the generated stubs in other packages for Golang.
 
 Files should be ordered in the following manner (this matches [Google's current recommendations](https://developers.google.com/protocol-buffers/docs/style#file-structure)):

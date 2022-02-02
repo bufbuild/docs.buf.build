@@ -56,7 +56,7 @@ plugins:
 With this, you can remove all of the standard file option declarations from all of our Protobuf files entirely, and leave the rest to `buf`.
 
 > **Managed Mode** only supports the standard file options included in Protobuf by default. It's impossible for `buf` to establish an opinion
-> for the custom options you might define, so such options will still need to be checked into your Protobuf source files.
+> for the custom options you might define, so such options still need to be checked into your Protobuf source files.
 
 ### `managed`
 
@@ -89,8 +89,8 @@ plugins:
 
 #### `enabled`
 
-The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true` will
-enable **Managed Mode** according to [default behavior](#default-behavior).
+The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true`
+enables **Managed Mode** according to [default behavior](#default-behavior).
 
 #### `cc_enable_arenas`
 
@@ -146,7 +146,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 ```
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
-> concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
+> concatenated and included after the `;` element in the `go_package` result. The above example generates a Go package with a package
 > declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
 > collide (a lot of Protobuf packages contain the `v1` suffix).
 
@@ -155,7 +155,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 The `except` key is **optional**, and removes certain modules from the `go_package` file option override behavior. The `except` values **must**
 be valid [module names](../bsr/overview.md#module).
 
-There are situations where you will want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
+There are situations where you may want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
 for *all* of your Protobuf files. This is particularly relevant for the `buf.build/googleapis/googleapis` module, which points its `go_package` value to
 an [external repository](https://github.com/googleapis/go-genproto). Popular libraries, such as [grpc-go](https://github.com/grpc/grpc-go) depend on these
 `go_package` values, so it's important that **Managed Mode** does not overwrite them.
@@ -173,11 +173,11 @@ definitions from their public API definitions (as is the case for `buf`).
 #### `override`
 
 This is a list of per-file overrides for each modifier. In the example provided above, an override for `acme/weather/v1/weather.proto` is set for the `java_package_prefix`
-modifier to be `org` instead of `com`. This will set `org` as the package prefix for **only** the specific `acme/weather/v1/weather.proto` file and **not** for the rest of the module.
+modifier to be `org` instead of `com`. This sets `org` as the package prefix for **only** the specific `acme/weather/v1/weather.proto` file and **not** for the rest of the module.
 
 ## Default behavior
 
-When `managed.enabled` is set to `true`, the following file options will be set *on the fly* for all of the files contained in the module:
+When `managed.enabled` is set to `true`, the following file options are set *on the fly* for all of the files contained in the module:
 
 * `csharp_namespace` is set to the package name with each package sub-name capitalized.
 * `java_multiple_files` is set to `true`.

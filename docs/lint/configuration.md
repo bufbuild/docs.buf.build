@@ -5,7 +5,7 @@ title: Configuration
 
 `buf`'s linter is configured through a [`buf.yaml`](../configuration/v1/buf-yaml.md) file that is
 placed at the root of the Protobuf source files it defines. If `buf lint` is executed for an
-[input](../reference/inputs.md) that contains a `buf.yaml` file, its `lint` configuration will be
+[input](../reference/inputs.md) that contains a `buf.yaml` file, its `lint` configuration is
 used for the given operation.
 
 If a `buf.yaml` file is not contained in the input, `buf` operates as if there is a `buf.yaml` file with the
@@ -56,7 +56,7 @@ The default `use` value is the single item, `DEFAULT`.
 ### `except`
 
 The `except` key is **optional**, and removes IDs or categories from the `use` list. For example,
-the following will result in all lint rules in the `DEFAULT` lint category being used except for
+the following results in all lint rules in the `DEFAULT` lint category being used except for
 `ENUM_NO_ALLOW_ALIAS` and all lint rules in the `BASIC` category:
 
 ```yaml title="buf.yaml"
@@ -83,7 +83,7 @@ lint:
 
 The `ignore` key is **optional**, and allows directories or files to be excluded from all lint
 rules when running `buf lint`. The specified directory or file paths **must** be relative to the
-`buf.yaml`. For example, the lint result in `foo/bar.proto` will be ignored with the following:
+`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the following:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -124,7 +124,7 @@ lint:
 
 If this option is set, leading comments can be added within Protobuf files to ignore lint errors
 for certain components. If any line in a leading comment starts with `buf:lint:ignore ID`, then `buf`
-will ignore lint errors for this ID. For example:
+ignores lint errors for this ID. For example:
 
 ```proto
 syntax = "proto3";
@@ -167,7 +167,7 @@ and we want users to be able to make informed decisions. Therefore, `allow_comme
 added as an opt-in option. This also has the effect of making it possible to keep commen-driven
 ignores disabled. For example, if you have commit checks for files via an authors/owners file,
 you can make sure `buf.yaml` is owned by a top-level repository owner, and prevent
-`allow_comment_ignores` from being set. so that `buf` will ignore any `buf:lint:ignore`
+`allow_comment_ignores` from being set. so that `buf` ignores any `buf:lint:ignore`
 annotations.
 
 ### `enum_zero_value_suffix`
@@ -184,7 +184,7 @@ lint:
   enum_zero_value_suffix: _NONE
 ```
 
-This will allow the following:
+This allows the following:
 
 ```protobuf
 enum Foo {
@@ -229,7 +229,7 @@ However, **while not recommended**, `buf` provides a few options to slightly loo
 - `rpc_allow_same_request_response` allows the same message type to be used for a single RPC's
   request and response type.
 - `rpc_allow_google_protobuf_empty_requests` allows RPC requests to be [google.protobuf.Empty](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/empty.proto)
-  messages. This can be set if you want to allow messages to be void forever, that is they will
+  messages. This can be set if you want to allow messages to be void forever, that is, to
   never take any parameters.
 - `rpc_allow_google_protobuf_empty_responses` allows RPC responses to be `google.protobuf.Empty`
   messages. This can be set if you want to allow messages to never return any parameters.
@@ -262,7 +262,7 @@ lint:
   service_suffix: API
 ```
 
-This will allow the following:
+This allows the following:
 
 ```protobuf
 service FooAPI {}

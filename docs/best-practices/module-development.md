@@ -48,7 +48,7 @@ proto/
 
 For those that don't adopt this best practice, those APIs are more prone to *collide* with
 other user API definitions. For example, if a consumer needs to import Protobuf definitions
-from two modules, both of which define an `api.proto`, then the result module will not
+from two modules, both of which define an `api.proto`, then the resulting module doesn't
 compile. In other words, it's impossible for the compiler to distinguish between what
 `api.proto` you are referring to if there are multiple.
 
@@ -63,7 +63,7 @@ There are clearly exceptions to this rule for packages in-development (such as `
 but module authors should do everything they can to maintain compatibility in their module.
 
 If, for example, the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell)
-manifests itself, then some users will not be able to compile their module.
+manifests itself, then some users will be unable to compile their module.
 
 > In the future, we plan to enable a configurable (opt-in), module compatibility
 > guarantee so that it's *impossible* to push backwards-incompatible changes to your
@@ -82,7 +82,7 @@ a versioned package that should be used in the Protobuf files in that directory
 
 This has two key benefits:
 
-* The Protobuf files you define will not collide with other modules so that they can always be
+* The Protobuf files you define don't collide with other modules so that they can always be
   compiled together.
 * The version element in the filepath makes it easy to roll out incompatible versions in the
   same module because they are consumed from different filepaths.

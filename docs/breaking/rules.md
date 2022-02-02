@@ -8,7 +8,7 @@ As discussed in the overview, `buf` categorizes breaking rules into four main ca
   - `FILE`: Generated source code breaking changes on a per-file basis, that is changes that
     would break the generated stubs where definitions cannot be moved across files. This makes
     sure that for languages such as C++ and Python where header files are included, your source
-    code will never break for a given Protobuf change. This category also verifies wire and JSON
+    code nevers break for a given Protobuf change. This category also verifies wire and JSON
     compatibility.
   - `PACKAGE`: Generated source code breaking changes on a per-package basis, that is changes that
     would break the generated stubs, but only accounting for package-level changes. This is useful
@@ -24,7 +24,7 @@ As discussed in the overview, `buf` categorizes breaking rules into four main ca
 
 ## Categories
 
-As opposed to lint rules, you generally will not mix and exclude specific breaking change
+As opposed to lint rules, you generally shouldn't mix and exclude specific breaking change
 rules. Instead, it's best to choose one of the categories:
 
 - `FILE`
@@ -35,7 +35,7 @@ rules. Instead, it's best to choose one of the categories:
 Choose a category based on the following:
 
   - If you distribute your generated source code outside of a monorepo in any capacity, or want
-    to make sure that consumers of the generated source code will not have broken builds, use
+    to make sure that consumers of the generated source code don't experience broken builds, use
     `FILE` or `PACKAGE`. Choose `FILE` if you use (or might use) any languages that generate
     header files (such as C++ or Python), or `PACKAGE` if you only use languages that generate
     code on a per-package basis (such as Golang). **If in doubt, choose `FILE`.**
@@ -66,7 +66,7 @@ As an example of how this works, consider the rules `ENUM_NO_DELETE` and `PACKAG
 `ENUM_NO_DELETE` is in the `FILE` category, and checks that for each file, no enum is deleted.
 `PACKAGE_NO_DELETE` is in the `PACKAGE` category, and checks that for a given package, no enum is
 deleted, however enums are allowed to move between files within a package. Given these definitions,
-and given that a file does not change it's package (which is checked by `FILE_SAME_PACKAGE`, also
+and given that a file does not change its package (which is checked by `FILE_SAME_PACKAGE`, also
 included in every category), it is obvious that passing `ENUM_NO_DELETE` implies passing `PACKAGE_ENUM_NO_DELETE`.
 
 As another example, consider `FIELD_NO_DELETE`, a rule in the `FILE` and `PACKAGE` categories that checks that
@@ -84,8 +84,8 @@ would pass as well.
 
 **Category: `FILE`**
 
-These check that no enums, messages or services are deleted from a given file. Deleting
-an enum, message or service will delete the corresponding generated type, which could be
+These check that no enums, messages, or services are deleted from a given file. Deleting
+an enum, message or service deletes the corresponding generated type, which could be
 referenced in source code. Instead of deleting these types, deprecate them:
 
 ```protobuf
@@ -120,7 +120,7 @@ a breaking change.
 
 **Category: `FILE`**
 
-This checks that no file is deleted. Deleting a file will result in it's generated
+This checks that no file is deleted. Deleting a file results in its generated
 header file being deleted as well, which could break source code.
 
 ### `FILE_SAME_PACKAGE`
@@ -128,8 +128,8 @@ header file being deleted as well, which could break source code.
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`, `WIRE`**
 
 This checks that a given file has the same `package` value. Changing the package
-value will result in a ton of issues downstream in various languages, and for
-the `FILE` category, this will effectively result in any types declared within
+value results in a ton of issues downstream in various languages, and for
+the `FILE` category, this effectively results in any types declared within
 that file being considered deleted.
 
 ### `PACKAGE_NO_DELETE`
@@ -147,7 +147,7 @@ are deleted, and even though each of these types are checked, this is more of a 
 **Categories: `FILE`, `PACKAGE`**
 
 These check that no enum value or message field is deleted. Deleting an enum value or
-message field will result in the corresponding value or field being deleted from
+message field results in the corresponding value or field being deleted from
 the generated source code, which could be referenced. Instead of deleting these,
 deprecate them:
 
@@ -200,7 +200,7 @@ the field (as well as reserving the name for JSON), so this is what we recommend
 These check that no enum value or message field is deleted without reserving the
 name. This is the JSON-equivalent of reserving the number - JSON uses field names
 instead of numbers (this is optional for enum fields, but allowed). Generally you
-will want to reserve both the number and the name. For example:
+want to reserve both the number and the name. For example:
 
 ```protobuf
 enum Foo {
@@ -273,11 +273,11 @@ results in differences in generated code for many languages.
 **Categories: `FILE`, `PACKAGE`**
 
 These check that each of these [file options](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L318)
-do not change values between versions of your Protobuf schema. Changing any of these values will
-result in differences in your generated source code.
+do not change values between versions of your Protobuf schema. Changing any of these values
+results in differences in your generated source code.
 
 Note that you may not use any or all of these languages in your own development, and that's more
-than fine - if you don't set any of these options, none of these rules will ever break. You
+than fine - if you don't set any of these options, none of these rules should ever break. You
 may not have been aware some of these options existed - if so, put them in your rear view mirror.
 
 ### `ENUM_VALUE_SAME_NAME`
@@ -285,7 +285,7 @@ may not have been aware some of these options existed - if so, put them in your 
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`**
 
 This checks that a given enum value has the same name for each enum value number. For example
-You cannot change `FOO_ONE = 1` to `FOO_TWO = 1`. Doing so will result in potential JSON
+You cannot change `FOO_ONE = 1` to `FOO_TWO = 1`. Doing so results in potential JSON
 incompatibilities and broken source code.
 
 Note that for enums with `allow_alias` set, this verifies that the set of names in the
@@ -342,7 +342,7 @@ when changing a field to/from a map and some other type, denoting that the type 
 field changed from "FieldNameEntry" to something else. This is due to how maps are implemented
 in Protobuf, where every map is actually just a repeated field of an implicit message of name
 "FieldNameEntry". Correcting these error messages isn't impossible, and it's on our roadmap,
-but it just hasn't been high priority - Buf will still properly detect this change and output
+but it just hasn't been high priority - Buf still properly detects this change and outputs
 an error, so the pass/fail decision remains the same.
 
 ### `FIELD_WIRE_COMPATIBLE_TYPE`

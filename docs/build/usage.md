@@ -169,7 +169,7 @@ we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
 have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google)
-has it's own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
+has its own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
 While these are usually in sync, the `google.api` schema can change. If we allowed the following:
 
 ```yaml

@@ -27,7 +27,7 @@ Once you've made your edits, you can manually verify your changes with the `buf`
 or by [configuring your editor](../editor-integration.mdx) to automatically
 report errors on save.
 
-On the command line, this will look something along the lines of the following:
+On the command line, that should look like this:
 
 ```sh
 $ buf lint
@@ -52,8 +52,8 @@ version control references as a way to track corresponding revisions.
 ## Update dependencies
 
 If your module has any dependencies, you can update your dependencies to their latest versions
-with the `buf mod update` command. This command will resolve the latest commit on the repository
-, and update the contents of your module's [`buf.lock`](../configuration/v1/buf-lock.md).
+with the `buf mod update` command. This command resolves the latest commit on the repository
+and updates the contents of your module's [`buf.lock`](../configuration/v1/buf-lock.md).
 
 For example, if a [`buf.yaml`](../configuration/v1/buf-yaml.md) is in the current directory,
 updating your dependencies to their latest version is as simple as:
@@ -144,7 +144,7 @@ directories:
   - petapis
 ```
 
-Now when running `buf build petapis` the existence of the `buf.work.yaml` file will cause `buf`
+Now when running `buf build petapis` the existence of the `buf.work.yaml` file causes `buf`
 to resolve the imports of `buf.build/acme/paymentapis` with the module defined in the `paymentapis`
 directory, rather than by using the version fetched from the BSR according to the `buf.lock` specified
 in the `petapis` directory.
