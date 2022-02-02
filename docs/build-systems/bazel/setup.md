@@ -5,10 +5,10 @@ title: Overview
 
 Bazel rules for `buf` are available at the [rules_buf](https://github.com/bufbuild/rules_buf) repo. 
 It currently supports:
-* [Lint](lint/overview) and [Breaking Change Detection](breaking/overview) 
+* [Lint](/lint/overview) and [Breaking Change Detection](/breaking/overview) 
 as [bazel test rules](https://docs.bazel.build/versions/main/skylark/rules.html#executable-rules-and-test-rules).
 * `buf` as a [bazel toolchain](https://docs.bazel.build/versions/main/toolchains.html).
-* [Gazelle](https://github.com/bazelbuild/bazel-gazelle) extension to generate [Lint](lint/overview) and [Breaking Change Detection](breaking/overview) rules.
+* [Gazelle](https://github.com/bazelbuild/bazel-gazelle) extension to generate the rules.
 
 ## Setup
 
@@ -46,7 +46,7 @@ The rules work alongside `proto_library` rules. All the rules are configured usi
 
 Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For workspaces this has to be done for each `buf.yaml` file.
 
-> We highly recommend using the [gazelle extension](/build-systems/bazel/gazelle) to generate these rules.
+> We highly recommend using the [gazelle extension](gazelle) to generate these rules.
 
 ### `buf_lint_test`
 
