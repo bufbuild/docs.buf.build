@@ -3,53 +3,57 @@ id: push-workspace-modules
 title: 14 Push Workspace Modules
 ---
 
-[Workspaces](../reference/workspaces.md) make it easy to work with and modify multiple local [modules](../bsr/overview.md#module)
-at the same time. Once you're satisfied with your changes and are ready to push them to
-the [BSR](../bsr/overview.md), there's a couple extra things you'll need to keep in mind to make sure
-everything works as you expect.
+[Workspaces](../reference/workspaces.md) make it easy to work with and modify multiple local
+[modules](../bsr/overview.md#module) at the same time. Once you're satisfied with your changes and
+are ready to push them to the [BSR](../bsr/overview.md), there are a few things you should
+keep in mind to make sure everything works as you expect.
 
 ## 14.1 Try to Push {#try-to-push}
 
-The Go/gRPC client and server stubs were successfully generated, but if you try to push
-the `petapis` module to the BSR, you'll notice the following:
+You successfully generated Go/gRPC client and server stubs in a [previous
+step](/tour/generate-go-code.md), but if you try to push your `petapis` Protobuf module to the BSR
+you'll get this error:
 
 ```terminal
 $ cd petapis
 $ buf push
+---
 Failure: pet/v1/pet.proto:5:8:payment/v1alpha1/payment.proto: does not exist.
 ```
 
-However, we can successfully build the module locally:
+This is a bit puzzling because you can successfully build the module locally:
 
 ```
 $ buf build
 ```
 
-Recall that we can only build the module because of the [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md)
-located in the `start` directory. Without the `buf.work.yaml` file, the `petapis` module doesn't have access to the files
-provided by the `paymentapis` module.
+Recall that you can only build the module because of the
+[`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file in the `start` directory. Without
+this file, the `petapis` module doesn't have access to the files provided by the `paymentapis`
+module.
 
-This is because **workspaces only apply to local operations**. When you are ready to push any updates
-you've made in a local workspace, you'll need to push each module independently, starting with the
-upstream modules first. Once the upstream module's changes are published, you can update the downstream
-module to fetch the latest version, and continue to push each of your modules until all of your local
-changes are published to the BSR.
+That's because **workspaces only apply to local operations**. When you're ready to push any updates
+you've made in a local workspace, you need to push each module independently, starting with the
+upstream modules first. Once the upstream module's changes are published, you can update the
+downstream module to fetch the latest version, and continue to push each of your modules until all
+of your local changes are published to the BSR.
 
-For the `PetStoreService`, the order in which we need to publish updates is shown below:
+For the `PetStoreService`, here's the proper order for publishing updates:
 
-```
-googleapis -> paymentapis -> petapis
-```
+1. `googleapis`
+1. `paymentapis`
+1. `petapis`
 
 ## 14.2 Push the `paymentapis` Module {#push-the-paymentapis-module}
 
-We didn't make any changes to the `buf.build/googleapis/googleapis` module, so we don't need to push a
-new version of that module. However, we just introduced the `buf.build/$BUF_USER/paymentapis` module,
-so we first need to create the `buf.build/$BUF_USER/paymentapis` repository so that we have somewhere
-to push it:
+You haven't made any changes to the `buf.build/googleapis/googleapis` module, so you don't need to
+push a new version of that module. However, you just introduced the
+`buf.build/$BUF_USER/paymentapis` module, so you need to create the
+`buf.build/$BUF_USER/paymentapis` repository:
 
 ```terminal
 $ buf beta registry repository create buf.build/$BUF_USER/paymentapis --visibility public
+---
 Full name                        Created
 buf.build/$BUF_USER/paymentapis  ...
 ```
@@ -59,13 +63,14 @@ Now that the repository exists, change into the `paymentapis` directory and push
 ```terminal
 $ cd ../paymentapis
 $ buf push
+---
 2675d6a595ac4e0fb45cedc62edfc611
 ```
 
 ## 14.3 Push the `petapis` Module {#push-the-petapis-module}
 
-The `buf.build/$BUF_USER/paymentapis` repository now contains the same content we have locally, so we
-can add it as a dependency to the local `petapis` module:
+The `buf.build/$BUF_USER/paymentapis` repository now contains the same content you have locally, so
+you can add it as a dependency to the local `petapis` module:
 
 ```terminal
 $ cd ../petapis
@@ -84,13 +89,14 @@ $ cd ../petapis
      - FILE
 ```
 
-Update your dependencies with following:
+Update your dependencies with this command:
 
 ```terminal
 $ buf mod update
 ```
 
-Your [`buf.lock`](../configuration/v1/buf-lock.md) should contain a reference to both `googleapis` and `paymentapis`:
+Your [`buf.lock`](../configuration/v1/buf-lock.md) should now contain a reference to both
+`googleapis` and `paymentapis`:
 
 ```yaml title="buf.lock"
 # Generated by buf. DO NOT EDIT.
@@ -112,9 +118,10 @@ deps:
     create_time: ...
 ```
 
-With this, we can successfully push the `petapis` module:
+You can now push the `petapis` module:
 
 ```terminal
 $ buf push
+---
 dda6041ec265455d813f037c36c30349
 ```
