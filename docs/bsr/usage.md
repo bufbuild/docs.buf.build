@@ -11,7 +11,7 @@ To execute `buf` commands below make sure you are [authenticated](../bsr/authent
 $ buf registry login
 ```
 
-Follow the prompts to enter your username and password (API Token). This will add an entry into your `$HOME/.netrc` (Linux or macOS) or `%HOME%/_netrc` (Windows).
+Follow the prompts to enter your username and password (API Token). This adds an entry into your `$HOME/.netrc` (Linux or macOS) or `%HOME%/_netrc` (Windows).
 
 ## Push a Module
 
@@ -52,9 +52,11 @@ Push your module to the BSR by running the following command:
 $ buf push
 ```
 
-This command will return the commit reference.
+This command returns the commit reference.
 
-One of the main benefits of a centralized, Protobuf-aware, registry is the guarantees afforded from pushing broken modules. This means consumers have confidence modules hosted on the BSR will correctly compile.
+One of the main benefits of a centralized, Protobuf-aware registry is you're guaranteed not to push
+broken modules. This means that consumers can have confidence that modules hosted on the BSR
+always compile.
 
 Suppose we mistyped an identifier:
 
@@ -117,7 +119,7 @@ deps:
     create_time: ...
 ```
 
-Once your dependencies are updated, you can run `buf build` and the `buf` CLI will resolve hosted module dependencies by leveraging the BSR.
+Once your dependencies are updated, you can run `buf build` and the `buf` CLI resolves hosted module dependencies by leveraging the BSR.
 
 > For a more in-depth example see the [Tour - Add a Dependency](../tour/add-a-dependency.md)
 
@@ -129,7 +131,7 @@ The BSR facilitates both local and remote code generation, simplifying how modul
 
 The `buf generate` command allows you to run local plugins to generate code from remote modules hosted on the BSR. If you already have a workflow that invokes plugins with `protoc` then adopting `buf generate` should be straightforward.
 
-Add a `buf.gen.yaml` file and list all the plugins as well as their options. Here is a quick example that will generate C++ and Java code.
+Add a `buf.gen.yaml` file and list all the plugins as well as their options. Here is a quick example that generates C++ and Java code.
 
 ```yaml title=buf.gen.yaml
 version: v1
@@ -148,7 +150,7 @@ Once you set up a `buf.gen.yaml` file, run the following command and specify a m
 $ buf generate <MODULE_NAME>
 ```
 
-This will generate C++ and Java code in the local `/gen/proto/{cpp,java}` directories
+This generates C++ and Java code in the local `/gen/proto/{cpp,java}` directories.
 
 > For a more advanced example, check out the [Tour - Generate Go Code](../tour/generate-go-code.md)
 
@@ -158,7 +160,7 @@ If you don't want to manage plugins and generate code manually, and instead woul
 
 ### Deprecate or Undeprecate a Repository
 
-BSR repositories can be deprecated. `buf` will warn you when you run `buf mod update` on a module that depends on a 
+BSR repositories can be deprecated. `buf` warns you when you run `buf mod update` on a module that depends on a 
 deprecated repository.
 
 You can deprecate a repository with

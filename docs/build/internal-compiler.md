@@ -46,7 +46,7 @@ are tested for equivalence to `protoc`, including both `proto2` and `proto3` def
 
 The result FileDescriptorSets are almost byte-equivalent to `protoc`, in fact - under most scenarios without
 SourceCodeInfo, you can actually compare the byte representation of a serialized FileDescriptorSet
-produced by `buf` and by `protoc`, and they will be equal. There are two known exceptions that make this not always
+produced by `buf` and by `protoc`, and they are equal. There are two known exceptions that make this not always
 the case:
 
   1. `buf` produces additional intermediate SourceCodeInfo, and retains more

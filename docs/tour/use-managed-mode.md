@@ -182,7 +182,7 @@ We can fix these errors by _excluding_ the `buf.build/googleapis/googleapis` mod
 ```
 
 With this, the `go_package` option in all of the files provided by the `buf.build/googleapis/googleapis` module
-will **not** be managed by `buf`. In other words, the `go_package` option will remain untouched for these files.
+is **not** managed by `buf`. In other words, the `go_package` option remains untouched for these files.
 
 If we try to regenerate the stubs again, you'll notice that it's successful:
 

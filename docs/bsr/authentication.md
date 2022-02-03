@@ -21,14 +21,14 @@ Click `Create` and copy the token to your clipboard.
 ### Revoking an API token
 
 An API token can be revoked from the same user settings page. Simply find the name
-of the token in the list and delete it. It will immediately cease to be a valid
+of the token in the list and delete it. It immediately ceases to be a valid
 authentication method.
 
 ## Authenticating the CLI
 
 The order of precedence for CLI authentication is:
 
-1. The `BUF_TOKEN` environment variable, if set, will be used.
+1. The `BUF_TOKEN` environment variable is used if it's set.
 2. The `.netrc` file.
 
 ### BUF_TOKEN

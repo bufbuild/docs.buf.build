@@ -78,7 +78,7 @@ Here are a few ways to get moving:
     Learn how to run `buf` commands that use the BSR.
 
   - **[The Tour](../tour/introduction.md)** <br/>
-    The tour will give you an overview of the BSR, and takes approximately 20 minutes to complete.
+    The tour provides an overview of the BSR and takes approximately 20 minutes to complete.
 
 ## Experimental Features
 

@@ -7,7 +7,7 @@ title: User Management
 
 ## Organization Roles
 
-Every user that is part of an organization will have an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
+Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
 	
 ### Owner
 
@@ -49,7 +49,7 @@ The most common use-cases are:
 - Outside collaborators. This is useful when users outside your organization require access to specific resource(s) within the organization, but you do not want them to be a member of the organization.
 - Elevated permissions for organization members. This is useful when the organization base resource roles are set to **Read** and specific user(s) require the **Write** or **Admin** role for specific resource(s). 
 
-When computing the role on a resource, the highest role will take precedence. For example, an organization has **Write** as the base repository role, and the user was granted the **Admin** role on a specific repository. The final computed user role on the repository will be **Admin**.
+When computing the role on a resource, the highest role takes precedence. For example, an organization has **Write** as the base repository role, and the user was granted the **Admin** role on a specific repository. The final computed user role on the repository is **Admin**.
 
 ### Owner
 

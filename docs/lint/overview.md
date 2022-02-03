@@ -25,7 +25,7 @@ Features of `buf`'s linter include:
 
 - **Editor integration**. The default error output is easily parsable by any editor, making the
   feedback loop for lint errors very short. Currently, we provide
-  [Vim and Visual Studio Code integration](../editor-integration.mdx), but will extend this in the
+  [Vim and Visual Studio Code integration](../editor-integration.mdx), but may extend this in the
   future to include other editors such as Emacs and IntelliJ IDEs.
 
 - **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all

@@ -64,7 +64,7 @@ ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 
 RUN go install github.com/twitchtv/twirp/protoc-gen-twirp@v8.1.0+incompatible
 # Note, the images must be built for amd64. If the host machine architecture is not amd64
-# you will need to cross-compile the binary and move it into /go/bin.
+# you need to cross-compile the binary and move it into /go/bin.
 RUN bash -c 'find /go/bin/${GOOS}_${GOARCH}/ -mindepth 1 -maxdepth 1 -exec mv {} /go/bin \;'
 
 FROM scratch

@@ -3,7 +3,7 @@ id: roadmap
 title: Roadmap
 ---
 
-What you see today is just the start. In fact, the real value will come as we build
+What you see today is just the start. In fact, the real value will become apparent as we build
 products that utilize the BSR as a foundation to understand and reason about API schemas,
 including in real time.
 

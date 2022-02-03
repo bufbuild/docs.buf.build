@@ -100,7 +100,7 @@ only one such directory exists. For example, consider the following `tree`:
                 └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-`protoc` doesn't enforce file structure in any way, but you will have a *very* bad time
+`protoc` doesn't enforce file structure in any way, but you're likely to have a *very* bad time
 with many Protobuf plugins across various languages if you do not do this.
 
 This structure has the effect of allowing imports to self-document their package. For example,

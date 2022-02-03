@@ -58,7 +58,7 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-By default, `buf generate` will look for a file of this shape named `buf.gen.yaml` in your current directory. This
+By default, `buf generate` looks for a file of this shape named `buf.gen.yaml` in your current directory. This
 can be thought of as a template for the set of plugins you want to invoke.
 
 Plugins are invoked in the order they are specified in the template, but each plugin has a per-directory parallel

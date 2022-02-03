@@ -45,14 +45,14 @@ that's OK! We'll cover everything you need to know here.
 ## 10.2 Install plugins {#install-plugins}
 
 We'll be using the `protoc-gen-go` and `protoc-gen-go-grpc` plugins to generate code with `buf generate`,
-so you'll need to install them:
+so you need to install them:
 
 ```terminal
 $ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
-You will also need to update your `PATH` so that `buf` can find the plugins:
+You also need to update your `PATH` so that `buf` can find the plugins:
 
 ```terminal
 $ export PATH="$PATH:$(go env GOPATH)/bin"

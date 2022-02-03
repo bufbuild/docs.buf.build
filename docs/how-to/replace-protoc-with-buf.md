@@ -4,7 +4,7 @@ title: Replace protoc With buf
 ---
 
 The `buf` CLI acts as a build system for all your `.proto` compilation and
-code generation needs. This guide will describe how to migrate your existing
+code generation needs. This guide describes how to migrate your existing
 `protoc` setup and migrate to using `buf`.
 
 This guide assumes that you've [installed `buf`](../installation.mdx) and generate

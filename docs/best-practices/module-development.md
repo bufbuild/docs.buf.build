@@ -63,7 +63,7 @@ There are clearly exceptions to this rule for packages in-development (such as `
 but module authors should do everything they can to maintain compatibility in their module.
 
 If, for example, the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell)
-manifests itself, then some users will be unable to compile their module.
+manifests itself, then some users may be unable to compile their module.
 
 > In the future, we plan to enable a configurable (opt-in), module compatibility
 > guarantee so that it's *impossible* to push backwards-incompatible changes to your

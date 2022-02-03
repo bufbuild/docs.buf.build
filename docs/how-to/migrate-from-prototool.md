@@ -13,7 +13,7 @@ and migration.
 ## Prototool Pros
 
 - Prototool has a formatter via `prototool format`. `buf` does not have a formatter as of
-  now, but one will exist in the near future. The short is that Protobuf linters that exist
+  now, but one may exist in the near future. The short is that Protobuf linters that exist
   today either rely on third-party Protobuf parsers (as Prototool does), which can result in
   corrupt files, or on FileDescriptorSets, which are lossy. However, if you're willing to assume
   the risks, this is functionality that Prototool has that `buf` does not.

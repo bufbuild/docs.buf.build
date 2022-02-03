@@ -3,7 +3,7 @@ id: buf-lock
 title: buf.lock
 ---
 
-If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it will be accompanied by a `buf.lock` file that contains your
+If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it's be accompanied by a `buf.lock` file that contains your
 [module](../../bsr/overview.md#module)'s dependency manifest. This manifest represents a single, reproducible build of your module.
 
 You can create or update a `buf.lock` file for your module by running the `buf mod update` command. For
@@ -49,7 +49,7 @@ pushing it to the [BSR](../../bsr/overview.md) with the following command:
 $ buf push
 ```
 
-With this, modules that depend on `buf.build/acme/petapis` will be able to run `buf mod update` and notice
+With this, modules that depend on `buf.build/acme/petapis` can run `buf mod update` and notice
 a new module pin in their `buf.lock`! For example, we can update the content found in this module's
 `buf.lock` by running the following:
 

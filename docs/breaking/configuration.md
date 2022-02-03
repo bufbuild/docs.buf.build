@@ -130,7 +130,7 @@ the unstable forms recognized by [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#pac
   - `v\d+p\d+(alpha|beta)\d*`
   - `v\d+test.*`
 
-For example, if this option is set, the following packages will be ignored:
+For example, if this option is set, the following packages are ignored:
 
   - `foo.bar.v1alpha`
   - `foo.bar.v1alpha1`

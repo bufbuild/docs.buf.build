@@ -61,7 +61,7 @@ deps:
 ```
 
 > Depending on specific references is an advanced feature; you should depend on the latest commit whenever
-> possible. In other words, your `deps` will not need to include the `:<reference>` suffix in most cases.
+> possible. In other words, your `deps` don't need to include the `:<reference>` suffix in most cases.
 > Please refer to `buf`'s [best practices](../../best-practices/module-development.md) to learn more!
 
 ### `build`
@@ -72,7 +72,7 @@ has one option:
 #### `excludes`
 
 The `excludes` key is **optional**, and lists directories to ignore from `.proto` file discovery. Any directories
-added to this list will be completely skipped and excluded in the module. **We do not recommend using this
+added to this list are completely skipped and excluded in the module. **We do not recommend using this
 option in general**, however in some situations it is unavoidable.
 
 ### `lint`
@@ -98,7 +98,7 @@ The default `use` value is the single item, `DEFAULT`.
 #### `except`
 
 The `except` key is **optional**, and removes IDs or categories from the `use` list. For example,
-the following will result in all lint rules in the `DEFAULT` lint category being used except for
+the following results in all lint rules in the `DEFAULT` lint category being used except for
 `ENUM_NO_ALLOW_ALIAS` and all lint rules in the `BASIC` category:
 
 ```yaml title="buf.yaml"
@@ -125,7 +125,7 @@ lint:
 
 The `ignore` key is **optional**, and allows directories or files to be excluded from all lint
 rules when running `buf lint`. The specified directory or file paths **must** be relative to the
-`buf.yaml`. For example, the lint result in `foo/bar.proto` will be ignored with the following:
+`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the following:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -167,7 +167,7 @@ lint:
 
 If this option is set, leading comments can be added within Protobuf files to ignore lint errors
 for certain components. If any line in a leading comment starts with `buf:lint:ignore ID`, then `buf`
-will ignore lint errors for this ID. For example:
+ignores lint errors for this ID. For example:
 
 ```proto
 syntax = "proto3";
@@ -191,7 +191,7 @@ lint:
   enum_zero_value_suffix: _NONE
 ```
 
-This will allow the following:
+This allows the following:
 
 ```protobuf
 enum Foo {

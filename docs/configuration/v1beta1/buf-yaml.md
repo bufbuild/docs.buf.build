@@ -66,7 +66,7 @@ deps:
 ```
 
 > Depending on specific references is an advanced feature; you should depend on the latest commit whenever
-> possible. In other words, your `deps` will not need to include the `:<reference>` suffix in most cases.
+> possible. In other words, your `deps` don't need to include the `:<reference>` suffix in most cases.
 > Please refer to `buf`'s [best practices](../../best-practices/module-development.md) to learn more!
 
 ### `build`

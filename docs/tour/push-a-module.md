@@ -82,4 +82,4 @@ $ buf push
 Behind the scenes, `buf` recognizes the `name` in your `buf.yaml` and pushes the module to the `buf.build/$BUF_USER/petapis`
 repository. If successful, the generated commit identifies this current version of your module.
 
-> The commit you see will differ from the one shown here.
+> The commit you see differs from the one shown here.

@@ -135,7 +135,7 @@ message PurchasePetRequest {
 ```
 
 Also note that you do **not** need to add the `buf.build/acme/paymentapis` module to your `deps` to use it within a workspace;
-the `buf.work.yaml` will suffice. Adding the module to your `deps` is only relevant when you're ready to push your modules to
+the `buf.work.yaml` should suffice. Adding the module to your `deps` is only relevant when you're ready to push your modules to
 the BSR, which is described [here](#pushing-modules).
 
 ## Workspace requirements
@@ -213,7 +213,7 @@ Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is n
 
 ## Multiple module operations
 
-If the input for the command is a directory containing a `buf.work.yaml` file, the command will act upon all
+If the input for the command is a directory containing a `buf.work.yaml` file, the command acts upon all
 of the modules defined in the `buf.work.yaml`.
 
 For example, suppose that we update both the `paymentapis` and `petapis` directories with some `lint` failures,
