@@ -62,8 +62,8 @@ introduced with your `buf.md` documentation.
 ## 8.2 Package Documentation {#package-documentation}
 
 As you can see from the module documentation page, both the `pet.v1` and `google.type`
-packages are available as links. Click on the `pet.v1` link to navigate to its package
-documentation at [https://buf.build/acme/petapis/docs/main/pet.v1](https://buf.build/acme/petapis/docs/main/pet.v1).
+packages are available as links. Click on the `pet.v1` link to navigate to its
+package documentation at [https://buf.build/acme/petapis/docs/4514ddced0584e73a100e82096c7958c/pet.v1](https://buf.build/acme/petapis/docs/4514ddced0584e73a100e82096c7958c/pet.v1).
 
 From here, you can click through each of the Protobuf type definitions and see all of
 the comments associated with each type. In fact, if you click on the `google.type.DateTime`

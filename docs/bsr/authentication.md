@@ -10,7 +10,7 @@ that interact with the BSR.
 
 Sign up or log in at [https://buf.build/login](https://buf.build/login) and navigate to your
 account settings at [https://buf.build/settings](https://buf.build/settings/user) or by selecting
-Settings from the avatar dropdown at the top-right corner of the page.
+"Settings" from the avatar dropdown at the top-right corner of the page.
 
 On the settings page, click the `Create New Token` button, select an
 expiration time, and add a note for yourself to distinguish this token from others.

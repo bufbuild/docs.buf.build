@@ -431,7 +431,7 @@ service FooService {
 }
 ```
 
-There are [configuration options](configuration.md#default-values) associated with these three rules.
+There are [configuration options](configuration.md#rpc_allow_) associated with these three rules.
 
 #### `PACKAGE_VERSION_SUFFIX`
 

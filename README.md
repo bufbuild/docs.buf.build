@@ -161,7 +161,7 @@ No really, we mean it
 ## Linting the documentation
 
 The Buf documentation uses the [Vale] linter for its prose sources. The current Vale config is in
-[`.vale.ini`][./.vale.ini] and Vale-related assets are in the [`vale`][./vale] directory.
+[`.vale.ini`](./.vale.ini) and Vale-related assets are in the [`vale`](./vale) directory.
 
 To lint the docs, install Vale and run:
 

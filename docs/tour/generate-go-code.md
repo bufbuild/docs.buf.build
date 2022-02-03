@@ -39,7 +39,7 @@ start/
 
 ## 10.1 Setup Go {#setup-go}
 
-Install `go` by visiting [this link](https://golang.org/doc/install). If you don't have any experience with Go,
+Install `go` from [https://golang.org/doc/install](https://golang.org/doc/install). If you don't have any experience with Go,
 that's OK! We'll cover everything you need to know here.
 
 ## 10.2 Install plugins {#install-plugins}

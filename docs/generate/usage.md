@@ -67,12 +67,18 @@ invocation, with results from each invocation combined before writing the result
 
 ## Run generate
 
-You can run `buf generate` on your module by specifying the filepath to
-the directory containing the `buf.yaml`. In the above example, you can target
-the `buf.build/acme/petapis` input defined in the current directory like so:
+To generate for the input in your current directory, simply run:
 
 ```sh
 $ buf generate
+```
+
+You can also run `buf generate` on an input by specifying the filepath to the
+directory containing the root of your `.proto` definitions. For example if all of
+your `.proto` files are in directory `foo`:
+
+```sh
+$ buf generate foo
 ```
 
 The `buf generate` command will:
@@ -104,6 +110,9 @@ The following section describes several common cases for `buf generate`:
 ```sh
 # Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.
 $ buf generate
+
+# Uses the buf.build/acme/petapis module as input, using a `buf.gen.yaml` in the current directory.
+$ buf generate buf.build/acme/petapis
 
 # Uses the current directory as input, and explicitly specifies a custom template in another directory.
 $ buf generate --template data/generate.yaml
