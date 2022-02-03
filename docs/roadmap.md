@@ -11,11 +11,11 @@ Here, we outline some (but not all!) of the products on our roadmap. We'd love y
 and feedback, please [contact us](contact.md) to discuss any of the below, or any other products
 you'd like to see.
 
-## BSR
+## The Buf Schema Registry (BSR) {#bsr}
 
 ### Remote client and server library generation
 
-One of the promises of BSR is to allow the generation of your APIs on demand. At a high level,
+One of the promises of the BSR is to allow the generation of your APIs on demand. At a high level,
 we want to enable modules to have stubs generated on-demand, for every version, for every possible
 Protobuf plugin, with consumption via language-native mechanisms.
 

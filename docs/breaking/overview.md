@@ -15,7 +15,7 @@ categories depending on the nature of breaking changes you care about:
   - `FILE`: Generated source code breaking changes on a per-file basis, that is changes that
     would break the generated stubs where definitions cannot be moved across files. This makes
     sure that for languages such as C++ and Python where header files are included, your source
-    code nevers break for a given Protobuf change. This category also verifies wire and JSON
+    code never breaks for a given Protobuf change. This category also verifies wire and JSON
     compatibility.
   - `PACKAGE`: Generated source code breaking changes on a per-package basis, that is changes that
     would break the generated stubs, but only accounting for package-level changes. This is useful

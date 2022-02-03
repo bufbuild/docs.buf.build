@@ -64,7 +64,7 @@ $ buf mod update
 
 When your dependencies conform to `buf`'s default [lint](../lint/rules.md) and [breaking](../breaking/rules.md) rules,
 updating is straightforward. However, despite `buf`'s best effort, dependencies might make changes that can break
-compatibility, so you might encounter errors when you try to `buf push` a new version of your module to BSR.
+compatibility, so you might encounter errors when you try to `buf push` a new version of your module to the BSR.
 
 With that said, we encourage you to validate compatibility with `buf build` after any call to `buf mod update`
 like so:

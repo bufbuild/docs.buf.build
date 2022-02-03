@@ -179,13 +179,13 @@ To ensure that the BSR can create consistent, lossless synthetic versions, Buf s
 versioning schemes of both inputs. Both the Protobuf module version and the template version are
 represented as **monotonically increasing integers**.
 
-  - For hosted templates, BSR enforces a version of the form `v1`, `v2`, `vN...`.
+  - For hosted templates, the BSR enforces a version of the form `v1`, `v2`, `vN...`.
   - For Protobuf modules, BSR uses the **commit sequence ID**, an integer that uniquely identifies a
     commit. It's calculated by counting the number of commits since the first commit of a module
     (the first commit has a sequence ID of `1`, the second commit has a sequence ID of `2`, and so
     on).
 
-With these simplified versioning schemes, BSR creates a synthetic version that takes this form:
+With these simplified versioning schemes, the BSR creates a synthetic version that takes this form:
 
 ```
 [v1].[template_version].[commit_sequence_id]

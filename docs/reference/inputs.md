@@ -30,7 +30,7 @@ Generally, your only goal is to work with `.proto` files on disk. This is how `b
 However, there are cases where one wants to work with more than just local files, which are described
 below.
 
-### Buf Schema Registry (BSR)
+### The Buf Schema Registry (BSR)
 
 The core primitive for Buf is the module, which is emphasized by the Buf Schema Registry ([BSR](../bsr/overview.md)).
 With the BSR, it's easy to refer to any version of your module and use it as an input for each

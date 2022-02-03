@@ -71,7 +71,7 @@
     },
     {
       "type": "category",
-      "label": "Buf Schema Registry (BSR)",
+      "label": "The Buf Schema Registry (BSR)",
       "items": [
         "bsr/introduction",
         "bsr/overview",
