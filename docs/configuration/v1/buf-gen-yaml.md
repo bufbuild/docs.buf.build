@@ -172,6 +172,9 @@ managed:
       - buf.build/googleapis/googleapis
     override:
       buf.build/acme/weather: github.com/acme/weather/gen/proto/go
+  override:
+    JAVA_PACKAGE:
+      acme/weather/v1/weather.proto: "org"
 plugins:
   - name: go
     out: gen/proto/go

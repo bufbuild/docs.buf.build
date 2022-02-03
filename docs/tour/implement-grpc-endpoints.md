@@ -3,27 +3,30 @@ id: implement-grpc-endpoints
 title: 11 Implement gRPC Endpoints
 ---
 
-In this section, we'll implement a `PetStoreService` client and server, which can be
-run on the command line.
+In this section, you'll implement a `PetStoreService` client and server, both of which you can run
+on the command line.
 
 ## 11.1 Initialize a `go.mod` {#initialize-a-gomod}
 
-Before we write any Go code, we'll initialize a `go.mod` with the `go mod init` command:
+Before you write Go code, initialize a `go.mod` file with the `go mod init` command:
 
 ```terminal
 $ go mod init github.com/bufbuild/buf-tour/petstore
 ```
 
-Similar to the `buf.yaml`, the `go.mod` file tracks our code's Go dependencies.
+Similar to the [`buf.yaml`](/configuration/v1/buf-yaml) config file, the `go.mod` file tracks your
+code's Go dependencies.
 
 ## 11.2 Implement the Server {#implement-the-server}
 
-We can implement a simple server in `server/main.go` with the following:
+You can start implementing a server by creating a `server/main.go` file:
 
 ```terminal
 $ mkdir server
 $ touch server/main.go
 ```
+
+Copy and paste this content into that file:
 
 ```go title="server/main.go"
 package main
@@ -80,12 +83,14 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 
 ## 11.3 Implement the Client {#implement-the-client}
 
-We can also implement a simple client in `client/main.go` with the following:
+You can start implementing a client by creating a `client/main.go` file:
 
 ```terminal
 $ mkdir client
 $ touch client/main.go
 ```
+
+Copy and paste this content into that file:
 
 ```go title="client/main.go"
 package main
@@ -129,8 +134,8 @@ func run() error {
 
 ## 11.4 Resolve Go Dependencies {#resolve-go-dependencies}
 
-Now that both the `client` and `server` code exists, we'll need to run the following command to resolve
-some of the dependencies we need for the generated code:
+Now that you have code for both a client and a server, run this command to resolve
+some of the dependencies you need for the generated code:
 
 ```terminal
 $ go mod tidy
@@ -152,25 +157,27 @@ You should notice the following changes (the version pins may differ):
 
 ## 11.5 Call `PutPet` {#call-putpet}
 
-With the `server/main.go` and `client/main.go` implementations shown above, we can run the server and
+With the `server/main.go` and `client/main.go` implementations shown above, run the server and
 call the `PutPet` endpoint from the client.
 
-First, run the server with the following:
+First, run the server:
 
 ```terminal
 $ go run server/main.go
+---
 ... Listening on 127.0.0.1:8080
 ```
 
-In a separate terminal, run the client and you'll notice the following:
+In a separate terminal, run the client and you should see a success message:
 
 ```terminal
 $ go run client/main.go
+---
 ... Connected to 127.0.0.1:8080
 ... Successfully PutPet
 ```
 
-You'll also notice the following in the server logs (in the other terminal running the server):
+You'll also notice this in the server logs (in the other terminal running the server):
 
 ```terminal
 $ go run server/main.go

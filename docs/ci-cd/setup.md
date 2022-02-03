@@ -47,13 +47,13 @@ import TabItem from '@theme/TabItem';
 PROJECT=<your-project-name>
 # Use your desired buf version
 BUF_VERSION=1.0.0-rc12
-# buf is cached to ~/.cache/your-project-name.
-CACHE_BIN=$HOME/.cache/$(PROJECT)
+# buf is installed to ~/bin/your-project-name.
+BIN_DIR=$HOME/bin/$(PROJECT)
 
 curl -sSL \
 	"https://github.com/bufbuild/buf/releases/download/v$BUF_VERSION/buf-$(shell uname -s)-$(shell uname -m)" \
-	-o "$CACHE_BIN/buf"
-chmod +x "$CACHE_BIN/buf"
+	-o "$BIN_DIR/buf"
+chmod +x "$BIN_DIR/buf"
 ```
 
 This script sends a request to the `buf` GitHub Releases using [`curl`](https://curl.se/docs)
