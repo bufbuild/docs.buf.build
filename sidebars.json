@@ -181,7 +181,7 @@
           "type": "category",
           "label": "Bazel",
           "items": [
-            "build-systems/bazel/setup",
+            "build-systems/bazel/overview",
             "build-systems/bazel/gazelle"
           ],
           "collapsed": false

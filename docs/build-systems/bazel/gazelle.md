@@ -7,7 +7,7 @@ title: Gazelle
 
 ## Setup
 
-Start by [setting up](/build-systems/bazel/setup) `rules_buf`, then setup Gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
+Start by [setting up](overview) `rules_buf`, then setup Gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
 
 Modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
 ```starlark title="BUIlD" {1-2,4-14,18}
@@ -55,6 +55,8 @@ $ bazel query 'kind(buf_lint_test, //...)'
 ## Breaking change detection
 
 We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to an [image](/reference/images) target to generate breaking change detection rules. Gazelle directives are top-level comments in build files that are used to configure Gazelle.
+
+> Refer to this [section](overview#against-image) for a overview how the image file itself can be maintained.
 
 Add the following Gazelle directive:
 ```starlark
