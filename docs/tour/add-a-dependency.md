@@ -27,7 +27,7 @@ dependencies:
 $ rm -rf google
 ```
 
-Now remove the `google/type/datetime.proto` reference from your[`buf.yaml`](../configuration/v1/buf-yaml.md):
+Now remove the `google/type/datetime.proto` reference from your [`buf.yaml`](../configuration/v1/buf-yaml.md):
 
 ```yaml title="buf.yaml" {5-6}
  version: v1
