@@ -41,7 +41,6 @@
       "items": [
         "generate/usage",
         "generate/managed-mode",
-        "generate/high-performance-protoc-replacement"
       ],
       "collapsed": false
     },
