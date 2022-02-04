@@ -10,7 +10,8 @@ title: Gazelle
 Start by [setting up](overview) `rules_buf`, then setup Gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
 
 Modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
-```starlark title="BUIlD" {1-2,4-14,18}
+
+```python title="BUIlD" {1-2,4-14,18}
 -load("@bazel_gazelle//:def.bzl", "gazelle")
 +load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
@@ -59,9 +60,11 @@ We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle
 > Refer to this [section](overview#against-image) for a overview how the image file itself can be maintained.
 
 Add the following Gazelle directive:
-```starlark
+
+```python
 # gazelle:buf_breaking_against //:against_image_file
 ```
+
 > The directive should be in the `BUILD` file at the root of the buf [module](/bsr/overview#module). In other words, in the directory containing a `buf.yaml`.
 
 `buf_breaking_test` rules can be generated in two different modes.
@@ -87,7 +90,8 @@ This mimics running `buf breaking` on a module. This is the most accurate way to
 Package mode generates a `buf_breaking_test` rule for each of the `proto_library` rule, which lets you test only the `proto_library` that has changed.
 
 To switch to package mode add the following Gazelle directive:
-```starlark
+
+```python
 # gazelle:buf_breaking_mode package
 ```
 

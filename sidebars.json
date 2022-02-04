@@ -172,6 +172,14 @@
       ],
       "collapsed": false
     },
+    {
+      "type": "category",
+      "label": "Build systems",
+      "items": [
+        "build-systems/bazel"
+      ],
+      "collapsed": true
+    },
     "editor-integration",
     "roadmap",
     "faq",
