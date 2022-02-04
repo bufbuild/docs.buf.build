@@ -62,8 +62,8 @@ By default, `buf generate` looks for a file of this shape named `buf.gen.yaml` i
 can be thought of as a template for the set of plugins you want to invoke.
 
 Plugins are invoked in the order they are specified in the template, but each plugin has a per-directory parallel
-invocation, with results from each invocation combined before writing the result. This is equivalent behavior to
-`buf protoc --by_dir`. For more information, see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
+invocation, with results from each invocation combined before writing the result. For more information,
+see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 

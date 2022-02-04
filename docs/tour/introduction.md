@@ -19,7 +19,6 @@ $ buf lint --help
 $ buf config ls-breaking-rules --help
 $ buf config ls-lint-rules --help
 $ buf ls-files --help
-$ buf protoc --help
 ```
 
 ## Prerequisites {#prerequisites}
