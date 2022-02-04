@@ -40,7 +40,7 @@
       "label": "Generate",
       "items": [
         "generate/usage",
-        "generate/managed-mode",
+        "generate/managed-mode"
       ],
       "collapsed": false
     },
