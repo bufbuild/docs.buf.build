@@ -71,7 +71,7 @@
     },
     {
       "type": "category",
-      "label": "Buf Schema Registry (BSR)",
+      "label": "The Buf Schema Registry (BSR)",
       "items": [
         "bsr/introduction",
         "bsr/overview",
@@ -173,22 +173,6 @@
       "collapsed": false
     },
     "editor-integration",
-    {
-      "type": "category",
-      "label": "Build Systems",
-      "items": [
-        {
-          "type": "category",
-          "label": "Bazel",
-          "items": [
-            "build-systems/bazel/overview",
-            "build-systems/bazel/gazelle"
-          ],
-          "collapsed": false
-        }
-      ],
-      "collapsed": false
-    },
     "roadmap",
     "faq",
     "contact"
