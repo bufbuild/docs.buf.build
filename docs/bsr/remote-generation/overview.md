@@ -87,12 +87,13 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   example="v1.3.5"
   segments={[
-  {label: "v1", kind: "static"},
-  {separator: "."},
-  {label: "template version", kind: "variable"},
-  {separator: "."},
-  {label: "commit sequence ID", kind: "variable"},
-]} />
+    {label: "v1", kind: "static"},
+    {separator: "."},
+    {label: "template version", kind: "variable"},
+    {separator: "."},
+    {label: "commit sequence ID", kind: "variable"},
+  ]
+} />
 
 In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the **5**th commit
 of a Protobuf module.

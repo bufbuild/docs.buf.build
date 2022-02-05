@@ -51,16 +51,17 @@ to generate *with*:
 	title="Generated Go module path syntax"
 	example="go.buf.build/grpc/go/googleapis/googleapis"
 	segments={[
-	{"label": "go.buf.build", "kind": "static"},
-	{"separator": "/"},
-	{"label": "template owner", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "template name", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "module owner", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "module name", "kind": "variable"},
-]} />
+    {"label": "go.buf.build", "kind": "static"},
+    {"separator": "/"},
+    {"label": "template owner", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "template name", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "module owner", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "module name", "kind": "variable"},
+  ]
+} />
 
 With the module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, for example, the
 import path looks like this:
@@ -204,12 +205,13 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   example="v1.3.5"
   segments={[
-  {label: "v1", kind: "static"},
-  {separator: "."},
-  {label: "template version", kind: "variable"},
-  {separator: "."},
-  {label: "commit sequence ID", kind: "variable"},
-]} />
+    {label: "v1", kind: "static"},
+    {separator: "."},
+    {label: "template version", kind: "variable"},
+    {separator: "."},
+    {label: "commit sequence ID", kind: "variable"},
+  ]
+} />
 
 In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the
 **5**th commit of a Protobuf module. In the example `go.mod` below, the `petapis` module uses
