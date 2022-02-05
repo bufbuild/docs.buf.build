@@ -15,9 +15,22 @@ The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref
 
 The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to the following format:
 
-```
-go.buf.build/TEMPLATE_OWNER/TEMPLATE_NAME/MODULE_OWNER/MODULE_NAME
-```
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+	title="Generated Go module path syntax"
+	example="go.buf.build/grpc/go/googleapis/googleapis"
+	segments={[
+	{"label": "go.buf.build", "kind": "static"},
+	{"separator": "/"},
+	{"label": "template owner", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "template name", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "module owner", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "module name", "kind": "variable"},
+]} />
 
 For example, if you wanted to generate the Protobuf module [googleapis/googleapis](https://buf.build/googleapis/googleapis) with the template [grpc/go](https://buf.build/grpc/templates/go), the Go module path would look like this:
 

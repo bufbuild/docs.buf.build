@@ -81,9 +81,18 @@ increasing integers**.
 With these simplified versioning schemes we create a synthetic version which takes the
 following form:
 
-```
-[v1].[template_version].[commit_sequence_id]
-```
+import Syntax from "@site/src/components/Syntax";
 
-As an example, the version `v1.3.5` represents the 3rd version of a hosted template and the 5th commit
+<Syntax
+  title="Synthetic version syntax"
+  example="v1.3.5"
+  segments={[
+  {label: "v1", kind: "static"},
+  {separator: "."},
+  {label: "template version", kind: "variable"},
+  {separator: "."},
+  {label: "commit sequence ID", kind: "variable"},
+]} />
+
+In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the **5**th commit
 of a Protobuf module.

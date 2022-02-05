@@ -3,7 +3,7 @@ id: introduction
 title: Introduction
 ---
 
-Buf’s long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
+Buf's long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
 are defined consistently, in a way that service owners and clients can depend on.
 
 Defining APIs using an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) provides a number of benefits over simply exposing JSON/REST

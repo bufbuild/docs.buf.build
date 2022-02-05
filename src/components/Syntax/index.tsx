@@ -12,20 +12,20 @@ type Segment = {
   label: string;
   kind?: Kind;
   separator?: string;
-  count?: number;
 }
 
 type Props = {
+  title: string;
   segments: Segment[];
   example?: string;
 }
 
 const colors = {
-  static: "#27272A",
+  static: "red",
   default: "orange",
-  optional: "red",
-  variable: "#DB2777",
-  options: "green",
+  optional: "green",
+  variable: "blue",
+  options: "violet",
 }
 
 const hasKind = (segments: Segment[], kind: Kind): boolean => {
@@ -34,43 +34,43 @@ const hasKind = (segments: Segment[], kind: Kind): boolean => {
 
 const Example = ({ example }: { example: string }) => {
   return (
-    <span className={styles.example}>
-      Example: <strong>{example}</strong>
+    <span>
+      Example: <strong className={styles.example}>{example}</strong>
     </span>
   );
 }
 
-const Seg = ({ label, kind, separator, count }: Segment) => {
+const Seg = ({ label, kind, separator }: Segment) => {
   const color = colors[kind];
 
   let item: JSX.Element;
   switch (kind) {
     case Kind.STATIC:
-      item = <span style={{ color, textDecoration: "underline" }}>{label}</span>;
+      item = <span style={{ color }}>{label}</span>;
       break;
     case Kind.DEFAULT:
-      item = <span style={{ color }}>{label}</span>;
+      item = <span style={{ color }}>{"("}{label}{")"}</span>;
       break;
     case Kind.OPTIONAL:
       item = <span style={{ color }}>{"("}{label}{")"}</span>;
       break;
     case Kind.VARIABLE:
-      item = <span style={{ color, fontWeight: 500 }}>{"["}{label}{"]"}</span>;
+      item = <span style={{ color, fontWeight: 500 }}>{"{"}{label}{"}"}</span>;
       break;
   }
   return (separator != undefined) ?
-    <span style={{ color: "#001", fontWeight: 600, margin: "0 0.1rem 0 0.1rem" }}>{separator}</span> :
+    <span style={{ color: "black", fontWeight: 500 }}>{separator}</span> :
     item
 }
 
-const Legend = ({ segments }: Props) => {
+const Legend = ({ segments }: { segments: Segment[] }) => {
   return (
     <div className={styles.legend}>
-      <span>
+      <span className={styles.legendName}>
         <span>Legend</span><span>:</span>
       </span>
       <span className={styles.legendContent}>
-        {hasKind(segments, Kind.STATIC) && <span style={{ color: colors[Kind.STATIC], textDecoration: "underline" }}>static</span>}
+        {hasKind(segments, Kind.STATIC) && <span style={{ color: colors[Kind.STATIC] }}>static</span>}
         {hasKind(segments, Kind.DEFAULT) && <span style={{ color: colors[Kind.DEFAULT] }}>default</span>}
         {hasKind(segments, Kind.OPTIONAL) && <span style={{ color: colors[Kind.OPTIONAL] }}>optional</span>}
         {hasKind(segments, Kind.VARIABLE) && <span style={{ color: colors[Kind.VARIABLE] }}>{"["}variable{"]"}</span>}
@@ -79,17 +79,20 @@ const Legend = ({ segments }: Props) => {
   );
 }
 
-const Syntax = ({ segments, example }: Props) => {
+const Syntax = ({ title, segments, example }: Props) => {
   return (
     <div className={styles.syntaxContainer}>
+      <span className={styles.title}>
+        {title}
+      </span>
+
       <div className={styles.syntax}>
         {segments.map(seg => <Seg {...seg} />)}
       </div>
 
       <div className={styles.syntaxFlex}>
-        {example && <Example example={example} />}
-
         <Legend segments={segments} />
+        {example && <Example example={example} />}
       </div>
     </div>
   );
