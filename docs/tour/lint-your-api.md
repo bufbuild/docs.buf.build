@@ -3,7 +3,7 @@ id: lint-your-api
 title: 3 Lint Your API
 ---
 
-You can run all of the configured lint rules with the following:
+You can run all of the configured lint rules by running this command:
 
 ```terminal
 $ buf lint
@@ -70,8 +70,7 @@ $ buf lint
 
 Silencing failures by eliminating lint rules using `except` is usually **not** recommended,
 although it may be unavoidable in some situations; it's almost always better to actually _fix_
-the lint failures. You can restore the `buf.yaml` to its previous state with the following
-config changes:
+the lint failures. You can restore the `buf.yaml` to its previous state with these config changes:
 
 ```yaml title="buf.yaml" {5-8}
  version: v1
@@ -91,7 +90,7 @@ config changes:
 
 Start by fixing the lint failures for the `pet/v1/pet.proto` file, which stem from the `FIELD_LOWER_SNAKE_CASE`
 and `SERVICE_SUFFIX` rules. `buf` indicates exactly what you need to change to fix the errors, so you can
-fix the failures with the following updates:
+fix the failures with these updates:
 
 ```protobuf title="pet/v1/pet.proto" {10-11,16-17}
  syntax = "proto3";

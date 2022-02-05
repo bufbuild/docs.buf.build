@@ -14,7 +14,8 @@ This file contains [lint](../../lint/rules.md) and [breaking change detection](.
 
 ## Default values
 
-The following `buf.yaml` file demonstrates all default values being explicitly set, this file is the equivalent of no options being set in your `buf.yaml` at all.
+The `buf.yaml`config file below demonstrates all default values being explicitly set, this file is
+the equivalent of no options being set in your `buf.yaml` at all.
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -72,8 +73,7 @@ deps:
 ### `build`
 
 The `build` key is **optional**, and is used to include and exclude specific Protobuf source files in the
-module defined by the `buf.yaml`. The following is an example of all configuration options for
-`build`:
+module defined by the `buf.yaml`. Here is an example of all configuration options for `build`:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -104,7 +104,8 @@ For those familiar with `protoc`, `roots` corresponds to your `--proto_paths`, a
 that is, these are the directories that the compiler uses to search for imports.
 
 As an example, suppose your module defines two files, `proto/foo/bar/bar.proto` and `proto/foo/baz/baz.proto`.
-If you want these files to refer to each other without the common `proto` root, you would configure the following.
+If you want these files to refer to each other without the common `proto` root, you would apply this
+configuration:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -134,7 +135,7 @@ of languages.
 
 **1. Roots must not overlap, that is one root can not be a sub-directory of another root.**
 
-For example, the following is not a valid configuration:
+For example, this is not a valid configuration:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -151,7 +152,7 @@ imports leads to a number of major issues across the Protobuf plugin ecosystem.
 
 **2. All `.proto` file paths must be unique relative to the roots.**
 
-For example, consider the following configuration:
+For example, consider this configuration:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -161,14 +162,14 @@ build:
     - bar
 ```
 
-*Given the above configuration, it is invalid to have the following two files:*
+*Given the above configuration, it's invalid to have these two files:*
 
 - `foo/baz/baz.proto`
 - `bar/baz/baz.proto`
 
-This results in two files having the path `baz/baz.proto`. Given the following third file `bar/baz/bat.proto`:
+This results in two files having the path `baz/baz.proto`. Now add this file to the mix:
 
-```protobuf
+```protobuf title="bar/baz/bat.proto"
 // THIS IS DEMONSTRATING SOMETHING BAD
 syntax = "proto3";
 
@@ -184,7 +185,7 @@ we have outlawed this in our own builds for a long time.
 While the above example is relatively contrived, the common error that comes up is when you have vendored `.proto` files.
 For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google) has its
 own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs. While these
-are usually in sync, the `google.api` schema can change. If we allowed the following:
+are usually in sync, the `google.api` schema can change. Imagine that we allowed this:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -196,7 +197,7 @@ build:
     - vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 ```
 
-Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is not allowed.
+Which copy of `google/api/*.proto` wins? The answer is no one wins. So Buf doesn't allow this.
 
 ### `lint`
 

@@ -92,7 +92,7 @@ and you need to make a breaking change to the `acme/pkg/v1/pkg.proto` definition
 than committing a breaking change to the same file, you can create a new file in a separately
 versioned filepath, such as `acme/pkg/v2/pkg.proto`.
 
-This looks like the following:
+What that looks like:
 
 ```
 proto/

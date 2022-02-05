@@ -26,7 +26,7 @@ If you want to collaborate with other users on a module, select an organization 
 
 Through the **UI** log in at [https://buf.build/login](https://buf.build/login) and navigate to Your repositories and click **Create Repository**. Select an owner for the repository and give it a repository name. The visibility can be either public or private.
 
-Alternatively, use the **CLI** run the following command:
+Alternatively, use the **CLI** run this command:
 
 ```terminal
 $ buf beta registry repository create <MODULE_NAME> --visibility [public,private]
@@ -46,7 +46,7 @@ name: buf.build/acme/weather
 
 **3. Push to the Repository**
 
-Push your module to the BSR by running the following command:
+Push your module to the BSR by running this command:
 
 ```terminal
 $ buf push
@@ -98,7 +98,7 @@ breaking:
     - FILE
 ```
 
-After adding dependencies in `buf.yaml` run the following command:
+After adding dependencies in `buf.yaml` run this command:
 
 ```terminal
 $ buf mod update
@@ -144,7 +144,7 @@ plugins:
 
 The `buf` CLI infers the `protoc-gen-{name}` prefix for each plugin specified by the `name` key, similar to `protoc` behaviour.
 
-Once you set up a `buf.gen.yaml` file, run the following command and specify a module hosted on the BSR. That's right, you can reference a hosted BSR module without having the Protobuf files locally!
+Once you set up a `buf.gen.yaml` file, run this command and specify a module hosted on the BSR. That's right, you can reference a hosted BSR module without having the Protobuf files locally!
 
 ```terminal
 $ buf generate <MODULE_NAME>

@@ -35,7 +35,7 @@ The Buf team has published a set of [official plugins](#official-plugins) for yo
 
 ### `protoc`-based plugins
 
-The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. The following is a list of supported `protoc`-based plugins:
+The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. Here is a list of supported `protoc`-based plugins:
 
 - https://buf.build/protocolbuffers/plugins/go
 - https://buf.build/protocolbuffers/plugins/java
@@ -52,7 +52,7 @@ This is powerful because you no longer need to have `protoc` installed, or under
 
 ### gRPC plugins
 
-In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. The following is a list of supported gRPC plugins:
+In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. Here is a list of supported gRPC plugins:
 
 - https://buf.build/grpc/plugins/go
 - https://buf.build/grpc/plugins/java
@@ -68,13 +68,13 @@ In addition to the plugins mentioned above, we're also adding support for popula
 
 ## Example
 
-The following is an example of remote plugin execution.
+This section provides an example of remote plugin execution.
 
 We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweather) module hosted on the BSR as the input source. You can also use local Protobuf files, but for this example we'll use a hosted module to illustrate remote plugin execution.
 
 A remote plugin can have a version specified, as is done below, or it can be omitted, if you want to always use the latest version of the plugin.
 
-Create a template file with the following contents: 
+Create a template file with these contents: 
 
 <Tabs
   groupId="language-selection"
@@ -179,7 +179,7 @@ It is possible to reference both local and remote plugins within a single templa
 $ buf generate buf.build/demolab/theweather
 ```
 
-What you should end up with is the following structure:
+You should end up with this structure:
 
 <Tabs
   groupId="language-selection"

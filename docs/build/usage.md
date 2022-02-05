@@ -18,7 +18,7 @@ where to search for `.proto` files, and how to handle imports. As opposed to `pr
 are manually specified on the command-line, `buf` operates by recursively discovering all `.proto` files under
 configuration and building them.
 
-The following is an example of all configuration options for `build`:
+Here is an example of all configuration options for `build`:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -46,7 +46,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 ## Define a Module
 
 To get started, create a [module](../bsr/overview.md#module) by adding a `buf.yaml` file to the root of the directory
-that contains your Protobuf definitions. You can create the default `buf.yaml` file with the following command:
+that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
 $ buf config init
@@ -81,7 +81,7 @@ $ protoc \
 ```
 
 A `buf.yaml` would be placed in the `proto` and `vendor/protoc-gen-validate` directories, and you would define
-a `buf.work.yaml` that contains the following:
+a `buf.work.yaml` that contains this:
 
 ```sh {8,11}
 .
@@ -118,7 +118,7 @@ important for successful modern Protobuf development across a number of language
 
 **1. Workspace modules must not overlap, that is one workspace module can not be a sub-directory of another workspace module.**
 
-For example, the following is not a valid configuration:
+This, for example, is not a valid configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -135,7 +135,7 @@ to a number of major issues across the Protobuf plugin ecosystem.
 
 **2. All `.proto` file paths must be unique relative to each workspace module.**
 
-For example, consider the following configuration:
+For example, consider this configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -144,15 +144,15 @@ directories:
   - bar
 ```
 
-*Given the above configuration, it is invalid to have the following two files:*
+*Given the above configuration, it's invalid to have these two files:*
 
   - `foo/baz/baz.proto`
   - `bar/baz/baz.proto`
 
-This results in two files having the path `baz/baz.proto`. Given the following third file
-`bar/baz/bat.proto`:
+This results in two files having the path `baz/baz.proto`. Imagine that a third file is thrown into
+the mix:
 
-```protobuf
+```protobuf title="bar/baz/bat.proto"
 // THIS IS DEMONSTRATING SOMETHING BAD
 syntax = "proto3";
 
@@ -161,7 +161,7 @@ package bar.baz;
 import "baz/baz.proto";
 ```
 
-Which file is being imported? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
+Which file is being imported here? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
 on the order of the `-I` flags given to `protoc`, or (if `buf` didn't error in this scenario
 pre-compilation, which `buf` does) the order of the imports given to the internal compiler. If
 the authors are being honest, we can't remember if it's the first `-I` or second `-I` that wins -
@@ -170,7 +170,7 @@ we have outlawed this in our own builds for a long time.
 While the above example is relatively contrived, the common error that comes up is when you
 have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
 has its own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
-While these are usually in sync, the `google.api` schema can change. If we allowed the following:
+While these are usually in sync, the `google.api` schema can change. Imagine that we allowed this:
 
 ```yaml
 version: v1
@@ -181,7 +181,7 @@ directories:
   - vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 ```
 
-Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is not allowed.
+Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't allow this.
 
 ## Run build
 
@@ -241,7 +241,7 @@ $ buf build -o -#format=json
 ```
 
 When combined with [jq](https://stedolan.github.io/jq), `buf build` also allows for introspection. For example,
-to see a list of all packages, you can run the following command:
+to see a list of all packages, you can run this command:
 
 ```
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head

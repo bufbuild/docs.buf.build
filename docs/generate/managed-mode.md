@@ -10,7 +10,7 @@ The file options are written *on the fly* so that they never have to be written 
 ## Background
 
 One of the largest drawbacks of Protobuf is the hardcoding of language-specific options within Protobuf definitions themselves.
-For example, consider the following `acme/weather/v1/weather.proto` file in the given file `tree`:
+For example, consider this `acme/weather/v1/weather.proto` file in the given file `tree`:
 
 ```sh
 .
@@ -135,7 +135,7 @@ from the current directory, that is they must be subdirectories relative to the 
 
 In the configuration example shown above, the `github.com/acme/weather/gen/proto/go` prefix is *joined* with the given Protobuf
 file's relative path from the module root. In the `buf.build/acme/weather` module's case, the `acme/weather/v1/weather.proto`
-file would have the following `go_package` set:
+file would have this `go_package` set:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -177,13 +177,13 @@ modifier to be `org` instead of `com`. This sets `org` as the package prefix for
 
 ## Default behavior
 
-When `managed.enabled` is set to `true`, the following file options are set *on the fly* for all of the files contained in the module:
+When `managed.enabled` is set to `true`, these file options are set *on the fly* for all of the files contained in the module:
 
 * `csharp_namespace` is set to the package name with each package sub-name capitalized.
 * `java_multiple_files` is set to `true`.
 * `java_outer_classname` is set to the `PascalCase`-equivalent of the file's name, removing the "." for the `.proto` extension.
 * `java_package` is set to the package name with `com.` prepended to it.
-* `objc_class_prefix` is set to the uppercase first letter of each package sub-name, not including the package version, with the following rules:
+* `objc_class_prefix` is set to the uppercase first letter of each package sub-name, not including the package version, with these rules:
   * If the resulting abbreviation is 2 characters, add "X".
   * If the resulting abbreviation is 1 character, add "XX".
   * If the resulting abbreviation is "GPB", change it to "GPX". "GPB" is reserved by Google for the Protocol Buffers implementation.
@@ -191,7 +191,7 @@ When `managed.enabled` is set to `true`, the following file options are set *on 
 * `php_metadata_namespace` is set to the same value as php_namespace, with `\\GPBMetadata` appended.
 * `ruby_package` is set to the package name with each package sub-name capitalized, with "::" substituted for ".".
 
-For example, enabling **Managed Mode** for the `acme/weather/v1/weather.proto` file sets its file options to the following:
+For example, enabling **Managed Mode** for the `acme/weather/v1/weather.proto` file sets its file options to this:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -211,7 +211,7 @@ option ruby_package = "Acme::Weather::V1";
 
 > Some options, such as `cc_enable_arenas` and `optimize_for`, are excluded from this list because **Managed Mode** agrees with the default
 > values specified by [google/protobuf/descriptor.go](https://github.com/protocolbuffers/protobuf/blob/b650ea44b10133008baaea7488360c5b95c93c7b/src/google/protobuf/descriptor.proto#L385).
-> If you disagree with the default values, you can override these option values, which is described in the [following section](#file-option-overrides).
+> If you disagree with the default values, you can override these option values, which is described in the [next section](#file-option-overrides).
 
 ## File option overrides
 

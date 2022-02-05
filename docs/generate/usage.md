@@ -22,7 +22,7 @@ on the `buf.gen.yaml` configuration, please refer to the [reference](../configur
 
 To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with the following command:
+file with this command:
 
 ```sh
 $ buf config init
@@ -105,7 +105,7 @@ $ buf generate --error-format=json
 
 ## Common use cases
 
-The following section describes several common cases for `buf generate`:
+These commands illustrate several common cases for `buf generate`:
 
 ```sh
 # Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.

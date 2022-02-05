@@ -28,7 +28,7 @@ brew tap bufbuild/buf
 brew install buf
 ```
 
-This installs the following:
+This installs:
 
   - The binaries `buf`, `protoc-gen-buf-breaking`, `protoc-gen-buf-lint`.
   - Bash completion for `buf`.
@@ -117,7 +117,7 @@ Releases are signed using our [minisign](https://github.com/jedisct1/minisign) p
 RWQ/i9xseZwBVE7pEniCNjlNOeeyp4BQgdZDLQcAohxEAH5Uj5DEKjv6
 ```
 
-The release assets can be verified using the following (assuming `minisign` is installed):
+The release assets can be verified using this command (assuming that `minisign` is installed):
 
 ```sh
 # Substitute VERSION for the current released version.
@@ -146,7 +146,7 @@ GO111MODULE=on GOBIN=/usr/local/bin go get \
 Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that allows
 you to use `buf` as part of your Docker workflow.
 
-For example, you can run `buf lint` with the following command:
+For example, you can run `buf lint` with this command:
 
 ```sh
 $ docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint

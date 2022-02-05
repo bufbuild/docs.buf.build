@@ -96,14 +96,14 @@ and migration.
 
 ### `google`
 
-The following Prototool configuration:
+This Prototool configuration...
 
 ```yaml title="prototool.yaml"
 lint:
   group: google
 ```
 
-Is equivalent to the following `buf` configuration:
+...is equivalent to this `buf` configuration:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -124,8 +124,7 @@ details.
 The `uber1` and `uber2` Prototool lint groups are supersets of the `DEFAULT` `buf` lint
 category, except you need to set overrides for enum value and service suffixes.
 That is, `buf lint` should pass for all Protobuf schemas (except as discussed
-below) that use `uber1` or `uber2` with Prototool, given the following `buf`
-configuration:
+below) that use `uber1` or `uber2` with Prototool, given this `buf` configuration:
 
 ```yaml title="buf.yaml"
 version: v1

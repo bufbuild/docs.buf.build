@@ -129,8 +129,8 @@ There are two options:
 
 1. `directory` **(default)**
 
-  This results in `buf` splitting the input files by directory, and making separate plugin invocations in parallel.
-  This is roughly the concurrent equivalent of the following:
+  This results in `buf` splitting the input files by directory and making separate plugin invocations in parallel.
+  That's roughly the concurrent equivalent of this operation:
 
   ```sh
   for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
@@ -143,8 +143,8 @@ There are two options:
 
 2. `all`
 
-  This results in `buf` making a single plugin invocation with all input files. This is roughly equivalent to
-  the following:
+  This results in `buf` making a single plugin invocation with all input files, which is roughly
+  equivalent to this:
 
   ```
   $ protoc -I . $(find . -name '*.proto')
@@ -229,7 +229,7 @@ from the current directory, that is they must be subdirectories relative to the 
 
 In the configuration example shown above, the `github.com/acme/weather/gen/proto/go` prefix is *joined* with the given Protobuf
 file's relative path from the module root. In the `buf.build/acme/weather` module's case, the `acme/weather/v1/weather.proto`
-file would have the following `go_package` set:
+file would have this `go_package` set:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";

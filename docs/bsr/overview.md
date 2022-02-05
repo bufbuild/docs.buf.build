@@ -116,7 +116,7 @@ This makes workspaces a good way to iterate on multiple modules at the same time
 
 `buf` caches files it downloads as part of module resolution in a folder on
 the local filesystem to avoid incurring the cost of downloading modules repeatedly.
-To choose where to cache the files it checks the following list in order:
+To choose where to cache the files, it checks these, in order:
 
   * The value of `$BUF_CACHE_DIR`, if set.
   * The value of `$XDG_CACHE_HOME` falling back to `$HOME/.cache` on Linux and Mac and `%LocalAppData%` for Windows.
