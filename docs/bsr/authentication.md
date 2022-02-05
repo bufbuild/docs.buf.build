@@ -41,7 +41,7 @@ The `buf` CLI reads its authentication credentials from your
 [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html)
 file. There is a `buf` command that manages the `.netrc` file for you, run the following command:
 
-```terminal
+```sh
 $ buf registry login
 ```
 
@@ -55,7 +55,7 @@ machine buf.build
 
 You can logout at any time with the following command:
 
-```terminal
+```sh
 $ buf registry logout
 ```
 
@@ -76,7 +76,7 @@ Access the secret token as specified by your CI provider and make it available a
 
 If this is not possible, you can also login via the CLI (assuming `BUF_API_TOKEN` and `BUF_USER` are set):
 
-```terminal
+```sh
 $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 

@@ -24,7 +24,7 @@ currently supports all of the [CommonMark](https://commonmark.org) syntax.
 
 Let's start by adding a simple note like so:
 
-```terminal
+```sh
 $ touch buf.md
 ```
 
@@ -51,7 +51,7 @@ petapis/
 If you push your module to the BSR again, you'll notice a new commit and the documentation will have
 been updated to reflect the latest changes:
 
-```terminal
+```sh
 $ buf push
 4514ddced0584e73a100e82096c7958c
 ```

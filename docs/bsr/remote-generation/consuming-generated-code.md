@@ -89,7 +89,7 @@ To generate Go code from private modules you'll need to make sure the Go tooling
 The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
 You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
 
-```terminal
+```sh
 $ buf registry login
 ```
 
@@ -108,7 +108,7 @@ The `GOPRIVATE` environment variable controls which modules the `go` command con
 
 Set this environment variable.
 
-```terminal
+```sh
 $ export GOPRIVATE=go.buf.build
 ```
 

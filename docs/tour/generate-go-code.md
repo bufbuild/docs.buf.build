@@ -11,7 +11,7 @@ and added a dependency on the `buf.build/googleapis/googleapis` module. Next, yo
 Before you continue, move to the `start` directory again. If you're coming from the [previous
 step](add-a-dependency), you can run this command:
 
-```terminal
+```sh
 $ cd ..
 ```
 
@@ -19,7 +19,7 @@ You should also reset the `gen` directory so that you can generate everything fr
 This is especially relevant since you removed the `google/type/datetime.proto` definition from
 the module itself.
 
-```terminal
+```sh
 $ rm -rf gen
 ```
 
@@ -47,14 +47,14 @@ that's OK! We'll cover everything you need to know here.
 You'll be using the `protoc-gen-go` and `protoc-gen-go-grpc` plugins to generate code with `buf generate`,
 so you'll need to install them:
 
-```terminal
+```sh
 $ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
 You also need to update your `PATH` so that `buf` can find the plugins:
 
-```terminal
+```sh
 $ export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
@@ -95,7 +95,7 @@ required to implement the `PetStoreService` API with Go.
 
 Run this command, which targets the version of the module your pushed to the BSR earlier:
 
-```terminal
+```sh
 $ buf generate buf.build/$BUF_USER/petapis
 ```
 

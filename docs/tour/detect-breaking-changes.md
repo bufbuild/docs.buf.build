@@ -49,7 +49,7 @@ For example, change the type of the `Pet.pet_type` field from `PetType` to `stri
 Now, you can verify that this is a breaking change against the local `main` branch. You'll also
 notice errors related to the changes you made in the [previous step](lint-your-api.md):
 
-```terminal
+```sh
 $ buf breaking --against ../../.git#branch=main,subdir=start/petapis
 ---
 pet/v1/pet.proto:1:1:Previously present service "PetStore" was deleted from file.
@@ -60,7 +60,7 @@ pet/v1/pet.proto:44:10:Field "1" on message "DeletePetRequest" changed name from
 
 Similarly, you can target a [`zip`][zip] archive from the remote repository:
 
-```terminal
+```sh
 $ buf breaking \
   --against "https://github.com/bufbuild/buf-tour/archive/main.zip#strip_components=1,subdir=start/petapis" \
   --config buf.yaml
@@ -95,7 +95,7 @@ fun example, let's build an image out of our current state, write it to stdout, 
 the input from stdin. This should _always_ pass, as it compares the current state to the current
 state:
 
-```terminal
+```sh
 $ buf build -o - | buf breaking --against -
 ```
 

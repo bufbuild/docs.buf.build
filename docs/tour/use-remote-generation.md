@@ -18,14 +18,14 @@ generation workflow to two steps:
 You won't need to generate any code locally at this stage, so you can remove the `buf.gen.yaml` as
 well as the generated code in the `gen` directory:
 
-```terminal
+```sh
 $ rm buf.gen.yaml
 $ rm -rf gen
 ```
 
 As expected, if you try to recompile your Go program, you'll notice a compilation error:
 
-```terminal
+```sh
 $ go build ./...
 ---
 client/main.go:10:2: no required module provides package github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1; to add it:
@@ -96,7 +96,7 @@ Update your import paths accordingly:
 Now if you run the command below, you'll notice that the remote-generated library is
 successfully resolved:
 
-```terminal
+```sh
 $ go mod tidy
 ---
 go: finding module for package go.buf.build/grpc/go/$BUF_USER/petapis/pet/v1
@@ -113,7 +113,7 @@ You can run the application again to verify that the remote-generated library wo
 
 First, start the server:
 
-```terminal
+```sh
 $ go run server/main.go
 ---
 ... Listening on 127.0.0.1:8080
@@ -121,7 +121,7 @@ $ go run server/main.go
 
 In a separate terminal, run the client and you'll see a successful `PutPet` operation:
 
-```terminal
+```sh
 $ go run client/main.go
 ---
 ... Connected to 127.0.0.1:8080
@@ -130,7 +130,7 @@ $ go run client/main.go
 
 You'll also notice this in the server logs (in the other terminal running the server):
 
-```terminal
+```sh
 $ go run server/main.go
 ---
 ... Listening on 127.0.0.1:8080
@@ -214,7 +214,7 @@ incrementing the final element in the synthetic version (described above).
 
 To demonstrate, make a simple change by adding a comment to the `PetStoreService`:
 
-```terminal
+```sh
 $ cd petapis
 ```
 
@@ -230,7 +230,7 @@ $ cd petapis
 
 Push those changes:
 
-```terminal
+```sh
 $ buf push
 ---
 8535a2784a3a48f6b72f2cb80eb49ac7
@@ -254,7 +254,7 @@ Now edit your `go.mod` to use the latest version (the 5th commit):
 If you run the command below, you'll notice that your `go.sum` is updated with
 the version specified in your `go.mod`:
 
-```terminal
+```sh
 $ go mod tidy
 ```
 

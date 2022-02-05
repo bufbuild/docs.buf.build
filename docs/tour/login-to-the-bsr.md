@@ -18,7 +18,7 @@ Throughout this tour, you'll see references to the `BUF_USER` environment variab
 newly created BSR username. Once you have completed registration, export this value
 so that you can copy and paste commands.
 
-```terminal
+```sh
 # Note this is just for the tour!
 $ export BUF_USER=<YOUR_BUF_USER>
 ```
@@ -39,7 +39,7 @@ Click **Create** and copy the token to your clipboard.
 
 All you need to log in is the API token created above. Run this command to do so:
 
-```terminal
+```sh
 $ buf registry login
 ```
 
@@ -60,7 +60,7 @@ machine go.buf.build
 
 You can log out at any time using this command:
 
-```terminal
+```sh
 $ buf registry logout
 ---
 All existing BSR credentials removed from $HOME/.netrc.

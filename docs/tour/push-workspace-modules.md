@@ -14,7 +14,7 @@ You successfully generated Go/gRPC client and server stubs in a [previous
 step](/tour/generate-go-code.md), but if you try to push your `petapis` Protobuf module to the BSR
 you'll get this error:
 
-```terminal
+```sh
 $ cd petapis
 $ buf push
 ---
@@ -23,7 +23,7 @@ Failure: pet/v1/pet.proto:5:8:payment/v1alpha1/payment.proto: does not exist.
 
 This is a bit puzzling because you can successfully build the module locally:
 
-```
+```sh
 $ buf build
 ```
 
@@ -51,7 +51,7 @@ push a new version of that module. However, you just introduced the
 `buf.build/$BUF_USER/paymentapis` module, so you need to create the
 `buf.build/$BUF_USER/paymentapis` repository:
 
-```terminal
+```sh
 $ buf beta registry repository create buf.build/$BUF_USER/paymentapis --visibility public
 ---
 Full name                        Created
@@ -60,7 +60,7 @@ buf.build/$BUF_USER/paymentapis  ...
 
 Now that the repository exists, change into the `paymentapis` directory and push the module:
 
-```terminal
+```sh
 $ cd ../paymentapis
 $ buf push
 ---
@@ -72,7 +72,7 @@ $ buf push
 The `buf.build/$BUF_USER/paymentapis` repository now contains the same content you have locally, so
 you can add it as a dependency to the local `petapis` module:
 
-```terminal
+```sh
 $ cd ../petapis
 ```
 
@@ -91,7 +91,7 @@ $ cd ../petapis
 
 Update your dependencies with this command:
 
-```terminal
+```sh
 $ buf mod update
 ```
 
@@ -120,7 +120,7 @@ deps:
 
 You can now push the `petapis` module:
 
-```terminal
+```sh
 $ buf push
 ---
 dda6041ec265455d813f037c36c30349

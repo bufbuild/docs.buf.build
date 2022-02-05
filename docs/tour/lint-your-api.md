@@ -5,7 +5,7 @@ title: 3 Lint Your API
 
 You can run all of the configured lint rules with the following:
 
-```terminal
+```sh
 $ buf lint
 ---
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
@@ -29,7 +29,7 @@ breaking:
 
 You can also output lint failures as JSON:
 
-```terminal
+```sh
 $ buf lint --error-format=json
 ---
 {"path":"google/type/datetime.proto","start_line":17,"start_column":1,"end_line":17,"end_column":21,"type":"PACKAGE_VERSION_SUFFIX","message":"Package name \"google.type\" should be suffixed with a correctly formed version, such as \"google.type.v1\"."}
@@ -64,7 +64,7 @@ To make `buf` happy, you can exclude these rules from the `DEFAULT` category by 
 
 Now if you run `buf lint` again, you'll notice that it's successful (exit code 0 and no output):
 
-```terminal
+```sh
 $ buf lint
 ```
 
@@ -119,7 +119,7 @@ fix the failures with the following updates:
 
 You can verify that two of the failures are resolved by linting again and seeing only one remaining error:
 
-```terminal
+```sh
 $ buf lint
 ---
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
@@ -148,7 +148,7 @@ Alternatively, you can specify exactly which rules to ignore using the [`ignore_
 parameter. You can output failures in a format that you can then copy into your `buf.yaml` file. This allows you to ignore
 all existing lint errors and correct them over time:
 
-```terminal
+```sh
 $ buf lint --error-format=config-ignore-yaml
 ---
 version: v1
@@ -165,7 +165,7 @@ In this case, you don't own the `google/type/datetime.proto` file, so it's best 
 The `buf lint` command also works with remote inputs, using the local `buf.yaml` configuration. For example, you can see all
 the original lint failures if you reference a `tar.gz` archive from the `main` branch:
 
-```terminal
+```sh
 $ buf lint "https://github.com/bufbuild/buf-tour/archive/main.tar.gz#strip_components=1,subdir=start/petapis" --config buf.yaml
 ---
 start/petapis/pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_case, such as "pet_id".

@@ -10,7 +10,7 @@ on the command line.
 
 Before you write Go code, initialize a `go.mod` file with the `go mod init` command:
 
-```terminal
+```sh
 $ go mod init github.com/bufbuild/buf-tour/petstore
 ```
 
@@ -21,7 +21,7 @@ code's Go dependencies.
 
 You can start implementing a server by creating a `server/main.go` file:
 
-```terminal
+```sh
 $ mkdir server
 $ touch server/main.go
 ```
@@ -85,7 +85,7 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 
 You can start implementing a client by creating a `client/main.go` file:
 
-```terminal
+```sh
 $ mkdir client
 $ touch client/main.go
 ```
@@ -137,7 +137,7 @@ func run() error {
 Now that you have code for both a client and a server, run this command to resolve
 some of the dependencies you need for the generated code:
 
-```terminal
+```sh
 $ go mod tidy
 ```
 
@@ -162,7 +162,7 @@ call the `PutPet` endpoint from the client.
 
 First, run the server:
 
-```terminal
+```sh
 $ go run server/main.go
 ---
 ... Listening on 127.0.0.1:8080
@@ -170,7 +170,7 @@ $ go run server/main.go
 
 In a separate terminal, run the client and you should see a success message:
 
-```terminal
+```sh
 $ go run client/main.go
 ---
 ... Connected to 127.0.0.1:8080
@@ -179,7 +179,7 @@ $ go run client/main.go
 
 You'll also notice this in the server logs (in the other terminal running the server):
 
-```terminal
+```sh
 $ go run server/main.go
 ---
 ... Listening on 127.0.0.1:8080

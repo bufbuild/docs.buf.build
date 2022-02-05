@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
   ]}>
 <TabItem value="download">
 
-```bash title="install.sh"
+```sh title="install.sh"
 #!/bin/bash
 
 PROJECT=<your-project-name>
@@ -65,7 +65,7 @@ for the given `BUF_VERSION` and operating system. The binary is then given execu
 If you intend on building `buf` from source, this assumes that you have the Go toolchain available in your CI/CD.
 If not, please refer to the [Go Documentation](https://golang.org/) for more details.
 
-```bash title="install.sh"
+```sh title="install.sh"
 #!/bin/bash
 
 BUF_TMP=$(mktemp -d)
@@ -135,7 +135,7 @@ You can then access the token in your job using an environment variable, which a
 `.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`
 and your username as `BUF_USER`:
 
-```terminal
+```sh
 $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 

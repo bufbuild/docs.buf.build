@@ -146,7 +146,7 @@ strategy is used by default if omitted.
 This will result in `buf` making a single plugin invocation with all input files. This is roughly equivalent to
 the following:
 
-```
+```sh
 $ protoc -I . $(find . -name '*.proto')
 ```
 

@@ -69,7 +69,7 @@ In January 2021 (v0.34.0), `protoc-gen-buf-check-breaking` and `protoc-gen-buf-c
 
 The only migration necessary is to change your installation and invocation from `protoc-gen-buf-check-breaking` to `protoc-gen-buf-breaking` and `protoc-gen-buf-check-lint` to `protoc-gen-buf-lint`. These can be installed in the exact same manner, whether from GitHub Releases, Homebrew, AUR, or direct Go installation:
 
-```
+```sh
 # instead of go get github.com/bufbuild/buf/cmd/protoc-gen-buf-check-breaking
 go get github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking
 # instead of curl -sSL https://github.com/bufbuild/buf/releases/download/v0.57.0/protoc-gen-buf-check-breaking-Linux-x86_64

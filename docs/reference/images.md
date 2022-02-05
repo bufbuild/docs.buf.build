@@ -246,7 +246,7 @@ $ buf build -o image.json.zst
 
 The special value `-` is used to denote stdout. You can manually set the format. For example:
 
-```
+```sh
 $ buf build -o -#format=json
 ```
 
@@ -270,7 +270,7 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 Images always include the ImageFileExtension field. However, if you want a pure FileDescriptorSet
 without this field set, to mimic `protoc` entirely:
 
-```
+```sh
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 

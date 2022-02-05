@@ -8,7 +8,7 @@ with any existing usage of `protoc`.
 
 Move back to the `start` directory with this command:
 
-```terminal
+```sh
 $ cd ..
 ```
 
@@ -57,7 +57,7 @@ C++ and Java code associated with the `PetStoreService` API.
 
 Run this command, targeting the input defined in the `petapis` directory:
 
-```terminal
+```sh
 $ buf generate petapis
 ```
 
@@ -134,7 +134,7 @@ for C++ and Java. You can disable [`cc_enable_arenas`][cc_enable_arenas] and ena
 
 If you regenerate the C++ and Java code, you'll notice that the generated content has changed:
 
-```terminal
+```sh
 $ rm -rf gen
 $ buf generate petapis
 ```
@@ -207,7 +207,7 @@ For now, restore your `buf.gen.yaml` configuration before you continue:
 
 Then regenerate the original code:
 
-```terminal
+```sh
 $ rm -rf gen
 $ buf generate petapis
 ```

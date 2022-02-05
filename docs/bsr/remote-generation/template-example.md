@@ -33,7 +33,7 @@ Similar to `protoc` command-line flags, you will capture options as part of your
 
 For Go-based templates include `paths=source_relative` for all plugin options.
 
-```terminal
+```sh
 $ buf beta registry template create buf.build/demolab/templates/twirp-go \
 	--visibility public \
 	--config '{"version":"v1","plugins":[{"owner":"library","name":"go","opt":["paths=source_relative"]},{"owner":"demolab","name":"twirp","opt":["paths=source_relative"]}]}'
@@ -44,7 +44,7 @@ demolab  twirp-go
 
 ### 2. Set plugin versions
 
-```terminal
+```sh
 $ buf beta registry template version create buf.build/demolab/templates/twirp-go \
 	--name v1 \
 	--config '{"version":"v1","plugin_versions":[{"owner":"library","name":"go","version":"v1.27.1-1"},{"owner":"demolab","name":"twirp","version":"v8.1.0-1"}]}'
@@ -91,7 +91,7 @@ The BSR will remotely generate Go code for this module using the `twirp-go` temp
 
 Code generation takes place on the fly when a user fetches code for the first time. You may notice a delay for the initial run, but the generated code will get cached in the BSR Go module proxy and subsequent requests are much quicker.
 
-```terminal
+```sh
 $ go get go.buf.build/demolab/twirp-go/demolab/theweather
 $ go mod tidy
 ```
@@ -107,7 +107,7 @@ require (
 
 As you iterate on a Protobuf API and push to the BSR, you will likely need to generate and update code. To do so, update the go.mod file by setting the desired version explicitly and then run `go mod tidy`. This will once again remote generate code and cache the result.
 
-```bash {4}
+```sh {4}
 require (
 	github.com/twitchtv/twirp v8.1.0+incompatible // indirect
 - 	go.buf.build/demolab/twirp-go/demolab/theweather v1.1.1
@@ -150,7 +150,7 @@ The really neat feature of BSR Remote Generation is consumers of the Twirp API g
 
 Here is a fully working Go client SDK for the above Twirp server. Again, we're importing remote generated code from the BSR Go module proxy.
 
-```terminal title="cmd/consumer/main.go" {9}
+```sh title="cmd/consumer/main.go" {9}
 package main
 
 import (

@@ -23,7 +23,7 @@ Start by removing the `google/type/datetime.proto` file from your module altoget
 From within the `petapis` directory, run this command to remove _all_ of the local `google`
 dependencies:
 
-```terminal
+```sh
 $ rm -rf google
 ```
 
@@ -43,7 +43,7 @@ Now remove the `google/type/datetime.proto` reference from your[`buf.yaml`](../c
 
 If you try to build the module in its current state, you will notice an error:
 
-```terminal
+```sh
 $ buf build
 ---
 pet/v1/pet.proto:7:8:google/type/datetime.proto: does not exist
@@ -69,7 +69,7 @@ the `buf.build/googleapis/googleapis` module, so you can configure it like this:
 
 Now, if you try to build the module again, you'll notice this:
 
-```terminal
+```sh
 $ buf build
 ---
 WARN	Specified deps are not covered in your buf.lock, run "buf mod update":
@@ -83,7 +83,7 @@ module, representing a single reproducible build of your module's dependencies. 
 `buf.lock` file yet because you haven't specified any external dependencies, but you can create one with
 the command that `buf` recommended above:
 
-```terminal
+```sh
 $ buf mod update
 ```
 
@@ -103,7 +103,7 @@ deps:
 
 Now, if you try to build the module again, you'll notice that it's successful:
 
-```terminal
+```sh
 $ buf build
 ---
 buf: downloading buf.build/googleapis/googleapis:1c473ad9220a49bca9320f4cc690eba5
@@ -163,7 +163,7 @@ With that said, restore the `buf.yaml` file to its previous state before you con
 Now that you've updated your module to depend on `buf.build/googleapis/googleapis` instead of vendoring
 the `google/type/datetime.proto` yourself, you can push the module to the BSR:
 
-```terminal
+```sh
 $ buf push
 ---
 b2917eb692064beb92ad1e38dba6c25e

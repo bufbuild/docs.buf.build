@@ -17,19 +17,19 @@ Plugin version executables are managed as Docker images. The Docker image is exp
 
 A plugin version is created by pushing a tagged Docker image to the plugins Docker registry repository. For example, assuming the relevant `Dockerfile` and context was in the current directory, to push a new version `v1.1.0` of the plugin `protoc-gen-myplugin` owned by the user `myuser`, the user would run
 
-```terminal
+```sh
 $ docker build -t plugins.buf.build/myuser/protoc-gen-myplugin:v1.1.0 .
 ```
 
 followed by
 
-```terminal
+```sh
 $ docker push plugins.buf.build/myuser/protoc-gen-myplugin:v1.1.0
 ```
 
 Pushing plugins to the BSR requires authenticating your Docker CLI using a **token**:
 
-```terminal
+```sh
 $ docker login -u myuser --password-stdin plugins.buf.build
 ```
 

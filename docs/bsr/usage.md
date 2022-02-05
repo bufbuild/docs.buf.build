@@ -7,7 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 To execute `buf` commands below make sure you are [authenticated](../bsr/authentication.md). Obtain a token from the BSR and run:
 
-```terminal
+```sh
 $ buf registry login
 ```
 
@@ -28,7 +28,7 @@ Through the **UI** log in at [https://buf.build/login](https://buf.build/login) 
 
 Alternatively, use the **CLI** run the following command:
 
-```terminal
+```sh
 $ buf beta registry repository create <MODULE_NAME> --visibility [public,private]
 ```
 
@@ -48,7 +48,7 @@ name: buf.build/acme/weather
 
 Push your module to the BSR by running the following command:
 
-```terminal
+```sh
 $ buf push
 ```
 
@@ -98,7 +98,7 @@ breaking:
 
 After adding dependencies in `buf.yaml` run the following command:
 
-```terminal
+```sh
 $ buf mod update
 ```
 
@@ -144,7 +144,7 @@ The `buf` CLI infers the `protoc-gen-{name}` prefix for each plugin specified by
 
 Once you set up a `buf.gen.yaml` file, run the following command and specify a module hosted on the BSR. That's right, you can reference a hosted BSR module without having the Protobuf files locally!
 
-```terminal
+```sh
 $ buf generate <MODULE_NAME>
 ```
 
@@ -163,12 +163,12 @@ deprecated repository.
 
 You can deprecate a repository with
 
-```terminal
+```sh
 $ buf beta registry repository deprecate <buf.build/owner/repository> [--message <deprecation message>]
 ```
 
 Undeprecate a deprecated repository with
 
-```terminal
+```sh
 $ buf beta registry repository undeprecate <buf.build/owner/repository>
 ```

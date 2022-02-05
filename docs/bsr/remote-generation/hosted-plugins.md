@@ -175,7 +175,7 @@ Note, we're using the `remote` key instead of `name` to reference a remote plugi
 
 It is possible to reference both local and remote plugins within a single template file. The `buf generate` command issues an RPC to the BSR to execute the remote plugins against the given input. Once execution is finished the output is written out to disk.
 
-```terminal
+```sh
 $ buf generate buf.build/demolab/theweather
 ```
 
@@ -193,7 +193,7 @@ What you should end up with is the following structure:
   ]}>
   <TabItem value="go">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -207,7 +207,7 @@ What you should end up with is the following structure:
   </TabItem>
   <TabItem value="javascript">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -221,7 +221,7 @@ What you should end up with is the following structure:
   </TabItem>
   <TabItem value="python">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -235,7 +235,7 @@ What you should end up with is the following structure:
   </TabItem>
   <TabItem value="ruby">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -249,7 +249,7 @@ What you should end up with is the following structure:
   </TabItem>
   <TabItem value="java">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen

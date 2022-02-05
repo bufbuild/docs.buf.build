@@ -6,7 +6,7 @@ title: 2 List All Protobuf Files
 You can list all of the `.proto` files managed by `buf` per the
 [build configuration](../configuration/v1/buf-yaml#build):
 
-```terminal
+```sh
 $ buf ls-files
 ---
 google/type/datetime.proto
@@ -21,7 +21,7 @@ necessary nor recommended.
 
 The `ls-files` command also works with remote inputs, such as the following:
 
-```terminal
+```sh
 $ buf ls-files git://github.com/bufbuild/buf-tour.git#branch=main,subdir=start/petapis
 ---
 start/petapis/google/type/datetime.proto

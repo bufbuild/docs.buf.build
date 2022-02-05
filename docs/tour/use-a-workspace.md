@@ -23,7 +23,7 @@ own `petapis`.
 You can enact a separation like this by creating a separate directory and initializing a Buf module
 there:
 
-```terminal
+```sh
 $ mkdir paymentapis
 $ cd paymentapis
 $ buf config init
@@ -56,7 +56,7 @@ You can also provide a `name` for the module:
 
 Now that the module is all set up, add an API:
 
-```terminal
+```sh
 $ mkdir -p payment/v1alpha1
 $ touch payment/v1alpha1/payment.proto
 ```
@@ -94,7 +94,7 @@ message Order {
 
 If you try to build the `paymentapis` module in its current state, you'll get an error:
 
-```terminal
+```sh
 $ buf build
 ---
 payment/v1alpha1/payment.proto:7:8:google/type/money.proto: does not exist
@@ -117,7 +117,7 @@ To fix this, add the `buf.build/googleapis/googleapis` dependency and resolve it
 
 Now update your dependencies and try building again:
 
-```terminal
+```sh
 $ buf mod update
 $ buf build
 ```
@@ -144,7 +144,7 @@ within the root of the `start` directory, the `buf.work.yaml` should be placed t
 configuration, you only need to specify the paths of the modules you want to include in the
 workspace. Here's what the config looks like for the `paymentapis` and `petapis` modules:
 
-```terminal
+```sh
 $ cd ..
 $ touch buf.work.yaml
 ```
@@ -158,7 +158,7 @@ directories:
 
 Your directory structure should now look like this:
 
-```terminal
+```sh
 start/
 ├── buf.gen.yaml
 ├── buf.work.yaml
@@ -226,7 +226,7 @@ Adapt the `PetStoreService` with the `PurhcasePet` endpoint like this:
 
 Verify that the `petapis` module builds with the latest import:
 
-```terminal
+```sh
 $ buf build petapis
 ```
 
@@ -241,7 +241,7 @@ the result:
    - petapis
 ```
 
-```terminal
+```sh
 $ buf build petapis
 petapis/pet/v1/pet.proto:7:8:payment/v1alpha1/payment.proto: does not exist
 ```
@@ -288,7 +288,7 @@ in the `buf.work.yaml` with a single command:
  }
 ```
 
-```terminal
+```sh
 $ buf lint
 paymentapis/payment/v1alpha1/payment.proto:20:10:Field name "orderID" should be lower_snake_case, such as "order_id".
 petapis/pet/v1/pet.proto:28:10:Field name "petID" should be lower_snake_case, such as "pet_id".

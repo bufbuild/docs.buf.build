@@ -34,7 +34,7 @@ $ buf protoc --help
 First, clone the Git repository that contains the starter code for the `PetStore` service.
 From the development directory of your choice, run the following command:
 
-```terminal
+```sh
 $ git clone https://github.com/bufbuild/buf-tour
 ```
 
@@ -87,6 +87,6 @@ buf-tour/
 
 To begin, move into the `start` directory and continue to the next step:
 
-```terminal
+```sh
 $ cd buf-tour/start
 ```

@@ -243,8 +243,9 @@ $ buf build -o -#format=json
 When combined with [jq](https://stedolan.github.io/jq), `buf build` also allows for introspection. For example,
 to see a list of all packages, you can run the following command:
 
-```
+```sh
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+---
 "google.actions.type"
 "google.ads.admob.v1"
 "google.ads.googleads.v1.common"

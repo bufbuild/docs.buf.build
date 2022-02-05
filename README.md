@@ -7,20 +7,20 @@ https://docs.buf.build.
 
 To get started, make sure you have [Node] installed:
 
-```terminal
+```sh
 brew install node
 make install
 ```
 
 To run a local dev server, run:
 
-```terminal
+```sh
 make
 ```
 
 or
 
-```terminal
+```sh
 make run
 ```
 
@@ -30,7 +30,7 @@ having to restart the server.
 
 To view the fully built product, you can run:
 
-```terminal
+```sh
 make serve
 ```
 
@@ -165,7 +165,7 @@ The Buf documentation uses the [Vale] linter for its prose sources. The current 
 
 To lint the docs, install Vale and run:
 
-```terminal
+```sh
 vale docs
 
 # Alternatively:

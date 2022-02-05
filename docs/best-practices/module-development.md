@@ -24,7 +24,7 @@ it unique across other module dependencies.
 <tbody>
 <tr><td>
 
-```
+```sh
 proto/
 ├── buf.lock
 ├── buf.yaml
@@ -33,7 +33,7 @@ proto/
 
 </td><td>
 
-```
+```sh
 proto/
 ├── acme
 │   └── pkg
@@ -94,7 +94,7 @@ versioned filepath, such as `acme/pkg/v2/pkg.proto`.
 
 This looks like the following:
 
-```
+```sh
 proto/
 ├── acme
 │   └── pkg

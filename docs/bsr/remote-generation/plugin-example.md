@@ -15,7 +15,7 @@ The `protoc-gen-twirp` source code can be found [here](https://github.com/twitch
 
 To push plugins to the BSR, you will need to authenticate to the plugin Docker registry using `docker login`. The username doesn't matter, but has to be provided. Obtain an API token (password) from the [Settings Page](https://buf.build/settings/user) and run the following command:
 
-```terminal
+```sh
 $ docker login -u myuser plugins.buf.build
 ---
 password:
@@ -37,7 +37,7 @@ However, for this example we'll use the `buf` CLI.
 
 Create the plugin with `buf` command:
 
-```terminal
+```sh
 $ buf beta registry plugin create \
     buf.build/demolab/plugins/twirp --visibility public 
 ---
@@ -102,7 +102,7 @@ Once we prepared the Dockerfile, the next step is to build and tag an image.
 
 We'll do so locally by running the following command:
 
-```terminal
+```sh
 $ docker build -f Dockerfile.twirp -t plugins.buf.build/demolab/twirp:v8.1.0-1 .
 ```
 
@@ -113,7 +113,7 @@ package versioning systems.
 
 Lastly, publish the containerized `protoc`-based plugin to the BSR. Make sure you have [authenticated](#1-docker-registry-authentication) your docker client in step 1.
 
-```terminal
+```sh
 $ docker push plugins.buf.build/demolab/twirp:v8.1.0-1
 ---
 The push refers to repository [plugins.buf.build/demolab/twirp]

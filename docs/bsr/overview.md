@@ -71,7 +71,7 @@ deps:
 
 Once a dependency is added to the configuration file, you need to run:
 
-```terminal
+```sh
 $ buf mod update
 ```
 
@@ -129,7 +129,7 @@ Instead, users bring their own plugins and generate code from a single source of
 
 In your [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) define plugins and their respective options, and then generate your code with the `buf` CLI by referencing a BSR module:
 
-```terminal
+```sh
 $ buf generate buf.build/acme/weather
 ```
 

@@ -10,7 +10,7 @@ Clone the [`bufbuild/buf-tour`](https://github.com/bufbuild/buf-tour.git) reposi
 from GitHub and navigate to the `petapis` directory, which contains the pet store's
 `.proto` files:
 
-```terminal
+```sh
 $ git clone https://github.com/bufbuild/buf-tour.git
 $ cd buf-tour/start/petapis
 ```
@@ -20,7 +20,7 @@ $ cd buf-tour/start/petapis
 `buf` is configured with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which is easily
 created with the following command:
 
-```terminal
+```sh
 $ buf config init
 ```
 
@@ -50,7 +50,7 @@ are stitched together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml
 We'll cover workspaces when working with multiple roots later in the tour, but to illustrate how all these pieces
 fit together here's a quick example using `protoc` and its equivalent in `buf`:
 
-```terminal
+```sh
 $ protoc \
     -I proto \
     -I vendor/protoc-gen-validate \
@@ -90,7 +90,7 @@ For now, we'll stick to the `buf.yaml` we created above.
 
 Before we continue, let's verify that everything is set up properly:
 
-```terminal
+```sh
 $ buf build
 ```
 
@@ -102,7 +102,7 @@ Plus, you can see some interesting details about the compiled artifact with a fe
 [jq](https://stedolan.github.io/jq). This command displays a list of the Protobuf packages used
 in this project:
 
-```terminal
+```sh
 $ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package'
 ---
 "google.protobuf"

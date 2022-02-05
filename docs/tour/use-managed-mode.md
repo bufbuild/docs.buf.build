@@ -53,7 +53,7 @@ With Managed Mode, you can remove the `go_package` option altogether, as in thes
 If you regenerate Go code stubs for the API changes you made in your local
 [workspace](/reference/workspaces.md), you'll notice this:
 
-```terminal
+```sh
 $ rm -rf gen
 $ buf generate
 ---
@@ -126,7 +126,7 @@ And the corresponding Buf configuration:
 
 If you regenerate the stubs now, you'll notice that it's successful:
 
-```terminal
+```sh
 $ rm -rf gen
 $ buf generate
 ```
@@ -195,14 +195,14 @@ With the `except` setting, the `go_package` option in all of the files provided 
 
 If you regenerate the stubs, you'll notice that it's successful:
 
-```terminal
+```sh
 $ rm -rf gen
 $ buf generate
 ```
 
 You can also verify that the generated code compiles with this command:
 
-```terminal
+```sh
 $ go build ./...
 ```
 
