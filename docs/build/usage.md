@@ -32,7 +32,7 @@ The `build` section only has one option:
 ### `excludes`
 
 The `excludes` key is **optional**, and lists directories to ignore from `.proto` file discovery. Any directories
-added to this list will be completely skipped and excluded in the result. **We do not recommend using this
+added to this list are completely skipped and excluded in the result. **We do not recommend using this
 option in general**, however in some situations it is unavoidable.
 
 For more information on the `buf.yaml` configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
@@ -108,7 +108,7 @@ directories:
 
 Like the `-I` flag for `protoc`, workspaces make it possible to import definitions across modules, such as introducing
 a new `message` in one module, and importing it from another. Similarly, any command that is run on an input that contains
-a `buf.work.yaml` will act upon *all* of the modules defined in the `buf.work.yaml`.
+a `buf.work.yaml` acts upon *all* of the modules defined in the `buf.work.yaml`.
 
 ## Workspace requirements
 
@@ -122,7 +122,7 @@ For example, the following is not a valid configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - foo
   - foo/bar
@@ -169,12 +169,12 @@ we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
 have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
-has it's own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
+has its own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
 While these are usually in sync, the `google.api` schema can change. If we allowed the following:
 
 ```yaml
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - proto
   - vendor/github.com/googleapis/googleapis
@@ -192,14 +192,14 @@ You can run `buf build` on your module by specifying the filepath to the directo
 $ buf build
 ```
 
-The `buf build` command will:
+The `buf build` command:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Output the compiled result to a configurable location (defaults to `/dev/null`)
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default.
+If there are errors, they are printed out in a `file:line:column:message` format by default.
 For example:
 
 ```sh
@@ -216,7 +216,7 @@ $ buf build --error-format=json
 
 ## Output format
 
-By default, `buf build` will output the its result to `/dev/null`. In this case, it's common to use
+By default, `buf build` outputs the its result to `/dev/null`. In this case, it's common to use
 `buf build` as a validation step, analogous to checking if the input compiles.
 
 However, `buf build` also supports outputting [FileDescriptorSets](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
@@ -264,7 +264,7 @@ this field set, to mimic `protoc` entirely, you can use the `--as-file-descripto
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
-The `ImageExtension` field will not affect Protobuf plugins or any other operations, they will merely see this as an unknown
+The `ImageExtension` field doesn't affect Protobuf plugins or any other operations, as they merely see this as an unknown
 field. However, we provide the option in case you want it.
 
 ## Limit to specific files
@@ -273,7 +273,7 @@ By default, `buf` builds all files under the `buf.yaml` configuration file. You 
 file or directory paths to build. This is an advanced feature intended to be used for editor or Bazel integration - it
 is better to let `buf` discover all files under management and handle this for you in general.
 
-The compiled result will be limited to the given files if the `--path` flag is specified like so:
+The compiled result is limited to the given files if the `--path` flag is specified like so:
 
 ```sh
 $ buf build --path path/to/foo.proto --path path/to/bar.proto

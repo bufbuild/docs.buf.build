@@ -190,7 +190,7 @@
 
 [[redirects]]
   from = "/generate-protoc"
-  to = "/generate/high-performance-protoc-replacement"
+  to = "/generate/overview"
   status = 301
   force = true
 
@@ -310,4 +310,9 @@
 [[redirects]]
   from = "/configuration"
   to = "/configuration/overview"
+  status = 301
+
+[[redirects]]
+  from = "/generate/high-performance-protoc-replacement"
+  to = "/generate/usage"
   status = 301

@@ -66,7 +66,7 @@ deps:
 ```
 
 > Depending on specific references is an advanced feature; you should depend on the latest commit whenever
-> possible. In other words, your `deps` will not need to include the `:<reference>` suffix in most cases.
+> possible. In other words, your `deps` don't need to include the `:<reference>` suffix in most cases.
 > Please refer to `buf`'s [best practices](../../best-practices/module-development.md) to learn more!
 
 ### `build`
@@ -88,7 +88,7 @@ build:
 #### `excludes`
 
 This is a list of the directories to ignore from `.proto` file discovery. Any directories added
-to this list will be completely skipped and not included in the module. **We do not recommend
+to this list are completely skipped and not included in the module. **We do not recommend
 using this option in general**, however in some situations it is unavoidable.
 
 #### `roots`
@@ -138,7 +138,7 @@ For example, the following is not a valid configuration:
 
 ```yaml title="buf.yaml"
 version: v1beta1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 build:
   roots:
     - foo
@@ -182,13 +182,13 @@ flags given to `protoc`. If the authors are being honest, we can't remember if i
 we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you have vendored `.proto` files.
-For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google) has it's
+For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google) has its
 own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs. While these
 are usually in sync, the `google.api` schema can change. If we allowed the following:
 
 ```yaml title="buf.yaml"
 version: v1beta1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 build:
   roots:
     - proto

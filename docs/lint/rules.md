@@ -38,7 +38,7 @@ across your various teams, while linking back to this document for rationale for
 - `BASIC`
 - `DEFAULT`
 
-These provide the majority of lint rules you will want to apply. Additionally, `buf` provides "extra top-level"
+These provide the majority of lint rules you may want to apply. Additionally, `buf` provides "extra top-level"
 categories:
 
 - `COMMENTS`
@@ -100,11 +100,11 @@ only one such directory exists. For example, consider the following `tree`:
                 └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-`protoc` doesn't enforce file structure in any way, but you will have a *very* bad time
+`protoc` doesn't enforce file structure in any way, but you're likely to have a *very* bad time
 with many Protobuf plugins across various languages if you do not do this.
 
 This structure has the effect of allowing imports to self-document their package. For example,
-you will know that the import `foo/bar/bat/v1/bat.proto` has types in the package `foo.bar.bat.v1`.
+you can discern that the import `foo/bar/bat/v1/bat.proto` has types in the package `foo.bar.bat.v1`.
 
 There is no downside to maintaining this structure, and in fact many languages explicitly
 or effectively enforce such a file structure anyways (for example, Golang and Java).
@@ -250,7 +250,7 @@ enum Scheme {
 }
 ```
 
-The above will result in generated code in certain languages defaulting to `SCHEME_FTP` instead of
+The above results in generated code in certain languages defaulting to `SCHEME_FTP` instead of
 `SCHEME_UNSPECIFIED`.
 
 #### `ENUM_NO_ALLOW_ALIAS`
@@ -316,7 +316,7 @@ lint:
     - SERVICE_SUFFIX
 ```
 
-As per it's name, `DEFAULT` is also the default set of lint rules used by `buf` if no configuration is present, and
+As per its name, `DEFAULT` is also the default set of lint rules used by `buf` if no configuration is present, and
 represents our recommendations for modern Protobuf development without being overly burdensome.
 
 #### `ENUM_VALUE_PREFIX`
@@ -339,8 +339,8 @@ message Bar {
 
 Protobuf enums use C++ scoping rules, which makes it not possible to have two enums in the same
 package with the same enum value name (an exception is when enums are nested, in which case this
-rule applies within the given message). While you may think that a given enum value name will
-always be unique across a package, APIs can develop over years, and there are countless examples
+rule applies within the given message). While you may think that a given enum value name is
+always unique across a package, APIs can develop over years, and there are countless examples
 of developers having to compromise on their enum names due to backwards compatibility issues.
 For example, you might have the following enum:
 
@@ -361,8 +361,8 @@ Two years later, you have an enum in the same package you want to add, but can't
 // This is a made up example, bear with us.
 enum SecureProtocol {
   SECURE_PROTOCOL_UNSPECIFIED = 0;
-  // If this enum is in the same package as Scheme, this will
-  // produce a protoc compile-time error!
+  // If this enum is in the same package as Scheme, this produces
+  // a protoc compile-time error!
   HTTPS = 1;
   ...
 }
@@ -383,7 +383,7 @@ The suffix is [configurable](configuration.md#enum_zero_value_suffix).
 
 All enums should have a zero value. `proto3` does not differentiate between set and unset fields,
 so if an enum field is not explicitly set, it defaults to the zero value. If an explicit
-zero value is not part of the enum definition, this will default to the actual zero value
+zero value is not part of the enum definition, this defaults to the actual zero value
 of the enum. For example, if you had:
 
 ```protobuf
@@ -397,7 +397,7 @@ message Uri {
 }
 ```
 
-Then any `Uri` with `scheme` not explicitly set will default to `SCHEME_FTP`.
+Then any `Uri` with `scheme` not explicitly set defaults to `SCHEME_FTP`.
 
 #### `FILE_LOWER_SNAKE_CASE`
 
@@ -501,7 +501,7 @@ lint:
   service_suffix: Endpoint
 ```
 
-The `SERVICE_SUFFIX` rule will enforce the following naming instead:
+The `SERVICE_SUFFIX` rule enforces the following naming instead:
 
 ```protobuf
 service FooEndpoint {}
@@ -601,9 +601,9 @@ package-based imports, such as Go. If possible, **this rule should always be con
 
 ## What we left out
 
-We think that the above lint rules represent a set that will sufficiently enforce consistent
+We think that the above lint rules represent a set that sufficiently enforces consistent
 and maintainable Protobuf schemas, including for large organizations, without being so opinionated
-as to not let your organization make it's own design decisions. Regardless, there are some potential
+as to not let your organization make its own design decisions. Regardless, there are some potential
 rules we purposefully did not write that deserve special mention.
 
 ### File option values

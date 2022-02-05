@@ -20,14 +20,14 @@ We'll conclude by **remotely generating Go code** for a Protobuf module hosted o
 
 You can create a BSR template through the UI or the `buf` CLI.
 
-From the UI click your avatar in the top-right corner, select Templates and click
+From the UI, click your avatar in the top-right corner, select Templates and click
 the Create Template button. Follow the on-screen instructions.
 
-For this example we'll use the `buf` CLI.
+For this example, we'll use the `buf` CLI.
 
 ### 1. Create template
 
-Similar to `protoc` command-line flags, you will capture options as part of your template. 
+Similar to `protoc` command-line flags, options are included in your template.
 
 > **Once a template is created, options cannot be modified and become part of the template configuration. You can, however, continue to update plugin versions.**
 
@@ -87,16 +87,16 @@ message GetWeatherResponse {
 }
 ```
 
-The BSR will remotely generate Go code for this module using the `twirp-go` template.
+The BSR remotely generates Go code for this module using the `twirp-go` template.
 
-Code generation takes place on the fly when a user fetches code for the first time. You may notice a delay for the initial run, but the generated code will get cached in the BSR Go module proxy and subsequent requests are much quicker.
+Code generation takes place on the fly when a user fetches code for the first time. You may notice a delay for the initial run, but the generated code is cached in the BSR Go module proxy and subsequent requests are much quicker.
 
 ```terminal
 $ go get go.buf.build/demolab/twirp-go/demolab/theweather
 $ go mod tidy
 ```
 
-This will update your go.mod file with:
+This updates your `go.mod` file with:
 
 ```
 require (
@@ -105,7 +105,7 @@ require (
 )
 ```
 
-As you iterate on a Protobuf API and push to the BSR, you will likely need to generate and update code. To do so, update the go.mod file by setting the desired version explicitly and then run `go mod tidy`. This will once again remote generate code and cache the result.
+As you iterate on a Protobuf API and push to the BSR, you likely need to generate and update code. To do so, update the go.mod file by setting the desired version explicitly and then run `go mod tidy`. This once again remote generates code and caches the result.
 
 ```bash {4}
 require (

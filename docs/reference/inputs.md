@@ -7,7 +7,7 @@ The various I/O options for `buf` can seem daunting and overly complex, so we'll
 all fits together.
 
 In general, an input is a collection of `.proto` files used by many of the `buf` commands.
-In most cases, this will be a [module](../bsr/overview.md#module), but a variety of other formats are supported
+In most cases, this is a [module](../bsr/overview.md#module), but a variety of other formats are supported
 and explained below.
 
 > By default, `buf` uses the current directory as its input for all commands.
@@ -30,7 +30,7 @@ Generally, your only goal is to work with `.proto` files on disk. This is how `b
 However, there are cases where one wants to work with more than just local files, which are described
 below.
 
-### Buf Schema Registry (BSR)
+### The Buf Schema Registry (BSR)
 
 The core primitive for Buf is the module, which is emphasized by the Buf Schema Registry ([BSR](../bsr/overview.md)).
 With the BSR, it's easy to refer to any version of your module and use it as an input for each
@@ -217,27 +217,27 @@ Examples:
 ### file
 
 A local proto file. The path can be either relative or absolute, similar to the [dir](#dir) input.
-This is a special input that will use the file and its imports as the input to `buf` commands.
-If a local [configuration](configuration/overview.md) file is found, dependencies specified will be used to
+This is a special input that uses the file and its imports as the input to `buf` commands.
+If a local [configuration](configuration/overview.md) file is found, dependencies specified are used to
 resolve file imports first, followed by the local filesystem. If there is no local configuration, the local
-filesystem will be used to resolve file imports.
+filesystem is used to resolve file imports.
 
 - The `include_package_files` option can used to include all other files in the package for the specified proto file.
   This is set to `false` by default.
 
 Examples:
 
-- `buf build path/to/my/file.proto` will compile an [image](reference/images.md) based on the file and
+- `buf build path/to/my/file.proto` compiles an [image](reference/images.md) based on the file and
   its imports.
 - An absolute path, `/absolute/path/to/my/file.proto` can also be accepted.
-- `buf build path/to/my/file.proto#include_package_files=true` will compile an [image](reference/images.md) for the file
+- `buf build path/to/my/file.proto#include_package_files=true` compiles an [image](reference/images.md) for the file
   and the files in the package and their imports.
 - `buf build path/to/my/file.proto#include_package_files=false` is equivalent to the default behavior.
 
 ### Symlinks
 
 Note that symlinks are supported for `dir` and `file` inputs only, while `git`, `tar`, and `zip` Inputs
-will ignore all symlinks.
+ignore all symlinks.
 
 ## Image Formats
 
@@ -292,7 +292,7 @@ Examples:
 
 ### json
 
-A JSON Image. This creates Images that take much more space, and are slower to parse, but will result
+A JSON Image. This creates Images that take much more space, and are slower to parse, but results
 in diffs that show the actual differences between two Images in a readable format.
 
 Use `compression=gzip` to specify the Image is compressed with Gzip. This is automatically detected
@@ -329,7 +329,7 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 
 ## Automatically derived Formats
 
-By default, `buf` will derive the Format and compression of an Input from the path via the file
+By default, `buf` derives the Format and compression of an Input from the path via the file
 extension.
 
 | Extension | Derived Format | Derived Compression |
@@ -365,7 +365,7 @@ The format of an Input can be explicitly set as described above.
 
 ## Deprecated Formats
 
-The following formats are deprecated. They will continue to work forever, but we recommend
+The following formats are deprecated. They should continue to work forever, but we recommend
 updating if you are explicitly specifying any of these.
 
 | Format | Replacement |
@@ -382,10 +382,10 @@ locations that need authentication, a couple mechanisms exist.
 ### HTTPS
 
 Remote archives and Image files use [netrc files](https://ec.haxx.se/usingcurl/usingcurl-netrc)
-for authentication. `buf` will look for a netrc file at `$NETRC` first, defaulting to `~/.netrc`.
+for authentication. `buf` looks for a netrc file at `$NETRC` first, defaulting to `~/.netrc`.
 
 Git repositories are cloned using the `git` command, so any credential helpers you have configured
-will be automatically used.
+are automatically used.
 
 Basic authentication can be also specified for remote archives, Git repositories, and Image files over
 HTTPS with the following environment variables:
@@ -408,7 +408,7 @@ $ buf breaking --against https://github.com/org/private-repo.git#tag=v1.0.0
 
 Public key authentication can be used for remote Git repositories over SSH.
 
-Git repositories are cloned via the `git` command, so by default, `buf` will use your existing Git SSH
+Git repositories are cloned via the `git` command, so by default, `buf` uses your existing Git SSH
 configuration, including any identities added to `ssh-agent`.
 
 The following environment variables can also be used:
@@ -430,12 +430,12 @@ file pre-installed, so this should work out of the box.
 
 ## Input configuration
 
-By default, `buf` will look for a [`buf.yaml`](../configuration/v1/buf-yaml.md) in the following manner:
+By default, `buf` looks for a [`buf.yaml`](../configuration/v1/buf-yaml.md) in the following manner:
 
-- For `dir, bin, json` Inputs, `buf` will look at your current directory for a `buf.yaml` file.
-- For `tar` and `zip` Inputs, `buf` will look at the root of the archive for a `buf.yaml` file
+- For `dir, bin, json` Inputs, `buf` looks at your current directory for a `buf.yaml` file.
+- For `tar` and `zip` Inputs, `buf` looks at the root of the archive for a `buf.yaml` file
   after `strip_components` is applied.
-- For `git` Inputs, `buf` will look at the root of the cloned repository at the head of the
+- For `git` Inputs, `buf` looks at the root of the cloned repository at the head of the
   cloned branch.
 
 The configuration can be overridden with the `--config` flag. See the [configuration documentation](../configuration/overview.md#configuration-override)

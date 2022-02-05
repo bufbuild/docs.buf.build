@@ -36,16 +36,16 @@ input defined in the current directory, and compare it against the `main` `git` 
 $ buf breaking --against '.git#branch=main'
 ```
 
-The above `buf breaking` command will:
+The above `buf breaking` command:
 
-  - Discover all Protobuf files per your configuration.
-  - Copy all Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Clone the head of the `main` branch of the `git` repository located at local directory `.git` into memory.
-  - Compile all Protobuf files on the `main` branch per the configuration on that branch.
-  - Compare the compilation results for breaking changes.
+  - Discovers all Protobuf files per your configuration.
+  - Copies all Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Clones the head of the `main` branch of the `git` repository located at local directory `.git` into memory.
+  - Compiles all Protobuf files on the `main` branch per the configuration on that branch.
+  - Compares the compilation results for breaking changes.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default:
+If there are errors, they are printed out in a `file:line:column:message` format by default:
 
 ```sh
 $ buf breaking --against '.git#branch=main'
@@ -77,7 +77,7 @@ The following sections outline some common scenarios and how to deal with them.
 You can directly compare against the `.proto` files at the head of a `git` branch, or a `git` tag.
 See the inputs documentation for details on `git` branches and `git` tags.
 
-As an example, if you are currently in the root of your `git` repository, you will have a `.git`
+As an example, if you are currently in the root of your `git` repository, you should have a `.git`
 directory. To compare against your Protobuf schema as committed on the `main` branch:
 
 ```sh
@@ -86,8 +86,8 @@ $ buf breaking --against '.git#branch=main'
 
 This is especially useful for local development. Note that many CI services like [Travis CI](https://travis-ci.com/)
 do not do a full clone of your repo, instead cloning a certain number of commits (typically around 50)
-on the specific branch that is being tested. In this scenario, other branches will not be present
-in your clone within CI, so the above won't work. While you could work around this by [disabling git
+on the specific branch that is being tested. In this scenario, other branches aren't present
+in your clone within CI, so the above doesn't work. While you could work around this by [disabling git
 clone and doing it manually](https://docs.travis-ci.com/user/customizing-the-build/#disabling-git-clone),
 a better alternative is to give the remote path directly to `buf` to clone itself:
 
@@ -134,9 +134,9 @@ $ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.zip#strip
 files. For example, if we moved the `Date` message to another file, `buf` would reference the location
 within this file instead.
 
-`buf` will also attempt to use an enclosing type for deleted references. For example, if a field is deleted,
-`buf` will reference the enclosing message if it is still present, and if a nested message is deleted, `buf`
-will reference the enclosing message as well.
+`buf` also attempts to use an enclosing type for deleted references. For example, if a field is deleted,
+`buf` references the enclosing message if it is still present, and if a nested message is deleted, `buf`
+references the enclosing message as well.
 
 For example, from the tour:
 
@@ -153,7 +153,7 @@ feature intended to be used for editor or Bazel integration - it is better to le
 all files under management and handle this for you in general, especially when using the `FILE`
 category.
 
-Breaking change detection will be limited to the given files if the `--path` flag is specified like so:
+Breaking change detection is limited to the given files if the `--path` flag is specified like so:
 
 ```sh
 $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/to/bar.proto
@@ -179,7 +179,7 @@ $ docker run \
 
 ## Advanced use cases
 
-Due to the nature of inputs, `buf` will happily compare just about anything. You may have an advanced
+Due to the nature of inputs, `buf` happily compares just about anything. You may have an advanced
 use case, so we want to demonstrate the capabilities of `buf` by comparing a `git` repository against a remote
 archive.
 

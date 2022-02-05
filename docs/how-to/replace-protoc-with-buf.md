@@ -4,7 +4,7 @@ title: Replace protoc With buf
 ---
 
 The `buf` CLI acts as a build system for all your `.proto` compilation and
-code generation needs. This guide will describe how to migrate your existing
+code generation needs. This guide describes how to migrate your existing
 `protoc` setup and migrate to using `buf`.
 
 This guide assumes that you've [installed `buf`](../installation.mdx) and generate
@@ -114,16 +114,16 @@ With this, you can verify that the workspace compiles with the following command
 $ buf build
 ```
 
-The `buf build` command will:
+The `buf build` command:
 
-  - Discover the `buf.work.yaml` file found in the current directory.
-  - Collect all Protobuf files for each `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Output the compiled result to a configurable location (defaults to `/dev/null`)
+  - Discovers the `buf.work.yaml` file found in the current directory.
+  - Collects all Protobuf files for each `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
 > The `buf.yaml` files aren't actually required in this case. You can simply run `buf build`
-> without the `buf.yaml` configuration files and `buf` will treat each directory specified
+> without the `buf.yaml` configuration files and `buf` treats each directory specified
 > in the `buf.work.yaml` as a module by default. However, defining a `buf.yaml` is strongly
 > recommended.
 

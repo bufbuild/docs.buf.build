@@ -40,8 +40,7 @@
       "label": "Generate",
       "items": [
         "generate/usage",
-        "generate/managed-mode",
-        "generate/high-performance-protoc-replacement"
+        "generate/managed-mode"
       ],
       "collapsed": false
     },
@@ -71,7 +70,7 @@
     },
     {
       "type": "category",
-      "label": "Buf Schema Registry (BSR)",
+      "label": "The Buf Schema Registry (BSR)",
       "items": [
         "bsr/introduction",
         "bsr/overview",

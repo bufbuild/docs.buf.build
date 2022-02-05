@@ -15,7 +15,7 @@ categories depending on the nature of breaking changes you care about:
   - `FILE`: Generated source code breaking changes on a per-file basis, that is changes that
     would break the generated stubs where definitions cannot be moved across files. This makes
     sure that for languages such as C++ and Python where header files are included, your source
-    code will never break for a given Protobuf change. This category also verifies wire and JSON
+    code never breaks for a given Protobuf change. This category also verifies wire and JSON
     compatibility.
   - `PACKAGE`: Generated source code breaking changes on a per-package basis, that is changes that
     would break the generated stubs, but only accounting for package-level changes. This is useful
@@ -35,10 +35,10 @@ Other features of `buf`'s breaking change detector include:
   rules into logical categories. While we recommend using the `FILE` set of breaking rules, `buf` allows
   you to easily understand and select the exact set of rules your organization needs.
 
-- **File references**. `buf`'s breaking change detector will produce file references to the
+- **File references**. `buf`'s breaking change detector produces file references to the
   location of the breaking change, including if a reference moves across files between your
-  past and current file versions. For example, if a field changes type, `buf` will produce
-  a reference to the field. If a field is deleted, `buf` will produce a reference to the location
+  past and current file versions. For example, if a field changes type, `buf` produces
+  a reference to the field. If a field is deleted, `buf` produces a reference to the location
   of the message in the current file.
 
 - **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all

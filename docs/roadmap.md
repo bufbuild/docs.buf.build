@@ -3,7 +3,7 @@ id: roadmap
 title: Roadmap
 ---
 
-What you see today is just the start. In fact, the real value will come as we build
+What you see today is just the start. In fact, the real value will become apparent as we build
 products that utilize the BSR as a foundation to understand and reason about API schemas,
 including in real time.
 
@@ -11,11 +11,11 @@ Here, we outline some (but not all!) of the products on our roadmap. We'd love y
 and feedback, please [contact us](contact.md) to discuss any of the below, or any other products
 you'd like to see.
 
-## BSR
+## The Buf Schema Registry (BSR) {#bsr}
 
 ### Remote client and server library generation
 
-One of the promises of BSR is to allow the generation of your APIs on demand. At a high level,
+One of the promises of the BSR is to allow the generation of your APIs on demand. At a high level,
 we want to enable modules to have stubs generated on-demand, for every version, for every possible
 Protobuf plugin, with consumption via language-native mechanisms.
 
@@ -31,7 +31,7 @@ All via a `go` command that results in a Go module:
 $ go get go.buf.build/grpc/go/acme/weather
 ```
 
-Similar mechanisms will exist for other languages, such as:
+Similar mechanisms exist for other languages, such as:
 
   - NPM packages
   - Maven repositories
@@ -80,12 +80,12 @@ is no longer required because the BSR has all of your definitions and it can hos
 Today, Protobuf import paths are relative to user specified include directories. This may be
 the single most painful lesson for new users to learn, so we want to get rid of it entirely.
 Imagine importing `buf.build/googleapis/googleapis/google/api/http.proto` rather than `google/api/http.proto`.
-The BSR will support this transition in a backwards compatible manner, so that you can transition
+The BSR will support this transition in a backwards-compatible manner, so that you can transition
 to using fully qualified import paths if you like in your project.
 
 ### BSR API
 
-A large part of the BSR API is usable with the `buf` CLI, but we will soon be exposing the BSR API so that
+A large part of the BSR API is usable with the `buf` CLI, but we will soon expose the BSR API so that
 you can build your own tools and integrations with it.
 
 ## `buf` CLI

@@ -45,7 +45,7 @@ jobs:
       - uses: bufbuild/buf-setup-action@v0.6.0
 ```
 
-This will ensure `buf` is installed with the latest release version and is available for all subsequent steps
+This ensures that `buf` is installed with the latest release version and is available for all subsequent steps
 within the current job.
 
 If you'd like to pin the `buf` CLI to a specific version, update your setup step to include a version like so:
@@ -109,8 +109,8 @@ jobs:
           against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=main'
 ```
 
-If any breaking changes are detected against the provided remote, `buf-breaking` will add
-in-line comments to your pull request to indicate these changes.
+If any breaking changes are detected against the provided remote, `buf-breaking` adds
+inline comments to your pull request to indicate these changes.
 
 ## buf-push
 
@@ -143,13 +143,13 @@ jobs:
           buf_token: ${{ secrets.BUF_TOKEN }}
 ```
 
-This workflow is basically the same workflow as before, with an additional step to push to the BSR when a push is made to the `main` branch of your repository. The `buf-push` action will only push to the BSR if contents have actually changed, it otherwise succeeds silently.
+This workflow is basically the same workflow as before, with an additional step to push to the BSR when a push is made to the `main` branch of your repository. The `buf-push` action only pushes to the BSR if contents have actually changed, it otherwise succeeds silently.
 
 When comparing against the same branch we also set `ref=HEAD~1` to compare against the previous commit on that branch.
 
-Note, `ref=HEAD~1` does not work well for [rebase and merge](https://docs.github.com/en/github/administering-a-repository/configuring-pull-request-merges/about-merge-methods-on-github#rebasing-and-merging-your-commits) operations, since `buf` is comparing against the last commit there might be older commits with breaking changes. If you're using **Merge pull request** (GitHub default) or **Squash and merge** options then `#ref=HEAD~1` will work.
+Note, `ref=HEAD~1` does not work well for [rebase and merge](https://docs.github.com/en/github/administering-a-repository/configuring-pull-request-merges/about-merge-methods-on-github#rebasing-and-merging-your-commits) operations, since `buf` is comparing against the last commit there might be older commits with breaking changes. If you're using **Merge pull request** (GitHub default) or **Squash and merge** options then `#ref=HEAD~1` should work.
 
-The `buf-push` step will also tag the BSR commit with the `git` commit SHA, so that they are more
+The `buf-push` step also tags the BSR commit with the `git` commit SHA, so that they are more
 easily associated with one another.
 
 ## Inputs
@@ -205,5 +205,5 @@ For more information on `subdir` see the [Breaking Change Detection - Usage](htt
 Now that you've set up `buf` to run lint checks and detect breaking changes in your CI/CD environment, your APIs
 will always remain consistent, and you won't need to waste any more time understanding the [complex backwards
 compatibility rules](https://developers.google.com/protocol-buffers/docs/overview#updating) to ensure that you
-never break your customers. Plus, the module defined in your GitHub repository will automatically be kept
-in-sync with the BSR, so you don't have to manually push your API updates!
+never break your customers. Plus, the module defined in your GitHub repository is automatically kept
+in sync with the BSR, so you don't have to manually push your API updates!

@@ -48,11 +48,12 @@ petapis/
         └── pet.proto
 ```
 
-If you push your module to the BSR again, you'll notice a new commit and the documentation will have
-been updated to reflect the latest changes:
+Now if you push your module again, you'll notice a new commit and that the documentation has been
+updated to reflect the latest changes:
 
 ```terminal
 $ buf push
+---
 4514ddced0584e73a100e82096c7958c
 ```
 

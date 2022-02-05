@@ -106,7 +106,8 @@ You may have recently gotten the following warning:
 Failure: buf.yaml has no version set. Please add "version: v1". See https://docs.buf.build/faq for more details.
 ```
 
-We have added the concept of version to the configuration. For a given version, the following will not change:
+We have added the concept of version to the configuration. For a given version, the following
+doesn't change:
 
 - Configuration file layout
 - Default configuration files

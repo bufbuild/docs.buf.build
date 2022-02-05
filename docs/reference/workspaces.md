@@ -116,7 +116,7 @@ in the `buf.work.yaml` file is enabled for the given `buf` operation (for exampl
 
 With this, modules can import from one another, and a variety of commands work on multiple modules rather than
 one. For example, if `buf lint` is run for an [input](../reference/inputs.md) that contains a `buf.work.yaml`,
-each of the modules contained within the workspace will be linted. Other commands, such as `buf build`, will merge
+each of the modules contained within the workspace is linted. Other commands, such as `buf build`, merge
 workspace modules into one, so that all of the files contained are consolidated into a single [image](../reference/images.md).
 
 ## Importing Across Modules
@@ -135,7 +135,7 @@ message PurchasePetRequest {
 ```
 
 Also note that you do **not** need to add the `buf.build/acme/paymentapis` module to your `deps` to use it within a workspace;
-the `buf.work.yaml` will suffice. Adding the module to your `deps` is only relevant when you're ready to push your modules to
+the `buf.work.yaml` should suffice. Adding the module to your `deps` is only relevant when you're ready to push your modules to
 the BSR, which is described [here](#pushing-modules).
 
 ## Workspace requirements
@@ -150,7 +150,7 @@ For example, the following is not a valid configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - foo
   - foo/bar
@@ -202,7 +202,7 @@ While these are usually in sync, the `google.api` schema can change. If we allow
 
 ```yaml
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - proto
   - vendor/github.com/googleapis/googleapis
@@ -213,7 +213,7 @@ Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is n
 
 ## Multiple module operations
 
-If the input for the command is a directory containing a `buf.work.yaml` file, the command will act upon all
+If the input for the command is a directory containing a `buf.work.yaml` file, the command acts upon all
 of the modules defined in the `buf.work.yaml`.
 
 For example, suppose that we update both the `paymentapis` and `petapis` directories with some `lint` failures,

@@ -44,7 +44,7 @@ that's OK! We'll cover everything you need to know here.
 
 ## 10.2 Install plugins {#install-plugins}
 
-You'll be using the `protoc-gen-go` and `protoc-gen-go-grpc` plugins to generate code with `buf generate`,
+You'll use the `protoc-gen-go` and `protoc-gen-go-grpc` plugins to generate code with `buf generate`,
 so you'll need to install them:
 
 ```terminal

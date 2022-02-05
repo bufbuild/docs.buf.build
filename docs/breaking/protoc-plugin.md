@@ -9,7 +9,7 @@ functionality as a `protoc` plugin. This is useful in situations where you alrea
 
 All flags and config are passed as an option to the plugin as JSON. This must be done with
 the `--buf-breaking_opt` flag as opposed to a parameter to `--buf-breaking_out` as the option
-will include the ":" character as part of JSON.
+includes the ":" character as part of JSON.
 
 The option for `protoc-gen-buf-breaking` has the following shape:
 
@@ -40,7 +40,7 @@ For example:
     format must be `bin` or `json` and cannot be `dir`, `git`, `tar`, `zip`, etc.
   - `limit_to_input_files` says to limit checks to those files under build by `protoc` in the
      current invocation, in this case the `file_to_generate` in the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto).
-     Generally, you will want to set this option when using this plugin. We do not make this
+     Generally, you want to set this option when using this plugin. We do not make this
      the default to have symmetry with `buf breaking`.
 
 ```sh

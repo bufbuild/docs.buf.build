@@ -35,14 +35,14 @@ In the above example, you can target the [input](../reference/inputs.md) defined
 $ buf lint
 ```
 
-The `buf lint` command will:
+The `buf lint` command:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Run the compilation result against the configured lint rules.
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Runs the compilation result against the configured lint rules.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default:
+If there are errors, they are printed out in a `file:line:column:message` format by default:
 
 ```sh
 $ buf lint

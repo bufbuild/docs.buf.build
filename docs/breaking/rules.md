@@ -8,7 +8,7 @@ As discussed in the overview, `buf` categorizes breaking rules into four main ca
   - `FILE`: Generated source code breaking changes on a per-file basis, that is changes that
     would break the generated stubs where definitions cannot be moved across files. This makes
     sure that for languages such as C++ and Python where header files are included, your source
-    code will never break for a given Protobuf change. This category also verifies wire and JSON
+    code never breaks for a given Protobuf change. This category also verifies wire and JSON
     compatibility.
   - `PACKAGE`: Generated source code breaking changes on a per-package basis, that is changes that
     would break the generated stubs, but only accounting for package-level changes. This is useful
@@ -24,7 +24,7 @@ As discussed in the overview, `buf` categorizes breaking rules into four main ca
 
 ## Categories
 
-As opposed to lint rules, you generally will not mix and exclude specific breaking change
+As opposed to lint rules, you generally shouldn't mix and exclude specific breaking change
 rules. Instead, it's best to choose one of the categories:
 
 - `FILE`
@@ -35,7 +35,7 @@ rules. Instead, it's best to choose one of the categories:
 Choose a category based on the following:
 
   - If you distribute your generated source code outside of a monorepo in any capacity, or want
-    to make sure that consumers of the generated source code will not have broken builds, use
+    to make sure that consumers of the generated source code don't experience broken builds, use
     `FILE` or `PACKAGE`. Choose `FILE` if you use (or might use) any languages that generate
     header files (such as C++ or Python), or `PACKAGE` if you only use languages that generate
     code on a per-package basis (such as Golang). **If in doubt, choose `FILE`.**
@@ -66,7 +66,7 @@ As an example of how this works, consider the rules `ENUM_NO_DELETE` and `PACKAG
 `ENUM_NO_DELETE` is in the `FILE` category, and checks that for each file, no enum is deleted.
 `PACKAGE_NO_DELETE` is in the `PACKAGE` category, and checks that for a given package, no enum is
 deleted, however enums are allowed to move between files within a package. Given these definitions,
-and given that a file does not change it's package (which is checked by `FILE_SAME_PACKAGE`, also
+and given that a file does not change its package (which is checked by `FILE_SAME_PACKAGE`, also
 included in every category), it is obvious that passing `ENUM_NO_DELETE` implies passing `PACKAGE_ENUM_NO_DELETE`.
 
 As another example, consider `FIELD_NO_DELETE`, a rule in the `FILE` and `PACKAGE` categories that checks that
@@ -84,8 +84,8 @@ would pass as well.
 
 **Category: `FILE`**
 
-These check that no enums, messages or services are deleted from a given file. Deleting
-an enum, message or service will delete the corresponding generated type, which could be
+These check that no enums, messages, or services are deleted from a given file. Deleting
+an enum, message or service deletes the corresponding generated type, which could be
 referenced in source code. Instead of deleting these types, deprecate them:
 
 ```protobuf
@@ -120,7 +120,7 @@ a breaking change.
 
 **Category: `FILE`**
 
-This checks that no file is deleted. Deleting a file will result in it's generated
+This checks that no file is deleted. Deleting a file results in its generated
 header file being deleted as well, which could break source code.
 
 ### `FILE_SAME_PACKAGE`
@@ -128,8 +128,8 @@ header file being deleted as well, which could break source code.
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`, `WIRE`**
 
 This checks that a given file has the same `package` value. Changing the package
-value will result in a ton of issues downstream in various languages, and for
-the `FILE` category, this will effectively result in any types declared within
+value results in a ton of issues downstream in various languages, and for
+the `FILE` category, this effectively results in any types declared within
 that file being considered deleted.
 
 ### `PACKAGE_NO_DELETE`
@@ -147,7 +147,7 @@ are deleted, and even though each of these types are checked, this is more of a 
 **Categories: `FILE`, `PACKAGE`**
 
 These check that no enum value or message field is deleted. Deleting an enum value or
-message field will result in the corresponding value or field being deleted from
+message field results in the corresponding value or field being deleted from
 the generated source code, which could be referenced. Instead of deleting these,
 deprecate them:
 
@@ -169,7 +169,7 @@ message Bar {
 
 These check that no enum value or message field is deleted without reserving the
 number. While deleting an enum value or message field is not directly a wire-breaking
-change, re-using these numbers in the future will result in either bugs (in the
+change, re-using these numbers in the future is likely to result in either bugs (in the
 case of enums) or actual wire incompatibilities (in the case of messages, if the type
 differs). This is a JSON breaking change for enum values if enum values are serialized
 as integers (which is an option). Protobuf provides the ability to [reserve](https://developers.google.com/protocol-buffers/docs/proto3#reserved)
@@ -200,7 +200,7 @@ the field (as well as reserving the name for JSON), so this is what we recommend
 These check that no enum value or message field is deleted without reserving the
 name. This is the JSON-equivalent of reserving the number - JSON uses field names
 instead of numbers (this is optional for enum fields, but allowed). Generally you
-will want to reserve both the number and the name. For example:
+want to reserve both the number and the name. For example:
 
 ```protobuf
 enum Foo {
@@ -241,7 +241,7 @@ service BazService {
 **Categories: `FILE`, `PACKAGE`**
 
 This checks that no oneof is deleted from a message. Various languages generate types
-for oneofs, which will no longer be present if deleted.
+for oneofs, which should no longer be present if deleted.
 
 ### `FILE_SAME_SYNTAX`
 
@@ -273,11 +273,11 @@ results in differences in generated code for many languages.
 **Categories: `FILE`, `PACKAGE`**
 
 These check that each of these [file options](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L318)
-do not change values between versions of your Protobuf schema. Changing any of these values will
-result in differences in your generated source code.
+do not change values between versions of your Protobuf schema. Changing any of these values
+results in differences in your generated source code.
 
 Note that you may not use any or all of these languages in your own development, and that's more
-than fine - if you don't set any of these options, none of these rules will ever break. You
+than fine - if you don't set any of these options, none of these rules should ever break. You
 may not have been aware some of these options existed - if so, put them in your rear view mirror.
 
 ### `ENUM_VALUE_SAME_NAME`
@@ -285,7 +285,7 @@ may not have been aware some of these options existed - if so, put them in your 
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`**
 
 This checks that a given enum value has the same name for each enum value number. For example
-You cannot change `FOO_ONE = 1` to `FOO_TWO = 1`. Doing so will result in potential JSON
+You cannot change `FOO_ONE = 1` to `FOO_TWO = 1`. Doing so results in potential JSON
 incompatibilities and broken source code.
 
 Note that for enums with `allow_alias` set, this verifies that the set of names in the
@@ -318,7 +318,7 @@ enum Foo {
 
 This checks that a given field has the same value for the [ctype option](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L514). This affects
 the C++ generator. This is a Google-internal field option, so generally you won't have this set,
-and this rule will have no effect.
+and this rule should have no effect.
 
 ### `FIELD_SAME_JSTYPE`
 
@@ -342,7 +342,7 @@ when changing a field to/from a map and some other type, denoting that the type 
 field changed from "FieldNameEntry" to something else. This is due to how maps are implemented
 in Protobuf, where every map is actually just a repeated field of an implicit message of name
 "FieldNameEntry". Correcting these error messages isn't impossible, and it's on our roadmap,
-but it just hasn't been high priority - Buf will still properly detect this change and output
+but it just hasn't been high priority - Buf still properly detects this change and outputs
 an error, so the pass/fail decision remains the same.
 
 ### `FIELD_WIRE_COMPATIBLE_TYPE`
@@ -358,8 +358,7 @@ This rule replaces `FIELD_SAME_TYPE` for the `WIRE` category. This does the foll
 * If the type is changed from string to bytes, no failure is produced.
   A special message talking about string and bytes compatibility is produced if the type changed
   from bytes to string. Per the docs, you can change between string and bytes IF the data is valid
-  UTF-8, but since we are only concerned with the API definition and cannot know how a user will
-  actually use the field, we still produce a failure.
+  UTF-8, but since we are only concerned with the API definition and cannot know how a user actually uses the field, we still produce a failure.
 * If the previous and current types are both enums, the enums are checked to see if the (1) the
   short names are equal (2) the previous enum is a subset of the current enum. A subset is defined
   as having a subset of the name/number enum values. If the previous is a subset, no failure is
@@ -400,7 +399,7 @@ This does the following:
 **Categories: `FILE`, `PACKAGE`, `WIRE_JSON`, `WIRE`**
 
 This checks that no field changes its label. The available labels are `optional`, `required`,
-and `repeated`. Changing to/from optional/required and repeated will be a generated source code and
+and `repeated`. Changing to/from optional/required and repeated means a generated source code and
 JSON breaking change. Changing to/from optional and repeated is actually not a wire-breaking change, 
 however changing to/from optional and required is. Given that it's unlikely to be advisable in any
 situation to change your label, and that there is only one exception, we find it best to just forbid
@@ -446,7 +445,7 @@ numbers in these ranges, and if these ranges are reserved, it was because an enu
 or field was deleted.
 
 Note that moving from `reserved 3 to 6;` to `reserved 2 to 8;`, for example, would technically be fine,
-however Buf will still fail in this case - making sure all ranges are covered is truly a pain,
+however Buf still fails in this case - making sure all ranges are covered is truly a pain,
 we have no other excuse. We could fix this in the future. For now, just do `reserved 3 to 6, 2, 7 to
 8;` to pass breaking change detection.
 
@@ -473,7 +472,7 @@ change detection, perhaps you should get an award.
 **Categories: `FILE`, `PACKAGE`**
 
 This checks that the [no_standard_descriptor_accessor](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L467) message option is not changed from
-false/unset to true. Changing this option to true will result in the `descriptor()` accessor is not
+false/unset to true. Changing this option to `true` results in the `descriptor()` accessor not being
 generated in certain languages, which is a generated source code breaking change. Protobuf has
 issues with fields that are named "descriptor", of any capitalization and with any number of
 underscores before and after "descriptor". Don't name fields this. Before v1.0, we may add a lint
@@ -500,7 +499,7 @@ can result in different HTTP verbs being used.
 
 We think the rules above represent a complete view of what is and isn't compatible with respect to Protobuf schema. We cover
 every available field within a [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L57)
-as of protobuf v3.11.4, and will cover additional fields as added. If we missed something, please [let us know](../contact.md) urgently.
+as of protobuf v3.11.4, as well as additional fields as added. If we missed something, please [let us know](../contact.md).
 
 However, we did leave out custom options. There's no way for `buf` to know the effects of your custom options, so we cannot
 reliably determine their compatibility. We may add the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api)

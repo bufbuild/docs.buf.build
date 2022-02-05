@@ -58,12 +58,12 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-By default, `buf generate` will look for a file of this shape named `buf.gen.yaml` in your current directory. This
+By default, `buf generate` looks for a file of this shape named `buf.gen.yaml` in your current directory. This
 can be thought of as a template for the set of plugins you want to invoke.
 
 Plugins are invoked in the order they are specified in the template, but each plugin has a per-directory parallel
-invocation, with results from each invocation combined before writing the result. This is equivalent behavior to
-`buf protoc --by_dir`. For more information, see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
+invocation, with results from each invocation combined before writing the result. For more information,
+see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 
@@ -83,12 +83,12 @@ $ buf generate foo
 
 The `buf generate` command will:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
   - Executes the configured `plugins` according to each `strategy`.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default.
+Any errors are printed out in a `file:line:column:message` format by default.
 For example:
 
 ```sh
@@ -127,7 +127,7 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
 ```
 
-The paths in the template and the `-o` flag will be interpreted as relative to your
+The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
 
 For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).

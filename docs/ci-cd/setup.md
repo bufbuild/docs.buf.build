@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 PROJECT=<your-project-name>
 # Use your desired buf version
 BUF_VERSION=1.0.0-rc12
-# buf will be installed to ~/bin/your-project-name.
+# buf is installed to ~/bin/your-project-name.
 BIN_DIR=$HOME/bin/$(PROJECT)
 
 curl -sSL \

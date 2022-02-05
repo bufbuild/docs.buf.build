@@ -4,8 +4,8 @@ title: Migration Guide (v1beta1 -> v1)
 ---
 
 Several changes were made between `v1beta1` and `v1`, but migrating between
-them is easy. This guide will walk through exactly what changed, and what you need to
-change when upgrading from `v1beta1` to `v1`.
+them is easy. This guide walks you through exactly what changed and what you need to
+update when upgrading from `v1beta1` to `v1`.
 
 ## Automatic migration
 
@@ -76,7 +76,7 @@ You'll notice that the filenames are equivalent, but the files have been rearran
                 └── datetime.proto
 ```
 
-The following sections will explain what changed between `v1beta1` and `v1` in more detail.
+The sections below explain what changed between `v1beta1` and `v1` in more detail.
 
 ## buf.yaml
 
@@ -134,7 +134,7 @@ directories:
 With a workspace, operations like `buf build`, `buf lint`, and `buf breaking` can target the directory
 containing the `buf.work.yaml` file to have the same experience before they split their single `buf.yaml`
 into multiple `buf.yaml` files. For example, running `buf lint` on a directory [input](../reference/inputs.md)
-containing a `buf.work.yaml` will lint *all* of the modules listed in the `buf.work.yaml`.
+containing a `buf.work.yaml` lints *all* of the modules listed in the `buf.work.yaml`.
 
 ### MINIMAL lint category
 
@@ -240,7 +240,7 @@ lint:
       - google/type/money.proto
 ```
 
-You'll notice that the filepath will not need to be updated because it's already relative to the module root. This transformation
+You'll notice that the filepath doesn't need to be updated because it's already relative to the module root. This transformation
 is automatically handled by the `buf config migrate-v1beta1` command, so you don't need to worry about these nuanced details.
 
 ## buf.gen.yaml
