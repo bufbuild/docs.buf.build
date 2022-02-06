@@ -5,7 +5,7 @@ title: Protoc Plugin
 
 Buf ships a binary `protoc-gen-buf-breaking` that performs the breaking change detection
 functionality as a `protoc` plugin. This is useful in situations where you already have a
-`protoc` plugin setup, such as [Bazel](/build/build-systems/bazel.md).
+`protoc` plugin setup, such as [Bazel](/build-systems/bazel.md).
 
 All flags and config are passed as an option to the plugin as JSON. This must be done with
 the `--buf-breaking_opt` flag as opposed to a parameter to `--buf-breaking_out` as the option

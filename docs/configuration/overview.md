@@ -65,7 +65,7 @@ without a `buf.gen.yaml` file in the current working directory yields an error (
 
 A large number of the `buf` commands support a `--config` flag that is used to override the `buf.yaml` configuration
 with a file path or direct JSON or YAML data. This is useful for situations where you may want to specify all options
-via the command line, for example with [Bazel](/build/build-systems/bazel.md) integrations and/or when using the `protoc` plugins.
+via the command line, for example with [Bazel](/build-systems/bazel.md) integrations and/or when using the `protoc` plugins.
 
 All commands have one or more `--.*config` flags that control this behavior. For example:
 

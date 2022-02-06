@@ -29,16 +29,7 @@
     {
       "type": "category",
       "label": "Build",
-      "items": [
-        "build/usage",
-        "build/internal-compiler",
-        {
-          "type": "category",
-          "label": "Build systems",
-          "items": ["build/build-systems/bazel"],
-          "collapsed": true
-        }
-      ],
+      "items": ["build/usage", "build/internal-compiler"],
       "collapsed": false
     },
     {
@@ -117,6 +108,12 @@
       "label": "CI/CD",
       "items": ["ci-cd/setup", "ci-cd/github-actions"],
       "collapsed": false
+    },
+    {
+      "type": "category",
+      "label": "Build systems",
+      "items": ["build-systems/bazel"],
+      "collapsed": true
     },
     {
       "type": "category",

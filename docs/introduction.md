@@ -32,7 +32,7 @@ Traditionally, adopting Protobuf presents a number of challenges across the API 
   - **Stub distribution is a difficult, unsolved process**: Organizations have to choose to either centralize their `protoc` workflow and distribute generated code, or
     require all service clients to run `protoc` independently. Because there is a steep learning curve to using `protoc` (and the associated `protoc` plugins) in a reliable
     manner, organizations often struggle with distributing their Protobuf files and stubs. This creates substantial overhead, and often requires a dedicated team to manage
-    the process. Even when using a build system like [Bazel](/build/build-systems/bazel.md), exposing APIs to external customers remains problematic.
+    the process. Even when using a build system like [Bazel](/build-systems/bazel.md), exposing APIs to external customers remains problematic.
 
   - **The tooling ecosystem is limited**: Lots of easy-to-use tooling exists today for JSON/REST APIs. Mock server generation, fuzz testing, documentation, and other daily
     API concerns are not widely standardized and easy to use for Protobuf APIs. As a result, teams regularly reinvent the wheel and build custom tooling to replicate the

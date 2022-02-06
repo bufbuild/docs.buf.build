@@ -56,7 +56,7 @@ and migration.
   of running commands for files one at a time, which breaks some lint and
   breaking change detection functionality. `buf` allows you to skip file discovery
   and specify your files [manually](../build/usage.md#limit-to-specific-files)
-  for use cases that require this, such as [Bazel](/build/build-systems/bazel.md).
+  for use cases that require this, such as [Bazel](/build-systems/bazel.md).
 - Prototool's lint functionality lets you select a single group, currently
   `google`, `uber1`, or `uber2`, and then add and remove rules from that
   specific group. `buf` instead provides [lint categories](../lint/rules.md)
