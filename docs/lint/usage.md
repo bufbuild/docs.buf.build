@@ -10,7 +10,7 @@ title: Usage
 
 To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with the following command:
+file with this command:
 
 ```sh
 $ buf config init

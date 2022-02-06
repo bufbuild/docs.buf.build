@@ -11,7 +11,7 @@ All flags and config are passed as an option to the plugin as JSON. This must be
 the `--buf-lint_opt` flag as opposed to a parameter to `--buf-lint_out` as the option
 includes the ":" character as part of JSON.
 
-The option for `protoc-gen-buf-lint` has the following shape:
+The option for `protoc-gen-buf-lint` has this shape:
 
 ```json
 {

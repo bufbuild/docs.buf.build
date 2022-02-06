@@ -10,7 +10,7 @@ title: Usage
 
 To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with the following command:
+file with this command:
 
 ```sh
 $ buf config init
@@ -67,7 +67,7 @@ to be the "against input". This is represented by the first CLI argument `<input
 flag.
 
 There are multiple ways to store and/or retrieve your previous schema version with `buf` inputs.
-The following sections outline some common scenarios and how to deal with them.
+The sections below outline some common scenarios and how to deal with them.
 
 ### git
 

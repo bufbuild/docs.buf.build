@@ -19,7 +19,7 @@ necessary nor recommended.
 
 ## 2.1 Remote Inputs {#remote-inputs}
 
-The `ls-files` command also works with remote inputs, such as the following:
+The `ls-files` command also works with remote inputs, such as this Git input:
 
 ```terminal
 $ buf ls-files git://github.com/bufbuild/buf-tour.git#branch=main,subdir=start/petapis
@@ -39,4 +39,4 @@ Here, `buf` is listing the files from a [`git`](/reference/inputs#git) archive, 
 `start/petapis/` prefix, which is the relative filepath from the root of the `git` archive.
 
 Several other [input formats](../reference/inputs) can be used in many `buf` commands.
-We'll explore more of these formats in the following sections.
+We'll explore more of these formats in the upcoming sections.

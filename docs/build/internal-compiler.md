@@ -73,7 +73,7 @@ FileDescriptorSets yourself and pass them to your Protobuf plugins to verify tha
 equivalent. There is one known exception with docs generated based on `json_name`, see [this
 issue](https://github.com/protocolbuffers/protobuf/issues/5587) to track this being updated within `protoc`.
 
-Given the following call:
+Instead of this...
 
 ```sh
 # Adjust -I as necessary; this example includes the current directory.
@@ -82,7 +82,7 @@ $ mkdir java
 $ protoc -I . --java_out=java $(find . -name '*.proto')
 ```
 
-You can instead use `buf`'s compiler to generate your stubs by using the `--descriptor_set_in` flag of `protoc`:
+...you can use `buf`'s compiler to generate your stubs with the `--descriptor_set_in` flag of `protoc`:
 
 ```sh
 # We need to do "buf build | buf ls-files -" instead of "buf ls-files"

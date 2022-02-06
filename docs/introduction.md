@@ -46,12 +46,12 @@ and infrastructure.
 ### The `buf` CLI
 
 The `buf` CLI is designed to be extremely simple to use, and helps you create consistent Protobuf APIs that preserve compatibility and comply with design best-practices.
-The tool is currently available on an open-source basis. The `buf` CLI incorporates the following components to help you create consistent Protobuf APIs:
+The tool is currently available on an open-source basis. The `buf` CLI incorporates these components to help you create consistent Protobuf APIs:
 
+- A newly-developed [high performance Protobuf compiler](build/internal-compiler.md).
 - A [linter](lint/overview.md) that enforces good API design choices and structure.
 - A [breaking change detector](breaking/overview.md) that enforces compatibility at the source code or wire level.
 - A [generator](generate/usage.md) that invokes your `protoc` plugins based on a configurable template.
-- A [protoc replacement](generate/high-performance-protoc-replacement.md) that uses Buf's newly-developed [high performance Protobuf compiler](build/internal-compiler.md).
 
 ### The Buf Schema Registry (BSR)
 

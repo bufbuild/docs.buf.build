@@ -12,7 +12,7 @@ gives you confidence that you'll be evolving your module in a backwards
 compatible way, there can still be situations in which you want to validate a change
 locally before pushing a new version to the BSR.
 
-This guide assumes that you've used and/or familiarized yourself with the following:
+This guide assumes that you've used and/or familiarized yourself with these topics:
 
   - [Modules](../bsr/overview.md#module)
   - [BSR](../bsr/overview.md)
@@ -36,7 +36,7 @@ $ buf generate
 
 Once you're satisfied with the changes, save the change in your VCS (such as a Git repository)
 like you would with regular code. If the module is published to the BSR, you can push a new
-version using the following command:
+version using this command:
 
 ```sh
 $ buf push --tag "$(git rev-parse HEAD)"

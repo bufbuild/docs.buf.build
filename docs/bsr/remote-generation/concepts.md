@@ -33,7 +33,7 @@ Pushing plugins to the BSR requires authenticating your Docker CLI using a **tok
 $ docker login -u myuser --password-stdin plugins.buf.build
 ```
 
-A plugin version can describe runtime library dependencies of its generated assets using [Docker labels](https://docs.docker.com/config/labels-custom-metadata/). All labels are prefixed with `build.buf.plugins.runtime_library_versions.` followed by the index of the dependency, followed by the attribute being specified. For example, version `v1.27.1-1` of the `library/protoc-gen-go` plugin declares its runtime dependency on the Go module `google.golang.org/protobuf` using the following labels in its `Dockerfile`:
+A plugin version can describe runtime library dependencies of its generated assets using [Docker labels](https://docs.docker.com/config/labels-custom-metadata/). All labels are prefixed with `build.buf.plugins.runtime_library_versions.` followed by the index of the dependency, followed by the attribute being specified. For example, version `v1.27.1-1` of the `library/protoc-gen-go` plugin declares its runtime dependency on the Go module `google.golang.org/protobuf` using these labels in its `Dockerfile`:
 
 ```Dockerfile
 LABEL "build.buf.plugins.runtime_library_versions.0.name"="google.golang.org/protobuf"

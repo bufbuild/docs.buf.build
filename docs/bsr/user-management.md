@@ -26,9 +26,8 @@ Every user that is part of an organization has an explicit role. Note that users
 
 ### Base resource roles
 
-Every organization has a set of base resource roles that apply to all members of the organization. 
-
-The following are the default roles:
+Every organization has a set of base resource roles that apply to all members of the organization.
+The default roles:
 
 | Repository | Template | Plugin |
 |:--|:--|:--|

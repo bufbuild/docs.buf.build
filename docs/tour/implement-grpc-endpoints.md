@@ -141,7 +141,7 @@ some of the dependencies you need for the generated code:
 $ go mod tidy
 ```
 
-You should notice the following changes (the version pins may differ):
+You should notice these changes (the version pins may differ):
 
 ```sh title="go.mod" {4-9}
  module github.com/bufbuild/buf-tour/petstore

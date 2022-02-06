@@ -18,7 +18,7 @@ feedback loop, and invites more opportunities for simple mistakes in each pushed
 
 If you're familiar with `protoc`, a workspace is similar to specifying multiple include `-I` paths.
 For example, if the Pet team manually vendored the `acme/payment/v2/payment.proto` file from the Payment
-team's API, you might have had something like the following:
+team's API, you might have had something like this:
 
 ```sh
 $ protoc \
@@ -64,8 +64,8 @@ The `buf` module workspace was created to solve exactly these problems (and more
 The [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file defines a workspace, and is
 generally placed at the root of a VCS repository.
 
-The following represents a complete example of a `buf.work.yaml` configuration file, as well as an
-example file tree layout containing the `buf.build/acme/petapis` and `buf.build/acme/paymentapis`
+The diagram and file below represent a complete example of a `buf.work.yaml` configuration file
+along with an example file tree layout containing the `buf.build/acme/petapis` and `buf.build/acme/paymentapis`
 modules:
 
 ```sh
@@ -123,7 +123,7 @@ workspace modules into one, so that all of the files contained are consolidated 
 
 In a workspace, **imports are resolved relative to each module's root**, or the placement of the `buf.yaml` (similar to
 include `-I` paths for `protoc`). For the example layout shown above, the `petapis/acme/pet/v1/pet.proto` file would import
-the `paymentapis/acme/payment/v2/payment.proto` file with the following:
+the `paymentapis/acme/payment/v2/payment.proto` file with this:
 
 ```protobuf title="petapis/acme/pet/v1/pet.proto"
 import "acme/payment/v2/payment.proto";
@@ -146,7 +146,7 @@ important for successful modern Protobuf development across a number of language
 
 **1. Workspace modules must not overlap, that is one workspace module can not be a sub-directory of another workspace module.**
 
-For example, the following is not a valid configuration:
+This, for example, is **not** a valid configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -163,7 +163,7 @@ to a number of major issues across the Protobuf plugin ecosystem.
 
 **2. All `.proto` file paths must be unique relative to each workspace module.**
 
-For example, consider the following configuration:
+Consider this configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -172,15 +172,14 @@ directories:
   - bar
 ```
 
-*Given the above configuration, it is invalid to have the following two files:*
+*Given the above configuration, it's invalid to have these two files:*
 
   - `foo/baz/baz.proto`
   - `bar/baz/baz.proto`
 
-This results in two files having the path `baz/baz.proto`. Given the following third file
-`bar/baz/bat.proto`:
+This results in two files having the path `baz/baz.proto`. Now add this file to the mix:
 
-```protobuf
+```protobuf title="bar/baz/bat.proto"
 // THIS IS DEMONSTRATING SOMETHING BAD
 syntax = "proto3";
 
@@ -195,10 +194,10 @@ pre-compilation, which `buf` does) the order of the imports given to the interna
 the authors are being honest, we can't remember if it's the first `-I` or second `-I` that wins -
 we have outlawed this in our own builds for a long time.
 
-While the above example is relatively contrived, the common error that comes up is when you
-have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google)
+While the above example is relatively contrived, a common error comes up when you vendor `.proto`
+files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google)
 has it's own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
-While these are usually in sync, the `google.api` schema can change. If we allowed the following:
+While these are usually in sync, the `google.api` schema can change. Imagine that we allowed this:
 
 ```yaml
 version: v1
@@ -209,7 +208,7 @@ directories:
   - vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 ```
 
-Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is not allowed.
+Which copy of `google/api/*.proto` wins? The answer: no one wins. Buf doesn't allow this.
 
 ## Multiple module operations
 
@@ -267,7 +266,7 @@ shown below:
 ```
 
 We want to add the `OrderV2` message to the `paymentapis/acme/payment/v2/payment.proto` file and use it in
-`petapis/acme/pet/v1/pet.proto`. The corresponding `git diff` looks like the following:
+`petapis/acme/pet/v1/pet.proto`. The corresponding `git diff` looks like this:
 
 ```protobuf title="paymentapis/acme/payment/v2/payment.proto" {8-15}
 // Order represents a monetary order.
@@ -297,7 +296,7 @@ message Order {
  message PurchasePetResponse {}
 ```
 
-Now if we try to build the `buf.build/acme/petapis` module, we'll notice the following error:
+Now if we try to build the `buf.build/acme/petapis` module, we'll notice this error:
 
 ```sh
 $ buf build petapis

@@ -30,7 +30,7 @@ All files of the same package should be in the same directory. All files should
 be in a directory that matches their package name. [(Why?)](../lint/rules.md#why)
 
 For example, if we have a [module](../bsr/overview.md#module) defined in the `proto` directory, we
-expect the following `package` values:
+expect these `package` values:
 
 ```sh
 .
@@ -53,7 +53,7 @@ The last component of a package should be a version. [(Why?)](../lint/rules.md#p
 
 Files should be named `lower_snake_case.proto` [(Why?)](../lint/rules.md#file_lower_snake_case)
 
-The following file options should have the same value, or all be unset, for
+All of the file options below should have the same value, or all be unset, for
 all files that have the same package: [(Why?)](../lint/rules.md#package_same_)
 
 - `csharp_namespace`
@@ -148,7 +148,7 @@ Avoid widely-used keywords for all types, especially packages. For example, if y
 package name is `foo.internal.bar`, the `internal` component blocks importing
 the generated stubs in other packages for Golang.
 
-Files should be ordered in the following manner (this matches [Google's current recommendations](https://developers.google.com/protocol-buffers/docs/style#file-structure)):
+Files should be laid out in this order (this matches [Google's current recommendations](https://developers.google.com/protocol-buffers/docs/style#file-structure)):
 
 - License header (if applicable)
 - File overview

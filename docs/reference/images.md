@@ -10,13 +10,13 @@ Images are, how they are used, and the various options associated with them here
 
 First we need to provide a short overview of how Protobuf plugins work.
 
-When you invoke the following command:
+When you invoke this command...
 
 ```sh
 $ protoc -I . --go_out=gen/go foo.proto
 ```
 
-The following is (roughly) what happens:
+...here's (roughly) what happens:
 
 - `protoc` compiles the file `foo.proto` (and any imports) and internally produces a
   [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L57),
