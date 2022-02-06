@@ -5,7 +5,7 @@ title: Protoc Plugin
 
 Buf ships a binary `protoc-gen-buf-lint` that performs the lint functionality as a `protoc`
 plugin. This is useful in situations where you already have a `protoc` plugin setup, such as
-[Bazel](https://bazel.build).
+[Bazel](/build/build-systems/bazel.md).
 
 All flags and config are passed as an option to the plugin as JSON. This must be done with
 the `--buf-lint_opt` flag as opposed to a parameter to `--buf-lint_out` as the option

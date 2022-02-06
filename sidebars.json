@@ -31,17 +31,20 @@
       "label": "Build",
       "items": [
         "build/usage",
-        "build/internal-compiler"
+        "build/internal-compiler",
+        {
+          "type": "category",
+          "label": "Build systems",
+          "items": ["build/build-systems/bazel"],
+          "collapsed": true
+        }
       ],
       "collapsed": false
     },
     {
       "type": "category",
       "label": "Generate",
-      "items": [
-        "generate/usage",
-        "generate/managed-mode"
-      ],
+      "items": ["generate/usage", "generate/managed-mode"],
       "collapsed": false
     },
     {
@@ -112,10 +115,7 @@
     {
       "type": "category",
       "label": "CI/CD",
-      "items": [
-        "ci-cd/setup",
-        "ci-cd/github-actions"
-      ],
+      "items": ["ci-cd/setup", "ci-cd/github-actions"],
       "collapsed": false
     },
     {
@@ -164,20 +164,8 @@
     {
       "type": "category",
       "label": "Reference",
-      "items": [
-        "reference/workspaces",
-        "reference/images",
-        "reference/inputs"
-      ],
+      "items": ["reference/workspaces", "reference/images", "reference/inputs"],
       "collapsed": false
-    },
-    {
-      "type": "category",
-      "label": "Build systems",
-      "items": [
-        "build-systems/bazel"
-      ],
-      "collapsed": true
     },
     "editor-integration",
     "roadmap",

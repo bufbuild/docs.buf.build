@@ -149,9 +149,9 @@ google/type/date.proto:50:3:Field "3" on message "Date" changed type from "int32
 
 By default, `buf` builds all files under the `buf.yaml` configuration file. You can instead
 manually specify the file or directory paths to run breaking change detection. This is an advanced
-feature intended to be used for editor or Bazel integration - it is better to let `buf` discover
-all files under management and handle this for you in general, especially when using the `FILE`
-category.
+feature intended to be used for editor or [Bazel](/build/build-systems/bazel.md) integration - it is better
+to let `buf` discover all files under management and handle this for you in general, especially when
+using the `FILE` category.
 
 Breaking change detection is limited to the given files if the `--path` flag is specified like so:
 

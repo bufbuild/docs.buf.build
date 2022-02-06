@@ -95,10 +95,6 @@ you can build your own tools and integrations with it.
 We'll be releasing `buf format` soon that allows for consistent formatting of your Protobuf files. This formatter will also
 allow for unified diffs to be printed, instead of editing your files directly.
 
-### Bazel rules
-
-We will support Bazel as a first-class citizen with official Bazel rules.
-
 ## Ecosystem
 
 ### Better IDE integration
