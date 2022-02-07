@@ -8,7 +8,7 @@ Buf provides official support for the [Bazel] build tool with the [`rules_buf`][
 * [Lint] Protobuf sources using the [`buf_lint_test`](#buf-lint-test) rule.
 * Perform [breaking change detection][breaking] for Protobuf [Inputs] using the [`buf_breaking_test`](#buf-breaking-test) rule.
 * Use the [`buf`][buf_cli] CLI as a Bazel [toolchain](#toolchains).
-* Use the [Gazelle](#gazelle) extension to generating Bazel rules.
+* Use the [Gazelle](#gazelle) extension to generate Bazel rules.
 
 ## Setup
 
@@ -41,7 +41,7 @@ rules_proto_toolchains()
 
 ### Using a specific version of the Protobuf rules
 
-[`rules_proto`][rules_proto] is required to use `rules_buf`. It's automatically loaded by default as part of `rules_buf_dependencies` but you can use a specific version of `rules_proto` by loading it _before_ `rules_buf`. Here's an example:
+[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, `rules_buf` automatically loads `rules_proto``, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
 
 ```python title="WORKSPACE"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -77,9 +77,21 @@ http_archive(
 
 ## Rules
 
-The `rules_buf` rules work alongside `proto_library` rules. All the rules are configured using the [`buf.yaml`][buf_yaml] file. 
+All `rules_buf` rules are configured using a standard [`buf.yaml`][buf_yaml] configuration file. You can reference a `buf.yaml` file in two ways:
 
-Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a `buf.work.yaml` that references to multiple `buf.yaml` files, this has to be done for each `buf.yaml` file independently.
+1. Using a raw reference:
+
+    ```python
+    config = "buf.yaml",
+    ```
+
+1. Using Bazel's built-in [`exports_files`][exports_files] function:
+
+    ```python
+    config = exports_files(["buf.yaml"])
+    ```
+
+For repositories that contain a `buf.work.yaml` that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
 
 > We recommend using the [Gazelle extension](#gazelle) to generate these rules.
 
@@ -121,14 +133,12 @@ We recommend having a single `buf_lint_test` for each `proto_library` target. Th
 Name  | Description | Type | Mandatory | Default
 :-----| :-----------| :--- | :-------- | :------
 `name` |  A unique name for this target.   | [Name][config_name] | required |  |
-`config` |  The [`buf.yaml`][buf_yaml] file.   | [Label][config_label] | optional | None |
-`targets` |  `proto_library` targets to lint   | [List of labels][config_label] | required |  |
+`config` |  The [`buf.yaml`][buf_yaml] file. | [Label][config_label] | optional | None |
+`targets` |  `proto_library` targets to lint | [List of labels][config_label] | required |  |
 
 ### `buf_breaking_test` {#buf-breaking-test}
 
-`buf_breaking_test` is a test rule that checks one or more `proto_library` targets for breaking changes. It requires an [image](/reference/images) file to check against.
-
-#### Example {#buf-breaking-test-example}
+`buf_breaking_test` is a test rule that checks one or more `proto_library` targets for breaking changes. It requires an [image](/reference/images) file to check against. Here's an example usage of the rule:
 
 ```python
 load("@rules_buf//buf:defs.bzl", "buf_breaking_test")
@@ -141,9 +151,8 @@ proto_library(
 
 buf_breaking_test(
     name = "foo_proto_breaking",
-    # Image file to check against.
-    against = "//:image.bin",
-    targets = [":foo_proto"],
+    against = "//:image.bin", # The Image file to check against.
+    targets = [":foo_proto"], # The Protobuf library
     config = ":buf.yaml",
 )
 ```
@@ -154,7 +163,7 @@ This can be run as:
 $ bazel test :foo_proto_breaking
 ```
 
-We recommend having a single `buf_breaking_test` for each buf module. For repositories that contain a `buf.work.yaml` that references multiple `buf.yaml` files, there needs to be exactly one `buf_breaking_test` for each `buf.yaml` file.
+We recommend having a single `buf_breaking_test` for each Buf module. For repositories that contain a `buf.work.yaml` that references multiple `buf.yaml` files, there needs to be exactly one `buf_breaking_test` for each `buf.yaml` file.
 
 Alternatively, a single `buf_breaking_test` can be used against each `proto_library` target. For this to work, `limit_to_input_files` attribute must be set to `True` as the against image file may contain other Protobuf files. Although this is closer to how bazel operates, for this particular use case it is not recommended. This [section](#example-module-vs-package-mode) explains the differences with an example.
 
@@ -172,9 +181,7 @@ The `<input>` can be a path to a Buf module or in one of [several other Image fo
 
 We recommend storing the Image file in a `testdata` directory and checking it in to version control and updating it as needed. In the case of repositories that follow a versioning scheme like [semver], you can update it on each new release either manually or with a post-release hook.
 
-As an alternative to version control, you can use CI artifacts. Many CI servers, like 
-
-As an alternative to checking in the Image file, CI artifacts can be used. Many CI servers, like [Travis CI][travis], enable you to upload build artifacts to a backend like [S3]. In CI, you can set up a pipeline to build the Image on each commit and then add those artifacts to your `WORKSPACE`:
+As an alternative to checking the Image file into version control, you can use CI artifacts. Many CI servers, like [Travis CI][travis], enable you to upload build artifacts to a backend like [S3]. In CI, you can set up a pipeline to build the Image on each commit and then add those artifacts to your `WORKSPACE`:
 
 ```python title="WORKSPACE"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
@@ -204,12 +211,9 @@ Name  | Description | Type | Mandatory | Default
 `limit_to_input_files` |  Only run breaking checks against the files in the targets. This has the effect of filtering the against image to only contain the files in the input. | Boolean | optional | `True` |
 `targets`|  `proto_library` targets to check for breaking changes | [List of labels][config_label] | `[]` |
 
-
 ## Toolchains
 
-The `buf` tool is packaged as a [toolchain]. It can be used to create custom rules that depend on `buf`.
-
-#### Example
+The [`buf`][buf_cli] CLI tool is packaged as a Bazel [toolchain]. You can be use it to create custom rules that depend on `buf`. Here's an example of a custom rule that uses the `buf` CLI as a toolchain:
 
 ```python
 def _buf_ls_files_impl(ctx):
@@ -225,7 +229,7 @@ buf_ls_files = rule(
     implementation = _buf_ls_files_impl,
     attrs = {
         "srcs": attr.label_list(allow_files = True),  
-        ...      
+        # Other attributes
     },
     toolchains = ["@rules_buf//tools/buf:toolchain_type"]
 )
@@ -233,15 +237,15 @@ buf_ls_files = rule(
 
 ## Gazelle
 
-[Gazelle] is a build file generator for Bazel projects that natively supports Protobuf. [`rules_buf`][rules_buf] includes a Gazelle extension for generating [`buf_lint_test`](#buf-lint-test) and [`buf_breaking_test`](#buf-breaking-test) rules. We recommend using Gazelle to generate build files.
+[Gazelle] is a build file generator for Bazel projects that natively supports Protobuf. [`rules_buf`][rules_buf] includes a Gazelle extension for generating [`buf_breaking_test`](#buf-breaking-test) and [`buf_lint_test`](#buf-lint-test) rules out of [`buf.yaml`][buf_yaml] configuration files.
 
 ### Setup
 
 Start by [setting up](#overview) `rules_buf`, then set up Gazelle using the [official instructions][gazelle_setup].
 
-Modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
+Once Gazelle is set up, modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
 
-```python title="BUIlD" {1-2,4-14,18}
+```python title="BUILD" {1-2,4-13,17}
 -load("@bazel_gazelle//:def.bzl", "gazelle")
 +load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
@@ -251,9 +255,8 @@ Modify the `BUILD` file with the `gazelle` target to include the `buf` extension
 +        # Loads the native proto extension
 +        "@bazel_gazelle//language/proto:go_default_library"
 +        # Loads the Buf extension
-+        #
-+        # NOTE: This needs to be loaded after the proto language
 +        "@rules_buf//gazelle/buf:buf",
++        # NOTE: This needs to be loaded after the proto language
 +    ],
 +)
 
@@ -265,7 +268,7 @@ gazelle(
 
 Export the `buf.yaml` file by adding `exports_files(["buf.yaml"])` to the `BUILD` file.
 
-> For workspaces do this for each `buf.yaml` file.
+> Inside Buf [workspaces], make sure to export each `buf.yaml` file.
 
 Now run Gazelle
 ```terminal
@@ -320,7 +323,7 @@ This mimics running `buf breaking` on a module. This is the most accurate way to
 
 Package mode generates a `buf_breaking_test` rule for each of the `proto_library` rule, which lets you test only the `proto_library` that has changed.
 
-Add this Gazelle directive to switch to package mde:
+Add this Gazelle directive to switch to package mode:
 
 ```python
 # gazelle:buf_breaking_mode package
@@ -377,7 +380,6 @@ Let's break down this scenario,
 - The CI will run `bazel test //...`.
 - This will always pass as along with the file the test is also removed.
 
-
 [bazel]: https://bazel.build
 [breaking]: /breaking/overview
 [buf_cli]: /installation
@@ -386,8 +388,9 @@ Let's break down this scenario,
 [build_files]: https://docs.bazel.build/versions/main/build-ref.html#BUILD_files
 [config_label]: https://bazel.build/docs/build-ref.html#labels
 [config_name]: https://bazel.build/docs/build-ref.html#name
+[exports_files]: https://docs.bazel.build/versions/main/be/functions.html#exports_files
 [gazelle]: https://github.com/bazelbuild/bazel-gazelle
-[gazelle_directives]: https://github.com/bazelbuild/bazel-gazelle#directives
+[gazelle_directive]: https://github.com/bazelbuild/bazel-gazelle#directives
 [gazelle_setup]: https://github.com/bazelbuild/bazel-gazelle#setup
 [image]: /reference/images
 [inputs]: /reference/inputs
@@ -401,3 +404,4 @@ Let's break down this scenario,
 [test]: https://docs.bazel.build/versions/main/skylark/rules.html#executable-rules-and-test-rules
 [toolchain]: https://docs.bazel.build/versions/main/toolchains.html
 [travis]: https://travis-ci.com
+[workspaces]: /reference/workspaces
