@@ -46,12 +46,14 @@ A plugin version must be a valid [semantic version](https://semver.org/spec/v2.0
 
 A **template** is a collection of **plugins** and associated configuration. It is used to identify a set of plugins that should be run together, such as `library/protoc-gen-go` and `library/protoc-gen-go-grpc`, where the output of the latter depends on the output of the former. Its primary utility is in our **remote generation registries**, where it is used to easily identify a collection of plugins, that when put together provide some functionality, such as the Go gRPC capabilities afforded by combining the aforementioned plugins.
 
-They belong to an **owner** and can be public or private. Public templates are available to anyone, while private templates are only available to the owner or members of the owning organization. 
+They belong to an **owner** and can be public or private. Public templates are available to anyone, while private templates are only available to the owner or members of the owning organization.
 
 Buf maintains several official templates:
 
-- https://buf.build/grpc/templates/go
+- https://buf.build/protocolbuffers/templates/js
 - https://buf.build/protocolbuffers/templates/go
+- https://buf.build/grpc/templates/web
+- https://buf.build/grpc/templates/go
 
 A template **version** defines the plugin versions to use. This allows a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
 

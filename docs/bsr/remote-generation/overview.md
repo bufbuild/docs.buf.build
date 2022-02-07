@@ -39,13 +39,15 @@ all parameters you currently use to generate code locally.
 
 Templates, like plugins, are intended to be shared. They should express a particular use case,
 but shouldn't be specific to an input module. For example, you may create a template that generates
-JavaScript for Node.js, and one that generates JavaScript optimized for web browsers. Neither of these concepts 
+JavaScript for Node.js, and one that generates JavaScript optimized for web browsers. Neither of these concepts
 are specific to a given input module, and they could be reused by others.
 
 Buf maintains several official templates:
 
-- https://buf.build/grpc/templates/go
+- https://buf.build/protocolbuffers/templates/js
 - https://buf.build/protocolbuffers/templates/go
+- https://buf.build/grpc/templates/web
+- https://buf.build/grpc/templates/go
 
 ## Remote Generation Registries
 
