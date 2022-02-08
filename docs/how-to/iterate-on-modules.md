@@ -24,7 +24,7 @@ The typical `buf` workflow involves editing your `.proto` files, and verifying
 the changes continue to conform to the configured [lint rules](../lint/rules.md).
 
 Once you've made your edits, you can manually verify your changes with the `buf` CLI,
-or by [configuring your editor](../editor-integration.mdx) to automatically
+or by [configuring your editor](../editor-integration.md) to automatically
 report errors on save.
 
 On the command line, that should look like this:

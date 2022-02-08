@@ -15,7 +15,7 @@ not already listed here.
 Vim integration for linting is available using the [ALE](https://github.com/dense-analysis/ale)
 lint engine via the [vim-buf](https://github.com/bufbuild/vim-buf) plugin.
 
-To use Vim integration `buf` must be [installed](installation.mdx). Using [vim-plug](https://github.com/junegunn/vim-plug),
+To use Vim integration `buf` must be [installed](installation.md). Using [vim-plug](https://github.com/junegunn/vim-plug),
 add this to your `.vimrc`:
 
 ```vim
@@ -34,7 +34,7 @@ problems, be sure to run a module-wide `buf lint` as part of your [CI](ci-cd/set
 ## Visual Studio Code  [![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/bufbuild.vscode-buf?color=2048ff&label=Buf&logo=visual-studio-code&style=flat-squar)](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf)
 
 The Visual Studio Code extension can be downloaded from the in-editor extension browser under the name "Buf"
-or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf). You need to have `buf` [installed](installation.mdx) to use it.
+or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf). You need to have `buf` [installed](installation.md) to use it.
 
 Our Buf extension currently supports [linting] your `.proto` files. It runs `buf lint --path` on save and reveals errors on a per-file basis. To detect package-level problems, be sure to run a module-wide `buf lint` as part of your CI process.
 
@@ -48,7 +48,7 @@ The roadmap for the extension includes full Language Server Protocol ([LSP]) sup
 IntelliJ IDEA, GoLand and other JetBrains IDEs can be configured with a File Watcher that runs `buf lint --path` on
 save and optionally surface issues as warnings or errors in your editor.
 
-Make sure `buf` is [installed](installation.mdx) on your PATH, then configure your buf lint FileWatcher according to
+Make sure `buf` is [installed](installation.md) on your PATH, then configure your buf lint FileWatcher according to
 [JetBrains' documentation](https://www.jetbrains.com/help/idea/using-file-watchers.html) using these values:
 
 | setting           | value                                   |
