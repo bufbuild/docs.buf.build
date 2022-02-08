@@ -81,7 +81,7 @@ lint:
 
 ### `ignore`
 
-The `ignore` key is **optional**, and allows directories or files to be excluded from all lint
+The `ignore` key is **optional**, and enables you to exclude directories or files from all lint
 rules when running `buf lint`. The specified directory or file paths **must** be relative to the
 `buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the config:
 
@@ -94,7 +94,7 @@ lint:
 
 ### `ignore_only`
 
-The `ignore_only` key is **optional**, and allows directories or files to be excluded from specific
+The `ignore_only` key is **optional**, and enables you to exclude directories or files from specific
 lint rules when running `buf lint` by taking a map from lint rule ID or category to path. As with
 `ignore`, the paths **must** be relative to the `buf.yaml`
 
@@ -175,8 +175,8 @@ annotations.
 The `enum_zero_value_suffix` key is **optional**, and controls the behavior of the
 `ENUM_ZERO_VALUE_SUFFIX` lint rule. By default, this rule verifies that the zero value of all
 enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide](https://developers.google.com/protocol-buffers/docs/style#enums).
-However, organizations may have a different preferred suffix, for example `_NONE`, and this
-allows this to be set like so:
+However, organizations may have a different preferred suffix, for example `_NONE`, and `enum_zero_value_suffix`
+enables you to set a suffix like this:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -254,7 +254,8 @@ service BarService {
 
 The `service_suffix` key is **optional**, and controls the behavior of the `SERVICE_SUFFIX` lint rule.
 By default, this rule verifies that all service names are suffixed with `Service`. However, organizations
-may have a different preferred suffix, for example `API`, and this allows this to be set like so:
+may have a different preferred suffix, for example `API`, and `service_suffix` enables you to
+set that suffix explicitly:
 
 ```yaml title="buf.yaml"
 version: v1

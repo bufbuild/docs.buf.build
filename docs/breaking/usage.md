@@ -167,7 +167,7 @@ $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/t
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
 ```sh

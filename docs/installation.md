@@ -125,7 +125,7 @@ VERSION="1.0.0-rc12" && \
 The binary can be installed from source if `go` is installed, however we recommend using one of
 the release assets instead.
 
-```
+```sh
 # Substitute GOBIN for your bin directory
 # Leave unset to default to $GOPATH/bin
 GO111MODULE=on GOBIN=/usr/local/bin go install \
@@ -134,7 +134,7 @@ GO111MODULE=on GOBIN=/usr/local/bin go install \
 
 ## Use the Docker Image
 
-Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that allows
+Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that enables
 you to use `buf` as part of your Docker workflow.
 
 For example, you can run `buf lint` with this command:

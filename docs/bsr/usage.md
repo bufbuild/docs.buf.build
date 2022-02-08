@@ -129,7 +129,7 @@ The BSR facilitates both local and remote code generation, simplifying how modul
 
 ### Local code generation
 
-The `buf generate` command allows you to run local plugins to generate code from remote modules hosted on the BSR. If you already have a workflow that invokes plugins with `protoc` then adopting `buf generate` should be straightforward.
+The `buf generate` command enables you to run local plugins to generate code from remote modules hosted on the BSR. If you already have a workflow that invokes plugins with `protoc` then adopting `buf generate` should be straightforward.
 
 Add a `buf.gen.yaml` file and list all the plugins as well as their options. Here is a quick example that generates C++ and Java code.
 

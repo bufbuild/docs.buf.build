@@ -54,7 +54,7 @@ and migration.
 - Prototool runs file discovery for your Protobuf files, but provides no
   mechanism to skip file discovery and specify your files manually, outside
   of running commands for files one at a time, which breaks some lint and
-  breaking change detection functionality. `buf` allows you to skip file discovery
+  breaking change detection functionality. `buf` enables you to skip file discovery
   and specify your files [manually](../build/usage.md#limit-to-specific-files)
   for use cases that require this, such as [Bazel](https://bazel.build).
 - Prototool's lint functionality lets you select a single group, currently
@@ -193,14 +193,14 @@ There is no equivalent in `buf`.
 
 Corresponds to `lint.use` in `buf`.
 
-`buf` allows you to specify categories or ids in `lint.use`, while `lint.group` in Prototool
+`buf` enables you to specify categories or ids in `lint.use`, while `lint.group` in Prototool
 only specifies the single group to use as a base set of rules.
 
 ### `lint.ignores`
 
 Corresponds `lint.ignore_only` in `buf`.
 
-`buf` also allows you to ignore all rules for specific directories through `lint.ignore`.
+`buf` also enables you to ignore all rules for specific directories through `lint.ignore`.
 
 ### `lint.rules`
 

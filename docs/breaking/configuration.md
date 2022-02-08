@@ -77,7 +77,7 @@ breaking:
 
 ### `ignore`
 
-The `ignore` key is **optional**, and allows directories or files to be excluded from all breaking
+The `ignore` key is **optional**, and enables you to exclude directories or files from all breaking
 rules when running `buf breaking`. The specified directory or file paths **must** be relative to the
 `buf.yaml`. For example, the breaking result in `foo/bar.proto` is ignored if you apply this:
 
@@ -104,7 +104,7 @@ breaking:
 
 ### `ignore_only`
 
-The `ignore_only` key is **optional**, and allows directories or files to be excluded from specific breaking
+The `ignore_only` key is **optional**, and enables you to exclude directories or files from specific breaking
 rules when running `buf breaking` by taking a map from breaking rule ID or category to path. As with `ignore`,
 the paths **must** be relative to the `buf.yaml`. **We do not recommend this option in general.**
 

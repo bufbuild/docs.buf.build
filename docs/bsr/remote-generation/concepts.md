@@ -53,7 +53,7 @@ Buf maintains several official templates:
 - https://buf.build/grpc/templates/go
 - https://buf.build/protocolbuffers/templates/go
 
-A template **version** defines the plugin versions to use. This allows a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
+A template **version** defines the plugin versions to use. This enables a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
 
 Template management is designed to discourage introducing breaking changes to consumers. This is why plugin parameters are defined on the template itself rather than on a per-version basis.
 

@@ -55,7 +55,7 @@ For example, in the `buf.gen.yaml` example shown above, the `protoc-gen-go` plug
 By default, a `protoc-gen-<name>` program is expected to be on your `PATH` so that it can be discovered and
 executed by `buf`. This can be overridden with the [path](#path) option shown below.
 
-In the case of `<remote>`, this allows you to run `buf generate` with a remote plugin, using the fully-qualified
+In the case of `<remote>`, this enables you to run `buf generate` with a remote plugin, using the fully-qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
 example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
 and does not require a local installation of the `go` plugin. If no version is specified, the generation defaults
