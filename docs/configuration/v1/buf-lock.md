@@ -61,7 +61,7 @@ deps:
 ```
 
 > Older versions of `buf` may include `branch`, `commit`, `digest`, and `create_time`
-> as a part of the dependencies. The latest `buf.lock` file will not include these fields when
-> `buf mod update` is run on a newer version of `buf`.
+> as a part of the dependencies. Your `buf.lock` shouldn't include these fields if you've
+> run `buf mod update` with a newer version of `buf`.
 
 For more on updating dependencies and pushing modules, please refer to the [Iterate on Modules](../../how-to/iterate-on-modules.md) guide.
