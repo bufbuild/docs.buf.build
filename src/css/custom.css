@@ -1,6 +1,6 @@
 /* stylelint-disable docusaurus/copyright-header */
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Work+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400&display=block");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;600&family=Work+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400&display=block");
 
 /*
  * These are Infima variables.
@@ -9,10 +9,13 @@
 :root {
   /* Infima Colors */
   --ifm-color-primary: #161ede; /* buf-blue from bufbuild/core */
+  --ifm-color-primary-light: rgb(119, 225, 255);
   --ifm-color-primary-dark: #191e8c;
   --ifm-color-primary-darker: #191e8c;
   --ifm-color-primary-darkest: #191e8c;
   --ifm-font-color-base: #090a3a; /* standard font color from bufbuild/core */
+  --ifm-color-orange: #f97316; /* for strong contrasts */
+  --ifm-color-gray: #475569;
 
   /* Colors specific to the buf header and footer */
   --buf-footer-color: #4b4e6b;
@@ -65,6 +68,11 @@
   --ifm-color-info: rgba(52, 152, 219, 0.1);
   --ifm-color-danger: rgba(231, 76, 60, 0.1);
   --ifm-color-warning: rgba(230, 126, 34, 0.1);
+
+  /* Syntax widget */
+  --syntax-color-static: var(--ifm-color-gray);
+  --syntax-color-variable: var(--ifm-color-primary);
+  --syntax-color-default: var(--ifm-color-orange);
 }
 
 /* Infima v0.2.0-alpha.26 does not apply it's heading font family variable to

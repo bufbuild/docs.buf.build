@@ -19,7 +19,7 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
 	title="Generated Go module path syntax"
-	example="go.buf.build/grpc/go/googleapis/googleapis"
+	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
 	segments={[
 	{"label": "go.buf.build", "kind": "static"},
 	{"separator": "/"},

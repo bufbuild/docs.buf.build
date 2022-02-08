@@ -1,6 +1,6 @@
 .syntaxContainer {
   border: 1.5px solid var(--buf-light-button-border-color);
-  padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+  padding: 1rem 1.5rem 1rem 1.5rem;
   border-radius: 0.25rem;
   margin-bottom: 0.75rem;
   display: flex;
@@ -9,27 +9,30 @@
 }
 
 .syntax {
-  font-family: var(--buf-mono-font);
+  font-family: var(--ifm-font-family-monospace);
   font-size: 1.1rem;
+  border-radius: 0.25rem;
+  background-color: rgb(246, 248, 250);
   letter-spacing: -0.05rem;
-  background-color: #E2E8F0;
   border-radius: 0.2rem;
-  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-}
-
-.syntaxFlex {
-  display: flex;
-  flex-direction: column;
+  padding: 0.5rem 0 0.5rem 1rem;
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
+}
+
+.legendLeft {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .legend {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .legend .legendName {
@@ -37,11 +40,34 @@
 }
 
 .legend .legendContent {
-  font-family: var(--buf-mono-font);
+  font-family: var(--ifm-font-family-monospace);
   display: flex;
   gap: 0.5rem;
 }
 
+.examples {
+  margin-top: 0.5rem;
+}
+
 .example {
-  font-family: var(--buf-mono-font);
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 600;
+}
+
+.static {
+  color: var(--syntax-color-static);
+}
+
+.default {
+  color: var(--syntax-color-default);
+}
+
+.variable {
+  color: var(--syntax-color-variable);
+}
+
+.separator {
+  color: black;
+  font-weight: 500;
+  padding: 0 0.05rem 0 0.05rem;
 }

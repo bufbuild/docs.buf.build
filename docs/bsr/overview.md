@@ -28,7 +28,7 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Module name syntax"
-  example="buf.build/acme/weather"
+  examples={["buf.build/acme/weather"]}
   segments={[
     {label: "buf.build", kind: "default"},
     {separator: "/"},
