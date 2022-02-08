@@ -60,4 +60,8 @@ deps:
     commit: 5173e5cfeb904508839378050d95e1de
 ```
 
+Note that older versions of `buf` may include `branch`, `commit`, `digest`, and `create_time`
+as a part of the dependencies. Older `buf.lock` files are updated without the fields when
+`buf mod update` is run on a newer version of `buf`.
+
 For more on updating dependencies and pushing modules, please refer to the [Iterate on Modules](../../how-to/iterate-on-modules.md) guide.
