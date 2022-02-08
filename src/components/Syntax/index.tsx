@@ -81,11 +81,13 @@ const Legend = ({ segments }: { segments: Segment[] }) => {
           <span className={styles.static}>static</span>
         )}
         {hasKind(segments, Kind.DEFAULT) && (
-          <span className={styles.default}>default</span>
+          <span className={styles.default}>
+            {"("}default{")"}
+          </span>
         )}
         {hasKind(segments, Kind.VARIABLE) && (
           <span className={styles.variable}>
-            {"["}variable{"]"}
+            {"{"}variable{"}"}
           </span>
         )}
       </span>
