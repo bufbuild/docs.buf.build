@@ -112,4 +112,12 @@ Set this environment variable.
 $ export GOPRIVATE=go.buf.build
 ```
 
+If you already have `GONOSUMDB` configured, you will also need to add `go.buf.build` to it:
+
+```terminal
+$ export GONOSUMDB=$GONOSUMDB,go.buf.build
+```
+
+This is not necessary if you do not already have `GONOSUMDB` configured, as `GOPRIVATE` automatically sets it in this case.
+
 For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).
