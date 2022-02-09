@@ -40,7 +40,7 @@ LABEL "build.buf.plugins.runtime_library_versions.0.name"="google.golang.org/pro
 LABEL "build.buf.plugins.runtime_library_versions.0.version"="v1.27.1"
 ```
 
-Plugins must be valid [synthetic versions](#synthetic-version).
+You need to give plugins valid [synthetic versions](#synthetic-version).
 
 ## Template
 
