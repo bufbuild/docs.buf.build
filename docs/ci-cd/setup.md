@@ -91,7 +91,7 @@ buf lint
 ```
 
 If, on the other hand, your `buf.yaml` is defined in a nested directory, such as the `proto`
-directory, the command looks like the following:
+directory, the command looks like this:
 
 ```sh
 buf lint proto
@@ -99,7 +99,7 @@ buf lint proto
 
 For `buf breaking`, the process is similar, but be sure to set the full `https` or `ssh`
 remote as the target. If your `buf.yaml` is defined at the root of your repository,
-the command looks like the following:
+the command looks like this:
 
 ```sh
 buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
@@ -108,7 +108,7 @@ buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=m
 ```
 
 Again, if your `buf.yaml` is defined in a nested directory, such as the `proto` directory,
-the command looks like the following (notice the `subdir` parameter):
+the command looks like this (notice the `subdir` parameter):
 
 ```sh
 buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
@@ -117,7 +117,7 @@ buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#br
 ```
 
 If you are on [TravisCI](https://travis-ci.org) or [CircleCI](https://circleci.com) they
-do not clone any branches outside of the one being tests, so this allows `buf` to clone
+do not clone any branches outside of the one being tested, so this enables `buf` to clone
 using the remote and run the [breaking change detector](../breaking/overview.md).
 
 ## CI authentication (Optional)
@@ -131,7 +131,7 @@ For example:
   - [CircleCI](https://circleci.com/docs/2.0/env-vars/)
   - [GitHub Actions](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
-You can then access the token in your job using an environment variable, which allows you to create a
+You can then access the token in your job using an environment variable, which enables you to create a
 `.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`
 and your username as `BUF_USER`:
 

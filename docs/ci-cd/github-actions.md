@@ -32,7 +32,7 @@ In this guide, the API token is set to `BUF_TOKEN`.
 We will start with the `buf-setup` action. All the other Buf GitHub Actions require
 `buf` to be installed on your GitHub Action runner, and `buf-setup` will handle that for us.
 
-Add the following `.github/workflows/pull-request.yaml` file to your repository:
+Add this `.github/workflows/pull-request.yaml` file to your repository:
 
 ```yaml title=".github/workflows/pull-request.yaml"
 name: buf-pull-request
@@ -69,8 +69,7 @@ steps:
 ## buf-lint
 
 Now that you have installed `buf`, let's configure lint. The `buf-lint` action lints your
-pull request and has the ability to provide in-line comments. Add the following
-after your `buf-setup` step:
+pull request and has the ability to provide in-line comments. Add this after your `buf-setup` step:
 
 ```yaml title=.github/workflows/pull-request.yaml {9}
 name: buf-pull-request
@@ -90,8 +89,7 @@ We will do something similar for the breaking change detection. The `buf-breakin
 changes to your API based on a given repository to check against, such as the `HEAD` of the `main` branch of
 your repository.
 
-Add the following after your `buf-lint` step, as well as make the following adjustments to
-your previous steps.
+Add this after your `buf-lint` step and make these adjustments to your previous steps.
 
 ```yaml title=.github/workflows/pull-request.yaml {10-13}
 name: buf-pull-request
@@ -118,7 +116,7 @@ Now that we've added steps for pull request workflow, let's add a **second workf
 to push to the BSR once the pull request has merged. We cannot use the same workflow
 since we do not want to be pushing to the BSR on each commit pushed to the pull request.
 
-Add the following `.github/workflows/push.yaml` file alongside your pull request workflow
+Add this `.github/workflows/push.yaml` file alongside your pull request workflow
 configuration.
 
 ```yaml title=".github/workflows/push.yaml" {1-5,17-19}

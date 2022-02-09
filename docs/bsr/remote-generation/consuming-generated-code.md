@@ -13,7 +13,7 @@ The generated source code is hosted in the BSR Go module proxy.
 
 The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref/mod#goproxy-protocol) for Protobuf modules by generating assets on-the-fly.
 
-The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to the following format:
+The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to this format:
 
 import Syntax from "@site/src/components/Syntax";
 
@@ -99,30 +99,38 @@ To generate Go code from private modules you'll need to make sure the Go tooling
 
 1. Login to the BSR:
 
-The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
-You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
+   The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
+   You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
 
-```terminal
-$ buf registry login
-```
+   ```terminal
+   $ buf registry login
+   ```
 
-```sh title="~/.netrc"
-machine buf.build
-    login <USERNAME>
-    password <TOKEN>
-machine go.buf.build
-    login <USERNAME>
-    password <TOKEN>
-```
+   ```sh title="~/.netrc"
+   machine buf.build
+       login <USERNAME>
+       password <TOKEN>
+   machine go.buf.build
+       login <USERNAME>
+       password <TOKEN>
+   ```
 
 2. Go Environment Configuration
 
-The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
+   The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
 
-Set this environment variable.
+   Set this environment variable.
 
-```terminal
-$ export GOPRIVATE=go.buf.build
-```
+   ```terminal
+   $ export GOPRIVATE=go.buf.build
+   ```
 
-For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).
+   If you already have `GONOSUMDB` configured, you will also need to add `go.buf.build` to it:
+
+   ```terminal
+   $ export GONOSUMDB=$GONOSUMDB,go.buf.build
+   ```
+
+   This is not necessary if you do not already have `GONOSUMDB` configured, as `GOPRIVATE` automatically sets it in this case.
+
+   For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).

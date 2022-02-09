@@ -68,7 +68,7 @@ Inputs are specified as the first argument on the command line, and with the `--
 compare against Input on `buf breaking`.
 
 For each of `buf {build,lint,breaking,generate,ls-files}`, the Input is specified as the first argument.
-Inputs are specified as a string, and have the following structure:
+Inputs are specified as a string, and have this structure:
 
 ```
 path#option_key1=option_value1,option_key2=option_value2
@@ -262,7 +262,7 @@ Note that `-o` is an alias for `--output`.
 **Images can also be created in the `bin` Format using `protoc`**. See the [internal compiler](../build/internal-compiler.md)
 documentation for more details.
 
-For example, the following is a valid way to compile all Protobuf files in your current directory,
+For example, the command below shows a valid way to compile all Protobuf files in your current directory,
 produce a [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
 (which is also an Image, as described in the [Image documentation](images.md)) to stdout, and read this Image as binary
 from stdin:
@@ -365,7 +365,7 @@ The format of an Input can be explicitly set as described above.
 
 ## Deprecated Formats
 
-The following formats are deprecated. They should continue to work forever, but we recommend
+The formats below are deprecated. They should continue to work forever, but we recommend
 updating if you are explicitly specifying any of these.
 
 | Format | Replacement |
@@ -388,7 +388,7 @@ Git repositories are cloned using the `git` command, so any credential helpers y
 are automatically used.
 
 Basic authentication can be also specified for remote archives, Git repositories, and Image files over
-HTTPS with the following environment variables:
+HTTPS with these environment variables:
 
 - `BUF_INPUT_HTTPS_USERNAME` is the username. For GitHub, this is your GitHub user.
 - `BUF_INPUT_HTTPS_PASSWORD` is the password. For GitHub, this is a personal access token for your GitHub User.
@@ -411,7 +411,7 @@ Public key authentication can be used for remote Git repositories over SSH.
 Git repositories are cloned via the `git` command, so by default, `buf` uses your existing Git SSH
 configuration, including any identities added to `ssh-agent`.
 
-The following environment variables can also be used:
+These environment variables can also be used:
 
 - `BUF_INPUT_SSH_KEY_FILE` is the path to the private key file.
 - `BUF_INPUT_SSH_KNOWN_HOSTS_FILES` is a colon-separated list of known hosts file paths.
@@ -430,7 +430,7 @@ file pre-installed, so this should work out of the box.
 
 ## Input configuration
 
-By default, `buf` looks for a [`buf.yaml`](../configuration/v1/buf-yaml.md) in the following manner:
+By default, `buf` looks for a [`buf.yaml`](../configuration/v1/buf-yaml.md) in this manner:
 
 - For `dir, bin, json` Inputs, `buf` looks at your current directory for a `buf.yaml` file.
 - For `tar` and `zip` Inputs, `buf` looks at the root of the archive for a `buf.yaml` file

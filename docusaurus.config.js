@@ -53,10 +53,12 @@ module.exports = {
     },
     navbar: {
       // We override the theme's navbar and support the additional option "bufAppearance"
-      // on links. It can have one of the following values:
+      // on links. It can have one of these values:
+      //
       // - "button" - styles the link as a dark button
       // - "slack" - styles the link as a light button with a slack icon
       // - "github" - styles the link as a light button with a github icon
+      //
       // For the "github" appearance, the stargazer count for the GitHub repository is
       // rendered as the link label (this requires a "href" to a GitHub repository).
       hideOnScroll: false,

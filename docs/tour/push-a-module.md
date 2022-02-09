@@ -43,7 +43,7 @@ Name | Remote | Owner | Repository
 
 ## 7.2 Create a Repository {#create-a-repository}
 
-Create a new `petapis` repository for your module with the following command:
+Create a new `petapis` repository for your module with this command:
 
 ```terminal
 $ buf beta registry repository create buf.build/$BUF_USER/petapis --visibility public
@@ -75,7 +75,7 @@ Update your `buf.yaml` so that its `name` matches the repository you just create
 
 ## 7.4 Push the Module {#push-the-module}
 
-Push the module to the `buf.build/$BUF_USER/petapis` repository with the following command (in the
+Push the module to the `buf.build/$BUF_USER/petapis` repository with this command (in the
 `petapis` directory containing your `buf.yaml`):
 
 ```terminal

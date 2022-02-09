@@ -4,7 +4,7 @@ title: 4 Detect Breaking Changes
 ---
 
 You can detect [breaking changes][breaking] between different versions of your API. `buf` is able to
-detect the following categories of breaking changes:
+detect these categories of breaking changes:
 
 - [`FILE`](../breaking/rules.md#categories)
 - [`PACKAGE`](../breaking/rules.md#categories)

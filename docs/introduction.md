@@ -46,7 +46,7 @@ and infrastructure.
 ### The `buf` CLI
 
 The `buf` CLI is designed to be extremely simple to use, and helps you create consistent Protobuf APIs that preserve compatibility and comply with design best-practices.
-The tool is currently available on an open-source basis. The `buf` CLI incorporates the following components to help you create consistent Protobuf APIs:
+The tool is currently available on an open-source basis. The `buf` CLI incorporates these components to help you create consistent Protobuf APIs:
 
 - A newly-developed [high performance Protobuf compiler](build/internal-compiler.md).
 - A [linter](lint/overview.md) that enforces good API design choices and structure.
@@ -64,7 +64,7 @@ are planning with the BSR. For a quick overview, see our [roadmap](roadmap.md).
 
 ## Where to go from here
 
-To install `buf`, please see the [installation](installation.mdx) page.
+To install `buf`, please see the [installation](installation.md) page.
 
 Next, we recommend completing the [tour](tour/introduction.md). The tour provides an overview of most of the existing functionality of Buf and takes
 approximately 20 minutes to complete.

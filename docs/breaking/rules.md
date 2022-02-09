@@ -32,7 +32,7 @@ rules. Instead, it's best to choose one of the categories:
 - `WIRE`
 - `WIRE_JSON`
 
-Choose a category based on the following:
+Choose a category based on these criteria:
 
   - If you distribute your generated source code outside of a monorepo in any capacity, or want
     to make sure that consumers of the generated source code don't experience broken builds, use
@@ -349,7 +349,7 @@ an error, so the pass/fail decision remains the same.
 
 **Categories: `WIRE`**
 
-This rule replaces `FIELD_SAME_TYPE` for the `WIRE` category. This does the following:
+This rule replaces `FIELD_SAME_TYPE` for the `WIRE` category. The consequences of this:
 
 * If the type changes between int32, uint32, int64, uint64, and bool, no failure is produced.
 * If the type changes between sint32 and sint64, no failure is produced.
@@ -372,7 +372,7 @@ This rule replaces `FIELD_SAME_TYPE` for the `WIRE` category. This does the foll
 
 **Categories: `WIRE_JSON`**
 
-This rule replaces `FIELD_SAME_TYPE` for the `WIRE_JSON` category. This does the following:
+This rule replaces `FIELD_SAME_TYPE` for the `WIRE_JSON` category.
 
 JSON still allows for some exchanging of types, but due to how various fields are serialized, the
 rules are stricter. See https://developers.google.com/protocol-buffers/docs/proto3#json - for example,
@@ -380,7 +380,7 @@ int32, sint32, uint32 can be exchanged, but 64-bit numbers have a different repr
 Since sint32 is not compatible with int32 or uint32 in `WIRE`, we have to limit this to allowing int32
 and uint32 to be exchanged in JSON.
 
-This does the following:
+The consequences of this:
 
 * If the type changes between int32 and uint32, no failure is produced.
 * If the type changes between int64 and uint64, no failure is produced.

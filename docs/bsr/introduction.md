@@ -67,7 +67,7 @@ Generating an SDK client should be as simple as keeping code up-to-date like any
 
 ## Let's Get Started
 
-Once you've [installed](../installation.mdx) the latest version `buf`, you're ready to use the BSR!
+Once you've [installed](../installation.md) the latest version `buf`, you're ready to use the BSR!
 
 Here are a few ways to get moving:
 

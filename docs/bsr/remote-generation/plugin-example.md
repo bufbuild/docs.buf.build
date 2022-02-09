@@ -13,7 +13,7 @@ The `protoc-gen-twirp` source code can be found [here](https://github.com/twitch
 
 ## 1. Docker registry authentication
 
-To push plugins to the BSR, you will need to authenticate to the plugin Docker registry using `docker login`. The username doesn't matter, but has to be provided. Obtain an API token (password) from the [Settings Page](https://buf.build/settings/user) and run the following command:
+To push plugins to the BSR, you will need to authenticate to the plugin Docker registry using `docker login`. The username doesn't matter, but has to be provided. Obtain an API token (password) from the [Settings Page](https://buf.build/settings/user) and run this command:
 
 ```terminal
 $ docker login -u myuser plugins.buf.build
@@ -84,7 +84,7 @@ This Dockerfile uses [multi-stage builds](https://docs.docker.com/develop/develo
 
 The intended `GOOS/GOARCH` **must** be `linux/amd64`. This is important, especially if you're building images on an ARM-based machine, such as Apple M1 computers.
 
-Normally `go install` would install to `$GOPATH/bin/$GOOS_$GOARCH` when cross-compiling, so we added the following line to copy the executable into the `/go/bin` path.
+Normally `go install` would install to `$GOPATH/bin/$GOOS_$GOARCH` when cross-compiling, so we added this line to copy the executable into the `/go/bin` path.
 
 ```Dockerfile
 RUN bash -c 'find /go/bin/${GOOS}_${GOARCH}/ -mindepth 1 -maxdepth 1 -exec mv {} /go/bin \;'
@@ -100,13 +100,13 @@ Since Go binaries are statically linked and have no further dependencies the bin
 
 Once we prepared the Dockerfile, the next step is to build and tag an image.
 
-We'll do so locally by running the following command:
+We'll do so locally by running this command:
 
 ```terminal
 $ docker build -f Dockerfile.twirp -t plugins.buf.build/demolab/twirp:v8.1.0-1 .
 ```
 
-We're tagging the version as `v8.1.0-1` even though the upstream version of the plugin is `v8.1.0`. This structure allows us to make changes to the packaging of the plugin without changing the upstream version, for example, if we made a mistake in our Dockerfile. This pattern is commonly used in other systems where packaging is done externally to the upstream software, such as [Debian](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version) and [Arch](https://wiki.archlinux.org/title/Arch_package_guidelines#Package_versioning)
+We're tagging the version as `v8.1.0-1` even though the upstream version of the plugin is `v8.1.0`. This structure enables us to make changes to the packaging of the plugin without changing the upstream version, for example, if we made a mistake in our Dockerfile. This pattern is commonly used in other systems where packaging is done externally to the upstream software, such as [Debian](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version) and [Arch](https://wiki.archlinux.org/title/Arch_package_guidelines#Package_versioning)
 package versioning systems.
 
 ## 5. Publish Plugin to the BSR

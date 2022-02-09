@@ -114,7 +114,7 @@ or effectively enforce such a file structure anyways (for example, Golang and Ja
 Buf does not lint file option values, but it is important to make sure that certain file option values are
 consistent across all files in a given Protobuf package if you do use them.
 
-The `PACKAGE_AFFINITY` category includes the following rules:
+The `PACKAGE_AFFINITY` category includes these rules:
 
 - `PACKAGE_SAME_CSHARP_NAMESPACE` checks that all files with a given package have the same value for the csharp_namespace option.
 - `PACKAGE_SAME_GO_PACKAGE` checks that all files with a given package have the same value for the go_package option.
@@ -155,7 +155,7 @@ option java_package = "com.foo.v1";
 #### `SENSIBLE`
 
 The `SENSIBLE` category outlaws certain Protobuf features that you should never use in modern
-Protobuf development. It includes the following rules:
+Protobuf development. It includes these rules:
 
 - `ENUM_NO_ALLOW_ALIAS` checks that enums do not have the allow_alias option set.
 - `FIELD_NO_DESCRIPTOR` checks that field names are not name capitalization of "descriptor" with any number of prefix or suffix underscores.
@@ -165,7 +165,7 @@ Protobuf development. It includes the following rules:
 
 ##### `ENUM_NO_ALLOW_ALIAS`
 
-This rule outlaws the following:
+This rule outlaws aliased enums like this:
 
 ```protobuf
 enum Foo {
@@ -206,10 +206,10 @@ message Foo {
 ```
 
 This prevents a long-standing issue with Protobuf where certain languages generate an
-accessor named "descriptor" that conflicts with generated code for this field name. There is
-actually an option [no_standard_descriptor_accessor](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L467)
-on MessageOptions that allows mitigation of this issue for fields that are named "descriptor".
-As per the documentation there, developers should just avoid naming fields "descriptor". This
+accessor named `descriptor` that conflicts with generated code for this field name. There is
+actually an option [no_standard_descriptor_accessor] on MessageOptions that allows mitigation of
+this issue for fields that are named `descriptor`.
+Following the documentation there, developers should avoid naming fields "descriptor". This
 actually happens more often than you may think.
 
 ##### `IMPORT_NO_PUBLIC`, `IMPORT_NO_WEAK`
@@ -227,7 +227,7 @@ what you just learned, and regardless do not do this.
 ### `BASIC`
 
 The `BASIC` category includes everything from the `MINIMAL` category, as well as the `STYLE_BASIC`
-category. That is, the following configuration:
+category. That is, this configuration...
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -236,7 +236,7 @@ lint:
     - BASIC
 ```
 
-Is equivalent to:
+...is equivalent to:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -255,7 +255,7 @@ These checks represent the "old" [Google Style Guide](https://developers.google.
 that has been around for years, before elements from the [Uber Style Guide](https://github.com/uber/prototool/tree/dev/style)
 were merged in during the spring of 2019.
 
-The `STYLE_BASIC` category includes the following rules:
+The `STYLE_BASIC` category includes these rules:
 
 - `ENUM_PASCAL_CASE` checks that enums are PascalCase.
 - `ENUM_VALUE_UPPER_SNAKE_CASE` checks that enum values are UPPER_SNAKE_CASE.
@@ -269,7 +269,7 @@ The `STYLE_BASIC` category includes the following rules:
 ### `DEFAULT`
 
 The `DEFAULT` category includes everything from the `BASIC` category, as well as the `STYLE_DEFAULT`
-category. That is, the following configuration:
+category. That is, this configuration...
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -278,7 +278,7 @@ lint:
     - DEFAULT
 ```
 
-Is equivalent to:
+...is equivalent to:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -288,7 +288,7 @@ lint:
     - STYLE_DEFAULT
 ```
 
-As per its name, `DEFAULT` is also the default set of lint rules used by Buf if no
+Consistent with its name, `DEFAULT` is also the default set of lint rules used by Buf if no
 configuration is present, and **represents the our baseline enforced recommendations for modern
 Protobuf development without being overly burdensome**.
 
@@ -298,7 +298,7 @@ The `STYLE_DEFAULT` category includes everything in `STYLE_BASIC`, as well as st
 that we recommend for consistent, maintainable Protobuf schemas. We recommend applying all of
 these checks to any schema you develop.
 
-The `STYLE_DEFAULT` category includes the following rules on top of `STYLE_BASIC`:
+The `STYLE_DEFAULT` category includes these rules on top of `STYLE_BASIC`:
 
 - `ENUM_VALUE_PREFIX` checks that enum values are prefixed with ENUM_NAME_UPPER_SNAKE_CASE.
 - `ENUM_ZERO_VALUE_SUFFIX` checks that enum zero values are suffixed with _UNSPECIFIED (suffix is configurable).
@@ -332,7 +332,7 @@ package with the same enum value name (an exception is when enums are nested, in
 rule applies within the given message). While you may expect a given enum value to always be
 unique across a package, APIs can develop over years, and there are countless examples
 of developers having to compromise on their enum names due to backwards compatibility issues.
-For example, you might have the following enum:
+For example, you might have this enum:
 
 ```protobuf
 enum Scheme {
@@ -405,14 +405,14 @@ request and response parameters controlled by the same Protobuf message, and if 
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
 when fields on this Protobuf message change. **Even in simple cases**, best practice
 is to always have a wrapper message for your RPC request and response types. Buf enforces
-this with these three rules by verifying the following:
+this with these three rules by verifying that:
 
 - All request and response messages are unique across your Protobuf schema.
 - All request and response messages are named after the RPC, either by naming them
   `MethodNameRequest`, `MethodNameResponse` or
   `ServiceNameMethodNameRequest`, `ServiceNameMethodNameResponse`.
 
-For example, the following service definition abides by these rules:
+For example, this service definition abides by these rules:
 
 ```protobuf
 // request/response message definitions omitted for brevity
@@ -485,7 +485,7 @@ naming often ends up inconsistent as a result across a larger Protobuf schema. E
 a consistent suffix takes away some of this inconsistency.
 
 The suffix is configurable via the `lint.service_suffix` option. For example, if
-you have the following configuration in your `buf.yaml`:
+you have this configuration in your `buf.yaml`...
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -493,7 +493,7 @@ lint:
   service_suffix: Endpoint
 ```
 
-The `SERVICE_SUFFIX` rule enforces the following naming instead:
+...the `SERVICE_SUFFIX` rule enforces this naming instead:
 
 ```protobuf
 service FooEndpoint {}
@@ -506,7 +506,7 @@ service BazEndpoint {}
 This is an "extra top-level" category that enforces that comments are present on various parts
 of your Protobuf schema.
 
-The `COMMENTS` category includes the following rules:
+The `COMMENTS` category includes these rules:
 
 - `COMMENT_ENUM` checks that enums have non-empty comments.
 - `COMMENT_ENUM_VALUE` checks that enum values have non-empty comments.
@@ -540,7 +540,7 @@ lint:
 
 This is an "extra top-level" category that outlaws streaming RPCs.
 
-This `UNARY_RPC` category includes the following rules:
+This `UNARY_RPC` category includes these rules:
 
 - `RPC_NO_CLIENT_STREAMING` checks that RPCs are not client streaming.
 - `RPC_NO_SERVER_STREAMING` checks that RPCs are not server streaming.
@@ -577,3 +577,5 @@ enum Scheme {
 
 The above results in generated code in certain languages defaulting to `SCHEME_FTP` instead of
 `SCHEME_UNSPECIFIED`.
+
+[no_standard_descriptor_accessor]: https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L467

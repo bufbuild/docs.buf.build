@@ -12,7 +12,7 @@ as [test rules](https://docs.bazel.build/versions/main/skylark/rules.html#execut
 
 ## Setup
 
-Add the following snippet to the `WORKSPACE` file replacing the `<SHA256>` and `<VERSION>` with those of a [specific release](https://github.com/bufbuild/rules_buf/releases):
+Add snippets below to the `WORKSPACE` file replacing the `<SHA256>` and `<VERSION>` with those of a [specific release](https://github.com/bufbuild/rules_buf/releases):
 ```starlark title="WORKSPACE"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 

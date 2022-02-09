@@ -11,7 +11,7 @@ used for the given operation.
 If a `buf.yaml` file is not contained in the input, `buf` operates as if there is a `buf.yaml` file with the
 [default values](#default-values).
 
-The following is an example of all available configuration options. For more information on the `buf.yaml`
+The example config below shows all available configuration options. For more information on the `buf.yaml`
 configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
 
 ```yaml title="buf.yaml"
@@ -41,7 +41,7 @@ lint:
 ### `use`
 
 The `use` key is **optional**, and lists the IDs or categories to use for linting. For example,
-the following selects the `BASIC` lint category, as well as the `FILE_LOWER_SNAKE_CASE` ID:
+this config selects the `BASIC` lint category, as well as the `FILE_LOWER_SNAKE_CASE` ID:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -56,7 +56,7 @@ The default `use` value is the single item, `DEFAULT`.
 ### `except`
 
 The `except` key is **optional**, and removes IDs or categories from the `use` list. For example,
-the following results in all lint rules in the `DEFAULT` lint category being used except for
+this config results in all lint rules in the `DEFAULT` lint category being used except for
 `ENUM_NO_ALLOW_ALIAS` and all lint rules in the `BASIC` category:
 
 ```yaml title="buf.yaml"
@@ -81,9 +81,9 @@ lint:
 
 ### `ignore`
 
-The `ignore` key is **optional**, and allows directories or files to be excluded from all lint
+The `ignore` key is **optional**, and enables you to exclude directories or files from all lint
 rules when running `buf lint`. The specified directory or file paths **must** be relative to the
-`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the following:
+`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the config:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -94,11 +94,11 @@ lint:
 
 ### `ignore_only`
 
-The `ignore_only` key is **optional**, and allows directories or files to be excluded from specific
+The `ignore_only` key is **optional**, and enables you to exclude directories or files from specific
 lint rules when running `buf lint` by taking a map from lint rule ID or category to path. As with
 `ignore`, the paths **must** be relative to the `buf.yaml`
 
-For example, the following sets up specific ignores for the ID `ENUM_PASCAL_CASE` and
+For example, this config sets up specific ignores for the ID `ENUM_PASCAL_CASE` and
 the category `BASIC`:
 
 ```yaml title="buf.yaml"
@@ -152,7 +152,7 @@ enum Foo {
 }
 ```
 
-Place this enum in a file `foo_lint_ignore.proto` and then set up the following configuration:
+Place this enum in a file `foo_lint_ignore.proto` and then set up this configuration:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -175,8 +175,8 @@ annotations.
 The `enum_zero_value_suffix` key is **optional**, and controls the behavior of the
 `ENUM_ZERO_VALUE_SUFFIX` lint rule. By default, this rule verifies that the zero value of all
 enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide](https://developers.google.com/protocol-buffers/docs/style#enums).
-However, organizations may have a different preferred suffix, for example `_NONE`, and this
-allows this to be set like so:
+However, organizations may have a different preferred suffix, for example `_NONE`, and `enum_zero_value_suffix`
+enables you to set a suffix like this:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -184,7 +184,7 @@ lint:
   enum_zero_value_suffix: _NONE
 ```
 
-This allows the following:
+That config allows this:
 
 ```protobuf
 enum Foo {
@@ -205,15 +205,15 @@ request and response parameters controlled by the same Protobuf message, and if 
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
 when fields on this Protobuf message change. **Even in simple cases**, best practice
 is to always have a wrapper message for your RPC request and response types. `buf` enforces
-this as part of the `DEFAULT` category by verifying the following:
+this as part of the `DEFAULT` category by verifying that:
 
 - All requests and responses are unique across your Protobuf schema.
 - All requests and response messages are named after the RPC, either by naming them
-  according to one of the following:
+  according to one of these:
   * `MethodNameRequest/MethodNameResponse`
   * `ServiceNameMethodNameRequest/ServiceNameMethodNameResponse`
 
-For example, the following service definition abides by these rules:
+This service definition, for example, abides by these rules:
 
 ```protobuf
 // request/response message definitions omitted for brevity
@@ -254,7 +254,8 @@ service BarService {
 
 The `service_suffix` key is **optional**, and controls the behavior of the `SERVICE_SUFFIX` lint rule.
 By default, this rule verifies that all service names are suffixed with `Service`. However, organizations
-may have a different preferred suffix, for example `API`, and this allows this to be set like so:
+may have a different preferred suffix, for example `API`, and `service_suffix` enables you to
+set that suffix explicitly:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -262,7 +263,7 @@ lint:
   service_suffix: API
 ```
 
-This allows the following:
+That config allows this:
 
 ```protobuf
 service FooAPI {}
@@ -270,8 +271,8 @@ service FooAPI {}
 
 ## Default values
 
-If a `buf.yaml` does not exist, or if the `lint` key is not configured, the following default
-configuration is used:
+If a `buf.yaml` does not exist, or if the `lint` key is not configured, this default configuration
+is used:
 
 ```yaml title="buf.yaml"
 version: v1

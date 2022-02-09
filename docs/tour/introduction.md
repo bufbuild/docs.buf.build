@@ -25,13 +25,13 @@ $ buf ls-files --help
 
  * Install [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
  * Install [`jq`](https://stedolan.github.io/jq)
- * Install [`buf`](../installation.mdx)
- * (Optional) [Editor Integration](../editor-integration.mdx)
+ * Install [`buf`](../installation.md)
+ * (Optional) [Editor Integration](../editor-integration.md)
 
 ## Clone the Git Repository {#clone-the-git-repository}
 
 First, clone the Git repository that contains the starter code for the `PetStore` service.
-From the development directory of your choice, run the following command:
+From the development directory of your choice, run this command:
 
 ```terminal
 $ git clone https://github.com/bufbuild/buf-tour

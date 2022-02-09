@@ -180,6 +180,17 @@ There are currently two checks in place:
 
 Linting is currently performed on an ad hoc basis.
 
+## Keeping the Browserslist up to date
+
+Periodically, mostly when prompted by log output from various systems, we should update the
+Browserslist "database" using this command:
+
+```terminal
+npx browserslist@latest --update-db
+```
+
+This is expected to update only the `package-lock.json` and no other files.
+
 [buf]: https://buf.build
 [node]: https://nodejs.org
 [vale]: https://docs.errata.ai

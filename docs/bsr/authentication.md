@@ -39,13 +39,13 @@ An environment variable that holds the API token, used for authentication.
 
 The `buf` CLI reads its authentication credentials from your
 [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html)
-file. There is a `buf` command that manages the `.netrc` file for you, run the following command:
+file. There is a `buf` command that manages the `.netrc` file for you, run this command:
 
 ```terminal
 $ buf registry login
 ```
 
-You'll be prompted for your username, as well as the token and you'll end up with the following:
+You'll be prompted for your username, as well as the token and you'll end up with this:
 
 ```sh title="~/.netrc"
 machine buf.build
@@ -53,7 +53,7 @@ machine buf.build
     password <TOKEN>
 ```
 
-You can logout at any time with the following command:
+You can logout at any time with this command:
 
 ```terminal
 $ buf registry logout

@@ -33,7 +33,7 @@ Pushing plugins to the BSR requires authenticating your Docker CLI using a **tok
 $ docker login -u myuser --password-stdin plugins.buf.build
 ```
 
-A plugin version can describe runtime library dependencies of its generated assets using [Docker labels](https://docs.docker.com/config/labels-custom-metadata/). All labels are prefixed with `build.buf.plugins.runtime_library_versions.` followed by the index of the dependency, followed by the attribute being specified. For example, version `v1.27.1-1` of the `library/protoc-gen-go` plugin declares its runtime dependency on the Go module `google.golang.org/protobuf` using the following labels in its `Dockerfile`:
+A plugin version can describe runtime library dependencies of its generated assets using [Docker labels](https://docs.docker.com/config/labels-custom-metadata/). All labels are prefixed with `build.buf.plugins.runtime_library_versions.` followed by the index of the dependency, followed by the attribute being specified. For example, version `v1.27.1-1` of the `library/protoc-gen-go` plugin declares its runtime dependency on the Go module `google.golang.org/protobuf` using these labels in its `Dockerfile`:
 
 ```Dockerfile
 LABEL "build.buf.plugins.runtime_library_versions.0.name"="google.golang.org/protobuf"
@@ -53,7 +53,7 @@ Buf maintains several official templates:
 - https://buf.build/grpc/templates/go
 - https://buf.build/protocolbuffers/templates/go
 
-A template **version** defines the plugin versions to use. This allows a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
+A template **version** defines the plugin versions to use. This enables a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
 
 Template management is designed to discourage introducing breaking changes to consumers. This is why plugin parameters are defined on the template itself rather than on a per-version basis.
 

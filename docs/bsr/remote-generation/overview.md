@@ -34,8 +34,8 @@ on standard out. They are designed to be shared, and their packaging should be a
 ## Hosted templates
 
 Hosted templates represent a collection of one or more plugins that run together to create a single result,
-along with the parameters for, and version of, each plugin. A hosted template allows you to express
-all parameters you currently use to generate code locally.
+along with the parameters for, and version of, each plugin. A hosted template enables you to include
+all the parameters you currently use to generate code locally.
 
 Templates, like plugins, are intended to be shared. They should express a particular use case,
 but shouldn't be specific to an input module. For example, you may create a template that generates

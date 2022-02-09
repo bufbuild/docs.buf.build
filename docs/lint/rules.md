@@ -84,7 +84,7 @@ This rule checks that all files are in a directory that matches their package na
 
 In short, the `MINIMAL` category verifies that all files with package `foo.bar.baz.v1` are in the
 directory `foo/bar/baz/v1` (relative to the [`buf.yaml`](../configuration/v1/buf-yaml.md) file), and that
-only one such directory exists. For example, consider the following `tree`:
+only one such directory exists. For example, consider this `tree`:
 
 ```sh
 .
@@ -119,7 +119,7 @@ These style checks represent the "old" [Google Style Guide](https://developers.g
 that has been around for years, before elements from the [Uber Style Guide](https://github.com/uber/prototool/tree/dev/style)
 were merged in during the spring of 2019.
 
-The following configuration:
+This configuration...
 
 ```yaml title="buf.yaml"
 version: v1
@@ -128,7 +128,7 @@ lint:
     - BASIC
 ```
 
-Is equivalent to:
+...is equivalent to this:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -255,7 +255,7 @@ The above results in generated code in certain languages defaulting to `SCHEME_F
 
 #### `ENUM_NO_ALLOW_ALIAS`
 
-This rule outlaws the following:
+This rule outlaws aliased enums like this:
 
 ```protobuf
 enum Foo {
@@ -266,7 +266,7 @@ enum Foo {
 }
 ```
 
-The `allow_alias` option allows multiple enum values to have the same number. This can lead to
+The `allow_alias` option lets multiple enum values have the same number. This can lead to
 issues when working with the JSON representation of Protobuf, a first-class citizen of `proto3`.
 If you get a serialized Protobuf value over the wire in binary format, it is unknown what specific
 enum value it applies to, and JSON usually serialized enum values by name. While in practice, this
@@ -290,7 +290,7 @@ know this was possible, forget what you just learned in this sentence, and regar
 The `DEFAULT` category includes everything from the `BASIC` category, as well as some other default style
 rules.
 
-The following configuration:
+This configuration...
 
 ```yaml title="buf.yaml"
 version: v1
@@ -299,7 +299,7 @@ lint:
     - DEFAULT
 ```
 
-Is equivalent to:
+...is equivalent to:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -316,7 +316,7 @@ lint:
     - SERVICE_SUFFIX
 ```
 
-As per its name, `DEFAULT` is also the default set of lint rules used by `buf` if no configuration is present, and
+True to its name, `DEFAULT` is also the default set of lint rules used by `buf` if no configuration is present, and
 represents our recommendations for modern Protobuf development without being overly burdensome.
 
 #### `ENUM_VALUE_PREFIX`
@@ -342,7 +342,7 @@ package with the same enum value name (an exception is when enums are nested, in
 rule applies within the given message). While you may think that a given enum value name is
 always unique across a package, APIs can develop over years, and there are countless examples
 of developers having to compromise on their enum names due to backwards compatibility issues.
-For example, you might have the following enum:
+For example, you might have this enum:
 
 ```protobuf
 enum Scheme {
@@ -414,13 +414,13 @@ request and response parameters controlled by the same Protobuf message, and if 
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
 when fields on this Protobuf message change. **Even in simple cases**, best practice
 is to always have a wrapper message for your RPC request and response types. `buf` enforces
-this with these three rules by verifying the following:
+this with these three rules by verifying that:
 
 - All request and response messages are unique across your Protobuf schema.
 - All request and response messages are named after the RPC, either by naming them
   `MethodNameRequest`, `MethodNameResponse` or `ServiceNameMethodNameRequest`, `ServiceNameMethodNameResponse`.
 
-For example, the following service definition abides by these rules:
+This service definition, for example, abides by these rules:
 
 ```protobuf
 // request/response message definitions omitted for brevity
@@ -493,7 +493,7 @@ naming often ends up inconsistent as a result across a larger Protobuf schema. E
 a consistent suffix takes away some of this inconsistency.
 
 The suffix is [configurable](configuration.md#service_suffix). For example, if
-you have the following configuration in your `buf.yaml`:
+you have this configuration in your `buf.yaml`...
 
 ```yaml title="buf.yaml"
 version: v1
@@ -501,7 +501,7 @@ lint:
   service_suffix: Endpoint
 ```
 
-The `SERVICE_SUFFIX` rule enforces the following naming instead:
+...the `SERVICE_SUFFIX` rule enforces this naming instead:
 
 ```protobuf
 service FooEndpoint {}
@@ -514,7 +514,7 @@ service BazEndpoint {}
 This is an extra top-level category that enforces that comments are present on various parts
 of your Protobuf schema.
 
-The `COMMENTS` category includes the following rules:
+The `COMMENTS` category includes these rules:
 
   - `COMMENT_ENUM` checks that enums have non-empty comments.
   - `COMMENT_ENUM_VALUE` checks that enum values have non-empty comments.
@@ -545,7 +545,7 @@ lint:
 
 This is an extra top-level category that outlaws streaming RPCs.
 
-This `UNARY_RPC` category includes the following rules:
+This `UNARY_RPC` category includes these rules:
 
 - `RPC_NO_CLIENT_STREAMING` checks that RPCs are not client streaming.
 - `RPC_NO_SERVER_STREAMING` checks that RPCs are not server streaming.
@@ -558,7 +558,7 @@ discussion](https://github.com/twitchtv/twirp/issues/70#issuecomment-470367807) 
 ### `PACKAGE_NO_IMPORT_CYCLE`
 
 This is an extra uncategorized rule that detects package import cycles. The Protobuf compiler outlaws circular
-file imports, but it's still possible to introduce package cycles, such as the following:
+file imports, but it's still possible to introduce package cycles, such as these:
 
 ```sh
 .

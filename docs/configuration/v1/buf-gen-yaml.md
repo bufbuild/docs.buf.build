@@ -55,7 +55,7 @@ For example, in the `buf.gen.yaml` example shown above, the `protoc-gen-go` plug
 By default, a `protoc-gen-<name>` program is expected to be on your `PATH` so that it can be discovered and
 executed by `buf`. This can be overridden with the [path](#path) option shown below.
 
-In the case of `<remote>`, this allows you to run `buf generate` with a remote plugin, using the fully-qualified
+In the case of `<remote>`, this enables you to run `buf generate` with a remote plugin, using the fully-qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
 example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
 and does not require a local installation of the `go` plugin. If no version is specified, the generation defaults
@@ -129,28 +129,28 @@ There are two options:
 
 1. `directory` **(default)**
 
-This results in `buf` splitting the input files by directory, and making separate plugin invocations in parallel.
-This is roughly the concurrent equivalent of the following:
+  This results in `buf` splitting the input files by directory and making separate plugin invocations in parallel.
+  That's roughly the concurrent equivalent of this operation:
 
-```sh
-for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
-  protoc -I . $(find "${dir}" -name '*.proto')
-done
-```
+  ```sh
+  for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
+    protoc -I . $(find "${dir}" -name '*.proto')
+  done
+  ```
 
-Almost every `protoc` plugin either requires this, so this is the recommended `strategy`. The `directory`
-strategy is used by default if omitted.
+  Almost every `protoc` plugin either requires this, so this is the recommended `strategy`. The `directory`
+  strategy is used by default if omitted.
 
 2. `all`
 
-This results in `buf` making a single plugin invocation with all input files. This is roughly equivalent to
-the following:
+  This results in `buf` making a single plugin invocation with all input files, which is roughly
+  equivalent to this:
 
-```
-$ protoc -I . $(find . -name '*.proto')
-```
+  ```
+  $ protoc -I . $(find . -name '*.proto')
+  ```
 
-This is needed for certain plugins that expect all files to be given at once.
+  This is needed for certain plugins that expect all files to be given at once.
 
 ### `managed`
 
@@ -229,7 +229,7 @@ from the current directory, that is they must be subdirectories relative to the 
 
 In the configuration example shown above, the `github.com/acme/weather/gen/proto/go` prefix is *joined* with the given Protobuf
 file's relative path from the module root. In the `buf.build/acme/weather` module's case, the `acme/weather/v1/weather.proto`
-file would have the following `go_package` set:
+file would have this `go_package` set:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
