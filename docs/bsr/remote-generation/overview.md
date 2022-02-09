@@ -64,38 +64,4 @@ Examples include: Maven Central, RubyGems, Go modules, PyPI, crates.io, NPM, etc
 Remote generation registries must have a consistent way of versioning the output of code generation,
 and it must ensure that it always serves the exact same content once a version has been released.
 To accomplish this consistent versioning, the BSR adopts something we call
-[Synthetic Versions](#synthetic-versions).
-
-### Synthetic Versions
-
-The challenge with versioning remote generated code, is that it is the product of two logical
-inputs: the Protobuf module and the template version. The lowest common denominator of the language
-registry ecosystems we surveyed is "semantic versioning without builds or prereleases", so something like
-`v1.2.3`.
-
-To ensure that we can create consistent, and lossless synthetic versions, we simplify the versioning schemes
-of the two inputs. Both template versions, and Protobuf module versions, can be represented as **monotonically
-increasing integers**.
-
-- For hosted Templates we enforce a version of the form `v1`, `v2`, `vn...`.
-- For Protobuf modules we use the module reference sequence ID. This ID is an integer that uniquely identifies a commit. It is calculated by counting the number of commits since the first commit of a module.
-
-With these simplified versioning schemes we create a synthetic version which takes the
-following form:
-
-import Syntax from "@site/src/components/Syntax";
-
-<Syntax
-  title="Synthetic version syntax"
-  examples={["v1.3.5"]}
-  segments={[
-    {label: "v1", kind: "static"},
-    {separator: "."},
-    {label: "template version", kind: "variable"},
-    {separator: "."},
-    {label: "commit sequence ID", kind: "variable"},
-  ]
-} />
-
-In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the **5**th commit
-of a Protobuf module.
+[synthetic versions](../concepts.md#synthetic-version).

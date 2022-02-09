@@ -85,7 +85,7 @@ func main() {
 
 Unfortunately running the above will error, as GCP Cloud Storage doesn't yet support gRPC for all public buckets, but it serves an example of what's possible with remote code generation and the BSR Go module proxy.
 
-If you're using Go modules you'll observe a version such as `v1.4.246` in the go.mod file. To better understand versioning please refer to the [synthetic version](overview.md#synthetic-versions) section.
+If you're using Go modules you'll observe a version such as `v1.4.246` in the go.mod file. To better understand versioning please refer to the [synthetic version](overview.md#synthetic-version) section.
 
 ```sh title="go.mod"
 require (

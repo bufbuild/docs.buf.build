@@ -35,12 +35,12 @@ $ docker login -u myuser --password-stdin plugins.buf.build
 
 A plugin version can describe runtime library dependencies of its generated assets using [Docker labels](https://docs.docker.com/config/labels-custom-metadata/). All labels are prefixed with `build.buf.plugins.runtime_library_versions.` followed by the index of the dependency, followed by the attribute being specified. For example, version `v1.27.1-1` of the `library/protoc-gen-go` plugin declares its runtime dependency on the Go module `google.golang.org/protobuf` using these labels in its `Dockerfile`:
 
-```Dockerfile
+```docker
 LABEL "build.buf.plugins.runtime_library_versions.0.name"="google.golang.org/protobuf"
 LABEL "build.buf.plugins.runtime_library_versions.0.version"="v1.27.1"
 ```
 
-A plugin version must be a valid [semantic version](https://semver.org/spec/v2.0.0.html).
+Plugins must be valid [synthetic versions](#synthetic-version).
 
 ## Template
 
@@ -65,8 +65,59 @@ A **remote generation registry** is an artifact registry built specifically for 
 
 Upcoming remote generation registries include the [CommonJS Registry](http://wiki.commonjs.org/wiki/Packages/Registry) and others.
 
-## Synthetic Version
+## Synthetic version
 
-A **synthetic version** combines the **template** version and [module](../overview.md#module) version into a [semantic version](https://semver.org/spec/v2.0.0.html). The major version is always 1, the minor version corresponds to the template version (without the `v` prefix), and the patch version corresponds to the **commit sequence ID**. For example, the synthetic version `v1.2.10` describes the artifact generated using `v2` of the template and using the commit sequence ID `10` of the module.
+A **synthetic version** combines the [template](#template) and [module](../overview.md#module) versions into a [semantic version](https://semver.org/spec/v2.0.0.html) of this form:
 
-Synthetic versions are used to version **remote generation registry** artifacts. Because template and module updates are minor and patch version updates respectively, preserving backwards compatibility across either update is essential to maintain the semantic versioning contract. This informs the design of the **template** management.
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Synthetic version syntax"
+  examples={["v1.3.5"]}
+  segments={[
+    {label: "v1", kind: "static"},
+    {separator: "."},
+    {label: "template version", kind: "variable"},
+    {separator: "."},
+    {label: "commit sequence ID", kind: "variable"},
+  ]
+} />
+
+Within this scheme:
+
+* There's always a **v** prefix
+* The major version is always **1**.
+* The minor version (**3** in the example) corresponds to the [template](#template) version (without the `v` prefix).
+* The patch version (**5** in the example) corresponds to the module, which is identified by a **commit sequence ID**.
+
+The synthetic version `v1.2.10`, for example, means that the artifact was generated using `v2` of
+the template and using the commit sequence ID `10` for the module.
+
+### Where synthetic versions are used
+
+The BSR applies synthetic versions to all remote-generated code artifacts in the **remote generation
+registry**. That currently includes [Go packages](../../tour/use-remote-generation.md) but will be
+expanded to other languages.
+
+### Enforcing semantic versioning
+
+Although we describe synthetic as [semantic versions](https://semver.org/spec/v2.0.0.html), the
+BSR doesn't _enforce_ semantic versioning. If you make breaking changes to an asset and push that
+asset to the BSR, the patch version _is_ incremented, which violates semantic versioning.
+
+In order to preserve semver guarantees in your own generated assets, we recommend performing
+[breaking change detection](../../breaking/usage.md) _before_ pushing a new version of a Buf module.
+
+### How we implemented synthetic versions
+
+The challenge with versioning remote-generated code is that unlike versioning schemes that only deal
+with one artifact, such as a Python library, BSR versions are the product of two logical inputs:
+
+* The template version
+* The Protobuf module
+
+When implementing our versioning scheme, we surveyed some popular language registries and found that
+the most common scheme was semantic versioning but _without_ [pre-release and
+build](https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build) labels. In other
+words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not, and we
+opted for the former.
