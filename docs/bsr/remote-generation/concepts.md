@@ -101,7 +101,7 @@ expanded to other languages.
 
 ### Enforcing semantic versioning
 
-Although we describe synthetic as [semantic versions](https://semver.org/spec/v2.0.0.html), the
+Although we describe synthetic versions as [semantic versions](https://semver.org/spec/v2.0.0.html), the
 BSR doesn't _enforce_ semantic versioning. If you make breaking changes to an asset and push that
 asset to the BSR, the patch version _is_ incremented, which violates semantic versioning.
 
