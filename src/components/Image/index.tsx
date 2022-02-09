@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 type Props = {
@@ -20,13 +20,9 @@ const Image = ({ alt, src, caption, title, width }: Props) => {
         <img alt={alt} src={url} title={imgTitle} width={`${imgWidth}%`} />
       </a>
 
-      {caption && (
-        <figcaption>
-          {caption}
-        </figcaption>
-      )}
+      {caption && <figcaption>{caption}</figcaption>}
     </figure>
   );
-}
+};
 
 export default Image;

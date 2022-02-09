@@ -57,7 +57,7 @@ function DocSearch({ contextualSearch, ...props }) {
   // we let user override default searchParameters if he wants to
   const searchParameters = {
     ...props.searchParameters,
-    facetFilters,
+    facetFilters
   };
 
   const { withBaseUrl } = useBaseUrlUtils();
@@ -73,9 +73,9 @@ function DocSearch({ contextualSearch, ...props }) {
     }
 
     return Promise.all([
-      import("@docsearch/react/modal"),
-      import("@docsearch/react/style"),
-      import("./styles.css"),
+      import('@docsearch/react/modal'),
+      import('@docsearch/react/style'),
+      import('./styles.css')
     ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;
     });
@@ -83,11 +83,8 @@ function DocSearch({ contextualSearch, ...props }) {
 
   const onOpen = useCallback(() => {
     importDocSearchModalIfNeeded().then(() => {
-      searchContainer.current = document.createElement("div");
-      document.body.insertBefore(
-        searchContainer.current,
-        document.body.firstChild
-      );
+      searchContainer.current = document.createElement('div');
+      document.body.insertBefore(searchContainer.current, document.body.firstChild);
       setIsOpen(true);
     });
   }, [importDocSearchModalIfNeeded, setIsOpen]);
@@ -110,7 +107,7 @@ function DocSearch({ contextualSearch, ...props }) {
   const navigator = useRef({
     navigate({ itemUrl }) {
       history.push(itemUrl);
-    },
+    }
   }).current;
 
   const transformItems = useRef((items) => {
@@ -118,12 +115,12 @@ function DocSearch({ contextualSearch, ...props }) {
       // We transform the absolute URL into a relative URL.
       // Alternatively, we can use `new URL(item.url)` but it's not
       // supported in IE.
-      const a = document.createElement("a");
+      const a = document.createElement('a');
       a.href = item.url;
 
       return {
         ...item,
-        url: withBaseUrl(`${a.pathname}${a.hash}`),
+        url: withBaseUrl(`${a.pathname}${a.hash}`)
       };
     });
   }).current;
@@ -135,10 +132,7 @@ function DocSearch({ contextualSearch, ...props }) {
 
   const transformSearchClient = useCallback(
     (searchClient) => {
-      searchClient.addAlgoliaAgent(
-        "docusaurus",
-        siteMetadata.docusaurusVersion
-      );
+      searchClient.addAlgoliaAgent('docusaurus', siteMetadata.docusaurusVersion);
 
       return searchClient;
     },
@@ -150,15 +144,15 @@ function DocSearch({ contextualSearch, ...props }) {
     onOpen,
     onClose,
     onInput,
-    searchButtonRef,
+    searchButtonRef
   });
 
   // We override the default placeholder for the search bar input field
   const translatedSearchLabel = translate({
-    id: "theme.SearchBar.label",
+    id: 'theme.SearchBar.label',
     // message: 'Search',
-    message: "Search docs...",
-    description: "The ARIA label and placeholder for search button",
+    message: 'Search docs...',
+    description: 'The ARIA label and placeholder for search button'
   });
 
   return (
@@ -183,7 +177,7 @@ function DocSearch({ contextualSearch, ...props }) {
           ref={searchButtonRef}
           translations={{
             buttonText: translatedSearchLabel,
-            buttonAriaLabel: translatedSearchLabel,
+            buttonAriaLabel: translatedSearchLabel
           }}
         />
       </div>

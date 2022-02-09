@@ -1,6 +1,5 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const goMod = require('prismjs/components');
 const path = require('path');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -12,24 +11,22 @@ module.exports = {
         docs: {
           path: 'docs',
           routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.json'),
+          sidebarPath: require.resolve('./sidebars.js'),
           admonitions: {
-            icons: "none",
+            icons: 'none'
           }
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.css')
         },
         sitemap: {
           changefreq: 'daily',
-          priority: 0.7,
-        },
-      },
-    ],
+          priority: 0.7
+        }
+      }
+    ]
   ],
-  plugins: [
-    path.resolve('src/plugins/fathom'),
-  ],
+  plugins: [path.resolve('src/plugins/fathom')],
   title: 'Buf™',
   tagline: 'Building a better way to work with Protocol Buffers',
   url: 'https://docs.buf.build',
@@ -45,11 +42,11 @@ module.exports = {
     algolia: {
       appId: process.env.ALGOLIA_APP_ID || 'none',
       apiKey: process.env.ALGOLIA_API_KEY || 'none',
-      indexName: process.env.ALGOLIA_INDEX_NAME || 'none',
+      indexName: process.env.ALGOLIA_INDEX_NAME || 'none'
     },
     fathomAnalytics: {
       siteId: process.env.FATHOM_ANALYTICS_SITE_ID || 'none',
-      customDomain: process.env.FATHOM_ANALYTICS_CUSTOM_DOMAIN || 'none',
+      customDomain: process.env.FATHOM_ANALYTICS_CUSTOM_DOMAIN || 'none'
     },
     navbar: {
       // We override the theme's navbar and support the additional option "bufAppearance"
@@ -67,24 +64,24 @@ module.exports = {
         alt: 'Buf Logo',
         src: 'img/logo.svg',
         href: 'https://docs.buf.build',
-        target: '_self',
+        target: '_self'
       },
       items: [
         {
           // The search bar must be the first item on the left - otherwise, the layout of the
           // overridden navbar will break.
-          type: "search",
-          position: 'left',
+          type: 'search',
+          position: 'left'
         },
         {
           href: 'https://buf.build/blog',
           label: 'Blog',
-          position: 'right',
+          position: 'right'
         },
         {
           href: 'https://buf.build/careers',
           label: 'Careers',
-          position: 'right',
+          position: 'right'
         },
         {
           href: 'https://buf.build/login',
@@ -109,9 +106,9 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
           bufAppearance: 'github',
-          stargazers: 3511,
-        },
-      ],
+          stargazers: 3511
+        }
+      ]
     },
     footer: {
       // We override the theme's footer and don't support all standard footer options here.
@@ -125,17 +122,17 @@ module.exports = {
           items: [
             {
               label: 'Twitter',
-              href: 'https://twitter.com/bufbuild',
+              href: 'https://twitter.com/bufbuild'
             },
             {
               label: 'LinkedIn',
-              href: 'https://www.linkedin.com/company/bufbuild',
+              href: 'https://www.linkedin.com/company/bufbuild'
             },
             {
               label: 'Mail',
-              href: 'mailto:info@buf.build',
-            },
-          ],
+              href: 'mailto:info@buf.build'
+            }
+          ]
         },
         {
           // Legal links require a label.
@@ -144,20 +141,20 @@ module.exports = {
           items: [
             {
               label: 'Terms Of Use',
-              href: 'https://buf.build/resources/terms',
+              href: 'https://buf.build/resources/terms'
             },
             {
               label: 'Privacy Policy',
-              href: 'https://buf.build/resources/privacy',
+              href: 'https://buf.build/resources/privacy'
             },
             {
               label: 'Cookie Policy',
-              href: 'https://buf.build/resources/cookie-policy',
-            },
-          ],
-        },
+              href: 'https://buf.build/resources/cookie-policy'
+            }
+          ]
+        }
       ],
-      copyright: `© ${new Date().getFullYear()} Buf Technologies, Inc.`,
+      copyright: `© ${new Date().getFullYear()} Buf Technologies, Inc.`
     },
     image: 'img/logo.svg',
     colorMode: {
@@ -166,16 +163,16 @@ module.exports = {
       disableSwitch: true,
       // Should we use the prefers-color-scheme media-query,
       // using user system preferences, instead of the hardcoded defaultMode?
-      respectPrefersColorScheme: false,
+      respectPrefersColorScheme: false
     },
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
-      additionalLanguages: ['editorconfig', 'protobuf'],
-    },
+      additionalLanguages: ['editorconfig', 'protobuf']
+    }
   },
   customFields: {
     // Used to configure the release version downloaded from the installation.mdx buttons
-    downloadRelease: '1.0.0-rc12',
-  },
+    downloadRelease: '1.0.0-rc12'
+  }
 };

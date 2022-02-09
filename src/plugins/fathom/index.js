@@ -39,12 +39,11 @@ module.exports = function (context) {
               defer: true,
               src: `${customDomain}/script.js`,
               spa: 'auto',
-              site: siteId,
-            },
-          },
-        ],
+              site: siteId
+            }
+          }
+        ]
       };
-    },
+    }
   };
 };
-
