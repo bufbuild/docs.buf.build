@@ -76,7 +76,7 @@ rm -rf $BUF_TMP
 </TabItem>
 </Tabs>
 
-## Running lint and breaking change detection
+## Running lint and breaking change detection {#checks}
 
 > This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
 > repository for a functional example.

@@ -106,7 +106,8 @@ BSR doesn't _enforce_ semantic versioning. If you make breaking changes to an as
 asset to the BSR, the _patch_ version is incremented, instead of the major version, which violates semantic versioning.
 
 In order to preserve semver guarantees in your own generated assets, we recommend performing
-[breaking change detection](../../breaking/usage.md) _before_ pushing a new version of a Buf module.
+[breaking change detection](../../breaking/usage.md) _before_ pushing a new version of a Buf module,
+potentially as part of your [CI/CD pipeline](../../ci-cd/setup.md#checks).
 
 ### How we implemented synthetic versions
 
