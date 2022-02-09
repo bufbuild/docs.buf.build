@@ -87,8 +87,8 @@ Within this scheme:
 
 * There's always a **v** prefix
 * The major version is always **1**.
-* The minor version (**3** in the example) corresponds to the [template](#template) version (without the `v` prefix).
-* The patch version (**5** in the example) corresponds to the module, which is identified by a **commit sequence ID**.
+* The minor version (**3** in the example) corresponds to the [template](#template) version (without the `v` prefix). Template versions increase monotonically and have the form `v1`, `v2`, `v3`...
+* The patch version (**5** in the example) corresponds to the module, which is identified by a **commit sequence ID** that's incremented each time a new version of a module is pushed.
 
 The synthetic version `v1.2.10`, for example, means that the artifact was generated using `v2` of
 the template and using the commit sequence ID `10` for the module.
