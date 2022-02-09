@@ -8,19 +8,20 @@ enum Kind {
   VARIABLE = "variable",
 }
 
-type Segment = {
+type SegmentProps = {
   label: string;
   kind?: Kind;
   separator?: string;
+  varName?: string;
 };
 
 type Props = {
   title: string;
-  segments: Segment[];
+  segments: SegmentProps[];
   examples?: string[];
 };
 
-const hasKind = (segments: Segment[], kind: Kind): boolean => {
+const hasKind = (segments: SegmentProps[], kind: Kind): boolean => {
   return segments.find((s) => s.kind === kind) !== undefined;
 };
 
@@ -37,7 +38,7 @@ const Example = ({ examples }: { examples: string[] }) => {
   );
 };
 
-const Seg = ({ label, kind, separator }: Segment) => {
+const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
   let item: JSX.Element;
   switch (kind) {
     case Kind.STATIC:
@@ -46,7 +47,7 @@ const Seg = ({ label, kind, separator }: Segment) => {
     case Kind.DEFAULT:
       item = (
         <span className={styles.default}>
-          {"("}
+          {`(${varName && `${varName}:`}`}
           {label}
           {")"}
         </span>
@@ -69,7 +70,7 @@ const Seg = ({ label, kind, separator }: Segment) => {
   );
 };
 
-const Legend = ({ segments }: { segments: Segment[] }) => {
+const Legend = ({ segments }: { segments: SegmentProps[] }) => {
   return (
     <div className={styles.legend}>
       <span>
@@ -102,7 +103,7 @@ const Syntax = ({ title, segments, examples }: Props) => {
 
       <div className={styles.syntax}>
         {segments.map((seg) => (
-          <Seg {...seg} />
+          <Segment {...seg} />
         ))}
       </div>
 
