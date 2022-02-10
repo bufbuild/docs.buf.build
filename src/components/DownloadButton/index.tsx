@@ -1,11 +1,11 @@
-import React from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-export const mac = 'buf-Darwin-x86_64';
-export const linux = 'buf-Linux-x86_64';
-export const windows = 'buf-Windows-x86_64.exe';
+export const mac = "buf-Darwin-x86_64";
+export const linux = "buf-Linux-x86_64";
+export const windows = "buf-Windows-x86_64.exe";
 
 type Props = {
   os: string;

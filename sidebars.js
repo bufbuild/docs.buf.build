@@ -1,93 +1,95 @@
+// @ts-check
+
 const sidebars = {
   docs: [
-    'introduction',
-    'installation',
+    "introduction",
+    "installation",
     {
-      type: 'category',
-      label: 'Tour',
+      type: "category",
+      label: "Tour",
       items: [
-        'tour/introduction',
-        'tour/configure-and-build',
-        'tour/list-all-protobuf-files',
-        'tour/lint-your-api',
-        'tour/detect-breaking-changes',
-        'tour/generate-code',
-        'tour/login-to-the-bsr',
-        'tour/push-a-module',
-        'tour/view-generated-documentation',
-        'tour/add-a-dependency',
-        'tour/generate-go-code',
-        'tour/implement-grpc-endpoints',
-        'tour/use-a-workspace',
-        'tour/use-managed-mode',
-        'tour/push-workspace-modules',
-        'tour/wrapping-up',
-        'tour/use-remote-generation'
+        "tour/introduction",
+        "tour/configure-and-build",
+        "tour/list-all-protobuf-files",
+        "tour/lint-your-api",
+        "tour/detect-breaking-changes",
+        "tour/generate-code",
+        "tour/login-to-the-bsr",
+        "tour/push-a-module",
+        "tour/view-generated-documentation",
+        "tour/add-a-dependency",
+        "tour/generate-go-code",
+        "tour/implement-grpc-endpoints",
+        "tour/use-a-workspace",
+        "tour/use-managed-mode",
+        "tour/push-workspace-modules",
+        "tour/wrapping-up",
+        "tour/use-remote-generation"
       ],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Build',
-      items: ['build/usage', 'build/internal-compiler'],
+      type: "category",
+      label: "Build",
+      items: ["build/usage", "build/internal-compiler"],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Generate',
-      items: ['generate/usage', 'generate/managed-mode'],
+      type: "category",
+      label: "Generate",
+      items: ["generate/usage", "generate/managed-mode"],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Lint',
+      type: "category",
+      label: "Lint",
       items: [
-        'lint/overview',
-        'lint/usage',
-        'lint/configuration',
-        'lint/rules',
-        'lint/protoc-plugin'
+        "lint/overview",
+        "lint/usage",
+        "lint/configuration",
+        "lint/rules",
+        "lint/protoc-plugin"
       ],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Breaking Change Detection',
+      type: "category",
+      label: "Breaking Change Detection",
       items: [
-        'breaking/overview',
-        'breaking/usage',
-        'breaking/configuration',
-        'breaking/rules',
-        'breaking/protoc-plugin'
+        "breaking/overview",
+        "breaking/usage",
+        "breaking/configuration",
+        "breaking/rules",
+        "breaking/protoc-plugin"
       ],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'The Buf Schema Registry (BSR)',
+      type: "category",
+      label: "The Buf Schema Registry (BSR)",
       items: [
-        'bsr/introduction',
-        'bsr/overview',
-        'bsr/authentication',
-        'bsr/usage',
-        'bsr/documentation',
-        'bsr/user-management',
+        "bsr/introduction",
+        "bsr/overview",
+        "bsr/authentication",
+        "bsr/usage",
+        "bsr/documentation",
+        "bsr/user-management",
         {
-          type: 'category',
-          label: 'Remote Generation',
+          type: "category",
+          label: "Remote Generation",
           customProps: {
             badge: {
-              label: 'alpha',
-              severity: 'info'
+              label: "alpha",
+              severity: "info"
             }
           },
           items: [
-            'bsr/remote-generation/overview',
-            'bsr/remote-generation/concepts',
-            'bsr/remote-generation/plugin-example',
-            'bsr/remote-generation/template-example',
-            'bsr/remote-generation/remote-plugin-execution',
-            'bsr/remote-generation/consume-generated-go-code'
+            "bsr/remote-generation/overview",
+            "bsr/remote-generation/concepts",
+            "bsr/remote-generation/plugin-example",
+            "bsr/remote-generation/template-example",
+            "bsr/remote-generation/remote-plugin-execution",
+            "bsr/remote-generation/consume-generated-go-code"
           ],
           collapsed: false
         }
@@ -95,54 +97,54 @@ const sidebars = {
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Best Practices',
-      items: ['best-practices/style-guide', 'best-practices/module-development'],
+      type: "category",
+      label: "Best Practices",
+      items: ["best-practices/style-guide", "best-practices/module-development"],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'CI/CD',
-      items: ['ci-cd/setup', 'ci-cd/github-actions'],
+      type: "category",
+      label: "CI/CD",
+      items: ["ci-cd/setup", "ci-cd/github-actions"],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'How To',
+      type: "category",
+      label: "How To",
       items: [
-        'how-to/replace-protoc-with-buf',
-        'how-to/iterate-on-modules',
-        'how-to/grpc',
-        'how-to/migrate-from-protolock',
-        'how-to/migrate-from-prototool'
+        "how-to/replace-protoc-with-buf",
+        "how-to/iterate-on-modules",
+        "how-to/grpc",
+        "how-to/migrate-from-protolock",
+        "how-to/migrate-from-prototool"
       ],
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Configuration',
+      type: "category",
+      label: "Configuration",
       items: [
-        'configuration/overview',
-        'configuration/v1beta1-migration-guide',
+        "configuration/overview",
+        "configuration/v1beta1-migration-guide",
         {
-          type: 'category',
-          label: 'v1',
+          type: "category",
+          label: "v1",
           items: [
-            'configuration/v1/buf-yaml',
-            'configuration/v1/buf-lock',
-            'configuration/v1/buf-gen-yaml',
-            'configuration/v1/buf-work-yaml'
+            "configuration/v1/buf-yaml",
+            "configuration/v1/buf-lock",
+            "configuration/v1/buf-gen-yaml",
+            "configuration/v1/buf-work-yaml"
           ],
           collapsed: false
         },
         {
-          type: 'category',
-          label: 'v1beta1',
+          type: "category",
+          label: "v1beta1",
           items: [
-            'configuration/v1beta1/buf-yaml',
-            'configuration/v1beta1/buf-lock',
-            'configuration/v1beta1/buf-gen-yaml',
-            'configuration/v1beta1/lint-rules'
+            "configuration/v1beta1/buf-yaml",
+            "configuration/v1beta1/buf-lock",
+            "configuration/v1beta1/buf-gen-yaml",
+            "configuration/v1beta1/lint-rules"
           ],
           collapsed: true
         }
@@ -150,15 +152,15 @@ const sidebars = {
       collapsed: false
     },
     {
-      type: 'category',
-      label: 'Reference',
-      items: ['reference/workspaces', 'reference/images', 'reference/inputs'],
+      type: "category",
+      label: "Reference",
+      items: ["reference/workspaces", "reference/images", "reference/inputs"],
       collapsed: false
     },
-    'editor-integration',
-    'roadmap',
-    'faq',
-    'contact'
+    "editor-integration",
+    "roadmap",
+    "faq",
+    "contact"
   ]
 };
 

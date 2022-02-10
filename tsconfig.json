@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/docusaurus/tsconfig.json",
-  "include": ["src/"],
+  "include": ["./src", "./custom.d.ts"],
   "compilerOptions": {
     "skipLibCheck": true
   }

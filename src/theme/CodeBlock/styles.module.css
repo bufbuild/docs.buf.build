@@ -23,7 +23,7 @@
 
 .bufTerminalOutputSeparator::before,
 .bufTerminalOutputSeparator::after {
-  content: ' ';
+  content: " ";
   flex-grow: 0;
   display: inline;
   width: 1rem;

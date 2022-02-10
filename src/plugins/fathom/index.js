@@ -13,7 +13,7 @@ module.exports = function (context) {
     );
   }
 
-  let { siteId, customDomain = 'https://cdn.usefathom.com' } = fathomAnalytics;
+  let { siteId, customDomain = "https://cdn.usefathom.com" } = fathomAnalytics;
 
   if (!siteId) {
     throw new Error(
@@ -21,10 +21,10 @@ module.exports = function (context) {
     );
   }
 
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = process.env.NODE_ENV === "production";
 
   return {
-    name: 'docusaurus-plugin-fathom',
+    name: "docusaurus-plugin-fathom",
 
     injectHtmlTags() {
       if (!isProd) {
@@ -34,11 +34,11 @@ module.exports = function (context) {
       return {
         headTags: [
           {
-            tagName: 'script',
+            tagName: "script",
             attributes: {
               defer: true,
               src: `${customDomain}/script.js`,
-              spa: 'auto',
+              spa: "auto",
               site: siteId
             }
           }

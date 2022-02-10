@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 type ExpandAllEmit = (expand: boolean) => void;
 type ExpandAllListen = (callback: ExpandAllCallback) => ExpandAllStopListen;

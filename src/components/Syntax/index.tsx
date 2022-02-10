@@ -3,9 +3,9 @@ import React from 'react';
 import styles from './styles.module.css';
 
 enum Kind {
-  STATIC = 'static',
-  DEFAULT = 'default',
-  VARIABLE = 'variable'
+  STATIC = "static",
+  DEFAULT = "default",
+  VARIABLE = "variable"
 }
 
 type SegmentProps = {
@@ -49,16 +49,16 @@ const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
         <span className={styles.default}>
           {`(${varName && `${varName}:`}`}
           {label}
-          {')'}
+          {")"}
         </span>
       );
       break;
     case Kind.VARIABLE:
       item = (
         <span className={styles.variable}>
-          {'{'}
+          {"{"}
           {label}
-          {'}'}
+          {"}"}
         </span>
       );
       break;
@@ -77,12 +77,12 @@ const Legend = ({ segments }: { segments: SegmentProps[] }) => {
         {hasKind(segments, Kind.STATIC) && <span className={styles.static}>static</span>}
         {hasKind(segments, Kind.DEFAULT) && (
           <span className={styles.default}>
-            {'('}default{')'}
+            {"("}default{")"}
           </span>
         )}
         {hasKind(segments, Kind.VARIABLE) && (
           <span className={styles.variable}>
-            {'{'}variable{'}'}
+            {"{"}variable{"}"}
           </span>
         )}
       </span>
@@ -97,7 +97,7 @@ const Syntax = ({ title, segments, examples }: Props) => {
 
       <div className={styles.syntax}>
         {segments.map((seg) => (
-          <Segment {...seg} />
+          <Segment key={title.toLowerCase().replace(" ", "-")} {...seg} />
         ))}
       </div>
 

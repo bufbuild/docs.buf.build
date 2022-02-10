@@ -11,19 +11,19 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-search-algolia/src/theme
  */
-import { DocSearchButton, useDocSearchKeyboardEvents } from '@docsearch/react';
-import Head from '@docusaurus/Head';
-import Link from '@docusaurus/Link';
-import { useHistory } from '@docusaurus/router';
-import { translate } from '@docusaurus/Translate';
-import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useAlgoliaContextualFacetFilters from '@theme/hooks/useAlgoliaContextualFacetFilters';
-import useSearchQuery from '@theme/hooks/useSearchQuery';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import { useHistory } from "@docusaurus/router";
+import { translate } from "@docusaurus/Translate";
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useAlgoliaContextualFacetFilters from "@theme/hooks/useAlgoliaContextualFacetFilters";
+import useSearchQuery from "@theme/hooks/useSearchQuery";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 let DocSearchModal = null;
 
@@ -73,9 +73,9 @@ function DocSearch({ contextualSearch, ...props }) {
     }
 
     return Promise.all([
-      import('@docsearch/react/modal'),
-      import('@docsearch/react/style'),
-      import('./styles.css')
+      import("@docsearch/react/modal"),
+      import("@docsearch/react/style"),
+      import("./styles.css")
     ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;
     });
@@ -83,7 +83,7 @@ function DocSearch({ contextualSearch, ...props }) {
 
   const onOpen = useCallback(() => {
     importDocSearchModalIfNeeded().then(() => {
-      searchContainer.current = document.createElement('div');
+      searchContainer.current = document.createElement("div");
       document.body.insertBefore(searchContainer.current, document.body.firstChild);
       setIsOpen(true);
     });
@@ -115,7 +115,7 @@ function DocSearch({ contextualSearch, ...props }) {
       // We transform the absolute URL into a relative URL.
       // Alternatively, we can use `new URL(item.url)` but it's not
       // supported in IE.
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = item.url;
 
       return {
@@ -132,7 +132,7 @@ function DocSearch({ contextualSearch, ...props }) {
 
   const transformSearchClient = useCallback(
     (searchClient) => {
-      searchClient.addAlgoliaAgent('docusaurus', siteMetadata.docusaurusVersion);
+      searchClient.addAlgoliaAgent("docusaurus", siteMetadata.docusaurusVersion);
 
       return searchClient;
     },
@@ -149,10 +149,10 @@ function DocSearch({ contextualSearch, ...props }) {
 
   // We override the default placeholder for the search bar input field
   const translatedSearchLabel = translate({
-    id: 'theme.SearchBar.label',
+    id: "theme.SearchBar.label",
     // message: 'Search',
-    message: 'Search docs...',
-    description: 'The ARIA label and placeholder for search button'
+    message: "Search docs...",
+    description: "The ARIA label and placeholder for search button"
   });
 
   return (

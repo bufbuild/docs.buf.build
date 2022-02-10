@@ -11,38 +11,33 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React, { useState, useCallback, useEffect, useRef, memo } from 'react';
-import clsx from 'clsx';
-import {
-  useThemeConfig,
-  isSamePath,
-  usePrevious,
-  useAnnouncementBar
-} from '@docusaurus/theme-common';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize, { windowSizes } from '@theme/hooks/useWindowSize';
-import useScrollPosition from '@theme/hooks/useScrollPosition';
-import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
-import type { Props } from '@theme/DocSidebar';
-import Logo from '@theme/Logo';
-import IconArrow from '@theme/IconArrow';
-import IconMenu from '@theme/IconMenu';
-import IconExternalLink from '@theme/IconExternalLink';
+import Link from '@docusaurus/Link';
+import { isSamePath, useAnnouncementBar, usePrevious, useThemeConfig } from '@docusaurus/theme-common';
 import { translate } from '@docusaurus/Translate';
-import { useExpandAll } from './use-expand-all';
-import { BufBadge, isSidebarItemWithBufBadge } from './buf-badge';
-
 import styles from '@site/node_modules/@docusaurus/theme-classic/src/theme/DocSidebar/styles.module.css';
-import bufStyles from './styles.module.css';
+import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
+import useScrollPosition from '@theme/hooks/useScrollPosition';
+import useWindowSize, { windowSizes } from '@theme/hooks/useWindowSize';
+import IconArrow from '@theme/IconArrow';
+import IconExternalLink from '@theme/IconExternalLink';
+import IconMenu from '@theme/IconMenu';
+import Logo from '@theme/Logo';
+import clsx from 'clsx';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 
+import { BufBadge, isSidebarItemWithBufBadge } from './buf-badge';
+import bufStyles from './styles.module.css';
+import { useExpandAll } from './use-expand-all';
+
+import type { Props } from "@theme/DocSidebar";
 const MOBILE_TOGGLE_SIZE = 24;
 
 const isActiveSidebarItem = (item, activePath) => {
-  if (item.type === 'link') {
+  if (item.type === "link") {
     return isSamePath(item.href, activePath);
   }
-  if (item.type === 'category') {
+  if (item.type === "category") {
     return item.items.some((subItem) => isActiveSidebarItem(subItem, activePath));
   }
   return false;
@@ -62,9 +57,9 @@ const DocSidebarItems = memo(function DocSidebarItems({ items, ...props }: any):
 function DocSidebarItem(props): JSX.Element {
   const { listenExpandAll, ...rest } = props;
   switch (props.item.type) {
-    case 'category':
+    case "category":
       return <DocSidebarItemCategory listenExpandAll={listenExpandAll} {...rest} />;
-    case 'link':
+    case "link":
     default:
       return <DocSidebarItemLink {...rest} />;
   }
@@ -137,21 +132,19 @@ function DocSidebarItemCategory({
 
   return (
     <li
-      className={clsx('menu__list-item', {
-        'menu__list-item--collapsed': collapsed
-      })}
-    >
+      className={clsx("menu__list-item", {
+        "menu__list-item--collapsed": collapsed
+      })}>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
-        className={clsx('menu__link', bufStyles.menuLink, {
-          'menu__link--sublist': collapsible,
-          'menu__link--active': collapsible && isActive,
+        className={clsx("menu__link", bufStyles.menuLink, {
+          "menu__link--sublist": collapsible,
+          "menu__link--active": collapsible && isActive,
           [styles.menuLinkText]: !collapsible
         })}
         onClick={collapsible ? handleItemClick : undefined}
-        href={collapsible ? '#' : undefined}
-        {...props}
-      >
+        href={collapsible ? "#" : undefined}
+        {...props}>
         <span>
           {label}
           {isSidebarItemWithBufBadge(item) ? <BufBadge {...item.customProps.badge} /> : null}
@@ -167,11 +160,10 @@ function DocSidebarItemCategory({
           if (!collapsed) {
             handleMenuListHeight(false);
           }
-        }}
-      >
+        }}>
         <DocSidebarItems
           items={items}
-          tabIndex={collapsed ? '-1' : '0'}
+          tabIndex={collapsed ? "-1" : "0"}
           onItemClick={onItemClick}
           collapsible={collapsible}
           activePath={activePath}
@@ -194,8 +186,8 @@ function DocSidebarItemLink({
   return (
     <li className="menu__list-item" key={label}>
       <Link
-        className={clsx('menu__link', bufStyles.menuLink, {
-          'menu__link--active': isActive
+        className={clsx("menu__link", bufStyles.menuLink, {
+          "menu__link--active": isActive
         })}
         to={href}
         {...(isInternalUrl(href) && {
@@ -203,8 +195,7 @@ function DocSidebarItemLink({
           exact: true,
           onClick: onItemClick
         })}
-        {...props}
-      >
+        {...props}>
         <span>
           {label}
           {!isInternalUrl(href) ? <IconExternalLink /> : null}
@@ -261,18 +252,17 @@ function HideableSidebarButton({ onClick }) {
     <button
       type="button"
       title={translate({
-        id: 'theme.docs.sidebar.collapseButtonTitle',
-        message: 'Collapse sidebar',
-        description: 'The title attribute for collapse button of doc sidebar'
+        id: "theme.docs.sidebar.collapseButtonTitle",
+        message: "Collapse sidebar",
+        description: "The title attribute for collapse button of doc sidebar"
       })}
       aria-label={translate({
-        id: 'theme.docs.sidebar.collapseButtonAriaLabel',
-        message: 'Collapse sidebar',
-        description: 'The title attribute for collapse button of doc sidebar'
+        id: "theme.docs.sidebar.collapseButtonAriaLabel",
+        message: "Collapse sidebar",
+        description: "The title attribute for collapse button of doc sidebar"
       })}
-      className={clsx('button button--secondary button--outline', styles.collapseSidebarButton)}
-      onClick={onClick}
-    >
+      className={clsx("button button--secondary button--outline", styles.collapseSidebarButton)}
+      onClick={onClick}>
       <IconArrow className={styles.collapseSidebarButtonIcon} />
     </button>
   );
@@ -284,21 +274,20 @@ function ResponsiveSidebarButton({ responsiveSidebarOpened, onClick }) {
       aria-label={
         responsiveSidebarOpened
           ? translate({
-              id: 'theme.docs.sidebar.responsiveCloseButtonLabel',
-              message: 'Close menu',
-              description: 'The ARIA label for close button of mobile doc sidebar'
+              id: "theme.docs.sidebar.responsiveCloseButtonLabel",
+              message: "Close menu",
+              description: "The ARIA label for close button of mobile doc sidebar"
             })
           : translate({
-              id: 'theme.docs.sidebar.responsiveOpenButtonLabel',
-              message: 'Open menu',
-              description: 'The ARIA label for open button of mobile doc sidebar'
+              id: "theme.docs.sidebar.responsiveOpenButtonLabel",
+              message: "Open menu",
+              description: "The ARIA label for open button of mobile doc sidebar"
             })
       }
       aria-haspopup="true"
       className="button button--secondary button--sm menu__button"
       type="button"
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {responsiveSidebarOpened ? (
         <span className={clsx(styles.sidebarMenuIcon, styles.sidebarMenuCloseIcon)}>&times;</span>
       ) : (
@@ -336,20 +325,18 @@ function DocSidebar({
       className={clsx(styles.sidebar, {
         [styles.sidebarWithHideableNavbar]: hideOnScroll,
         [styles.sidebarHidden]: isHidden
-      })}
-    >
+      })}>
       {hideOnScroll && <Logo tabIndex={-1} className={styles.sidebarLogo} />}
       <nav
-        className={clsx('menu', 'menu--responsive', 'thin-scrollbar', styles.menu, {
-          'menu--show': showResponsiveSidebar,
+        className={clsx("menu", "menu--responsive", "thin-scrollbar", styles.menu, {
+          "menu--show": showResponsiveSidebar,
           [styles.menuWithAnnouncementBar]: !isAnnouncementBarClosed && showAnnouncementBar
         })}
         aria-label={translate({
-          id: 'theme.docs.sidebar.navAriaLabel',
-          message: 'Sidebar navigation',
-          description: 'The ARIA label for documentation menu'
-        })}
-      >
+          id: "theme.docs.sidebar.navAriaLabel",
+          message: "Sidebar navigation",
+          description: "The ARIA label for documentation menu"
+        })}>
         <ResponsiveSidebarButton
           responsiveSidebarOpened={showResponsiveSidebar}
           onClick={toggleResponsiveSidebar}

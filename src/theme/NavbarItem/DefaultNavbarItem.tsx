@@ -11,39 +11,42 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React from 'react';
-import type { Props } from '@theme/NavbarItem/DefaultNavbarItem';
 import OriginalNavbarItem from '@theme-original/NavbarItem/DefaultNavbarItem';
+import React from 'react';
 
 import styles from './DefaultNavbarItem.module.css';
+
+import type { Props } from "@theme/NavbarItem/DefaultNavbarItem";
 
 interface NavbarProps extends Props {
   stargazers?: number;
 }
 
+type Appearance = "button" | "dark-button" | "light-button" | "slack" | "github";
+
 // We are handling different "appearances" here. They mostly just style the nav bar item, but
 // "github" also fetches the stargazer count for the link URL and sets the result as a link label.
 function DefaultNavbarItem(props: NavbarProps): JSX.Element {
-  let bufAppearance;
+  let bufAppearance: string;
   [bufAppearance, props] = extractBufAppearance(props);
-  let classNames: string[] = [styles.hideExternalLinkIcon];
+  const classNames: string[] = [styles.hideExternalLinkIcon];
   if (props.className) {
     classNames.push(props.className);
   }
   switch (bufAppearance) {
-    case 'button':
+    case "button":
       classNames.push(styles.button);
       break;
-    case 'dark-button':
+    case "dark-button":
       classNames.push(styles.darkButton);
       break;
-    case 'light-button':
+    case "light-button":
       classNames.push(styles.lightButton);
       break;
-    case 'github':
+    case "github":
       classNames.push(styles.github, styles.iconButton, styles.lightButton);
       break;
-    case 'slack':
+    case "slack":
       classNames.push(styles.slack, styles.iconButton, styles.lightButton);
       break;
     default:
@@ -51,27 +54,23 @@ function DefaultNavbarItem(props: NavbarProps): JSX.Element {
       break;
   }
 
-  const label = typeof props.label === 'string' ? props.label : 'GitHub';
-
-  if (bufAppearance === 'github') {
+  if (bufAppearance === "github") {
     return (
-      <OriginalNavbarItem className={classNames.join(' ')} {...props} label={props.stargazers} />
+      <OriginalNavbarItem className={classNames.join(" ")} {...props} label={props.stargazers} />
     );
   }
 
-  return <OriginalNavbarItem className={classNames.join(' ')} {...props} />;
+  return <OriginalNavbarItem className={classNames.join(" ")} {...props} />;
 }
 
-function extractBufAppearance(
-  props: Props
-): ['button' | 'dark-button' | 'light-button' | 'slack' | 'github' | undefined, Props] {
+function extractBufAppearance(props: Props): [Appearance | undefined, Props] {
   let { bufAppearance, ...rest } = props as any;
   switch (bufAppearance) {
-    case 'button':
-    case 'dark-button':
-    case 'light-button':
-    case 'slack':
-    case 'github':
+    case "button":
+    case "dark-button":
+    case "light-button":
+    case "slack":
+    case "github":
       return [bufAppearance, rest];
   }
   return [undefined, rest];

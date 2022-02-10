@@ -11,8 +11,8 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import OriginalNotFound from '@theme-original/NotFound';
-import React from 'react';
+import OriginalNotFound from "@theme-original/NotFound";
+import React from "react";
 
 // TODO(tstamm): make the 404 page look and feel like https://buf.build
 //  for reference, check https://github.com/bufbuild/docs.buf.build/tree/tstamm/pre-style-redo

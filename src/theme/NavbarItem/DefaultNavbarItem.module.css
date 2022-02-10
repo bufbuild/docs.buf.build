@@ -163,7 +163,7 @@ On narrow screens, it shows only the icon.
   padding-left: 1.5rem;
 }
 .iconButton > span::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;

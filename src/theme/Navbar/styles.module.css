@@ -76,7 +76,7 @@
 }
 .bufNavbarSidebarHeader > button::before,
 .bufNavbarSidebarHeader > button::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0.5rem;
   width: 0.75rem;

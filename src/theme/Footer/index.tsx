@@ -11,25 +11,25 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import Link, { LinkProps } from '@docusaurus/Link';
-import { FooterLinkItem, useThemeConfig } from '@docusaurus/theme-common';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import React, { PropsWithChildren } from 'react';
+import Link, { LinkProps } from "@docusaurus/Link";
+import { FooterLinkItem, useThemeConfig } from "@docusaurus/theme-common";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import React, { PropsWithChildren } from "react";
 
-import IconMail from './icon-envelope--gray.svg';
-import IconLinkedIn from './icon-linkedin--gray.svg';
-import IconTwitter from './icon-twitter--gray.svg';
-import styles from './styles.module.css';
+import IconMail from "./icon-envelope--gray.svg";
+import IconLinkedIn from "./icon-linkedin--gray.svg";
+import IconTwitter from "./icon-twitter--gray.svg";
+import styles from "./styles.module.css";
 
-const linkGroupTitleSocial = 'Social';
-const linkGroupTitleLegal = 'Legal';
+const linkGroupTitleSocial = "Social";
+const linkGroupTitleLegal = "Legal";
 
 function FooterLink(
   props: PropsWithChildren<FooterLinkItem & { className?: string; ariaLabel?: string }>
 ): JSX.Element {
   const linkProps: {
-    href?: LinkProps['href'];
-    to?: LinkProps['to'];
+    href?: LinkProps["href"];
+    to?: LinkProps["to"];
   } = {};
   if (props.to) {
     linkProps.to = useBaseUrl(props.to);
@@ -50,11 +50,11 @@ function FooterLink(
 
 function SocialFooterLink(props: FooterLinkItem): JSX.Element {
   let icon = undefined;
-  if (props.href && props.href.startsWith('mailto:')) {
+  if (props.href && props.href.startsWith("mailto:")) {
     icon = <IconMail />;
-  } else if (props.href && props.href.includes('twitter.com')) {
+  } else if (props.href && props.href.includes("twitter.com")) {
     icon = <IconTwitter />;
-  } else if (props.href && props.href.includes('linkedin.com')) {
+  } else if (props.href && props.href.includes("linkedin.com")) {
     icon = <IconLinkedIn />;
   }
   let ariaLabel = undefined;

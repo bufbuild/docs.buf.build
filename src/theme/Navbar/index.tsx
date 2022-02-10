@@ -11,30 +11,29 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React, { useCallback, useEffect, useState } from 'react';
-import clsx from 'clsx';
-
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import useThemeContext from '@theme/hooks/useThemeContext';
 import { NavbarItem as ConfigNavbarItem, useThemeConfig } from '@docusaurus/theme-common';
 import useHideableNavbar from '@theme/hooks/useHideableNavbar';
 import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
+import useThemeContext from '@theme/hooks/useThemeContext';
 import useWindowSize, { windowSizes } from '@theme/hooks/useWindowSize';
-import NavbarItem from '@theme/NavbarItem';
-import Logo from '@theme/Logo';
 import IconMenu from '@theme/IconMenu';
+import Logo from '@theme/Logo';
+import NavbarItem from '@theme/NavbarItem';
+import SearchBar from '@theme/SearchBar';
+import Toggle from '@theme/Toggle';
+import clsx from 'clsx';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import styles from './styles.module.css';
 
 // retrocompatible with v1
-const DefaultNavItemPosition = 'right';
+const DefaultNavItemPosition = "right";
 
 // If split links by left/right
 // if position is unspecified, fallback to right (as v1)
 function splitNavItemsByPosition(items) {
-  const leftItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === 'left');
-  const rightItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === 'right');
+  const leftItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === "left");
+  const rightItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === "right");
   return {
     leftItems,
     rightItems
@@ -72,32 +71,30 @@ function Navbar(): JSX.Element {
     }
   }, [windowSize]);
 
-  const hasSearchNavbarItem = items.some((item) => item.type === 'search');
+  const hasSearchNavbarItem = items.some((item) => item.type === "search");
   const { leftItems, rightItems } = splitNavItemsByPosition(items);
   const bufSidebarItems = bufSplitSidebarNavItems(items);
 
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', 'navbar--fixed-top', styles.bufColors, {
-        'navbar--dark': style === 'dark',
-        'navbar--primary': style === 'primary',
-        'navbar-sidebar--show': sidebarShown,
+      className={clsx("navbar", "navbar--fixed-top", styles.bufColors, {
+        "navbar--dark": style === "dark",
+        "navbar--primary": style === "primary",
+        "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
         [styles.navbarHidden]: hideOnScroll && !isNavbarVisible
-      })}
-    >
+      })}>
       <div className="navbar__inner">
         <div className="navbar__items">
           {items != null && items.length !== 0 && (
             <button
               aria-label="Navigation bar toggle"
-              className={clsx('navbar__toggle clean-btn', styles.movedToggleButton)}
+              className={clsx("navbar__toggle clean-btn", styles.movedToggleButton)}
               type="button"
               tabIndex={0}
               onClick={showSidebar}
-              onKeyDown={showSidebar}
-            >
+              onKeyDown={showSidebar}>
               <IconMenu />
             </button>
           )}
@@ -125,7 +122,7 @@ function Navbar(): JSX.Element {
         </div>
       </div>
       <div role="presentation" className="navbar-sidebar__backdrop" onClick={hideSidebar} />
-      <div className={clsx('navbar-sidebar', styles.bufNavbarSidebar)}>
+      <div className={clsx("navbar-sidebar", styles.bufNavbarSidebar)}>
         {/* We do not want the logo to show here */}
         {/*<div className="navbar-sidebar__brand">*/}
         {/*<Logo*/}
@@ -152,7 +149,7 @@ function Navbar(): JSX.Element {
           </div>
           {/* If the navbar contains two items with the labels "Slack" and "Github", we render them separately. */}
           <div className="menu">
-            <ul className={clsx('menu__list', styles.bufNavbarSidebarSocialList)}>
+            <ul className={clsx("menu__list", styles.bufNavbarSidebarSocialList)}>
               {bufSidebarItems.slack ? (
                 <NavbarItem mobile {...(bufSidebarItems.slack as any)} onClick={hideSidebar} />
               ) : null}
@@ -172,8 +169,8 @@ function bufSplitSidebarNavItems(items: ConfigNavbarItem[]): {
   slack?: ConfigNavbarItem;
   github?: ConfigNavbarItem;
 } {
-  const slack = items.find((item) => (item.label ?? '').toLowerCase() === 'slack');
-  const github = items.find((item) => (item.label ?? '').toLowerCase() === 'github');
+  const slack = items.find((item) => (item.label ?? "").toLowerCase() === "slack");
+  const github = items.find((item) => (item.label ?? "").toLowerCase() === "github");
   if (!slack || !github) {
     return { items, slack: undefined, github: undefined };
   }
