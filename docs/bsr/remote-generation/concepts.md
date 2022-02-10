@@ -85,10 +85,10 @@ import Syntax from "@site/src/components/Syntax";
 
 Within this scheme:
 
-* There's always a **v** prefix
+* There's always a **v** prefix.
 * The major version is always **1**.
 * The minor version (**3** in the example) corresponds to the [template](#template) version (without the `v` prefix). Template versions increase monotonically and have the form `v1`, `v2`, `v3`...
-* The patch version (**5** in the example) corresponds to the module, which is identified by a **commit sequence ID** that's incremented each time a new version of a module is pushed.
+* The patch version (**5** in the example) corresponds to the module, which is identified by a [commit sequence ID](#commits) that's incremented each time a new version of a module is pushed.
 
 The synthetic version `v1.2.10`, for example, means that the artifact was generated using `v2` of
 the template and using the commit sequence ID `10` for the module.
@@ -110,6 +110,16 @@ In order to preserve semver guarantees in your own generated assets, we recommen
 [breaking change detection](../../breaking/usage.md) _before_ pushing a new version of a Buf module,
 potentially as part of your [CI/CD pipeline](../../ci-cd/setup.md#checks).
 
+### Commits
+
+Every time you push a Buf module to the BSR, a new **commit** is created. Each commit has two pieces
+of information attached to it:
+
+* A **commit ID**. This is a [UUID], such as `186198be61ac435eb55064811f00427b`, that's visible in
+  the BSR's UI. Note that commit IDs are _not_ hashes of the commit's content.
+* A **commit sequence ID**. This is a monotonically increasing integer that begins at 1 and is
+  incremented with each new module push. Commit sequence IDs are _not_ visible in the BSR UI.
+
 ### How we implemented synthetic versions
 
 The challenge with versioning remote-generated code is that unlike versioning schemes that only deal
@@ -123,3 +133,5 @@ the most common scheme was semantic versioning but _without_ [pre-release and
 build](https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build) labels. In other
 words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not, and we
 opted for the former.
+
+[uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
