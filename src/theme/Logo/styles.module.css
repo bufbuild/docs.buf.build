@@ -1,17 +1,16 @@
-
 /* The anchor element contains the logo and title of the project. */
 .swizzled a {
-    top: -3px;
-    left: 4px;
-    position: relative;
+  top: -3px;
+  left: 4px;
+  position: relative;
 }
 
 /* This is the title within the anchor. */
 .swizzled b {
-    margin-left: 0.3rem;
-    font-family: var(--buf-sans-font);
-    font-size: 1.25rem;
-    font-weight: 300;
-    line-height: 1.25;
-    padding: 4px;
+  margin-left: 0.3rem;
+  font-family: var(--buf-sans-font);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.25;
+  padding: 4px;
 }

@@ -32,7 +32,7 @@ In this guide, the API token is set to `BUF_TOKEN`.
 We will start with the `buf-setup` action. All the other Buf GitHub Actions require
 `buf` to be installed on your GitHub Action runner, and `buf-setup` will handle that for us.
 
-Add the following `.github/workflows/pull-request.yaml` file to your repository:
+Add this `.github/workflows/pull-request.yaml` file to your repository:
 
 ```yaml title=".github/workflows/pull-request.yaml"
 name: buf-pull-request
@@ -45,7 +45,7 @@ jobs:
       - uses: bufbuild/buf-setup-action@v0.6.0
 ```
 
-This will ensure `buf` is installed with the latest release version and is available for all subsequent steps
+This ensures that `buf` is installed with the latest release version and is available for all subsequent steps
 within the current job.
 
 If you'd like to pin the `buf` CLI to a specific version, update your setup step to include a version like so:
@@ -69,8 +69,7 @@ steps:
 ## buf-lint
 
 Now that you have installed `buf`, let's configure lint. The `buf-lint` action lints your
-pull request and has the ability to provide in-line comments. Add the following
-after your `buf-setup` step:
+pull request and has the ability to provide in-line comments. Add this after your `buf-setup` step:
 
 ```yaml title=.github/workflows/pull-request.yaml {9}
 name: buf-pull-request
@@ -90,8 +89,7 @@ We will do something similar for the breaking change detection. The `buf-breakin
 changes to your API based on a given repository to check against, such as the `HEAD` of the `main` branch of
 your repository.
 
-Add the following after your `buf-lint` step, as well as make the following adjustments to
-your previous steps.
+Add this after your `buf-lint` step and make these adjustments to your previous steps.
 
 ```yaml title=.github/workflows/pull-request.yaml {10-13}
 name: buf-pull-request
@@ -109,8 +107,8 @@ jobs:
           against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=main'
 ```
 
-If any breaking changes are detected against the provided remote, `buf-breaking` will add
-in-line comments to your pull request to indicate these changes.
+If any breaking changes are detected against the provided remote, `buf-breaking` adds
+inline comments to your pull request to indicate these changes.
 
 ## buf-push
 
@@ -118,7 +116,7 @@ Now that we've added steps for pull request workflow, let's add a **second workf
 to push to the BSR once the pull request has merged. We cannot use the same workflow
 since we do not want to be pushing to the BSR on each commit pushed to the pull request.
 
-Add the following `.github/workflows/push.yaml` file alongside your pull request workflow
+Add this `.github/workflows/push.yaml` file alongside your pull request workflow
 configuration.
 
 ```yaml title=".github/workflows/push.yaml" {1-5,17-19}
@@ -143,13 +141,13 @@ jobs:
           buf_token: ${{ secrets.BUF_TOKEN }}
 ```
 
-This workflow is basically the same workflow as before, with an additional step to push to the BSR when a push is made to the `main` branch of your repository. The `buf-push` action will only push to the BSR if contents have actually changed, it otherwise succeeds silently.
+This workflow is basically the same workflow as before, with an additional step to push to the BSR when a push is made to the `main` branch of your repository. The `buf-push` action only pushes to the BSR if contents have actually changed, it otherwise succeeds silently.
 
 When comparing against the same branch we also set `ref=HEAD~1` to compare against the previous commit on that branch.
 
-Note, `ref=HEAD~1` does not work well for [rebase and merge](https://docs.github.com/en/github/administering-a-repository/configuring-pull-request-merges/about-merge-methods-on-github#rebasing-and-merging-your-commits) operations, since `buf` is comparing against the last commit there might be older commits with breaking changes. If you're using **Merge pull request** (GitHub default) or **Squash and merge** options then `#ref=HEAD~1` will work.
+Note, `ref=HEAD~1` does not work well for [rebase and merge](https://docs.github.com/en/github/administering-a-repository/configuring-pull-request-merges/about-merge-methods-on-github#rebasing-and-merging-your-commits) operations, since `buf` is comparing against the last commit there might be older commits with breaking changes. If you're using **Merge pull request** (GitHub default) or **Squash and merge** options then `#ref=HEAD~1` should work.
 
-The `buf-push` step will also tag the BSR commit with the `git` commit SHA, so that they are more
+The `buf-push` step also tags the BSR commit with the `git` commit SHA, so that they are more
 easily associated with one another.
 
 ## Inputs
@@ -205,5 +203,5 @@ For more information on `subdir` see the [Breaking Change Detection - Usage](htt
 Now that you've set up `buf` to run lint checks and detect breaking changes in your CI/CD environment, your APIs
 will always remain consistent, and you won't need to waste any more time understanding the [complex backwards
 compatibility rules](https://developers.google.com/protocol-buffers/docs/overview#updating) to ensure that you
-never break your customers. Plus, the module defined in your GitHub repository will automatically be kept
-in-sync with the BSR, so you don't have to manually push your API updates!
+never break your customers. Plus, the module defined in your GitHub repository is automatically kept
+in sync with the BSR, so you don't have to manually push your API updates!

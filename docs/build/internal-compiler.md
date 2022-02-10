@@ -4,7 +4,7 @@ title: Internal Compiler
 ---
 
 Protobuf is the most stable and widely adopted interface description language available
-today - it's why Buf is concentrating it's initial efforts on Protobuf. However, Protobuf
+today - it's why Buf is concentrating its initial efforts on Protobuf. However, Protobuf
 has never had an officially-published Protobuf grammar - [there are proto2 and proto3
 specs published](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec),
 but neither actually cover all edge cases, of which there are many (especially around options).
@@ -46,7 +46,7 @@ are tested for equivalence to `protoc`, including both `proto2` and `proto3` def
 
 The result FileDescriptorSets are almost byte-equivalent to `protoc`, in fact - under most scenarios without
 SourceCodeInfo, you can actually compare the byte representation of a serialized FileDescriptorSet
-produced by `buf` and by `protoc`, and they will be equal. There are two known exceptions that make this not always
+produced by `buf` and by `protoc`, and they are equal. There are two known exceptions that make this not always
 the case:
 
   1. `buf` produces additional intermediate SourceCodeInfo, and retains more
@@ -73,7 +73,7 @@ FileDescriptorSets yourself and pass them to your Protobuf plugins to verify tha
 equivalent. There is one known exception with docs generated based on `json_name`, see [this
 issue](https://github.com/protocolbuffers/protobuf/issues/5587) to track this being updated within `protoc`.
 
-Given the following call:
+Instead of this...
 
 ```sh
 # Adjust -I as necessary; this example includes the current directory.
@@ -82,7 +82,7 @@ $ mkdir java
 $ protoc -I . --java_out=java $(find . -name '*.proto')
 ```
 
-You can instead use `buf`'s compiler to generate your stubs by using the `--descriptor_set_in` flag of `protoc`:
+...you can use `buf`'s compiler to generate your stubs with the `--descriptor_set_in` flag of `protoc`:
 
 ```sh
 # We need to do "buf build | buf ls-files -" instead of "buf ls-files"

@@ -17,8 +17,8 @@ $ cd buf-tour/start/petapis
 
 ## 1.1 Configure `buf` {#configure-buf}
 
-`buf` is configured with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which is easily
-created with the following command:
+`buf` is configured with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which you can
+create with this command:
 
 ```terminal
 $ buf config init
@@ -59,7 +59,7 @@ $ protoc \
 ```
 
 A `buf.yaml` would be placed in the `proto` and `vendor/protoc-gen-validate` directories, and you would define
-a `buf.work.yaml` that contains the following:
+a `buf.work.yaml` that contains this:
 
 ```sh
 .

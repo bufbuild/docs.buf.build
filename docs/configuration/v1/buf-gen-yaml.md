@@ -55,10 +55,10 @@ For example, in the `buf.gen.yaml` example shown above, the `protoc-gen-go` plug
 By default, a `protoc-gen-<name>` program is expected to be on your `PATH` so that it can be discovered and
 executed by `buf`. This can be overridden with the [path](#path) option shown below.
 
-In the case of `<remote>`, this allows you to run `buf generate` with a remote plugin, using the fully-qualified
+In the case of `<remote>`, this enables you to run `buf generate` with a remote plugin, using the fully-qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
 example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
-and does not require a local installation of the `go` plugin. If no version is specified, the generation will default
+and does not require a local installation of the `go` plugin. If no version is specified, the generation defaults
 to using the latest version available for the requested remote plugin.
 
 #### `out`
@@ -104,7 +104,7 @@ plugins:
     path: bin/proto/protoc-gen-foo
 ```
 
-This field is **exclusive** with `remote` and will only work with `name` for local plugins.
+This field is **exclusive** with `remote` and only works with `name` for local plugins.
 
 #### `strategy`
 
@@ -129,28 +129,28 @@ There are two options:
 
 1. `directory` **(default)**
 
-This will result in `buf` splitting the input files by directory, and making separate plugin invocations in parallel.
-This is roughly the concurrent equivalent of the following:
+  This results in `buf` splitting the input files by directory and making separate plugin invocations in parallel.
+  That's roughly the concurrent equivalent of this operation:
 
-```sh
-for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
-  protoc -I . $(find "${dir}" -name '*.proto')
-done
-```
+  ```sh
+  for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
+    protoc -I . $(find "${dir}" -name '*.proto')
+  done
+  ```
 
-Almost every `protoc` plugin either requires this, so this is the recommended `strategy`. The `directory`
-strategy is used by default if omitted.
+  Almost every `protoc` plugin either requires this, so this is the recommended `strategy`. The `directory`
+  strategy is used by default if omitted.
 
 2. `all`
 
-This will result in `buf` making a single plugin invocation with all input files. This is roughly equivalent to
-the following:
+  This results in `buf` making a single plugin invocation with all input files, which is roughly
+  equivalent to this:
 
-```
-$ protoc -I . $(find . -name '*.proto')
-```
+  ```
+  $ protoc -I . $(find . -name '*.proto')
+  ```
 
-This is needed for certain plugins that expect all files to be given at once.
+  This is needed for certain plugins that expect all files to be given at once.
 
 ### `managed`
 
@@ -172,6 +172,9 @@ managed:
       - buf.build/googleapis/googleapis
     override:
       buf.build/acme/weather: github.com/acme/weather/gen/proto/go
+  override:
+    JAVA_PACKAGE:
+      acme/weather/v1/weather.proto: "org"
 plugins:
   - name: go
     out: gen/proto/go
@@ -180,8 +183,8 @@ plugins:
 
 #### `enabled`
 
-The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true` will
-enable [Managed Mode](../../generate/managed-mode) according to [default behavior](../../generate/managed-mode.md#default-behavior).
+The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true`
+enables [Managed Mode](../../generate/managed-mode) according to [default behavior](../../generate/managed-mode.md#default-behavior).
 
 #### `cc_enable_arenas`
 
@@ -226,7 +229,7 @@ from the current directory, that is they must be subdirectories relative to the 
 
 In the configuration example shown above, the `github.com/acme/weather/gen/proto/go` prefix is *joined* with the given Protobuf
 file's relative path from the module root. In the `buf.build/acme/weather` module's case, the `acme/weather/v1/weather.proto`
-file would have the following `go_package` set:
+file would have this `go_package` set:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -237,7 +240,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 ```
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
-> concatenated and included after the `;` element in the `go_package` result. The above example will generate a Go package with a package
+> concatenated and included after the `;` element in the `go_package` result. The above example generates a Go package with a package
 > declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
 > collide (a lot of Protobuf packages contain the `v1` suffix).
 
@@ -246,7 +249,7 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 The `except` key is **optional**, and removes certain modules from the `go_package` file option override behavior. The `except` values **must**
 be valid [module names](../../bsr/overview.md#module).
 
-There are situations where you will want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
+There are situations where you may want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
 for *all* of your Protobuf files. This is particularly relevant for the `buf.build/googleapis/googleapis` module, which points its `go_package` value to
 an [external repository](https://github.com/googleapis/go-genproto). Popular libraries, such as [grpc-go](https://github.com/grpc/grpc-go) depend on these
 `go_package` values, so it's important that **Managed Mode** does not overwrite them.
@@ -264,4 +267,4 @@ definitions from their public API definitions (as is the case for `buf`).
 #### `override`
 
 This is a list of per-file overrides for each modifier. In the example provided above, an override for `acme/weather/v1/weather.proto` is set for the `java_package_prefix`
-modifier to be `org` instead of `com`. This will set `org` as the package prefix for **only** the specific `acme/weather/v1/weather.proto` file and **not** for the rest of the module.
+modifier to be `org` instead of `com`. This sets `org` as the package prefix for **only** the specific `acme/weather/v1/weather.proto` file and **not** for the rest of the module.

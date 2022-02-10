@@ -10,7 +10,7 @@ that interact with the BSR.
 
 Sign up or log in at [https://buf.build/login](https://buf.build/login) and navigate to your
 account settings at [https://buf.build/settings](https://buf.build/settings/user) or by selecting
-Settings from the avatar dropdown at the top-right corner of the page.
+"Settings" from the avatar dropdown at the top-right corner of the page.
 
 On the settings page, click the `Create New Token` button, select an
 expiration time, and add a note for yourself to distinguish this token from others.
@@ -21,14 +21,14 @@ Click `Create` and copy the token to your clipboard.
 ### Revoking an API token
 
 An API token can be revoked from the same user settings page. Simply find the name
-of the token in the list and delete it. It will immediately cease to be a valid
+of the token in the list and delete it. It immediately ceases to be a valid
 authentication method.
 
 ## Authenticating the CLI
 
 The order of precedence for CLI authentication is:
 
-1. The `BUF_TOKEN` environment variable, if set, will be used.
+1. The `BUF_TOKEN` environment variable is used if it's set.
 2. The `.netrc` file.
 
 ### BUF_TOKEN
@@ -39,13 +39,13 @@ An environment variable that holds the API token, used for authentication.
 
 The `buf` CLI reads its authentication credentials from your
 [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html)
-file. There is a `buf` command that manages the `.netrc` file for you, run the following command:
+file. There is a `buf` command that manages the `.netrc` file for you, run this command:
 
 ```terminal
 $ buf registry login
 ```
 
-You'll be prompted for your username, as well as the token and you'll end up with the following:
+You'll be prompted for your username, as well as the token and you'll end up with this:
 
 ```sh title="~/.netrc"
 machine buf.build
@@ -53,7 +53,7 @@ machine buf.build
     password <TOKEN>
 ```
 
-You can logout at any time with the following command:
+You can logout at any time with this command:
 
 ```terminal
 $ buf registry logout

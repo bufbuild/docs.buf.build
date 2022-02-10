@@ -77,7 +77,7 @@ All commands have one or more `--.*config` flags that control this behavior. For
 The value of this flag is interpreted as follows:
 
   * If the value ends in `.json`, this is interpreted to be a local path to a JSON file.
-  * If the value ends in .yaml, this is interpreted to be a local path to a YAML file.
+  * If the value ends in `.yaml`, this is interpreted to be a local path to a YAML file.
   * Otherwise, this is interpreted to be either JSON or YAML data, which is directly parsed.
 
 For example:

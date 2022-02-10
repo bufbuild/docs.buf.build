@@ -11,20 +11,19 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React, {useEffect, useState, useRef} from 'react';
-import clsx from 'clsx';
-import Highlight, {defaultProps, Language} from 'prism-react-renderer';
-import copy from 'copy-text-to-clipboard';
-import rangeParser from 'parse-numeric-range';
-import usePrismTheme from '@theme/hooks/usePrismTheme';
-import type {Props} from '@theme/CodeBlock';
-import Translate, {translate} from '@docusaurus/Translate';
+import { parseCodeBlockTitle, useThemeConfig } from "@docusaurus/theme-common";
+import Translate, { translate } from "@docusaurus/Translate";
+import styles from "@site/node_modules/@docusaurus/theme-classic/src/theme/CodeBlock/styles.module.css";
+import usePrismTheme from "@theme/hooks/usePrismTheme";
+import clsx from "clsx";
+import copy from "copy-text-to-clipboard";
+import rangeParser from "parse-numeric-range";
+import Highlight, { defaultProps, Language } from "prism-react-renderer";
+import React, { useEffect, useRef, useState } from "react";
 
-import styles from '@site/node_modules/@docusaurus/theme-classic/src/theme/CodeBlock/styles.module.css';
-import bufStyles from './styles.module.css';
+import bufStyles from "./styles.module.css";
 
-import {useThemeConfig, parseCodeBlockTitle} from '@docusaurus/theme-common';
-
+import type { Props } from "@theme/CodeBlock";
 // Parses the language identifier, resolves aliases, the "-nocopy" suffix
 // and the special case "terminal"
 function parseLanguage(inputLanguage: string | undefined): ParsedLanguage {
@@ -33,7 +32,7 @@ function parseLanguage(inputLanguage: string | undefined): ParsedLanguage {
       prismLanguage: inputLanguage,
       language: inputLanguage,
       hideCopyButton: false,
-      stripShellPrompt: false,
+      stripShellPrompt: false
     };
   }
 
@@ -43,7 +42,7 @@ function parseLanguage(inputLanguage: string | undefined): ParsedLanguage {
   let language = inputLanguage;
   let hideCopyButton = false;
   if (inputLanguage.endsWith("-nocopy")) {
-    language = prismLanguage = inputLanguage.substring(0, inputLanguage.length - "-nocopy".length)
+    language = prismLanguage = inputLanguage.substring(0, inputLanguage.length - "-nocopy".length);
     hideCopyButton = true;
   }
 
@@ -66,7 +65,7 @@ function parseLanguage(inputLanguage: string | undefined): ParsedLanguage {
       break;
   }
 
-  return {language, prismLanguage, hideCopyButton, stripShellPrompt};
+  return { language, prismLanguage, hideCopyButton, stripShellPrompt };
 }
 interface ParsedLanguage {
   language: string | undefined;
@@ -78,15 +77,16 @@ interface ParsedLanguage {
 // Strips the prefix "$ " from every line of code.
 const stripShellPromptForClipboard = (code: string): string => {
   const prefix = "$ ";
-  return code.split("\n")
-    .map(line => {
-        if (line.startsWith(prefix)) {
-          return line.substring(prefix.length);
-        }
-        return line;
-      })
+  return code
+    .split("\n")
+    .map((line) => {
+      if (line.startsWith(prefix)) {
+        return line.substring(prefix.length);
+      }
+      return line;
+    })
     .join("\n");
-}
+};
 
 // For the language identifier "terminal", we allow console output following a
 // command to be separated by a line with three dashes "---".
@@ -94,72 +94,63 @@ const terminalOutputSeparator = "---";
 
 const stripSeparatedTerminalOutput = (code: string): string => {
   const lines = code.split("\n");
-  const index = lines.findIndex(l => l.trim() === terminalOutputSeparator);
+  const index = lines.findIndex((l) => l.trim() === terminalOutputSeparator);
   return lines.slice(0, index).join("\n");
-}
+};
 
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
-const getHighlightDirectiveRegex = (
-  languages = ['js', 'jsBlock', 'jsx', 'python', 'html'],
-) => {
+const getHighlightDirectiveRegex = (languages = ["js", "jsBlock", "jsx", "python", "html"]) => {
   // supported types of comments
   const comments = {
     js: {
-      start: '\\/\\/',
-      end: '',
+      start: "\\/\\/",
+      end: ""
     },
     jsBlock: {
-      start: '\\/\\*',
-      end: '\\*\\/',
+      start: "\\/\\*",
+      end: "\\*\\/"
     },
     jsx: {
-      start: '\\{\\s*\\/\\*',
-      end: '\\*\\/\\s*\\}',
+      start: "\\{\\s*\\/\\*",
+      end: "\\*\\/\\s*\\}"
     },
     python: {
-      start: '#',
-      end: '',
+      start: "#",
+      end: ""
     },
     html: {
-      start: '<!--',
-      end: '-->',
-    },
+      start: "<!--",
+      end: "-->"
+    }
   };
   // supported directives
-  const directives = [
-    'highlight-next-line',
-    'highlight-start',
-    'highlight-end',
-  ].join('|');
+  const directives = ["highlight-next-line", "highlight-start", "highlight-end"].join("|");
   // to be more reliable, the opening and closing comment must match
   const commentPattern = languages
-    .map(
-      (lang) =>
-        `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`,
-    )
-    .join('|');
+    .map((lang) => `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`)
+    .join("|");
   // white space is allowed, but otherwise it should be on it's own line
   return new RegExp(`^\\s*(?:${commentPattern})\\s*$`);
 };
 // select comment styles based on language
 const highlightDirectiveRegex = (lang) => {
   switch (lang) {
-    case 'js':
-    case 'javascript':
-    case 'ts':
-    case 'typescript':
-      return getHighlightDirectiveRegex(['js', 'jsBlock']);
+    case "js":
+    case "javascript":
+    case "ts":
+    case "typescript":
+      return getHighlightDirectiveRegex(["js", "jsBlock"]);
 
-    case 'jsx':
-    case 'tsx':
-      return getHighlightDirectiveRegex(['js', 'jsBlock', 'jsx']);
+    case "jsx":
+    case "tsx":
+      return getHighlightDirectiveRegex(["js", "jsBlock", "jsx"]);
 
-    case 'html':
-      return getHighlightDirectiveRegex(['js', 'jsBlock', 'html']);
+    case "html":
+      return getHighlightDirectiveRegex(["js", "jsBlock", "html"]);
 
-    case 'python':
-    case 'py':
-      return getHighlightDirectiveRegex(['python']);
+    case "python":
+    case "py":
+      return getHighlightDirectiveRegex(["python"]);
 
     default:
       // all comment types
@@ -171,9 +162,9 @@ export default function CodeBlock({
   children,
   className: languageClassName,
   metastring,
-  title,
+  title
 }: Props): JSX.Element {
-  const {prism} = useThemeConfig();
+  const { prism } = useThemeConfig();
 
   const [showCopied, setShowCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -199,7 +190,7 @@ export default function CodeBlock({
   const prismTheme = usePrismTheme();
 
   // In case interleaved Markdown (e.g. when using CodeBlock as standalone component).
-  const content = Array.isArray(children) ? children.join('') : children;
+  const content = Array.isArray(children) ? children.join("") : children;
 
   if (metastring && highlightLinesRangeRegex.test(metastring)) {
     // Tested above
@@ -212,7 +203,7 @@ export default function CodeBlock({
     languageClassName &&
     // Force Prism's language union type to `any` because it does not contain all available languages
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ((languageClassName.replace(/language-/, '') as Language) as any);
+    (languageClassName.replace(/language-/, "") as Language as any);
 
   if (!language && prism.defaultLanguage) {
     language = prism.defaultLanguage;
@@ -221,12 +212,12 @@ export default function CodeBlock({
   const parsedLanguage = parseLanguage(language);
 
   // only declaration OR directive highlight can be used for a block
-  let code = content.replace(/\n$/, '');
+  let code = content.replace(/\n$/, "");
   if (highlightLines.length === 0 && parsedLanguage.prismLanguage !== undefined) {
-    let range = '';
+    let range = "";
     const directiveRegex = highlightDirectiveRegex(parsedLanguage.prismLanguage);
     // go through line by line
-    const lines = content.replace(/\n$/, '').split('\n');
+    const lines = content.replace(/\n$/, "").split("\n");
     let blockStart;
     // loop through lines
     for (let index = 0; index < lines.length; ) {
@@ -237,20 +228,17 @@ export default function CodeBlock({
       if (match !== null) {
         const directive = match
           .slice(1)
-          .reduce(
-            (final: string | undefined, item) => final || item,
-            undefined,
-          );
+          .reduce((final: string | undefined, item) => final || item, undefined);
         switch (directive) {
-          case 'highlight-next-line':
+          case "highlight-next-line":
             range += `${lineNumber},`;
             break;
 
-          case 'highlight-start':
+          case "highlight-start":
             blockStart = lineNumber;
             break;
 
-          case 'highlight-end':
+          case "highlight-end":
             range += `${blockStart}-${lineNumber - 1},`;
             break;
 
@@ -264,14 +252,14 @@ export default function CodeBlock({
       }
     }
     highlightLines = rangeParser(range);
-    code = lines.join('\n');
+    code = lines.join("\n");
   }
 
   // Find the line index of the terminal output separator
   let terminalSeparatorIndex = -1;
   if (parsedLanguage.language === "terminal") {
     const lines = code.split("\n");
-    terminalSeparatorIndex = lines.findIndex(l => l.trim() === terminalOutputSeparator)
+    terminalSeparatorIndex = lines.findIndex((l) => l.trim() === terminalOutputSeparator);
   }
 
   const handleCopyCode = () => {
@@ -294,127 +282,129 @@ export default function CodeBlock({
       key={String(mounted)}
       theme={prismTheme}
       code={code}
-      language={parsedLanguage.prismLanguage as Language}>
-      {({className, style, tokens, getLineProps, getTokenProps}) => {
-
+      language={parsedLanguage.prismLanguage as Language}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => {
         // If the terminal output separator is used, we render two blocks - we split them here
-        const mainTokens = terminalSeparatorIndex === -1 ? tokens : tokens.slice(0, terminalSeparatorIndex + 1);
-        const terminalOutputTokens = terminalSeparatorIndex === -1 ? [] : tokens.slice(terminalSeparatorIndex + 1);
+        const mainTokens =
+          terminalSeparatorIndex === -1 ? tokens : tokens.slice(0, terminalSeparatorIndex + 1);
+        const terminalOutputTokens =
+          terminalSeparatorIndex === -1 ? [] : tokens.slice(terminalSeparatorIndex + 1);
 
         return (
-        <div className={styles.codeBlockContainer}>
-          {codeBlockTitle && (
-            <div style={style} className={styles.codeBlockTitle}>
-              {codeBlockTitle}
-            </div>
-          )}
-          <div className={clsx(styles.codeBlockContent, parsedLanguage.prismLanguage)}>
-            <pre
-              /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
-              tabIndex={0}
-              className={clsx(className, styles.codeBlock, 'thin-scrollbar', {
-                [styles.codeBlockWithTitle]: codeBlockTitle,
-              })}
-              style={style}>
-              <code className={styles.codeBlockLines}>
-                {mainTokens.map((line, i) => {
-
-                  // If the terminal separator is used, we only render the lines up to the separator here
-                  if (terminalSeparatorIndex > 0 && i >= terminalSeparatorIndex) {
-                    return null;
-                  }
-
-                  if (line.length === 1 && line[0].content === '') {
-                    line[0].content = '\n'; // eslint-disable-line no-param-reassign
-                  }
-
-                  const lineProps = getLineProps({line, key: i});
-
-                  if (highlightLines.includes(i + 1)) {
-                    lineProps.className += ' docusaurus-highlight-code-line';
-                  }
-
-                  return (
-                    <span key={i} {...lineProps}>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({token, key})} />
-                      ))}
-                    </span>
-                  );
+          <div className={styles.codeBlockContainer}>
+            {codeBlockTitle && (
+              <div style={style} className={styles.codeBlockTitle}>
+                {codeBlockTitle}
+              </div>
+            )}
+            <div className={clsx(styles.codeBlockContent, parsedLanguage.prismLanguage)}>
+              <pre
+                /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
+                tabIndex={0}
+                className={clsx(className, styles.codeBlock, "thin-scrollbar", {
+                  [styles.codeBlockWithTitle]: codeBlockTitle
                 })}
-              </code>
+                style={style}
+              >
+                <code className={styles.codeBlockLines}>
+                  {mainTokens.map((line, i) => {
+                    // If the terminal separator is used, we only render the lines up to the separator here
+                    if (terminalSeparatorIndex > 0 && i >= terminalSeparatorIndex) {
+                      return null;
+                    }
 
-              {/* If the terminal separator is used, we render the content following the separator separately,
+                    if (line.length === 1 && line[0].content === "") {
+                      line[0].content = "\n"; // eslint-disable-line no-param-reassign
+                    }
+
+                    const lineProps = getLineProps({ line, key: i });
+
+                    if (highlightLines.includes(i + 1)) {
+                      lineProps.className += " docusaurus-highlight-code-line";
+                    }
+
+                    return (
+                      <span key={i} {...lineProps}>
+                        {line.map((token, key) => (
+                          <span key={key} {...getTokenProps({ token, key })} />
+                        ))}
+                      </span>
+                    );
+                  })}
+                </code>
+
+                {/* If the terminal separator is used, we render the content following the separator separately,
                   allowing us to style it differently */}
-              {terminalSeparatorIndex === -1 ? null:
-                (<>
-                  <div className={bufStyles.bufTerminalOutputSeparator}>
-                    <span>Output</span>
-                  </div>
-                  <code className={clsx(styles.codeBlockLines, bufStyles.bufTerminalOutput)}>
-                    {terminalOutputTokens.map((line, i) => {
+                {terminalSeparatorIndex === -1 ? null : (
+                  <>
+                    <div className={bufStyles.bufTerminalOutputSeparator}>
+                      <span>Output</span>
+                    </div>
+                    <code className={clsx(styles.codeBlockLines, bufStyles.bufTerminalOutput)}>
+                      {terminalOutputTokens.map((line, i) => {
+                        // adjust line index with offset of separator, plus 1 for the separator line which we don't render
+                        i += terminalSeparatorIndex + 1;
 
-                      // adjust line index with offset of separator, plus 1 for the separator line which we don't render
-                      i += terminalSeparatorIndex + 1;
+                        if (line.length === 1 && line[0].content === "") {
+                          line[0].content = "\n"; // eslint-disable-line no-param-reassign
+                        }
 
-                      if (line.length === 1 && line[0].content === '') {
-                        line[0].content = '\n'; // eslint-disable-line no-param-reassign
-                      }
+                        const lineProps = getLineProps({ line, key: i });
+                        // Do not apply syntax highlighting to console output
+                        delete lineProps.style;
 
-                      const lineProps = getLineProps({line, key: i});
-                      // Do not apply syntax highlighting to console output
-                      delete lineProps.style;
+                        if (highlightLines.includes(i + 1)) {
+                          lineProps.className += " docusaurus-highlight-code-line";
+                        }
 
-                      if (highlightLines.includes(i + 1)) {
-                        lineProps.className += ' docusaurus-highlight-code-line';
-                      }
-
-                      return (
+                        return (
                           <span key={i} {...lineProps}>
-                          {line.map((token, key) => {
-                            const tokenProps = getTokenProps({token, key});
-                            // Do not apply syntax highlighting to console output
-                            delete tokenProps.style;
-                            return (
-                              <span key={key} {...tokenProps} />
-                            );
-                          })}
-                        </span>
-                      );
-                    })}
-                  </code>
-                </>)
-              }
-            </pre>
-
-            {parsedLanguage.hideCopyButton ? null :
-              <button
-                ref={button}
-                type="button"
-                aria-label={translate({
-                  id: 'theme.CodeBlock.copyButtonAriaLabel',
-                  message: 'Copy code to clipboard',
-                  description: 'The ARIA label for copy code blocks button',
-                })}
-                className={clsx(styles.copyButton, 'clean-btn')}
-                onClick={handleCopyCode}>
-                {showCopied ? (
-                  <Translate
-                    id="theme.CodeBlock.copied"
-                    description="The copied button label on code blocks">
-                    Copied
-                  </Translate>
-                ) : (
-                  <Translate
-                    id="theme.CodeBlock.copy"
-                    description="The copy button label on code blocks">
-                    Copy
-                  </Translate>
+                            {line.map((token, key) => {
+                              const tokenProps = getTokenProps({ token, key });
+                              // Do not apply syntax highlighting to console output
+                              delete tokenProps.style;
+                              return <span key={key} {...tokenProps} />;
+                            })}
+                          </span>
+                        );
+                      })}
+                    </code>
+                  </>
                 )}
-              </button>
-            }
+              </pre>
+
+              {parsedLanguage.hideCopyButton ? null : (
+                <button
+                  ref={button}
+                  type="button"
+                  aria-label={translate({
+                    id: "theme.CodeBlock.copyButtonAriaLabel",
+                    message: "Copy code to clipboard",
+                    description: "The ARIA label for copy code blocks button"
+                  })}
+                  className={clsx(styles.copyButton, "clean-btn")}
+                  onClick={handleCopyCode}
+                >
+                  {showCopied ? (
+                    <Translate
+                      id="theme.CodeBlock.copied"
+                      description="The copied button label on code blocks"
+                    >
+                      Copied
+                    </Translate>
+                  ) : (
+                    <Translate
+                      id="theme.CodeBlock.copy"
+                      description="The copy button label on code blocks"
+                    >
+                      Copy
+                    </Translate>
+                  )}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
         );
       }}
     </Highlight>

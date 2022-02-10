@@ -1,11 +1,13 @@
-{
-  "docs": [
+// @ts-check
+
+const sidebars = {
+  docs: [
     "introduction",
     "installation",
     {
-      "type": "category",
-      "label": "Tour",
-      "items": [
+      type: "category",
+      label: "Tour",
+      items: [
         "tour/introduction",
         "tour/configure-and-build",
         "tour/list-all-protobuf-files",
@@ -24,55 +26,48 @@
         "tour/wrapping-up",
         "tour/use-remote-generation"
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Build",
-      "items": [
-        "build/usage",
-        "build/internal-compiler"
-      ],
-      "collapsed": false
+      type: "category",
+      label: "Build",
+      items: ["build/usage", "build/internal-compiler"],
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Generate",
-      "items": [
-        "generate/usage",
-        "generate/managed-mode",
-        "generate/high-performance-protoc-replacement"
-      ],
-      "collapsed": false
+      type: "category",
+      label: "Generate",
+      items: ["generate/usage", "generate/managed-mode"],
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Lint",
-      "items": [
+      type: "category",
+      label: "Lint",
+      items: [
         "lint/overview",
         "lint/usage",
         "lint/configuration",
         "lint/rules",
         "lint/protoc-plugin"
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Breaking Change Detection",
-      "items": [
+      type: "category",
+      label: "Breaking Change Detection",
+      items: [
         "breaking/overview",
         "breaking/usage",
         "breaking/configuration",
         "breaking/rules",
         "breaking/protoc-plugin"
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Buf Schema Registry (BSR)",
-      "items": [
+      type: "category",
+      label: "The Buf Schema Registry (BSR)",
+      items: [
         "bsr/introduction",
         "bsr/overview",
         "bsr/authentication",
@@ -80,15 +75,15 @@
         "bsr/documentation",
         "bsr/user-management",
         {
-          "type": "category",
-          "label": "Remote Generation",
-          "customProps": {
-            "badge": {
-              "label": "alpha",
-              "severity": "info"
+          type: "category",
+          label: "Remote Generation",
+          customProps: {
+            badge: {
+              label: "alpha",
+              severity: "info"
             }
           },
-          "items": [
+          items: [
             "bsr/remote-generation/overview",
             "bsr/remote-generation/concepts",
             "bsr/remote-generation/plugin-example",
@@ -96,85 +91,77 @@
             "bsr/remote-generation/remote-plugin-execution",
             "bsr/remote-generation/consume-generated-go-code"
           ],
-          "collapsed": false
+          collapsed: false
         }
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Best Practices",
-      "items": [
-        "best-practices/style-guide",
-        "best-practices/module-development"
-      ],
-      "collapsed": false
+      type: "category",
+      label: "Best Practices",
+      items: ["best-practices/style-guide", "best-practices/module-development"],
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "CI/CD",
-      "items": [
-        "ci-cd/setup",
-        "ci-cd/github-actions"
-      ],
-      "collapsed": false
+      type: "category",
+      label: "CI/CD",
+      items: ["ci-cd/setup", "ci-cd/github-actions"],
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "How To",
-      "items": [
+      type: "category",
+      label: "How To",
+      items: [
         "how-to/replace-protoc-with-buf",
         "how-to/iterate-on-modules",
         "how-to/grpc",
         "how-to/migrate-from-protolock",
         "how-to/migrate-from-prototool"
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Configuration",
-      "items": [
+      type: "category",
+      label: "Configuration",
+      items: [
         "configuration/overview",
         "configuration/v1beta1-migration-guide",
         {
-          "type": "category",
-          "label": "v1",
-          "items": [
+          type: "category",
+          label: "v1",
+          items: [
             "configuration/v1/buf-yaml",
             "configuration/v1/buf-lock",
             "configuration/v1/buf-gen-yaml",
             "configuration/v1/buf-work-yaml"
           ],
-          "collapsed": false
+          collapsed: false
         },
         {
-          "type": "category",
-          "label": "v1beta1",
-          "items": [
+          type: "category",
+          label: "v1beta1",
+          items: [
             "configuration/v1beta1/buf-yaml",
             "configuration/v1beta1/buf-lock",
             "configuration/v1beta1/buf-gen-yaml",
             "configuration/v1beta1/lint-rules"
           ],
-          "collapsed": true
+          collapsed: true
         }
       ],
-      "collapsed": false
+      collapsed: false
     },
     {
-      "type": "category",
-      "label": "Reference",
-      "items": [
-        "reference/workspaces",
-        "reference/images",
-        "reference/inputs"
-      ],
-      "collapsed": false
+      type: "category",
+      label: "Reference",
+      items: ["reference/workspaces", "reference/images", "reference/inputs"],
+      collapsed: false
     },
     "editor-integration",
     "roadmap",
     "faq",
     "contact"
   ]
-}
+};
+
+module.exports = sidebars;

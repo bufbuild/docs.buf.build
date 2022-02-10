@@ -11,7 +11,7 @@ A **module** is a collection of Protobuf files that are configured, built, and v
 
 <Image alt="BSR module" src="/img/bsr/module_2_with_yaml.png" caption="How modules map to Buf YAML configs" />
 
-Storing modules in the BSR, a Protobuf-aware registry, protects you from publishing broken builds. Module consumers have confidence that modules they pull will compile. Something that is not possible with traditional version control systems.
+Storing modules in the BSR, a Protobuf-aware registry, protects you from publishing broken builds. Module consumers have confidence that the modules that they pull compile, something that isn't possible with traditional version control systems.
 
 The module's name uniquely identifies and gives ownership to a collection of Protobuf files, which means you can push modules to authorized repositories within the BSR, add hosted modules as dependencies, consume modules as part of code generation, and much more.
 
@@ -22,9 +22,21 @@ version: v1
 name: buf.build/acme/weather
 ```
 
-The module `name` is composed of three parts — the remote, owner, and repository: `<remote>/<owner>/<repository>`
+The module `name` is composed of three parts: the remote, owner, and repository:
 
-<Image alt="BSR module" src="/img/bsr/module_name.png" width={50} caption="The format of module names" />
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Module name syntax"
+  examples={["buf.build/acme/weather"]}
+  segments={[
+    {label: "buf.build", kind: "default", varName: "remote"},
+    {separator: "/"},
+    {label: "owner", kind: "variable"},
+    {separator: "/"},
+    {label: "repository", kind: "variable"},
+  ]
+} />
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.
@@ -47,7 +59,7 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 ## Documentation
 
-Every push to the BSR will autogenerate documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
+Every push to the BSR generates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
 
 For more information, see [Generated documentation](documentation).
 
@@ -62,7 +74,7 @@ deps:
   - buf.build/acme/units
 ```
 
-Although we **do not recommend** it, in some situations you may need to pin a module to a specific version. Ideally, authors will keep modules backwards-compatible and avoid breaking changes so you can *always* rely on the latest version.
+Although we **do not recommend** it, in some situations you may need to pin a module to a specific version. Ideally, authors keeps modules backwards-compatible and avoid breaking changes so you can *always* rely on the latest version.
 
 ```yaml
 deps:
@@ -90,7 +102,7 @@ message Forecast {
 }
 ```
 
-The `buf` CLI will automatically resolve the module(s) specified in the `deps` list.
+The `buf` CLI automatically resolves the module(s) specified in the `deps` list.
 
 > See the [Usage](../bsr/usage.md#add-a-dependency) section for a detailed example.
 
@@ -144,7 +156,7 @@ these two references refer to the same module snapshot:
 
 ## Local modules with workspaces
 
-If you want to depend on local modules, you can set up a [workspace](../reference/workspaces.md) to discover modules through your file system. If you are in a workspace, `buf` will look for `deps` in your [workspace configuration](../reference/workspaces.md#configuration) _before_ attempting to find it on the BSR.
+If you want to depend on local modules, you can set up a [workspace](../reference/workspaces.md) to discover modules through your file system. If you are in a workspace, `buf` looks for `deps` in your [workspace configuration](../reference/workspaces.md#configuration) _before_ attempting to find it on the BSR.
 
 This makes workspaces a good way to iterate on multiple modules at the same time before pushing any changes to the BSR.
 
@@ -154,7 +166,7 @@ This makes workspaces a good way to iterate on multiple modules at the same time
 
 `buf` caches files it downloads as part of module resolution in a folder on
 the local filesystem to avoid incurring the cost of downloading modules repeatedly.
-To choose where to cache the files it checks the following list in order:
+To choose where to cache the files, it checks these, in order:
 
   * The value of `$BUF_CACHE_DIR`, if set.
   * The value of `$XDG_CACHE_HOME` falling back to `$HOME/.cache` on Linux and Mac and `%LocalAppData%` for Windows.

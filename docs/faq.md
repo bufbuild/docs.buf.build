@@ -5,7 +5,7 @@ title: FAQ
 
 ### Command and flag migrations
 
-You may have recently gotten one of the following warnings:
+You may have recently gotten one of these warnings:
 
 ```
 "buf image build" has been moved to "buf build".
@@ -100,17 +100,18 @@ $ buf breaking proto --against .git#branch=main,subdir=proto
 
 ### `buf.yaml` version
 
-You may have recently gotten the following warning:
+You may have recently seen this warning:
 
 ```
 Failure: buf.yaml has no version set. Please add "version: v1". See https://docs.buf.build/faq for more details.
 ```
 
-We have added the concept of version to the configuration. For a given version, the following will not change:
+We have added the concept of version to the configuration. For a given version, these things
+don't change:
 
 - Configuration file layout
 - Default configuration files
-- Lint and breaking rules, and their associated categories.
+- Lint and breaking change rules and their associated categories.
 
 **Our goal at Buf is to never break users.** You should be able to upgrade `buf`, and expect the same
 results, forever. In this spirit, we want to make sure that upgrading `buf` does not result
@@ -137,7 +138,7 @@ To prepare for this, and to remove this warning, just add a version to the top o
 version: v1
 ```
 
-As a simple one-liner to do so, run the following:
+As a simple one-liner to do so, run this:
 
 ```sh
 $ cat <(echo version: v1) buf.yaml > buf.yaml.tmp && mv buf.yaml.tmp buf.yaml

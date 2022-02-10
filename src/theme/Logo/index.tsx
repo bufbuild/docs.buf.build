@@ -11,18 +11,17 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import OriginalLogo from '@theme-original/Logo';
-import type {Props} from '@theme/Logo';
-import React from 'react';
+import OriginalLogo from "@theme-original/Logo";
+import type { Props } from "@theme/Logo";
+import React from "react";
 
-import styles from './styles.module.css';
-
+import styles from "./styles.module.css";
 
 function Logo(props: Props): JSX.Element | null {
   return (
-      <div className={styles.swizzled}>
-        <OriginalLogo {...props} />
-      </div>
+    <div className={styles.swizzled}>
+      <OriginalLogo {...props} />
+    </div>
   );
 }
 

@@ -3,27 +3,24 @@ id: use-a-workspace
 title: 12 Use a Workspace
 ---
 
-We just learned how we can use `buf generate` with a [module](../bsr/overview.md#module)
+In the last section, you used `buf generate` with a [module](../bsr/overview.md#module) you
 pushed to the [BSR](../bsr/overview.md) to implement a gRPC client and server in Go.
-This is a great start, but product requirements always evolve and new
-features need to be built over time.
+That's a great start, but product requirements always evolve and new features need to be built over
+time.
 
-In this section, we'll see how to incorporate another dependency into
-our `PetStoreService` API, and use a [workspace](../reference/workspaces.md) to make
-our lives easier.
+In this section, you'll incorporate another dependency into your `PetStoreService` API
+and use a [workspace](../reference/workspaces.md) to make better organize your Protobuf
+definitions.
 
 ## 12.1 Create `paymentapis` {#create-paymentapis}
 
-The next feature we build will enable people to purchase pets by calling a
-`PurchasePet` endpoint. This endpoint requires some information about
-payment systems, so we should create another module for it so that it
-can be shared by other APIs later on. This logical separation is common
-for monetary orders and payment providers. This logical separation is common
-in larger organizations, for example the payments team in the `acme` organization
-owns the `buf.build/acme/paymentapis` module.
+The next feature you'll build will enable people to purchase pets by calling a `PurchasePet`
+endpoint. This endpoint requires some information about payment systems, so you'll create a separate
+module for it that can be shared by other APIs. This is the kind of logical separate you often
+find in larger organizations, where one team would own a `paymentapis` module while another would
+own `petapis`.
 
-We don't want the `.proto` files specific to `paymentapis` to coexist within
-`petapis`, so we'll make another directory for it and initialize a module
+You can enact a separation like this by creating a separate directory and initializing a Buf module
 there:
 
 ```terminal
@@ -32,7 +29,7 @@ $ cd paymentapis
 $ buf config init
 ```
 
-With this, you should have the following:
+That creates this config file:
 
 ```yaml title="paymentapis/buf.yaml"
 version: v1
@@ -44,7 +41,7 @@ breaking:
     - FILE
 ```
 
-You can also `name` the module like so:
+You can also provide a `name` for the module:
 
 ```yaml title="paymentapis/buf.yaml" {2}
  version: v1
@@ -57,12 +54,14 @@ You can also `name` the module like so:
      - FILE
 ```
 
-Now that the module is all set up, we can add an API with the following:
+Now that the module is all set up, add an API:
 
 ```terminal
 $ mkdir -p payment/v1alpha1
 $ touch payment/v1alpha1/payment.proto
 ```
+
+Copy and paste this content into that file:
 
 ```protobuf title="paymentapis/payment/v1alpha1/payment.proto"
 syntax = "proto3";
@@ -93,15 +92,15 @@ message Order {
 
 ## 12.2 Build the Module {#build-the-module}
 
-If you try to build the `paymentapis` module in its current state, you'll notice the following:
+If you try to build the `paymentapis` module in its current state, you'll get an error:
 
 ```terminal
 $ buf build
+---
 payment/v1alpha1/payment.proto:7:8:google/type/money.proto: does not exist
 ```
 
-We know how to fix this though - we can simply add the `buf.build/googleapis/googleapis` dependency
-and resolve it like before:
+To fix this, add the `buf.build/googleapis/googleapis` dependency and resolve it like before:
 
 ```yaml title="paymentapis/buf.yaml" {3-4}
  version: v1
@@ -116,31 +115,34 @@ and resolve it like before:
      - FILE
 ```
 
+Now update your dependencies and try building again:
+
 ```terminal
 $ buf mod update
 $ buf build
 ```
 
-The `paymentapis` module is ready to be used, but we're not quite sure if the API is stable.
-Given that these APIs are meant to be used by other services, we need to test it in other
-applications to make sure it's the API we should to commit to. In general, such APIs should
+The `paymentapis` module is ready to be used, but it's not yet clear if the API is stable.
+Given that these APIs are meant to be used by other services, you need to test it in other
+applications to make sure it's the API you should to commit to. In general, such APIs should
 include an unstable [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#package_version_suffix), such
 as the `v1alpha1` version used above, to convey that these packages are still in-development and
 can have breaking changes.
 
-However, we can also use a workspace so that we can iterate on multiple modules locally without pushing
-anything to the BSR. Then, only after we've verified that the API is what we want to move forward with,
-we can push the version to the BSR so that it can be used by others.
+However, you can also use a **workspace** so that you can iterate on multiple modules locally
+without pushing anything to the BSR. Then, only after you've verified that the API is what you want
+to move forward with, you can push the version to the BSR so that it can be used by others.
 
-In summary, workspaces prevent us from pushing up a new version of our module to the BSR every time we want
-to test the changes in another - we can do it all locally first.
+In summary, workspaces prevent you from pushing up a new version of your module to the BSR every
+time you want to test the changes in another. Instead, you can do it all locally first.
 
 ## 12.3 Define a Workspace {#define-a-workspace}
 
-A workspace is defined with the [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file, which is generally
-placed at the root of a VCS repository. Given that we're working from within the root of the `start` directory,
-the `buf.work.yaml` should exist there. The configuration is simple: all you need to do is specify the paths to
-the modules you want to include in the workspace. For `paymentapis` and `petapis`, this looks like the following:
+A workspace is defined with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file, which is
+generally placed at the root of a version-controlled repository. Given that you're working from
+within the root of the `start` directory, the `buf.work.yaml` should be placed there. For the
+configuration, you only need to specify the paths of the modules you want to include in the
+workspace. Here's what the config looks like for the `paymentapis` and `petapis` modules:
 
 ```terminal
 $ cd ..
@@ -153,6 +155,8 @@ directories:
   - paymentapis
   - petapis
 ```
+
+Your directory structure should now look like this:
 
 ```terminal
 start/
@@ -188,10 +192,10 @@ start/
 
 ## 12.4 Use `paymentapis` in `petapis` {#use-paymentapis-in-petapis}
 
-With the workspace initialized, we can freely import `.proto` files between the `petapis`
+With the workspace initialized, you can freely import `.proto` files between the `petapis`
 and `paymentapis` modules.
 
-Adapt the `PetStoreService` with the `PurhcasePet` endpoint like so:
+Adapt the `PetStoreService` with the `PurhcasePet` endpoint like this:
 
 ```protobuf title="petapis/pet/v1/pet.proto" {7,12-18,23}
  syntax = "proto3";
@@ -200,7 +204,7 @@ Adapt the `PetStoreService` with the `PurhcasePet` endpoint like so:
 
  option go_package = "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1;petv1";
 
- +import "payment/v1alpha1/payment.proto";
++import "payment/v1alpha1/payment.proto";
  import "google/type/datetime.proto";
 
  ...
@@ -264,7 +268,7 @@ If the input for a `buf` command is a directory containing a `buf.work.yaml` fil
 upon all of the modules defined in the `buf.work.yaml`.
 
 For example, suppose that we update both the `paymentapis` and `petapis` directories with some `lint`
-failures, such as violating `FIELD_LOWER_SNAKE_CASE`. We can easily `lint` all of the modules defined
+failures, such as violating `FIELD_LOWER_SNAKE_CASE`. You can`lint` all of the modules defined
 in the `buf.work.yaml` with a single command:
 
 ```protobuf title="paymentapis/payment/v1/payment.proto" {2-3}

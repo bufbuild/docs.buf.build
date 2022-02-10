@@ -8,8 +8,8 @@ and interoperate within a common directory. Workspaces make it possible for loca
 to import Protobuf files from other local modules, and unlock other powerful use cases that
 operate on multiple modules at the same time.
 
-The following represents a complete example of a `buf.work.yaml` configuration file, as well as an
-example file tree layout containing the `buf.build/acme/petapis` and `buf.build/acme/paymentapis`
+The diagram and file below represent a complete example of a `buf.work.yaml` configuration file with
+its accompanying tree layout containing the `buf.build/acme/petapis` and `buf.build/acme/paymentapis`
 modules:
 
 ```sh

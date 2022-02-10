@@ -4,15 +4,15 @@ title: Migration Guide (v1beta1 -> v1)
 ---
 
 Several changes were made between `v1beta1` and `v1`, but migrating between
-them is easy. This guide will walk through exactly what changed, and what you need to
-change when upgrading from `v1beta1` to `v1`.
+them is easy. This guide walks you through exactly what changed and what you need to
+update when upgrading from `v1beta1` to `v1`.
 
 ## Automatic migration
 
 The `buf config migrate-v1beta1` command automatically migrates all of your `buf` configuration
 files from `v1beta1` to `v1`.
 
-For example, consider the following `buf.yaml` with multiple roots:
+For example, consider this `buf.yaml` with multiple roots:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -76,7 +76,7 @@ You'll notice that the filenames are equivalent, but the files have been rearran
                 └── datetime.proto
 ```
 
-The following sections will explain what changed between `v1beta1` and `v1` in more detail.
+The sections below explain what changed between `v1beta1` and `v1` in more detail.
 
 ## buf.yaml
 
@@ -86,7 +86,7 @@ build roots, as well as lint and breaking rules.
 ### build.roots
 
 The only structural change made to the `buf.yaml` file for `v1` was the removal of `build.roots`. Previously,
-users could configure multiple roots for a single `buf.yaml`, such as the following:
+users could configure multiple roots for a single `buf.yaml`, such as this:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -122,7 +122,7 @@ breaking:
 
 The workspace is defined with a [`buf.work.yaml`](v1/buf-work-yaml.md), and makes it possible for users to consolidate multiple modules
 into a single buildable unit (just like `build.roots` used to do). In the example above, you can define a `buf.work.yaml` at the root
-of your VCS repository with the following:
+of your VCS repository with this:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -134,7 +134,7 @@ directories:
 With a workspace, operations like `buf build`, `buf lint`, and `buf breaking` can target the directory
 containing the `buf.work.yaml` file to have the same experience before they split their single `buf.yaml`
 into multiple `buf.yaml` files. For example, running `buf lint` on a directory [input](../reference/inputs.md)
-containing a `buf.work.yaml` will lint *all* of the modules listed in the `buf.work.yaml`.
+containing a `buf.work.yaml` lints *all* of the modules listed in the `buf.work.yaml`.
 
 ### MINIMAL lint category
 
@@ -189,7 +189,7 @@ rule also belonged to the `WIRE` and `WIRE_JSON` categories, but this rule was s
 
 If your `buf.yaml` configuration file has multiple `build.roots` and includes `build.excludes`, `lint.ignore[_only]`, or
 `breaking.ignore[_only]` values, the relative filepaths should only be copied to the new `buf.yaml` file that defines those
-files. For example, suppose that the original `buf.yaml` file was defined like the following:
+files. For example, suppose that the original `buf.yaml` file was defined like this:
 
 ```yaml title="buf.yaml"
 version: v1beta1
@@ -240,7 +240,7 @@ lint:
       - google/type/money.proto
 ```
 
-You'll notice that the filepath will not need to be updated because it's already relative to the module root. This transformation
+You'll notice that the filepath doesn't need to be updated because it's already relative to the module root. This transformation
 is automatically handled by the `buf config migrate-v1beta1` command, so you don't need to worry about these nuanced details.
 
 ## buf.gen.yaml

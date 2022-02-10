@@ -1,38 +1,38 @@
-
 .bufTerminalOutput {
-    color: #6f7377;
+  color: #6f7377;
 }
 
 .bufTerminalOutputSeparator {
-    float: left;
-    width: 100%;
-    font-size: var(--ifm-code-font-size);
-    font-weight: 500;
-    color: rgb(57, 58, 52);
-    font-family: var(--ifm-font-family-base);
-    display: flex;
-    flex-direction: row;
-    margin-top: -0.4rem;
-    margin-bottom: -0.3rem;
+  float: left;
+  width: 100%;
+  font-size: var(--ifm-code-font-size);
+  font-weight: 500;
+  color: rgb(57, 58, 52);
+  font-family: var(--ifm-font-family-base);
+  display: flex;
+  flex-direction: row;
+  margin-top: -0.4rem;
+  margin-bottom: -0.3rem;
 }
 
 .bufTerminalOutputSeparator > span {
-    padding-left: .5rem;
-    padding-right: .5rem;
-    color: #6f7377;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: #6f7377;
 }
 
-.bufTerminalOutputSeparator::before, .bufTerminalOutputSeparator::after {
-    content: " ";
-    flex-grow: 0;
-    display: inline;
-    width: 1rem;
-    height: 1px;
-    border-radius: 0;
-    border-bottom: 1px solid var(--ifm-color-emphasis-300);
-    padding-top: 0.5rem;
+.bufTerminalOutputSeparator::before,
+.bufTerminalOutputSeparator::after {
+  content: " ";
+  flex-grow: 0;
+  display: inline;
+  width: 1rem;
+  height: 1px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  padding-top: 0.5rem;
 }
 
 .bufTerminalOutputSeparator::after {
-    width: 100%;
+  width: 100%;
 }

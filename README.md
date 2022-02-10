@@ -38,7 +38,6 @@ This command generates static content into the `build` directory and then serves
 the static files on `localhost`. This doesn't update dynamically as with `make run`
 but the content you view this way should be identical to the deployed docs.
 
-
 ## About the Docusaurus setup
 
 We are using [version 2.0.0-beta.3](https://docusaurus.io/docs/2.0.0-beta.3) of
@@ -55,7 +54,6 @@ The project extends the capabilities of docusaurus to render code blocks:
   - allow console output following a command to be separated by a line with three dashes `---`, and
     not copy only the part above this line to the clipboard
 - adding the suffix `-nocopy` to any language identifier will hide the Copy button
-
 
 ### Badges in the sidebar
 
@@ -126,13 +124,13 @@ Required fields are `alt` and `src`. Required fields are `alt` and `src`. Option
 
 The Buf docs support five admonition blocks:
 
-Block type | Color scheme
-:----------|:------------
-`note` | Gray
-`tip` | Green
-`info` | Blue
-`warning` | Orange
-`danger` | Red
+| Block type | Color scheme |
+| :--------- | :----------- |
+| `note`     | Gray         |
+| `tip`      | Green        |
+| `info`     | Blue         |
+| `warning`  | Orange       |
+| `danger`   | Red          |
 
 Here's an example `note` block:
 
@@ -161,7 +159,7 @@ No really, we mean it
 ## Linting the documentation
 
 The Buf documentation uses the [Vale] linter for its prose sources. The current Vale config is in
-[`.vale.ini`][./.vale.ini] and Vale-related assets are in the [`vale`][./vale] directory.
+[`.vale.ini`](./.vale.ini) and Vale-related assets are in the [`vale`](./vale) directory.
 
 To lint the docs, install Vale and run:
 
@@ -174,11 +172,22 @@ make lint
 
 There are currently two checks in place:
 
-* A standard spelling check. Any words that we want Vale to ignore need to be added to the
+- A standard spelling check. Any words that we want Vale to ignore need to be added to the
   [`accept.txt`](./vale/Vocab/Docs/accept.txt) file.
-* A check for e.g. and i.e.
+- A check for e.g. and i.e.
 
 Linting is currently performed on an ad hoc basis.
+
+## Keeping the Browserslist up to date
+
+Periodically, mostly when prompted by log output from various systems, we should update the
+Browserslist "database" using this command:
+
+```terminal
+npx browserslist@latest --update-db
+```
+
+This is expected to update only the `package-lock.json` and no other files.
 
 [buf]: https://buf.build
 [node]: https://nodejs.org
