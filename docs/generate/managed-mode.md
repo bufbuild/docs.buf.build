@@ -3,18 +3,18 @@ id: managed-mode
 title: Managed Mode
 ---
 
-**Managed Mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to set all of the file
-options in your module according to an opinionated set of values suitable for each of the supported Protobuf languages:
+**Managed Mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option
+that tells the `buf` CLI to set the file options in your module according to an opinionated set of
+values. Buf has chosen such values for these languages:
 
-* [C++](https://developers.google.com/protocol-buffers/docs/cpptutorial)
-* [C#](https://developers.google.com/protocol-buffers/docs/csharptutorial)
-* [Dart](https://developers.google.com/protocol-buffers/docs/darttutorial)
-* [Go](https://developers.google.com/protocol-buffers/docs/gotutorial)
-* [Java](https://developers.google.com/protocol-buffers/docs/javatutorial)
-* [Kotlin](https://developers.google.com/protocol-buffers/docs/kotlintutorial)
-* [Python](https://developers.google.com/protocol-buffers/docs/pythontutorial)
+* [C++](#cc_enable_arenas)
+* [Java](#java_multiple_files)
+* [Go](#go_package_prefix)
 
-Those file options are written *on the fly* so that you can remove them from your `.proto` source files.
+In addition, you can use Managed Mode to set Protobuf's [`optimize_for`](#optimize_for) option.
+
+With Managed Mode, file options are written on the fly by the `buf` CLI, which means that you can
+remove them from your `.proto` source files.
 
 ## Background
 
