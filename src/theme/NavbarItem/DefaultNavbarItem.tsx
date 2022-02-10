@@ -11,10 +11,10 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import OriginalNavbarItem from '@theme-original/NavbarItem/DefaultNavbarItem';
-import React from 'react';
+import OriginalNavbarItem from "@theme-original/NavbarItem/DefaultNavbarItem";
+import React from "react";
 
-import styles from './DefaultNavbarItem.module.css';
+import styles from "./DefaultNavbarItem.module.css";
 
 import type { Props } from "@theme/NavbarItem/DefaultNavbarItem";
 

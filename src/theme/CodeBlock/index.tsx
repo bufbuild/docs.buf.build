@@ -11,17 +11,17 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import { parseCodeBlockTitle, useThemeConfig } from '@docusaurus/theme-common';
-import Translate, { translate } from '@docusaurus/Translate';
-import styles from '@site/node_modules/@docusaurus/theme-classic/src/theme/CodeBlock/styles.module.css';
-import usePrismTheme from '@theme/hooks/usePrismTheme';
-import clsx from 'clsx';
-import copy from 'copy-text-to-clipboard';
-import rangeParser from 'parse-numeric-range';
-import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import React, { useEffect, useRef, useState } from 'react';
+import { parseCodeBlockTitle, useThemeConfig } from "@docusaurus/theme-common";
+import Translate, { translate } from "@docusaurus/Translate";
+import styles from "@site/node_modules/@docusaurus/theme-classic/src/theme/CodeBlock/styles.module.css";
+import usePrismTheme from "@theme/hooks/usePrismTheme";
+import clsx from "clsx";
+import copy from "copy-text-to-clipboard";
+import rangeParser from "parse-numeric-range";
+import Highlight, { defaultProps, Language } from "prism-react-renderer";
+import React, { useEffect, useRef, useState } from "react";
 
-import bufStyles from './styles.module.css';
+import bufStyles from "./styles.module.css";
 
 import type { Props } from "@theme/CodeBlock";
 // Parses the language identifier, resolves aliases, the "-nocopy" suffix
@@ -282,7 +282,8 @@ export default function CodeBlock({
       key={String(mounted)}
       theme={prismTheme}
       code={code}
-      language={parsedLanguage.prismLanguage as Language}>
+      language={parsedLanguage.prismLanguage as Language}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
         // If the terminal output separator is used, we render two blocks - we split them here
         const mainTokens =
@@ -304,7 +305,8 @@ export default function CodeBlock({
                 className={clsx(className, styles.codeBlock, "thin-scrollbar", {
                   [styles.codeBlockWithTitle]: codeBlockTitle
                 })}
-                style={style}>
+                style={style}
+              >
                 <code className={styles.codeBlockLines}>
                   {mainTokens.map((line, i) => {
                     // If the terminal separator is used, we only render the lines up to the separator here
@@ -382,17 +384,20 @@ export default function CodeBlock({
                     description: "The ARIA label for copy code blocks button"
                   })}
                   className={clsx(styles.copyButton, "clean-btn")}
-                  onClick={handleCopyCode}>
+                  onClick={handleCopyCode}
+                >
                   {showCopied ? (
                     <Translate
                       id="theme.CodeBlock.copied"
-                      description="The copied button label on code blocks">
+                      description="The copied button label on code blocks"
+                    >
                       Copied
                     </Translate>
                   ) : (
                     <Translate
                       id="theme.CodeBlock.copy"
-                      description="The copy button label on code blocks">
+                      description="The copy button label on code blocks"
+                    >
                       Copy
                     </Translate>
                   )}

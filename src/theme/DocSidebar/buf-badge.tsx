@@ -1,7 +1,7 @@
-import clsx from 'clsx';
-import React from 'react';
+import clsx from "clsx";
+import React from "react";
 
-import styles from './buf-badge.module.css';
+import styles from "./buf-badge.module.css";
 
 export interface BufBadge {
   label: string;
@@ -36,7 +36,8 @@ export function BufBadge(props: BufBadge): JSX.Element {
         [styles.warning]: props.severity === "warning",
         [styles.neutral]: props.severity === "neutral",
         [styles.info]: props.severity === "info"
-      })}>
+      })}
+    >
       {props.label}
     </span>
   );

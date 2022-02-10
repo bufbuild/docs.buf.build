@@ -11,20 +11,20 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import { NavbarItem as ConfigNavbarItem, useThemeConfig } from '@docusaurus/theme-common';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useThemeContext from '@theme/hooks/useThemeContext';
-import useWindowSize, { windowSizes } from '@theme/hooks/useWindowSize';
-import IconMenu from '@theme/IconMenu';
-import Logo from '@theme/Logo';
-import NavbarItem from '@theme/NavbarItem';
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import clsx from 'clsx';
-import React, { useCallback, useEffect, useState } from 'react';
+import { NavbarItem as ConfigNavbarItem, useThemeConfig } from "@docusaurus/theme-common";
+import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import IconMenu from "@theme/IconMenu";
+import Logo from "@theme/Logo";
+import NavbarItem from "@theme/NavbarItem";
+import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
+import clsx from "clsx";
+import React, { useCallback, useEffect, useState } from "react";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 // retrocompatible with v1
 const DefaultNavItemPosition = "right";
@@ -84,7 +84,8 @@ function Navbar(): JSX.Element {
         "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
         [styles.navbarHidden]: hideOnScroll && !isNavbarVisible
-      })}>
+      })}
+    >
       <div className="navbar__inner">
         <div className="navbar__items">
           {items != null && items.length !== 0 && (
@@ -94,7 +95,8 @@ function Navbar(): JSX.Element {
               type="button"
               tabIndex={0}
               onClick={showSidebar}
-              onKeyDown={showSidebar}>
+              onKeyDown={showSidebar}
+            >
               <IconMenu />
             </button>
           )}

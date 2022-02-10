@@ -1,5 +1,5 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import React from 'react';
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import React from "react";
 
 type Props = {
   alt: string;
