@@ -59,7 +59,7 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 ## Documentation
 
-Every push to the BSR autogenerates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
+Every push to the BSR generates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
 
 For more information, see [Generated documentation](documentation).
 
