@@ -115,7 +115,7 @@ potentially as part of your [CI/CD pipeline](../../ci-cd/setup.md#checks).
 Every time you push a Buf module to the BSR, a new **commit** is created. Each commit has two pieces
 of information attached to it:
 
-* A **commit name**. This is a [UUID], such as `186198be61ac435eb55064811f00427b`, that's visible in
+* A **commit name**. This is a randomly generated, fixed-size [hexadecimal] string that's visible in
   the BSR's UI. Note that commit IDs are _not_ hashes of the commit's content.
 * A **commit sequence ID**. This is a monotonically increasing integer that begins at 1 and is
   incremented with each new module push. Commit sequence IDs are _not_ visible in the BSR UI.
@@ -134,4 +134,4 @@ build](https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build) 
 words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not, and we
 opted for the former.
 
-[uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
+[hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
