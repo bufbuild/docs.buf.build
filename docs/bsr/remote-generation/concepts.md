@@ -116,7 +116,7 @@ Every time you push a Buf module to the BSR, a new **commit** is created. Each c
 of information attached to it:
 
 * A **commit name**. This is a randomly generated, fixed-size [hexadecimal] string that's visible in
-  the BSR's UI. Note that commit IDs are _not_ hashes of the commit's content.
+  the BSR's UI. Note that the commit name is _not_ a hash of the commit's content.
 * A **commit sequence ID**. This is a monotonically increasing integer that begins at 1 and is
   incremented with each new module push. Commit sequence IDs are _not_ visible in the BSR UI.
 
