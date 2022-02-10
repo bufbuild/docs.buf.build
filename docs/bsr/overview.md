@@ -112,7 +112,21 @@ Each module on the BSR exists as a snapshot, and contains a unique reference ass
 change.
 
 A reference is a way to refer to a single version of the repository. While a reference always _resolves_ to a single snapshot of the repository, there are three types of references: [commits](#commit),
-[tags](#tag), and [tracks](#track).
+[tags](#tag), and [tracks](#track). The syntax for references:
+
+<Syntax
+  title="Module references"
+  examples={["buf.build/acme/weather:v1-dev"]}
+  segments={[
+    {label: "buf.build", kind: "default", varName: "remote"},
+    {separator: "/"},
+    {label: "owner", kind: "variable"},
+    {separator: "/"},
+    {label: "repository", kind: "variable"},
+    {separator: ":"},
+    {label: "commit|tag|track", kind: "variable"},
+  ]
+} />
 
 ### Commit
 
