@@ -39,7 +39,7 @@ We find neither of these solutions to be tenable in the long-term for a tool tha
 Protobuf schema. Therefore, we've taken a different route.
 
 The [internal compiler](https://godoc.org/github.com/jhump/protoreflect/desc/protoparse) quite literally replaces
-`protoc` outside of the builtin plugins (`--java_out`, `--cpp_out`, etc.). The resulting FileDescriptorSets
+`protoc` outside of the built-in plugins (`--java_out`, `--cpp_out`, etc.). The resulting FileDescriptorSets
 are tested for equivalence to `protoc`, including both `proto2` and `proto3` definitions, imports,
 [FileDescriptorProto](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto) ordering,
 [SourceCodeInfo](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto), and custom options.

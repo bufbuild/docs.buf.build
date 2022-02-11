@@ -47,7 +47,7 @@ expect the following `package` values:
                     └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-Packages should be `lower.snake_case`. [(Why?)](../lint/rules.md#package_lower_snake_case)
+Packages should be `lower_snake_case`. [(Why?)](../lint/rules.md#package_lower_snake_case)
 
 The last component of a package should be a version. [(Why?)](../lint/rules.md#package_version_suffix)
 
