@@ -79,7 +79,7 @@ const sidebars = {
           label: "Remote Generation",
           customProps: {
             badge: {
-              label: "beta",
+              label: "alpha",
               severity: "info"
             }
           },
