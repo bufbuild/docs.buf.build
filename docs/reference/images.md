@@ -36,7 +36,7 @@ The following is (roughly) what happens:
   CodeGeneratorResponse is written to stdout of `protoc-gen-go`.
 - On success of `protoc-gen-go`, `protoc` reads stdout and then writes these generated files.
 
-The built-in generators to `protoc`, such as`--java_out`, `--cpp_out`, etc., work in roughly
+The built-in generators to `protoc`, such as `--java_out`, `--cpp_out`, etc., work in roughly
 the same manner, although instead of executing an external binary, this is done internally
 to `protoc`.
 
