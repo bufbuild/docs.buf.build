@@ -7,17 +7,18 @@ title: User Management
 
 ## Organization Roles
 
-Every user that is part of an organization will have an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
+Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
 	
 ### Owner
 
 - Users that require unrestricted access to the organization, its settings and all resources owned by the organization. 
 - Can delete organization. All resources such as repositories, templates and plugins must be deleted before the organization can be deleted.
+- Can add and delete resources such as [repositories](../bsr/overview.md#module), [templates](../bsr/remote-generation/concepts/#template) and [plugins](../bsr/remote-generation/concepts/#plugin).
 
 ### Admin
 
 - Can manage user roles, except owners.
-- Can add and delete resources such as [repositories](../bsr/overview.md#module), [templates](../bsr/remote-generation/concepts/#template) and [plugins](../bsr/remote-generation/concepts/#plugin).
+- Can add resources.
 
 ### Member
 
@@ -26,15 +27,14 @@ Every user that is part of an organization will have an explicit role. Note that
 
 ### Base resource roles
 
-> *Configurable base resource roles are coming soon.*
-
-Every organization has a set of base resource roles that apply to all members of the organization. The following are the default roles:
+Every organization has a set of base resource roles that apply to all members of the organization.
+The default roles:
 
 | Repository | Template | Plugin |
 |:--|:--|:--|
 | **Write**  | **Write** | **Write** |
 
-Organization owners can modify the base resource roles depending on the requirements of the organization.
+Organization owners can modify the base resource roles depending on the requirements of the organization. These roles are configurable on the organization settings page.
 
 ## Resource Roles
 
@@ -49,7 +49,7 @@ The most common use-cases are:
 - Outside collaborators. This is useful when users outside your organization require access to specific resource(s) within the organization, but you do not want them to be a member of the organization.
 - Elevated permissions for organization members. This is useful when the organization base resource roles are set to **Read** and specific user(s) require the **Write** or **Admin** role for specific resource(s). 
 
-When computing the role on a resource, the highest role will take precedence. For example, an organization has **Write** as the base repository role, and the user was granted the **Admin** role on a specific repository. The final computed user role on the repository will be **Admin**.
+When computing the role on a resource, the highest role takes precedence. For example, an organization has **Write** as the base repository role, and the user was granted the **Admin** role on a specific repository. The final computed user role on the repository is **Admin**.
 
 ### Owner
 

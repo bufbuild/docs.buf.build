@@ -18,7 +18,7 @@ where to search for `.proto` files, and how to handle imports. As opposed to `pr
 are manually specified on the command-line, `buf` operates by recursively discovering all `.proto` files under
 configuration and building them.
 
-The following is an example of all configuration options for `build`:
+Here is an example of all configuration options for `build`:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -32,7 +32,7 @@ The `build` section only has one option:
 ### `excludes`
 
 The `excludes` key is **optional**, and lists directories to ignore from `.proto` file discovery. Any directories
-added to this list will be completely skipped and excluded in the result. **We do not recommend using this
+added to this list are completely skipped and excluded in the result. **We do not recommend using this
 option in general**, however in some situations it is unavoidable.
 
 For more information on the `buf.yaml` configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
@@ -46,7 +46,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 ## Define a Module
 
 To get started, create a [module](../bsr/overview.md#module) by adding a `buf.yaml` file to the root of the directory
-that contains your Protobuf definitions. You can create the default `buf.yaml` file with the following command:
+that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
 $ buf config init
@@ -81,7 +81,7 @@ $ protoc \
 ```
 
 A `buf.yaml` would be placed in the `proto` and `vendor/protoc-gen-validate` directories, and you would define
-a `buf.work.yaml` that contains the following:
+a `buf.work.yaml` that contains this:
 
 ```sh {8,11}
 .
@@ -108,7 +108,7 @@ directories:
 
 Like the `-I` flag for `protoc`, workspaces make it possible to import definitions across modules, such as introducing
 a new `message` in one module, and importing it from another. Similarly, any command that is run on an input that contains
-a `buf.work.yaml` will act upon *all* of the modules defined in the `buf.work.yaml`.
+a `buf.work.yaml` acts upon *all* of the modules defined in the `buf.work.yaml`.
 
 ## Workspace requirements
 
@@ -118,11 +118,11 @@ important for successful modern Protobuf development across a number of language
 
 **1. Workspace modules must not overlap, that is one workspace module can not be a sub-directory of another workspace module.**
 
-For example, the following is not a valid configuration:
+This, for example, is not a valid configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - foo
   - foo/bar
@@ -135,7 +135,7 @@ to a number of major issues across the Protobuf plugin ecosystem.
 
 **2. All `.proto` file paths must be unique relative to each workspace module.**
 
-For example, consider the following configuration:
+For example, consider this configuration:
 
 ```yaml title="buf.work.yaml"
 version: v1
@@ -144,15 +144,15 @@ directories:
   - bar
 ```
 
-*Given the above configuration, it is invalid to have the following two files:*
+*Given the above configuration, it's invalid to have these two files:*
 
   - `foo/baz/baz.proto`
   - `bar/baz/baz.proto`
 
-This results in two files having the path `baz/baz.proto`. Given the following third file
-`bar/baz/bat.proto`:
+This results in two files having the path `baz/baz.proto`. Imagine that a third file is thrown into
+the mix:
 
-```protobuf
+```protobuf title="bar/baz/bat.proto"
 // THIS IS DEMONSTRATING SOMETHING BAD
 syntax = "proto3";
 
@@ -161,27 +161,27 @@ package bar.baz;
 import "baz/baz.proto";
 ```
 
-Which file is being imported? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
+Which file is being imported here? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
 on the order of the `-I` flags given to `protoc`, or (if `buf` didn't error in this scenario
 pre-compilation, which `buf` does) the order of the imports given to the internal compiler. If
 the authors are being honest, we can't remember if it's the first `-I` or second `-I` that wins -
 we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
-have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google)
-has it's own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
-While these are usually in sync, the `google.api` schema can change. If we allowed the following:
+have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
+has its own copy of the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api) definitions it needs.
+While these are usually in sync, the `google.api` schema can change. Imagine that we allowed this:
 
 ```yaml
 version: v1
-# THIS IS INVALID AND WILL RESULT IN A PRE-COMPILATION ERROR
+# THIS IS INVALID AND RESULTS IN A PRE-COMPILATION ERROR
 directories:
   - proto
   - vendor/github.com/googleapis/googleapis
   - vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 ```
 
-Which copy of `google/api/*.proto` wins? The answer is no one wins, so this is not allowed.
+Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't allow this.
 
 ## Run build
 
@@ -192,14 +192,14 @@ You can run `buf build` on your module by specifying the filepath to the directo
 $ buf build
 ```
 
-The `buf build` command will:
+The `buf build` command:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Output the compiled result to a configurable location (defaults to `/dev/null`)
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default.
+If there are errors, they are printed out in a `file:line:column:message` format by default.
 For example:
 
 ```sh
@@ -216,14 +216,14 @@ $ buf build --error-format=json
 
 ## Output format
 
-By default, `buf build` will output the its result to `/dev/null`. In this case, it's common to use
+By default, `buf build` outputs the its result to `/dev/null`. In this case, it's common to use
 `buf build` as a validation step, analogous to checking if the input compiles.
 
 However, `buf build` also supports outputting [FileDescriptorSets](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
 and [Images](../reference/images.md), which is Buf's custom extension of the FileDescriptorSet. Better yet, these outputs
 can be formatted in a variety of ways.
 
-Per the [input documentation](../reference/inputs.md), `buf build` can deduce the output format by the file extension. For example,
+`buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
 
 ```sh
 $ buf build -o image.bin
@@ -241,7 +241,7 @@ $ buf build -o -#format=json
 ```
 
 When combined with [jq](https://stedolan.github.io/jq), `buf build` also allows for introspection. For example,
-to see a list of all packages, you can run the following command:
+to see a list of all packages, you can run this command:
 
 ```
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
@@ -264,7 +264,7 @@ this field set, to mimic `protoc` entirely, you can use the `--as-file-descripto
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
-The `ImageExtension` field will not affect Protobuf plugins or any other operations, they will merely see this as an unknown
+The `ImageExtension` field doesn't affect Protobuf plugins or any other operations, as they merely see this as an unknown
 field. However, we provide the option in case you want it.
 
 ## Limit to specific files
@@ -273,7 +273,7 @@ By default, `buf` builds all files under the `buf.yaml` configuration file. You 
 file or directory paths to build. This is an advanced feature intended to be used for editor or Bazel integration - it
 is better to let `buf` discover all files under management and handle this for you in general.
 
-The compiled result will be limited to the given files if the `--path` flag is specified like so:
+The compiled result is limited to the given files if the `--path` flag is specified like so:
 
 ```sh
 $ buf build --path path/to/foo.proto --path path/to/bar.proto
@@ -281,7 +281,7 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
 ```sh

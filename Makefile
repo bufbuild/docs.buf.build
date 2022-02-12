@@ -26,6 +26,10 @@ build: install
 serve: build
 	npm run serve
 
+.PHONY: start
+start:
+	npm run start
+
 .PHONY: run
 run: install
 	npm run start
@@ -37,6 +41,10 @@ upgrade:
 .PHONY: clean
 clean:
 	git clean -xdf
+
+.PHONY: lint
+lint:
+	vale docs
 
 .PHONY: updateversion
 updateversion:

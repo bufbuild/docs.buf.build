@@ -19,7 +19,7 @@ the [GitHub Actions guide](github-actions.md) instead.
 This guide is also supplemented by the [buf-example](https://github.com/bufbuild/buf-example)
 repository, which provides a functional example for integrating `buf` into [CircleCI](https://circleci.com),
 [TravisCI](https://travis-ci.org), or [GitHub Actions](https://github.com/features/actions).
-For a quick solution that leverages a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
+For a quick solution that uses a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
 please refer to [buf-example](https://github.com/bufbuild/buf-example)!
 
 ## Installation
@@ -46,17 +46,17 @@ import TabItem from '@theme/TabItem';
 
 PROJECT=<your-project-name>
 # Use your desired buf version
-BUF_VERSION=1.0.0-rc8
-# buf will be cached to ~/.cache/your-project-name.
-CACHE_BIN=$HOME/.cache/$(PROJECT)
+BUF_VERSION=1.0.0-rc12
+# buf is installed to ~/bin/your-project-name.
+BIN_DIR=$HOME/bin/$(PROJECT)
 
 curl -sSL \
 	"https://github.com/bufbuild/buf/releases/download/v$BUF_VERSION/buf-$(shell uname -s)-$(shell uname -m)" \
-	-o "$CACHE_BIN/buf"
-chmod +x "$CACHE_BIN/buf"
+	-o "$BIN_DIR/buf"
+chmod +x "$BIN_DIR/buf"
 ```
 
-This script sends a request to the `buf` Github Releases using [`curl`](https://curl.se/docs)
+This script sends a request to the `buf` GitHub Releases using [`curl`](https://curl.se/docs)
 for the given `BUF_VERSION` and operating system. The binary is then given executable permission.
 
 </TabItem>
@@ -76,7 +76,7 @@ rm -rf $BUF_TMP
 </TabItem>
 </Tabs>
 
-## Running lint and breaking change detection
+## Running lint and breaking change detection {#checks}
 
 > This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
 > repository for a functional example.
@@ -91,7 +91,7 @@ buf lint
 ```
 
 If, on the other hand, your `buf.yaml` is defined in a nested directory, such as the `proto`
-directory, the command looks like the following:
+directory, the command looks like this:
 
 ```sh
 buf lint proto
@@ -99,7 +99,7 @@ buf lint proto
 
 For `buf breaking`, the process is similar, but be sure to set the full `https` or `ssh`
 remote as the target. If your `buf.yaml` is defined at the root of your repository,
-the command looks like the following:
+the command looks like this:
 
 ```sh
 buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
@@ -108,7 +108,7 @@ buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=m
 ```
 
 Again, if your `buf.yaml` is defined in a nested directory, such as the `proto` directory,
-the command looks like the following (notice the `subdir` parameter):
+the command looks like this (notice the `subdir` parameter):
 
 ```sh
 buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
@@ -117,7 +117,7 @@ buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#br
 ```
 
 If you are on [TravisCI](https://travis-ci.org) or [CircleCI](https://circleci.com) they
-do not clone any branches outside of the one being tests, so this allows `buf` to clone
+do not clone any branches outside of the one being tested, so this enables `buf` to clone
 using the remote and run the [breaking change detector](../breaking/overview.md).
 
 ## CI authentication (Optional)
@@ -131,7 +131,7 @@ For example:
   - [CircleCI](https://circleci.com/docs/2.0/env-vars/)
   - [GitHub Actions](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
-You can then access the token in your job using an environment variable, which allows you to create a
+You can then access the token in your job using an environment variable, which enables you to create a
 `.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`
 and your username as `BUF_USER`:
 

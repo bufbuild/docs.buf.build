@@ -1,0 +1,73 @@
+.syntaxContainer {
+  border: 1.5px solid var(--buf-light-button-border-color);
+  padding: 1rem 1.25rem 1rem 1.25rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.syntax {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  background-color: rgb(246, 248, 250);
+  letter-spacing: -0.05rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: 0.25rem 0 0.25rem 0;
+}
+
+.legendLeft {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.legend .legendName {
+  margin-right: 0.5rem;
+}
+
+.legend .legendContent {
+  font-family: var(--ifm-font-family-monospace);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.examples {
+}
+
+.example {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 500;
+}
+
+.static {
+  color: var(--syntax-color-static);
+}
+
+.default {
+  color: var(--syntax-color-default);
+}
+
+.variable {
+  color: var(--syntax-color-variable);
+}
+
+.separator {
+  color: black;
+  font-weight: 500;
+  padding: 0 0.05rem 0 0.05rem;
+}

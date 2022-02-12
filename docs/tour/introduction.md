@@ -19,27 +19,26 @@ $ buf lint --help
 $ buf config ls-breaking-rules --help
 $ buf config ls-lint-rules --help
 $ buf ls-files --help
-$ buf protoc --help
 ```
 
 ## Prerequisites {#prerequisites}
 
  * Install [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
  * Install [`jq`](https://stedolan.github.io/jq)
- * Install [`buf`](../installation.mdx)
- * (Optional) [Editor Integration](../editor-integration.mdx)
+ * Install [`buf`](../installation.md)
+ * (Optional) [Editor Integration](../editor-integration.md)
 
 ## Clone the Git Repository {#clone-the-git-repository}
 
-First you need to clone the Git repository that contains the starter code for the `PetStore` service.
-From the development directory of your choice, run the following command:
+First, clone the Git repository that contains the starter code for the `PetStore` service.
+From the development directory of your choice, run this command:
 
 ```terminal
-$ git clone git@github.com:bufbuild/buf-tour.git
+$ git clone https://github.com/bufbuild/buf-tour
 ```
 
 You'll notice that the repository contains a `start` directory and a `finish` directory. During the tour
-you'll work on files in the `start` directory, and at the end they'll match the files in the `finish` directory.
+you'll work on files in the `start` directory, and at the end they should match the files in the `finish` directory.
 
 ```sh
 buf-tour/
@@ -85,7 +84,7 @@ buf-tour/
                 └── pet.proto
 ```
 
-To begin, move into the `start` directory, and continue to the next step:
+To begin, move into the `start` directory and continue to the next step:
 
 ```terminal
 $ cd buf-tour/start

@@ -6,18 +6,19 @@ title: 1 Configure and Build
 We'll start our tour by configuring `buf` and building the `.proto` files that define
 the pet store API, which specifies a way to create, get, and delete pets in the store.
 
-You're expected to be in the `start` directory of the [https://github.com/bufbuild/buf-tour.git](https://github.com/bufbuild/buf-tour.git)
-repository. From here, move into the `petapis` directory, which contains the pet store's
-`.proto` files.
+Clone the [`bufbuild/buf-tour`](https://github.com/bufbuild/buf-tour.git) repository
+from GitHub and navigate to the `petapis` directory, which contains the pet store's
+`.proto` files:
 
 ```terminal
-$ cd petapis
+$ git clone https://github.com/bufbuild/buf-tour.git
+$ cd buf-tour/start/petapis
 ```
 
 ## 1.1 Configure `buf` {#configure-buf}
 
-`buf` is configured with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which is easily
-created with the following command:
+`buf` is configured with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which you can
+create with this command:
 
 ```terminal
 $ buf config init
@@ -58,7 +59,7 @@ $ protoc \
 ```
 
 A `buf.yaml` would be placed in the `proto` and `vendor/protoc-gen-validate` directories, and you would define
-a `buf.work.yaml` that contains the following:
+a `buf.work.yaml` that contains this:
 
 ```sh
 .
@@ -93,18 +94,28 @@ Before we continue, let's verify that everything is set up properly:
 $ buf build
 ```
 
-The above command should have exit code 0 and no output. This means that all of the `.proto` files
-defined in the current directory successfully compile.
+The above command should have exit code 0 and no output (you can check the exit code by
+running `echo $?`). This means that all of the `.proto` files defined in the current
+directory successfully compile.
 
 Plus, you can see some interesting details about the compiled artifact with a few flags and
-[jq](https://stedolan.github.io/jq):
+[jq](https://stedolan.github.io/jq). This command displays a list of the Protobuf packages used
+in this project:
 
 ```terminal
-$ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+$ buf build --exclude-source-info -o -#format=json | jq '.file[] | .package'
+---
 "google.protobuf"
 "google.type"
 "pet.v1"
 ```
 
-In this case, we see three packages: the [Well-Known Types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf),
-a dependency on a `google` API, and the `pet.v1` API itself. We'll come back to this later.
+As you can see from the output, these packages are used in the project:
+
+Package name | Meaning
+:------------|:-------
+`google.protobuf` | A dependency on the [Well-Known Types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
+`google.type` | A dependency on a Google API
+`pet.v1` | The pet store API itself
+
+We'll come back to the `pet.v1` package later.

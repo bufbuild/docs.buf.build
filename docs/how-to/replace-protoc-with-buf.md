@@ -4,20 +4,20 @@ title: Replace protoc With buf
 ---
 
 The `buf` CLI acts as a build system for all your `.proto` compilation and
-code generation needs. This guide will describe how to migrate your existing
+code generation needs. This guide describes how to migrate your existing
 `protoc` setup and migrate to using `buf`.
 
-This guide assumes that you've [installed `buf`](../installation.mdx) and generate
+This guide assumes that you've [installed `buf`](../installation.md) and generate
 code by calling`protoc` manually from scripts or a tool like `make`. Other guides
 are available for users currently using [Protolock](migrate-from-protolock.md) or
 [Prototool](migrate-from-prototool.md).
 
-We'll cover the following common use cases:
+We'll cover these common use cases:
 
   - Compile `.proto` files to detect build failures.
   - Generate code with `protoc` plugins.
 
-Consider the following file layout:
+Consider this file layout:
 
 ```sh
 .
@@ -32,7 +32,7 @@ Consider the following file layout:
             └── validate.proto
 ```
 
-The following `protoc` command is used to generate Go/gRPC client and server stubs:
+This `protoc` command is used to generate Go/gRPC client and server stubs:
 
 ```sh
 $ protoc \
@@ -56,7 +56,7 @@ there is no `-I` flag** - each `protoc` `-I` path maps to a directory that conta
 together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which defines a
 [workspace](../reference/workspaces.md).
 
-The example shown above can be adapated to `buf` by adding a `buf.yaml` to each of the `-I` directories,
+The example shown above can be adapted to `buf` by adding a `buf.yaml` to each of the `-I` directories,
 and by creating a `buf.work.yaml` that specifies both directories like so:
 
 ```sh
@@ -102,33 +102,33 @@ breaking:
     - FILE
 ```
 
-The default `buf.yaml` configuration files shown above are created with the following command:
+The default `buf.yaml` configuration files shown above are created with this command:
 
 ```sh
 $ buf config init
 ```
 
-With this, you can verify that the workspace compiles with the following command:
+With this, you can verify that the workspace compiles with this command:
 
 ```sh
 $ buf build
 ```
 
-The `buf build` command will:
+The `buf build` command:
 
-  - Discover the `buf.work.yaml` file found in the current directory.
-  - Collect all Protobuf files for each `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Output the compiled result to a configurable location (defaults to `/dev/null`)
+  - Discovers the `buf.work.yaml` file found in the current directory.
+  - Collects all Protobuf files for each `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
 > The `buf.yaml` files aren't actually required in this case. You can simply run `buf build`
-> without the `buf.yaml` configuration files and `buf` will treat each directory specified
+> without the `buf.yaml` configuration files and `buf` treats each directory specified
 > in the `buf.work.yaml` as a module by default. However, defining a `buf.yaml` is strongly
 > recommended.
 
 Now that we've migrated the file layout to `buf`, we can simplify the `protoc` invocation used to
-generate Go/gRPC code with the following [`buf.gen.yaml`](../configuration/v1/buf-work-yaml.md) template:
+generate Go/gRPC code with this [`buf.gen.yaml`](../configuration/v1/buf-work-yaml.md) template:
 
 ```yaml title="buf.gen.yaml"
 version: v1
@@ -144,7 +144,7 @@ plugins:
 ```
 
 The `buf.gen.yaml` file is typically placed next to the `buf.work.yaml`, so that your file layout
-looks like the following:
+looks like this:
 
 ```sh
 .
@@ -163,7 +163,7 @@ looks like the following:
             └── validate.proto
 ```
 
-With this, you can generate the Go/gRPC client and server stubs with the following command:
+With this, you can generate the Go/gRPC client and server stubs with this command:
 
 ```sh
 $ buf generate
@@ -174,8 +174,8 @@ has more complex code generation requirements you can use the `--template` flag 
 one `buf.gen.yaml` templates.
 
 For example, if you need different `buf.gen.yaml` configurations for your *public* and *private* API
-definitions, you might have something along the lines of the following (where the `public` directory
-contains your public APIs, and the `private` directory contains your private APIs):
+definitions, you might consider a setup like this, where the `public` directory
+contains your public APIs and the `private` directory contains your private APIs:
 
 ```sh
 $ buf generate public --template buf.public.gen.yaml

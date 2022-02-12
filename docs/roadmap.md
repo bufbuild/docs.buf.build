@@ -3,7 +3,7 @@ id: roadmap
 title: Roadmap
 ---
 
-What you see today is just the start. In fact, the real value will come as we build
+What you see today is just the start. In fact, the real value will become apparent as we build
 products that utilize the BSR as a foundation to understand and reason about API schemas,
 including in real time.
 
@@ -11,16 +11,16 @@ Here, we outline some (but not all!) of the products on our roadmap. We'd love y
 and feedback, please [contact us](contact.md) to discuss any of the below, or any other products
 you'd like to see.
 
-## BSR
+## The Buf Schema Registry (BSR) {#bsr}
 
 ### Remote client and server library generation
 
-One of the promises of BSR is to allow the generation of your APIs on demand. At a high level,
+One of the promises of the BSR is to allow the generation of your APIs on demand. At a high level,
 we want to enable modules to have stubs generated on-demand, for every version, for every possible
-Protobuf plugin, with consumtion via language-native mechanisms.
+Protobuf plugin, with consumption via language-native mechanisms.
 
 This feature is currently available for Buf's *experimental* [Go Module Proxy](bsr/remote-generation/overview.md#go-module-proxy).
-Given a module (e.g. `buf.build/acme/weather`), you can consume generated code for:
+Given a module, such as `buf.build/acme/weather`, you can consume generated code for:
 
   - Plugin `protoc-gen-go` version `1.4.0`
   - Plugin `protoc-gen-go-grpc` version `1.0.0`
@@ -28,10 +28,10 @@ Given a module (e.g. `buf.build/acme/weather`), you can consume generated code f
 All via a `go` command that results in a Go module:
 
 ```sh
-$ go get go.buf.build/library/go-grpc/acme/weather
+$ go get go.buf.build/grpc/go/acme/weather
 ```
 
-Similar mechanisms will exist for other languages, such as:
+Similar mechanisms exist for other languages, such as:
 
   - NPM packages
   - Maven repositories
@@ -60,8 +60,8 @@ their customers.
 
 It's only a matter of time until the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell) manifests itself
 in dependency management systems. Historically, these issues can only be verified at build time because the dependency management
-solution attempts a "best effort", i.e. the developer tries to compile their code after their dependencies have been resolved, but
-fails to do so because of backwards-incompatible API changes.
+solution attempts a "best effort" whereby the developer tries to compile their code after their dependencies have been resolved but
+fails to do so due to backwards-incompatible API changes.
 
 By virtue of Protobuf API compatibility, rules and Buf's powerful compatibility tooling, the BSR is uniquely positioned to
 solve this problem. The BSR receives all of the dependencies requested for a specific module, and can systematically
@@ -80,20 +80,19 @@ is no longer required because the BSR has all of your definitions and it can hos
 Today, Protobuf import paths are relative to user specified include directories. This may be
 the single most painful lesson for new users to learn, so we want to get rid of it entirely.
 Imagine importing `buf.build/googleapis/googleapis/google/api/http.proto` rather than `google/api/http.proto`.
-The BSR will support this transition in a backwards compatible manner, so that you can transition
+The BSR will support this transition in a backwards-compatible manner, so that you can transition
 to using fully qualified import paths if you like in your project.
 
 ### BSR API
 
-A large part of the BSR API is usable with the `buf` CLI, but we will soon be exposing the BSR API so that
+A large part of the BSR API is usable with the `buf` CLI, but we will soon expose the BSR API so that
 you can build your own tools and integrations with it.
 
 ## `buf` CLI
 
 ### Formatter
 
-We'll be releasing `buf format` soon that allows for consistent formatting of your Protobuf files. This formatter will also
-allow for unified diffs to be printed, instead of editing your files directly.
+We'll be releasing `buf format` soon, which will enable you to apply consistent formatting to your Protobuf files. This formatter will also enable you to print unified diffs instead of editing your files directly.
 
 ### Bazel rules
 
@@ -109,7 +108,7 @@ But we recognize that we can do a lot more in this area, such as formatting your
 on save (via the formatter mentioned above), and a fully-fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
-With this, you will be able to leverage more editor features, such as auto-completion and
+With this, you will be able to use more editor features, such as auto-completion and
 jump-to-definition, to further improve your Protobuf productivity.
 
 ### Protobuf standard library

@@ -10,7 +10,7 @@ title: Usage
 
 To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with the following command:
+file with this command:
 
 ```sh
 $ buf config init
@@ -35,14 +35,14 @@ In the above example, you can target the [input](../reference/inputs.md) defined
 $ buf lint
 ```
 
-The `buf lint` command will:
+The `buf lint` command:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
-  - Run the compilation result against the configured lint rules.
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
+  - Runs the compilation result against the configured lint rules.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default:
+If there are errors, they are printed out in a `file:line:column:message` format by default:
 
 ```sh
 $ buf lint
@@ -61,7 +61,7 @@ $ buf lint --error-format=json
 ```
 
 We can also output errors in a format you can then copy into your `buf.yaml` file. This
-allows you to ignore all existing lint errors and correct them over time:
+lets you ignore all existing lint errors and correct them over time:
 
 ```sh
 $ buf lint --error-format=config-ignore-yaml
@@ -118,7 +118,7 @@ $ buf lint --path path/to/foo.proto --path path/to/bar.proto --config '{"lint":{
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
 ```sh

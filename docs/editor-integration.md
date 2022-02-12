@@ -15,8 +15,8 @@ not already listed here.
 Vim integration for linting is available using the [ALE](https://github.com/dense-analysis/ale)
 lint engine via the [vim-buf](https://github.com/bufbuild/vim-buf) plugin.
 
-To use Vim integration `buf` must be [installed](installation.mdx). Using [vim-plug](https://github.com/junegunn/vim-plug),
-add the following to your `.vimrc`:
+To use Vim integration `buf` must be [installed](installation.md). Using [vim-plug](https://github.com/junegunn/vim-plug),
+add this to your `.vimrc`:
 
 ```vim
 Plug 'dense-analysis/ale'
@@ -28,28 +28,27 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters_explicit = 1
 ```
 
-The extension runs `buf lint --path` on save and will reveal errors on a per-file basis. To detect package-level
+The extension runs `buf lint --path` on save and reveals errors on a per-file basis. To detect package-level
 problems, be sure to run a module-wide `buf lint` as part of your [CI](ci-cd/setup) process.
 
 ## Visual Studio Code  [![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/bufbuild.vscode-buf?color=2048ff&label=Buf&logo=visual-studio-code&style=flat-squar)](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf)
 
-The Visual Studio Code extension can be downloaded from the in-editor extension browser under the name "Buf",
-or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf).
+The Visual Studio Code extension can be downloaded from the in-editor extension browser under the name "Buf"
+or manually via [the extension page](https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf). You need to have `buf` [installed](installation.md) to use it.
 
-To use VSCode integration, `buf` must be [installed](installation.mdx).
+Our Buf extension currently supports [linting] your `.proto` files. It runs `buf lint --path` on save and reveals errors on a per-file basis. To detect package-level problems, be sure to run a module-wide `buf lint` as part of your CI process.
 
-The extension runs `buf lint --path` on save and will reveal errors on a per-file basis. To detect package-level
-problems, be sure to run a module-wide `buf lint` as part of your CI process.
+The roadmap for the extension includes full Language Server Protocol ([LSP]) support, formatting, syntax highlighting, and more.
 
-> `buf` is executed in the root of your workspace, which means `buf` will be configured by the [`buf.yaml`](configuration/v1/buf-yaml) or
+> `buf` is executed in the root of your workspace, which means `buf` is configured by the [`buf.yaml`](configuration/v1/buf-yaml) or
 > [`buf.work.yaml`](configuration/v1/buf-work-yaml) in the root of your workspace.
 
 ## JetBrains IDEs
 
-IntelliJ IDEA, GoLand and other JetBrains IDEs can be configured with a File Watcher that will run `buf lint --path` on
+IntelliJ IDEA, GoLand and other JetBrains IDEs can be configured with a File Watcher that runs `buf lint --path` on
 save and optionally surface issues as warnings or errors in your editor.
 
-Make sure `buf` is [installed](installation.mdx) on your PATH, then configure your buf lint FileWatcher according to
+Make sure `buf` is [installed](installation.md) on your PATH, then configure your buf lint FileWatcher according to
 [JetBrains' documentation](https://www.jetbrains.com/help/idea/using-file-watchers.html) using these values:
 
 | setting           | value                                   |
@@ -59,12 +58,25 @@ Make sure `buf` is [installed](installation.mdx) on your PATH, then configure yo
 | Working directory | `$ProjectFileDir$`                      |
 | Output filters    | `$FILE_PATH$:$LINE$:$COLUMN$:$MESSAGE$` |
 
-> `buf` is executed in your project root, which means `buf` will be configured by the
+> `buf` is executed in your project root, which means `buf` is configured by the
 > [`buf.yaml`](configuration/v1/buf-yaml) or [`buf.work.yaml`](configuration/v1/buf-work-yaml) in your project root.
 
-## Other
+## editorconfig suggestions
 
-`buf` supports the following formatting options (passed using the `--error-format` flag) to support other integrations:
+If you use [EditorConfig] files to enforce consistent styles in your code, we recommend these settings for your `.proto` files:
+
+```editorconfig
+[*.proto]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+```
+
+These settings aren't semantically meaningful in Protobuf but are commonly used throughout the ecosystem.
+
+## Formatting options
+
+`buf` supports these formatting options (passed using the `--error-format` flag) to support other integrations:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -99,3 +111,7 @@ path/to/file.proto(1,10) : error COMPILE : syntax value must be "proto2" or "pro
 
 </TabItem>
 </Tabs>
+
+[editorconfig]: https://editorconfig.org
+[linting]: https://docs.buf.build/lint/overview
+[lsp]: https://code.visualstudio.com/api/language-extensions/language-server-extension-guide

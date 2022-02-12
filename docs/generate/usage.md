@@ -22,7 +22,7 @@ on the `buf.gen.yaml` configuration, please refer to the [reference](../configur
 
 To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with the following command:
+file with this command:
 
 ```sh
 $ buf config init
@@ -58,31 +58,37 @@ plugins:
       - require_unimplemented_servers=false
 ```
 
-By default, `buf generate` will look for a file of this shape named `buf.gen.yaml` in your current directory. This
+By default, `buf generate` looks for a file of this shape named `buf.gen.yaml` in your current directory. This
 can be thought of as a template for the set of plugins you want to invoke.
 
 Plugins are invoked in the order they are specified in the template, but each plugin has a per-directory parallel
-invocation, with results from each invocation combined before writing the result. This is equivalent behavior to
-`buf protoc --by_dir`. For more information, see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
+invocation, with results from each invocation combined before writing the result. For more information,
+see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 
-You can run `buf generate` on your module by specifying the filepath to
-the directory containing the `buf.yaml`. In the above example, you can target
-the `buf.build/acme/petapis` input defined in the current directory like so:
+To generate for the input in your current directory, simply run:
 
 ```sh
 $ buf generate
 ```
 
+You can also run `buf generate` on an input by specifying the filepath to the
+directory containing the root of your `.proto` definitions. For example if all of
+your `.proto` files are in directory `foo`:
+
+```sh
+$ buf generate foo
+```
+
 The `buf generate` command will:
 
-  - Discover all Protobuf files per your `buf.yaml` configuration.
-  - Copy the Protobuf files into memory.
-  - Compile all Protobuf files.
+  - Discovers all Protobuf files per your `buf.yaml` configuration.
+  - Copies the Protobuf files into memory.
+  - Compiles all Protobuf files.
   - Executes the configured `plugins` according to each `strategy`.
 
-If there are errors, they will be printed out in a `file:line:column:message` format by default.
+Any errors are printed out in a `file:line:column:message` format by default.
 For example:
 
 ```sh
@@ -99,11 +105,14 @@ $ buf generate --error-format=json
 
 ## Common use cases
 
-The following section describes several common cases for `buf generate`:
+These commands illustrate several common cases for `buf generate`:
 
 ```sh
 # Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.
 $ buf generate
+
+# Uses the buf.build/acme/petapis module as input, using a `buf.gen.yaml` in the current directory.
+$ buf generate buf.build/acme/petapis
 
 # Uses the current directory as input, and explicitly specifies a custom template in another directory.
 $ buf generate --template data/generate.yaml
@@ -112,14 +121,17 @@ $ buf generate --template data/generate.yaml
 $ buf generate --template '{"version":"v1","plugins":[{"name":"go","out":"gen/go"}]}'
 
 # Download the repository, compile it, and generate per the generate.yaml template.
-$ buf generate https://github.com/foo/bar.git --generate data/generate.yaml
+$ buf generate https://github.com/foo/bar.git --template data/generate.yaml
 
 # Generate to the bar/ directory, prepending bar/ to the out directives in the template.
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
 ```
 
-The paths in the template and the `-o` flag will be interpreted as relative to your
+The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
+
+For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).
+
 
 ## Limit to specific files
 

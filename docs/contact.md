@@ -9,9 +9,6 @@ We'd love to stay in touch, here's a few ways to stay up to date:
   and release updates.
 - Join the [Buf Slack](https://join.slack.com/t/bufbuild/shared_invite/zt-f5k547ki-VDs_iC4TblNCu7ubhRD17w)
   to stay in touch and discuss Buf.
-- Join the [bufbuild-announce](https://groups.google.com/forum/#!forum/bufbuild-announce) Google Group
-  for general announcements. We'll aim not to spam this list, this will be used for releases,
-  new features, and roadmap updates.
 
 To contact us:
 

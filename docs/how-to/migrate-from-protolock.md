@@ -28,7 +28,7 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
   does not verify that what it is parsing is actually valid Protobuf, meaning that Protolock
   can both have breakages for valid Protobuf file, and happily parse Protobuf files that are
   not valid. Instead, `buf` lets you use either the internal compiler that is tested to
-  cover every edge case and will only parse valid files, or use `protoc` output
+  cover every edge case and parses only valid files, or use `protoc` output
   as `buf` input. See our [compiler](../build/internal-compiler.md) discussion
   for more details.
 - Protolock uses a custom structure, represented in [JSON](https://github.com/nilslice/protolock/blob/1a3dd1a15d36f26d0a616be4584da6a4589e7844/parse.go#L19),
@@ -41,8 +41,8 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
   `buf`'s equivalent to lock files are just serialized FileDescriptorSets.
 - Protolock only enforces 8 rules related to API compatibility in strict mode, and 5
   with strict mode disabled. `buf` enforces 46 rules related to API compatibility
-  in it's strictest mode (`FILE`), and 15 rules related to wire-only compatibility
-  in it's weakest mode (`WIRE`). We believe that the additional rules that `buf`
+  in its strictest mode (`FILE`), and 15 rules related to wire-only compatibility
+  in its weakest mode (`WIRE`). We believe that the additional rules that `buf`
   enforces are critical to API compatibility.
 - Breaking change rules are not a binary proposition - there are different kinds of
   breaking changes that you may care about. `buf` provides [four categories](../breaking/rules.md)

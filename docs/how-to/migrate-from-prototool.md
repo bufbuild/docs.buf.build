@@ -13,7 +13,7 @@ and migration.
 ## Prototool Pros
 
 - Prototool has a formatter via `prototool format`. `buf` does not have a formatter as of
-  now, but one will exist in the near future. The short is that Protobuf linters that exist
+  now, but one may exist in the near future. The short is that Protobuf linters that exist
   today either rely on third-party Protobuf parsers (as Prototool does), which can result in
   corrupt files, or on FileDescriptorSets, which are lossy. However, if you're willing to assume
   the risks, this is functionality that Prototool has that `buf` does not.
@@ -32,7 +32,7 @@ and migration.
 
 ## Prototool Cons
 
-- By far the biggest con of Prototool is that it both uses uses a third-party Protobuf parser
+- By far the biggest con of Prototool is that it both uses a third-party Protobuf parser
   that is not tested to cover every edge case of the Protobuf grammar, while additionally shelling
   out to `protoc` to verify that files are valid. The third-party Protobuf parser Prototool uses has
   had issues in the past with breakages, and as this parser does not verify that what it is parsing is
@@ -46,15 +46,15 @@ and migration.
   discussion](../build/internal-compiler) on Protobuf compilation for more details.
 
   Instead, `buf` lets you use either the [internal compiler](../build/internal-compiler.md)
-  that is tested to cover every edge case and will only parse valid files, or use `protoc` output as `buf` input.
+  that is tested to cover every edge case and only parse valid files, or use `protoc` output as `buf` input.
   `buf` can actually use [many types of input](../reference/inputs.md), including `protoc` output,
   local or remote Git repositories, and local or remote archives. `buf` never shells out to external commands
-  to perform any of it's functionality. `buf` also has no cache as it does not need to cache any external binaries
-  to perform it's functionality.
+  to perform any of its functionality. `buf` also has no cache as it does not need to cache any external binaries
+  to perform its functionality.
 - Prototool runs file discovery for your Protobuf files, but provides no
   mechanism to skip file discovery and specify your files manually, outside
   of running commands for files one at a time, which breaks some lint and
-  breaking change detection functionality. `buf` allows you to skip file discovery
+  breaking change detection functionality. `buf` enables you to skip file discovery
   and specify your files [manually](../build/usage.md#limit-to-specific-files)
   for use cases that require this, such as [Bazel](https://bazel.build).
 - Prototool's lint functionality lets you select a single group, currently
@@ -96,14 +96,14 @@ and migration.
 
 ### `google`
 
-The following Prototool configuration:
+This Prototool configuration...
 
 ```yaml title="prototool.yaml"
 lint:
   group: google
 ```
 
-Is equivalent to the following `buf` configuration:
+...is equivalent to this `buf` configuration:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -122,10 +122,9 @@ details.
 ### `uber1`, `uber2`
 
 The `uber1` and `uber2` Prototool lint groups are supersets of the `DEFAULT` `buf` lint
-category, except you will need to set overrides for enum value and service suffixes.
+category, except you need to set overrides for enum value and service suffixes.
 That is, `buf lint` should pass for all Protobuf schemas (except as discussed
-below) that use `uber1` or `uber2` with Prototool, given the following `buf`
-configuration:
+below) that use `uber1` or `uber2` with Prototool, given this `buf` configuration:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -142,7 +141,7 @@ of enum value names. For example, this is a valid nested enum for `uber1`:
 
 ```protobuf
 // THIS IS FOR UBER1 IN PROTOTOOL
-// THIS WILL NOT PASS BUF'S ENUM_VALUE_PREFIX LINT RULE
+// THIS DOES NOT PASS BUF'S ENUM_VALUE_PREFIX LINT RULE
 message Foo {
   enum Bar {
     FOO_BAR_INVALID = 0;
@@ -194,14 +193,14 @@ There is no equivalent in `buf`.
 
 Corresponds to `lint.use` in `buf`.
 
-`buf` allows you to specify categories or ids in `lint.use`, while `lint.group` in Prototool
+`buf` enables you to specify categories or ids in `lint.use`, while `lint.group` in Prototool
 only specifies the single group to use as a base set of rules.
 
 ### `lint.ignores`
 
 Corresponds `lint.ignore_only` in `buf`.
 
-`buf` also allows you to ignore all rules for specific directories through `lint.ignore`.
+`buf` also enables you to ignore all rules for specific directories through `lint.ignore`.
 
 ### `lint.rules`
 
@@ -248,7 +247,7 @@ There is no equivalent in `buf`.
 
 The command `prototool all` runs formatting and linting at once. It doesn't present
 an easy manner to extend what the definition of "all" means, for example breaking
-change detection. Since `buf` is relatively fast in it's various functionality (for example,
+change detection. Since `buf` is relatively fast in its various functionality (for example,
 compiling and linting all 2,311 files in [googleapis](https://github.com/googleapis/googleapis)
 takes about 0.8s with `buf`), we feel that it is better to run multiple commands for the
 functionality you want to perform.
@@ -366,7 +365,7 @@ $ buf --version
 There is no equivalent in `buf`.
 
 We recommend using `buf build -o -#format=json | jq` instead for Protobuf
-schema inspection. We will likely provide additional tooling for inspection in the future
+schema inspection. We plan on providing additional tooling for inspection in the future
 through a different mechanism.
 
 ## Docker

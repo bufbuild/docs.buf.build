@@ -3,20 +3,20 @@ id: images
 title: Images
 ---
 
-Throughout the documentation, you will occassionally see references to **Images**. We'll go over what
+Throughout the documentation, you may occasionally see references to **Images**. We'll go over what
 Images are, how they are used, and the various options associated with them here.
 
-## Protobuf plugins: how they work
+## How Protobuf plugins work
 
 First we need to provide a short overview of how Protobuf plugins work.
 
-When you invoke the following command:
+When you invoke this command...
 
 ```sh
 $ protoc -I . --go_out=gen/go foo.proto
 ```
 
-The following is (roughly) what happens:
+...here's (roughly) what happens:
 
 - `protoc` compiles the file `foo.proto` (and any imports) and internally produces a
   [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L57),
@@ -44,8 +44,7 @@ to `protoc`.
 compiled Protobuf schema. They are also the primary artifact that protoc produces.**
 
 That is to say that everything you do with `protoc`, and any plugins you use, talk in terms of FileDescriptorSets.
-Of note, they are how [gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection) works
-under the hood as well.
+[gRPC Reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) uses them under the hood as well.
 
 ## How do I create FileDescriptorSets with protoc?
 
@@ -57,10 +56,10 @@ stdout as follows:
 $ protoc -I . -o /dev/stdout foo.proto
 ```
 
-The resulting FileDescriptorSet will contain a single FileDescriptorProto with name `foo.proto`.
+The resulting FileDescriptorSet contains a single FileDescriptorProto with name `foo.proto`.
 
-By default, FileDescriptorSets will not include any imports not specified on the command line,
-and will not include source code information. Source code information is useful for generating
+By default, FileDescriptorSets don't include any imports not specified on the command line,
+and don't include source code information. Source code information is useful for generating
 documentation inside your generated stubs, and for things like linters and breaking change
 detectors. As an example, assume `foo.proto` imports `bar.proto`. To produce a FileDescriptorSet
 that includes both `foo.proto` and `bar.proto`, as well as source code information:
@@ -77,8 +76,8 @@ as of this writing.
 
 **Images are FileDescriptorSets, and FileDescriptorSets are Images.** Due to the forwards and
 backwards compatible nature of Protobuf, we're able to add an additional field to FileDescriptorSet
-while maintaining compatibility in both directions - existing Protobuf plugins will just drop this
-field, and `buf` does not require this field to be set to work with Images.
+while maintaining compatibility in both directions - existing Protobuf plugins drop this field, and
+`buf` does not require this field to be set to work with Images.
 
 **[Modules](../bsr/overview.md#module) are the primitive of Buf, and Images represent the compiled artifact of
 a module.** In fact, Images contain information about the module used to create it, which
@@ -118,7 +117,7 @@ message ImageFile {
   // buf_extension contains buf-specific extensions to FileDescriptorProtos.
   //
   // The prefixed name and high tag value is used to all but guarantee there
-  // will never be any conflict with Google's FileDescriptorProto definition.
+  // is never a conflict with Google's FileDescriptorProto definition.
   // The definition of a FileDescriptorProto has not changed in years, so
   // we're not too worried about a conflict here.
   optional ImageFileExtension buf_extension = 8042;
@@ -142,11 +141,11 @@ message ImageFileExtension {
   // We use "import" as this matches with the protoc concept of
   // --include_imports, however import is a bit of an overloaded term.
   //
-  // This will always be set.
+  // This is always set.
   optional bool is_import = 1;
   // ModuleInfo contains information about the Buf module this file belongs to.
   //
-  // This field is optional and will not be set if the module is not known.
+  // This field is optional and is not set if the module is not known.
   optional ModuleInfo module_info = 2;
   // is_syntax_unspecified denotes whether the file did not have a syntax
   // explicitly specified.
@@ -156,10 +155,10 @@ message ImageFileExtension {
   // to "proto2" if it is specified. However, protoc does not set the syntax
   // field if it was "proto2", and plugins may (incorrectly) depend on this.
   // We also want to maintain consistency with protoc as much as possible.
-  // So instead, we have this field which will denote whether syntax was not
+  // So instead, we have this field which denotes whether syntax was not
   // specified.
   //
-  // This will always be set.
+  // This is always be set.
   optional bool is_syntax_unspecified = 3;
   // unused_dependency are the indexes within the dependency field on
   // FileDescriptorProto for those dependencies that are not used.
@@ -174,17 +173,17 @@ message ImageFileExtension {
 message ModuleInfo {
   // name is the name of the Buf module.
   //
-  // This will always be set.
+  // This is always set.
   optional ModuleName name = 1;
   // commit is the repository commit.
   //
-  // This field is optional and will not be set if the commit is not known.
+  // This field is optional and not set if the commit is not known.
   optional string commit = 2;
 }
 
 // ModuleName is a module name.
 //
-// All fields will always be set.
+// All fields are always set.
 message ModuleName {
   optional string remote = 1;
   optional string owner = 2;
@@ -275,7 +274,7 @@ without this field set, to mimic `protoc` entirely:
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
-The ImageFileExtension field will not affect Protobuf plugins or any other operations; they will
+The ImageFileExtension field doesn't affect Protobuf plugins or any other operations; they
 merely see this as an unknown field. However, we provide the option in case you want it.
 
 ## Using protoc output as `buf` input
