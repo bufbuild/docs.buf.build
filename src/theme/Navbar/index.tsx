@@ -11,48 +11,43 @@
  * For original sources see:
  * https://github.com/facebook/docusaurus/tree/v2.0.0-beta.3/packages/docusaurus-theme-classic/src/theme
  */
-import React, {useCallback, useEffect, useState} from 'react';
-import clsx from 'clsx';
+import { NavbarItem as ConfigNavbarItem, useThemeConfig } from "@docusaurus/theme-common";
+import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import IconMenu from "@theme/IconMenu";
+import Logo from "@theme/Logo";
+import NavbarItem from "@theme/NavbarItem";
+import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
+import clsx from "clsx";
+import React, { useCallback, useEffect, useState } from "react";
 
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import useThemeContext from '@theme/hooks/useThemeContext';
-import {NavbarItem as ConfigNavbarItem, useThemeConfig} from '@docusaurus/theme-common';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize, {windowSizes} from '@theme/hooks/useWindowSize';
-import NavbarItem from '@theme/NavbarItem';
-import Logo from '@theme/Logo';
-import IconMenu from '@theme/IconMenu';
-
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 // retrocompatible with v1
-const DefaultNavItemPosition = 'right';
+const DefaultNavItemPosition = "right";
 
 // If split links by left/right
 // if position is unspecified, fallback to right (as v1)
 function splitNavItemsByPosition(items) {
-  const leftItems = items.filter(
-    (item) => (item.position ?? DefaultNavItemPosition) === 'left',
-  );
-  const rightItems = items.filter(
-    (item) => (item.position ?? DefaultNavItemPosition) === 'right',
-  );
+  const leftItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === "left");
+  const rightItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === "right");
   return {
     leftItems,
-    rightItems,
+    rightItems
   };
 }
 
 function Navbar(): JSX.Element {
   const {
-    navbar: {items, hideOnScroll, style},
-    colorMode: {disableSwitch: disableColorModeSwitch},
+    navbar: { items, hideOnScroll, style },
+    colorMode: { disableSwitch: disableColorModeSwitch }
   } = useThemeConfig();
   const [sidebarShown, setSidebarShown] = useState(false);
-  const {isDarkTheme, setLightTheme, setDarkTheme} = useThemeContext();
-  const {navbarRef, isNavbarVisible} = useHideableNavbar(hideOnScroll);
+  const { isDarkTheme, setLightTheme, setDarkTheme } = useThemeContext();
+  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
 
   useLockBodyScroll(sidebarShown);
 
@@ -65,7 +60,7 @@ function Navbar(): JSX.Element {
 
   const onToggleChange = useCallback(
     (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
-    [setLightTheme, setDarkTheme],
+    [setLightTheme, setDarkTheme]
   );
 
   const windowSize = useWindowSize();
@@ -76,20 +71,21 @@ function Navbar(): JSX.Element {
     }
   }, [windowSize]);
 
-  const hasSearchNavbarItem = items.some((item) => item.type === 'search');
-  const {leftItems, rightItems} = splitNavItemsByPosition(items);
+  const hasSearchNavbarItem = items.some((item) => item.type === "search");
+  const { leftItems, rightItems } = splitNavItemsByPosition(items);
   const bufSidebarItems = bufSplitSidebarNavItems(items);
 
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', 'navbar--fixed-top', styles.bufColors, {
-        'navbar--dark': style === 'dark',
-        'navbar--primary': style === 'primary',
-        'navbar-sidebar--show': sidebarShown,
+      className={clsx("navbar", "navbar--fixed-top", styles.bufColors, {
+        "navbar--dark": style === "dark",
+        "navbar--primary": style === "primary",
+        "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
-        [styles.navbarHidden]: hideOnScroll && !isNavbarVisible,
-      })}>
+        [styles.navbarHidden]: hideOnScroll && !isNavbarVisible
+      })}
+    >
       <div className="navbar__inner">
         <div className="navbar__items">
           {items != null && items.length !== 0 && (
@@ -99,7 +95,8 @@ function Navbar(): JSX.Element {
               type="button"
               tabIndex={0}
               onClick={showSidebar}
-              onKeyDown={showSidebar}>
+              onKeyDown={showSidebar}
+            >
               <IconMenu />
             </button>
           )}
@@ -126,23 +123,19 @@ function Navbar(): JSX.Element {
           {!hasSearchNavbarItem && <SearchBar />}
         </div>
       </div>
-      <div
-        role="presentation"
-        className="navbar-sidebar__backdrop"
-        onClick={hideSidebar}
-      />
+      <div role="presentation" className="navbar-sidebar__backdrop" onClick={hideSidebar} />
       <div className={clsx("navbar-sidebar", styles.bufNavbarSidebar)}>
         {/* We do not want the logo to show here */}
         {/*<div className="navbar-sidebar__brand">*/}
-          {/*<Logo*/}
-          {/*  className="navbar__brand"*/}
-          {/*  imageClassName="navbar__logo"*/}
-          {/*  titleClassName="navbar__title"*/}
-          {/*  onClick={hideSidebar}*/}
-          {/*/>*/}
-          {!disableColorModeSwitch && sidebarShown && (
-            <Toggle checked={isDarkTheme} onChange={onToggleChange} />
-          )}
+        {/*<Logo*/}
+        {/*  className="navbar__brand"*/}
+        {/*  imageClassName="navbar__logo"*/}
+        {/*  titleClassName="navbar__title"*/}
+        {/*  onClick={hideSidebar}*/}
+        {/*/>*/}
+        {!disableColorModeSwitch && sidebarShown && (
+          <Toggle checked={isDarkTheme} onChange={onToggleChange} />
+        )}
         {/*</div>*/}
         <div className={styles.bufNavbarSidebarHeader}>
           <span>Menu</span>
@@ -152,28 +145,19 @@ function Navbar(): JSX.Element {
           <div className="menu">
             <ul className="menu__list">
               {bufSidebarItems.items.map((item, i) => (
-                <NavbarItem
-                  mobile
-                  {...(item as any)}
-                  onClick={hideSidebar}
-                  key={i}
-                />
+                <NavbarItem mobile {...(item as any)} onClick={hideSidebar} key={i} />
               ))}
             </ul>
           </div>
           {/* If the navbar contains two items with the labels "Slack" and "Github", we render them separately. */}
           <div className="menu">
             <ul className={clsx("menu__list", styles.bufNavbarSidebarSocialList)}>
-            {
-              bufSidebarItems.slack
-                  ? <NavbarItem mobile {...bufSidebarItems.slack as any} onClick={hideSidebar} />
-                  : null
-            }
-            {
-              bufSidebarItems.github
-                  ? <NavbarItem mobile {...bufSidebarItems.github as any} onClick={hideSidebar} />
-                  : null
-            }
+              {bufSidebarItems.slack ? (
+                <NavbarItem mobile {...(bufSidebarItems.slack as any)} onClick={hideSidebar} />
+              ) : null}
+              {bufSidebarItems.github ? (
+                <NavbarItem mobile {...(bufSidebarItems.github as any)} onClick={hideSidebar} />
+              ) : null}
             </ul>
           </div>
         </div>
@@ -182,17 +166,21 @@ function Navbar(): JSX.Element {
   );
 }
 
-function bufSplitSidebarNavItems(items: ConfigNavbarItem[]): {items: ConfigNavbarItem[], slack?: ConfigNavbarItem, github?: ConfigNavbarItem} {
-  const slack = items.find(item => (item.label ?? "").toLowerCase() === "slack");
-  const github = items.find(item => (item.label ?? "").toLowerCase() === "github");
-  if (! slack ||!github) {
-    return {items, slack: undefined, github: undefined};
+function bufSplitSidebarNavItems(items: ConfigNavbarItem[]): {
+  items: ConfigNavbarItem[];
+  slack?: ConfigNavbarItem;
+  github?: ConfigNavbarItem;
+} {
+  const slack = items.find((item) => (item.label ?? "").toLowerCase() === "slack");
+  const github = items.find((item) => (item.label ?? "").toLowerCase() === "github");
+  if (!slack || !github) {
+    return { items, slack: undefined, github: undefined };
   }
   return {
-    items: items.filter(item => item !== slack && item !== github),
-    slack, github
+    items: items.filter((item) => item !== slack && item !== github),
+    slack,
+    github
   };
 }
-
 
 export default Navbar;

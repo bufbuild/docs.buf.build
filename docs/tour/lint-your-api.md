@@ -144,7 +144,7 @@ file from `buf lint` like with this config update:
 ```
 
 Alternatively, you can specify exactly which rules to ignore using the [`ignore_only`](/lint/configuration#ignore_only)
-parameter. You can output failures in a format that you can then copy into your `buf.yaml` file. This allows you to ignore
+parameter. You can output failures in a format that you can then copy into your `buf.yaml` file. This enables you to ignore
 all existing lint errors and correct them over time:
 
 ```terminal

@@ -20,12 +20,10 @@ import DownloadButton, {mac, linux, windows} from '@site/src/components/Download
 
 ## Homebrew
 
-`buf` can be installed for Mac or Linux using [Homebrew](https://brew.sh) via the
-[bufbuild/homebrew-buf](https://github.com/bufbuild/homebrew-buf) tap.
+You can install `buf` on macOS or Linux using [Homebrew](https://brew.sh):
 
 ```sh
-brew tap bufbuild/buf
-brew install buf
+brew install bufbuild/buf/buf
 ```
 
 This installs:
@@ -50,20 +48,17 @@ See [the Releases page](https://github.com/bufbuild/buf/releases) for the curren
 
 The binary is all that is needed to get started.
 
-To install just the `buf`, `protoc-gen-buf-breaking`, or `protoc-gen-buf-lint` binaries
-to `/usr/local/bin` for version `1.0.0-rc12`:
+To install just the `buf` binary to `/usr/local/bin` for version `1.0.0-rc12`:
 
 ```sh
 # Substitute BIN for your bin directory.
 # Substitute VERSION for the current released version.
-# Substitute BINARY_NAME for "buf", "protoc-gen-buf-breaking", or "protoc-gen-buf-lint".
 BIN="/usr/local/bin" && \
 VERSION="1.0.0-rc12" && \
-BINARY_NAME="buf" && \
   curl -sSL \
-    "https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
-    -o "${BIN}/${BINARY_NAME}" && \
-  chmod +x "${BIN}/${BINARY_NAME}"
+    "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
+    -o "${BIN}/buf" && \
+  chmod +x "${BIN}/buf"
 ```
 
 `/usr/local/bin` should be on your `$PATH`.
@@ -72,10 +67,8 @@ To uninstall from `/usr/local/bin`:
 
 ```sh
 # Substitute BIN for your bin directory.
-# Substitute BINARY_NAME for "buf", "protoc-gen-buf-breaking", or "protoc-gen-buf-lint".
 BIN="/usr/local/bin" && \
-BINARY_NAME="buf" && \
-  rm -f "${BIN}/${BINARY_NAME}"
+  rm -f "${BIN}/buf"
 ```
 
 ### Tarball
@@ -129,21 +122,19 @@ VERSION="1.0.0-rc12" && \
 
 ## From Source
 
-The binaries can be installed from source if `go` is installed, however we recommend using one of
+The binary can be installed from source if `go` is installed, however we recommend using one of
 the release assets instead.
 
-```
+```sh
 # Substitute GOBIN for your bin directory
 # Leave unset to default to $GOPATH/bin
-GO111MODULE=on GOBIN=/usr/local/bin go get \
-  github.com/bufbuild/buf/cmd/buf \
-  github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
-  github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
+GO111MODULE=on GOBIN=/usr/local/bin go install \
+  github.com/bufbuild/buf/cmd/buf@v1.0.0-rc12
 ```
 
 ## Use the Docker Image
 
-Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that allows
+Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that enables
 you to use `buf` as part of your Docker workflow.
 
 For example, you can run `buf lint` with this command:

@@ -47,11 +47,23 @@ The [Go module path](../bsr/remote-generation/overview.md#the-go-module-path) yo
 derived from the name of the module you want to generate *for* and the name of the template you want
 to generate *with*:
 
-```
-go.buf.build/TEMPLATE_OWNER/TEMPLATE_NAME/MODULE_OWNER/MODULE_NAME
-```
+<Syntax
+	title="Generated Go module path syntax"
+	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
+	segments={[
+    {"label": "go.buf.build", "kind": "static"},
+    {"separator": "/"},
+    {"label": "template owner", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "template name", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "module owner", "kind": "variable"},
+    {"separator": "/"},
+    {"label": "module name", "kind": "variable"},
+  ]
+} />
 
-With the module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, the
+With the module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, for example, the
 import path looks like this:
 
 ```
@@ -187,11 +199,21 @@ represented as **monotonically increasing integers**.
 
 With these simplified versioning schemes, the BSR creates a synthetic version that takes this form:
 
-```
-[v1].[template_version].[commit_sequence_id]
-```
+import Syntax from "@site/src/components/Syntax";
 
-As an example, the version `v1.3.5` represents the **3**rd version of a hosted template and the
+<Syntax
+  title="Synthetic version syntax"
+  examples={["v1.3.5"]}
+  segments={[
+    {label: "v1", kind: "static"},
+    {separator: "."},
+    {label: "template version", kind: "variable"},
+    {separator: "."},
+    {label: "commit sequence ID", kind: "variable"},
+  ]
+} />
+
+In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the
 **5**th commit of a Protobuf module. In the example `go.mod` below, the `petapis` module uses
 the **4**th version of the Protobuf module and the **4**th version of the template:
 

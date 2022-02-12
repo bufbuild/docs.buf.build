@@ -28,7 +28,7 @@
 
 .bufColors {
   /* Set a light background color */
-  --ifm-navbar-background-color: #EFF9FC;
+  --ifm-navbar-background-color: #eff9fc;
   --ifm-navbar-shadow: none;
 }
 
@@ -38,7 +38,6 @@
      to leave room. */
   right: var(--ifm-navbar-padding-horizontal);
 }
-
 
 /* We restyle the menu that shows the navbar items in the navbar
    collapsed state */
@@ -56,7 +55,7 @@
   padding: 1.5rem 1.5rem 0;
 }
 .bufNavbarSidebarHeader > span {
-  color: rgba(9,10,58,0.5);
+  color: rgba(9, 10, 58, 0.5);
   font-size: 0.875rem;
   font-weight: 500;
   font-family: var(--buf-mono-font);
@@ -68,21 +67,22 @@
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
-  border: 1px solid #818C8F;
+  border: 1px solid #818c8f;
   border-radius: 2px;
   position: relative;
 }
 .bufNavbarSidebarHeader > button:focus {
   outline: none;
 }
-.bufNavbarSidebarHeader > button::before, .bufNavbarSidebarHeader > button::after {
+.bufNavbarSidebarHeader > button::before,
+.bufNavbarSidebarHeader > button::after {
   content: "";
   position: absolute;
   left: 0.5rem;
   width: 0.75rem;
   height: 1px;
   background-color: #090a3a;
-  transition: transform .5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 .bufNavbarSidebarHeader > button::before {
   width: 1.25rem;

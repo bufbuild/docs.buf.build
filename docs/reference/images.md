@@ -22,7 +22,7 @@ $ protoc -I . --go_out=gen/go foo.proto
   [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L57),
   which is just a list of [FileDescriptorProto](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L62)
   messages. These messages contain all information about your `.proto` files, including
-  optionally source code information such as the start/end line/column of each element
+  optional source code information such as the start/end line/column of each element
   of your `.proto` file, as well as associated comments.
 - The FileDescriptorSet is turned into a [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/compiler/plugin.proto#L68),
   which contains the FileDescriptorProtos that `protoc` produced for `foo.proto` and any
@@ -36,7 +36,7 @@ $ protoc -I . --go_out=gen/go foo.proto
   CodeGeneratorResponse is written to stdout of `protoc-gen-go`.
 - On success of `protoc-gen-go`, `protoc` reads stdout and then writes these generated files.
 
-The builtin generators to `protoc`, such as `--java_out`, `--cpp_out`, etc., work in roughly
+The built-in generators to `protoc`, such as `--java_out`, `--cpp_out`, etc., work in roughly
 the same manner, although instead of executing an external binary, this is done internally
 to `protoc`.
 

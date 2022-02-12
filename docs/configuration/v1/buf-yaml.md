@@ -78,8 +78,8 @@ option in general**, however in some situations it is unavoidable.
 
 ### `lint`
 
-The `lint` key is **optional**, and specifies the `lint` rules enforced on the files contained within the
-module.
+The `lint` key is **optional**, and specifies the [lint rules](/lint/rules.md) enforced on the files
+in the module.
 
 #### `use`
 

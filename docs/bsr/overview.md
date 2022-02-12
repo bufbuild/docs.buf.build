@@ -22,9 +22,21 @@ version: v1
 name: buf.build/acme/weather
 ```
 
-The module `name` is composed of three parts — the remote, owner, and repository: `<remote>/<owner>/<repository>`
+The module `name` is composed of three parts: the remote, owner, and repository:
 
-<Image alt="BSR module" src="/img/bsr/module_name.png" width={50} caption="The format of module names" />
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Module name syntax"
+  examples={["buf.build/acme/weather"]}
+  segments={[
+    {label: "buf.build", kind: "default", varName: "remote"},
+    {separator: "/"},
+    {label: "owner", kind: "variable"},
+    {separator: "/"},
+    {label: "repository", kind: "variable"},
+  ]
+} />
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.
@@ -47,7 +59,7 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 ## Documentation
 
-Every push to the BSR autogenerates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
+Every push to the BSR generates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
 
 For more information, see [Generated documentation](documentation).
 

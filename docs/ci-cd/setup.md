@@ -76,7 +76,7 @@ rm -rf $BUF_TMP
 </TabItem>
 </Tabs>
 
-## Running lint and breaking change detection
+## Running lint and breaking change detection {#checks}
 
 > This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
 > repository for a functional example.
@@ -117,7 +117,7 @@ buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#br
 ```
 
 If you are on [TravisCI](https://travis-ci.org) or [CircleCI](https://circleci.com) they
-do not clone any branches outside of the one being tests, so this allows `buf` to clone
+do not clone any branches outside of the one being tested, so this enables `buf` to clone
 using the remote and run the [breaking change detector](../breaking/overview.md).
 
 ## CI authentication (Optional)
@@ -131,7 +131,7 @@ For example:
   - [CircleCI](https://circleci.com/docs/2.0/env-vars/)
   - [GitHub Actions](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
-You can then access the token in your job using an environment variable, which allows you to create a
+You can then access the token in your job using an environment variable, which enables you to create a
 `.netrc` file for your job during setup. Here's an example assuming you've stored your token as `BUF_API_TOKEN`
 and your username as `BUF_USER`:
 

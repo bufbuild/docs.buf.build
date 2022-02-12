@@ -92,8 +92,7 @@ you can build your own tools and integrations with it.
 
 ### Formatter
 
-We'll be releasing `buf format` soon that allows for consistent formatting of your Protobuf files. This formatter will also
-allow for unified diffs to be printed, instead of editing your files directly.
+We'll be releasing `buf format` soon, which will enable you to apply consistent formatting to your Protobuf files. This formatter will also enable you to print unified diffs instead of editing your files directly.
 
 ## Ecosystem
 

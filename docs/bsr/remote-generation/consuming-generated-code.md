@@ -15,9 +15,22 @@ The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref
 
 The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to this format:
 
-```
-go.buf.build/TEMPLATE_OWNER/TEMPLATE_NAME/MODULE_OWNER/MODULE_NAME
-```
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+	title="Generated Go module path syntax"
+	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
+	segments={[
+	{"label": "go.buf.build", "kind": "static"},
+	{"separator": "/"},
+	{"label": "template owner", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "template name", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "module owner", "kind": "variable"},
+	{"separator": "/"},
+	{"label": "module name", "kind": "variable"},
+]} />
 
 For example, if you wanted to generate the Protobuf module [googleapis/googleapis](https://buf.build/googleapis/googleapis) with the template [grpc/go](https://buf.build/grpc/templates/go), the Go module path would look like this:
 
@@ -72,7 +85,7 @@ func main() {
 
 Unfortunately running the above will error, as GCP Cloud Storage doesn't yet support gRPC for all public buckets, but it serves an example of what's possible with remote code generation and the BSR Go module proxy.
 
-If you're using Go modules you'll observe a version such as `v1.4.246` in the go.mod file. To better understand versioning please refer to the [synthetic version](overview.md#synthetic-versions) section.
+If you're using Go modules you'll observe a version such as `v1.4.246` in the go.mod file. To better understand versioning please refer to the [synthetic version](overview.md#synthetic-version) section.
 
 ```sh title="go.mod"
 require (
@@ -86,30 +99,38 @@ To generate Go code from private modules you'll need to make sure the Go tooling
 
 1. Login to the BSR:
 
-The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
-You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
+   The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
+   You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
 
-```terminal
-$ buf registry login
-```
+   ```terminal
+   $ buf registry login
+   ```
 
-```sh title="~/.netrc"
-machine buf.build
-    login <USERNAME>
-    password <TOKEN>
-machine go.buf.build
-    login <USERNAME>
-    password <TOKEN>
-```
+   ```sh title="~/.netrc"
+   machine buf.build
+       login <USERNAME>
+       password <TOKEN>
+   machine go.buf.build
+       login <USERNAME>
+       password <TOKEN>
+   ```
 
 2. Go Environment Configuration
 
-The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
+   The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
 
-Set this environment variable.
+   Set this environment variable.
 
-```terminal
-$ export GOPRIVATE=go.buf.build
-```
+   ```terminal
+   $ export GOPRIVATE=go.buf.build
+   ```
 
-For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).
+   If you already have `GONOSUMDB` configured, you will also need to add `go.buf.build` to it:
+
+   ```terminal
+   $ export GONOSUMDB=$GONOSUMDB,go.buf.build
+   ```
+
+   This is not necessary if you do not already have `GONOSUMDB` configured, as `GOPRIVATE` automatically sets it in this case.
+
+   For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).

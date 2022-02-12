@@ -3,7 +3,7 @@ id: introduction
 title: Introduction
 ---
 
-Buf’s long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
+Buf's long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
 are defined consistently, in a way that service owners and clients can depend on.
 
 Defining APIs using an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) provides a number of benefits over simply exposing JSON/REST
@@ -64,7 +64,7 @@ are planning with the BSR. For a quick overview, see our [roadmap](roadmap.md).
 
 ## Where to go from here
 
-To install `buf`, please see the [installation](installation.mdx) page.
+To install `buf`, please see the [installation](installation.md) page.
 
 Next, we recommend completing the [tour](tour/introduction.md). The tour provides an overview of most of the existing functionality of Buf and takes
 approximately 20 minutes to complete.

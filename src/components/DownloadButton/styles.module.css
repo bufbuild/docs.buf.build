@@ -1,44 +1,44 @@
 .bufButton {
-    margin-right: .8rem;
-    margin-top: 1.6rem;
-    font-weight: 400;
-    border-radius: 2px;
-    display: inline-flex;
-    flex-direction: column;
-    width: 32%;
+  margin-right: 0.8rem;
+  margin-top: 1.6rem;
+  font-weight: 400;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  width: 32%;
 }
 
 .bufButton:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .header {
-    font-size: 0.8rem;
-    display: inline-block;
+  font-size: 0.8rem;
+  display: inline-block;
 }
 
 @media (max-width: 740px) {
-    .bufButton {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
-    .header {
-        font-size: inherit;
-        margin-right: 0.5rem;
-        display: inline-block;
-    }
+  .bufButton {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .header {
+    font-size: inherit;
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
 }
 
 @media (min-width: 996px) and (max-width: 1225px) {
-    .bufButton {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
-    .header {
-        font-size: inherit;
-        margin-right: 0.5rem;
-        display: inline-block;
-    }
+  .bufButton {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .header {
+    font-size: inherit;
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
 }

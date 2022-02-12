@@ -61,7 +61,7 @@ $ buf lint --error-format=json
 ```
 
 We can also output errors in a format you can then copy into your `buf.yaml` file. This
-allows you to ignore all existing lint errors and correct them over time:
+lets you ignore all existing lint errors and correct them over time:
 
 ```sh
 $ buf lint --error-format=config-ignore-yaml
@@ -118,7 +118,7 @@ $ buf lint --path path/to/foo.proto --path path/to/bar.proto --config '{"lint":{
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
 ```sh

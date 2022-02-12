@@ -266,7 +266,7 @@ enum Foo {
 }
 ```
 
-The `allow_alias` option allows multiple enum values to have the same number. This can lead to
+The `allow_alias` option lets multiple enum values have the same number. This can lead to
 issues when working with the JSON representation of Protobuf, a first-class citizen of `proto3`.
 If you get a serialized Protobuf value over the wire in binary format, it is unknown what specific
 enum value it applies to, and JSON usually serialized enum values by name. While in practice, this

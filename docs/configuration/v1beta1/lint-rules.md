@@ -4,8 +4,9 @@ title: Lint Rules and Categories
 ---
 
 > Lint rules and categories have been simplified between `v1beta1` and `v1`. The old `v1beta1` documentation
-> is included here for posterity, but you are **strongly** encouraged to migrate to `v1`. Please refer
-> to the [migration guide](../v1beta1-migration-guide.md) to get started.
+> is included here for posterity, but you are **strongly** encouraged to migrate to `v1`. See the
+> [migration guide](../v1beta1-migration-guide.md) to get started. You can find the `v1` lint rules
+> [here](/lint/rules.md).
 
 `buf` provides a carefully curated set of lint rules designed to provide consistency and maintainability
 across a Protobuf schema of any size and any purpose, but without being so opinionated as to restrict
