@@ -3,7 +3,7 @@ id: bazel
 title: Bazel
 ---
 
-Buf provides official support for the [Bazel] build tool with the [`rules_buf`][rules_buf] extension, which enables you to:
+Buf provides official support for the [Bazel] build tool with [`rules_buf`][rules_buf], which enables you to:
 
 * [Lint] Protobuf sources using the [`buf_lint_test`](#buf-lint-test) rule.
 * Perform [breaking change detection][breaking] for Protobuf [Inputs] using the [`buf_breaking_test`](#buf-breaking-test) rule.
@@ -15,6 +15,7 @@ Buf provides official support for the [Bazel] build tool with the [`rules_buf`][
 To get started, you need to add a series of imports to your Bazel `WORKSPACE`, replacing the `<SHA256>` and `<VERSION>` with values from a [specific `rules_buf` release][release]:
 
 ```python title="WORKSPACE"
+# Prerequisites
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -25,6 +26,7 @@ http_archive(
     ],
 )
 
+# Buf rules
 load("@rules_buf//buf:repositories.bzl", "rules_buf_dependencies", "rules_buf_toolchains")
 
 rules_buf_dependencies()
@@ -41,9 +43,10 @@ rules_proto_toolchains()
 
 ### Using a specific version of the Protobuf rules
 
-[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, `rules_buf` automatically loads `rules_proto``, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
+[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, it automatically loads `rules_proto``, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
 
 ```python title="WORKSPACE"
+# Prerequisites
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Load rules_proto version 4.0.0
@@ -77,7 +80,7 @@ http_archive(
 
 ## Rules
 
-All `rules_buf` rules are configured using a standard [`buf.yaml`][buf_yaml] configuration file. You can reference a `buf.yaml` file in two ways:
+You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. There are two ways to reference that file in Bazel rules:
 
 1. Using a raw reference:
 
@@ -91,7 +94,7 @@ All `rules_buf` rules are configured using a standard [`buf.yaml`][buf_yaml] con
     config = exports_files(["buf.yaml"])
     ```
 
-For repositories that contain a `buf.work.yaml` that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
+For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
 
 > We recommend using the [Gazelle extension](#gazelle) to generate these rules.
 
@@ -343,7 +346,7 @@ $ bazel query 'kind(buf_breaking_test, //...)'
 
 #### Example: Module vs Package mode
 
-Let's consider a Buf module with this directory structure:
+Let's consider a Buf [module] with this directory structure:
 
 ```terminal
 ├── buf.yaml
