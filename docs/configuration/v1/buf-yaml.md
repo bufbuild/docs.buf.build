@@ -3,7 +3,7 @@ id: buf-yaml
 title: buf.yaml
 ---
 
-The `buf.yaml` file defines a [module](../../bsr/overview.md#module), and is placed at the root of the Protobuf source files
+The `buf.yaml` file defines a [module](../../bsr/overview.md#modules), and is placed at the root of the Protobuf source files
 it defines. The placement of the `buf.yaml` configuration tells `buf` where to search for `.proto` files,
 and how to handle imports.
 
@@ -42,7 +42,7 @@ values are `v1beta1` and `v1`.
 
 ### `name`
 
-The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#module)
+The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#modules)
 and is directly associated with the repository that owns it.
 
 ### `deps`
@@ -78,8 +78,8 @@ option in general**, however in some situations it is unavoidable.
 
 ### `lint`
 
-The `lint` key is **optional**, and specifies the `lint` rules enforced on the files contained within the
-module.
+The `lint` key is **optional**, and specifies the [lint rules](/lint/rules.md) enforced on the files
+in the module.
 
 #### `use`
 

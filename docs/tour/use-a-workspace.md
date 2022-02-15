@@ -3,7 +3,7 @@ id: use-a-workspace
 title: 12 Use a Workspace
 ---
 
-In the last section, you used `buf generate` with a [module](../bsr/overview.md#module) you
+In the last section, you used `buf generate` with a [module](../bsr/overview.md#modules) you
 pushed to the [BSR](../bsr/overview.md) to implement a gRPC client and server in Go.
 That's a great start, but product requirements always evolve and new features need to be built over
 time.

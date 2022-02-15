@@ -5,7 +5,7 @@ title: Overview
 
 import Image from '@site/src/components/Image';
 
-## Module
+## Modules
 
 A **module** is a collection of Protobuf files that are configured, built, and versioned as a logical unit. By moving away from individual `.proto` files, the **module** simplifies file discovery and eliminates the need for complex build scripts to `-I` include, exclude, and configure your Protobuf sources.
 
@@ -22,9 +22,21 @@ version: v1
 name: buf.build/acme/weather
 ```
 
-The module `name` is composed of three parts — the remote, owner, and repository: `<remote>/<owner>/<repository>`
+The module `name` is composed of three parts: the remote, owner, and repository:
 
-<Image alt="BSR module" src="/img/bsr/module_name.png" width={50} caption="The format of module names" />
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Module name syntax"
+  examples={["buf.build/acme/weather"]}
+  segments={[
+    {label: "buf.build", kind: "default", varName: "remote"},
+    {separator: "/"},
+    {label: "owner", kind: "variable"},
+    {separator: "/"},
+    {label: "repository", kind: "variable"},
+  ]
+} />
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.
@@ -47,7 +59,7 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 ## Documentation
 
-Every push to the BSR autogenerates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
+Every push to the BSR generates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
 
 For more information, see [Generated documentation](documentation).
 
@@ -94,7 +106,7 @@ The `buf` CLI automatically resolves the module(s) specified in the `deps` list.
 
 > See the [Usage](../bsr/usage.md#add-a-dependency) section for a detailed example.
 
-## Referencing a Module
+## Referencing a module
 
 Each module on the BSR exists as a snapshot, and contains a unique reference associated with every change.
 
@@ -104,7 +116,7 @@ A reference is a way to refer to a single version of the repository. While a ref
 
 **Tag**: A reference to a single commit but with a human readable name, similar to a Git tag. It is useful for identifying commonly referenced commits — like a release.
 
-## Local Modules with Workspaces
+## Local modules with workspaces
 
 If you want to depend on local modules, you can set up a [workspace](../reference/workspaces.md) to discover modules through your file system. If you are in a workspace, `buf` looks for `deps` in your [workspace configuration](../reference/workspaces.md#configuration) _before_ attempting to find it on the BSR.
 
@@ -112,7 +124,7 @@ This makes workspaces a good way to iterate on multiple modules at the same time
 
 > For an in-depth example check out the [Tour - Use a Workspace](../tour/use-a-workspace.md)
 
-## Module Cache
+## Module cache
 
 `buf` caches files it downloads as part of module resolution in a folder on
 the local filesystem to avoid incurring the cost of downloading modules repeatedly.
@@ -121,7 +133,7 @@ To choose where to cache the files, it checks these, in order:
   * The value of `$BUF_CACHE_DIR`, if set.
   * The value of `$XDG_CACHE_HOME` falling back to `$HOME/.cache` on Linux and Mac and `%LocalAppData%` for Windows.
 
-## Code Generation
+## Code generation
 
 Hosting modules on the BSR means anyone with proper access can consume those modules. This solves the need to coordinate and sync Protobuf files manually amongst multiple consumers, which is error prone and quite often leads to drift.
 

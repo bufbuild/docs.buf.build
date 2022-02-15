@@ -78,12 +78,12 @@ You'll notice that the filenames are equivalent, but the files have been rearran
 
 The sections below explain what changed between `v1beta1` and `v1` in more detail.
 
-## buf.yaml
+## `buf.yaml`
 
 The `buf.yaml` configuration file is largely unchanged, but a few significant changes were made to
 build roots, as well as lint and breaking rules.
 
-### build.roots
+### `build.roots`
 
 The only structural change made to the `buf.yaml` file for `v1` was the removal of `build.roots`. Previously,
 users could configure multiple roots for a single `buf.yaml`, such as this:
@@ -97,7 +97,7 @@ build:
 ```
 
 Now that [workspaces](../reference/workspaces.md) are available, each of the roots can be defined as an independently configured
-[module](../bsr/overview.md#module) that can be imported by others. In the example above, the `proto` and `vendor/googleapis`
+[module](../bsr/overview.md#modules) that can be imported by others. In the example above, the `proto` and `vendor/googleapis`
 roots can be defined as separate modules like so:
 
 ```yaml title=proto/buf.yaml
@@ -136,7 +136,7 @@ containing the `buf.work.yaml` file to have the same experience before they spli
 into multiple `buf.yaml` files. For example, running `buf lint` on a directory [input](../reference/inputs.md)
 containing a `buf.work.yaml` lints *all* of the modules listed in the `buf.work.yaml`.
 
-### MINIMAL lint category
+### `MINIMAL` lint category {#minimal}
 
 The rules contained in the `MINIMAL` lint category have been slightly adjusted between `v1beta1` and
 `v1`. The difference between them is shown below:
@@ -243,7 +243,7 @@ lint:
 You'll notice that the filepath doesn't need to be updated because it's already relative to the module root. This transformation
 is automatically handled by the `buf config migrate-v1beta1` command, so you don't need to worry about these nuanced details.
 
-## buf.gen.yaml
+## `buf.gen.yaml`
 
 The `buf.gen.yaml` configuration file is largely unchanged, but a few changes exist for configuring [Managed Mode](../generate/managed-mode.md).
 

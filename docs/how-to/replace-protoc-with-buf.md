@@ -7,7 +7,7 @@ The `buf` CLI acts as a build system for all your `.proto` compilation and
 code generation needs. This guide describes how to migrate your existing
 `protoc` setup and migrate to using `buf`.
 
-This guide assumes that you've [installed `buf`](../installation.mdx) and generate
+This guide assumes that you've [installed `buf`](../installation.md) and generate
 code by calling`protoc` manually from scripts or a tool like `make`. Other guides
 are available for users currently using [Protolock](migrate-from-protolock.md) or
 [Prototool](migrate-from-prototool.md).
@@ -52,7 +52,7 @@ and `validate/validate.proto`, respectively.
 
 The placement of the `buf.yaml` is analogous to a `protoc` include (`-I`) path. **With `buf`,
 there is no `-I` flag** - each `protoc` `-I` path maps to a directory that contains a `buf.yaml`
-(called a [module](../bsr/overview.md#module) in Buf parlance), and multiple modules are stitched
+(called a [module](../bsr/overview.md#modules) in Buf parlance), and multiple modules are stitched
 together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which defines a
 [workspace](../reference/workspaces.md).
 

@@ -45,7 +45,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 
 ## Define a Module
 
-To get started, create a [module](../bsr/overview.md#module) by adding a `buf.yaml` file to the root of the directory
+To get started, create a [module](../bsr/overview.md#modules) by adding a `buf.yaml` file to the root of the directory
 that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
@@ -62,7 +62,7 @@ breaking:
     - FILE
 ```
 
-## Modules and Workspaces
+## Modules and workspaces
 
 For those of you that have used `protoc`, the placement of the `buf.yaml` is analogous to a `protoc`
 include (`-I`) path. **With `buf`, there is no `-I` flag** - each `protoc` `-I` path maps to a directory
@@ -281,7 +281,7 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
 ```sh

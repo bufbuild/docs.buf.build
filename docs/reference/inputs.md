@@ -7,7 +7,7 @@ The various I/O options for `buf` can seem daunting and overly complex, so we'll
 all fits together.
 
 In general, an input is a collection of `.proto` files used by many of the `buf` commands.
-In most cases, this is a [module](../bsr/overview.md#module), but a variety of other formats are supported
+In most cases, this is a [module](../bsr/overview.md#modules), but a variety of other formats are supported
 and explained below.
 
 > By default, `buf` uses the current directory as its input for all commands.

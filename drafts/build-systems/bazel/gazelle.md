@@ -64,7 +64,7 @@ Add this Gazelle directive:
 ```starlark
 # gazelle:buf_breaking_against //:against_image_file
 ```
-> The directive should be in the `BUILD` file at the root of the buf [module](/bsr/overview#module). In other words, in the directory containing a `buf.yaml`.
+> The directive should be in the `BUILD` file at the root of the buf [module](/bsr/overview#modules). In other words, in the directory containing a `buf.yaml`.
 
 `buf_breaking_test` rules can be generated in two different modes.
 

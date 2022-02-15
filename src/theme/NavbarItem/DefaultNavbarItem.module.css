@@ -23,7 +23,7 @@ link is a plain link in the navbar.
   background-size: 0 100%;
   background-repeat: no-repeat;
   text-decoration: none;
-  transition: background-size 0.4s ease-in-out , opacity 0.4s ease-in-out;
+  transition: background-size 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 .link:hover {
   color: var(--ifm-color-primary);
@@ -43,7 +43,6 @@ link is a plain link in the navbar.
 :global(.navbar-sidebar__items) .link:hover {
   background: none;
 }
-
 
 /*
 button is a button with a light outline and the same text color as plain links.
@@ -66,11 +65,11 @@ button is a button with a light outline and the same text color as plain links.
   border: 1px solid var(--buf-light-button-border-color);
   border-radius: 2px;
   text-align: center;
-  transition: border-color 0.2s ease-in-out , color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .button:hover {
-  color: #191E8C;
-  border-color: #191E8C;
+  color: #191e8c;
+  border-color: #191e8c;
 }
 /* In the navbar-sidebar (the menu that shows the navbar items in the navbar
    collapsed state), we want a different style */
@@ -81,7 +80,6 @@ button is a button with a light outline and the same text color as plain links.
   margin-bottom: 1.5rem;
   margin-right: 1rem;
 }
-
 
 /*
 darkButton is a button with a dark background and light text.
@@ -106,7 +104,7 @@ darkButton is a button with a dark background and light text.
   text-align: center;
 }
 .darkButton:hover {
-  background-color: #191E8C;
+  background-color: #191e8c;
 }
 /* In the navbar-sidebar (the menu that shows the navbar items in the navbar
    collapsed state), we want a different style */
@@ -117,7 +115,6 @@ darkButton is a button with a dark background and light text.
   margin-bottom: 1.5rem;
   margin-right: 1rem;
 }
-
 
 /*
 lightButton is a button with a light outline and light text.
@@ -140,11 +137,11 @@ lightButton is a button with a light outline and light text.
   border: 1px solid var(--buf-light-button-border-color);
   border-radius: 2px;
   text-align: center;
-  transition: border-color 0.2s ease-in-out , color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .lightButton:hover {
-  color: #191E8C;
-  border-color: #191E8C;
+  color: #191e8c;
+  border-color: #191e8c;
 }
 /* In the navbar-sidebar (the menu that shows the navbar items in the navbar
    collapsed state), we want a different style */
@@ -156,7 +153,6 @@ lightButton is a button with a light outline and light text.
   margin-right: 1rem;
 }
 
-
 /*
 iconButton can be used in combination with lightButton and slack|github.
 On narrow screens, it shows only the icon.
@@ -167,7 +163,7 @@ On narrow screens, it shows only the icon.
   padding-left: 1.5rem;
 }
 .iconButton > span::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;

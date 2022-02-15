@@ -12,7 +12,7 @@ a big way.
 In this document, we'll discuss the pros and cons of Protolock vs `buf`'s [breaking change
 detector](../breaking/overview), as well as `buf`-equivalent commands and migration.
 
-## Protolock Pros
+## Protolock pros
 
 - Protolock has a [plugin interface](https://github.com/nilslice/protolock/wiki/Plugins) allowing
   you to create external binaries that Protolock then calls itself to verify rules. The equivalent
@@ -21,7 +21,7 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
   individual lint rules leads to issues with tool distribution and management, but this use
   case may be something you want, and `buf` does not support it.
 
-## Protolock Cons
+## Protolock cons
 
 - Protolock uses a third-party Protobuf parser that is not tested to cover every edge case
   of the Protobuf grammar, and has had such issues in the past. Additionally, this parser

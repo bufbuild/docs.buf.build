@@ -20,12 +20,10 @@ import DownloadButton, {mac, linux, windows} from '@site/src/components/Download
 
 ## Homebrew
 
-`buf` can be installed for Mac or Linux using [Homebrew](https://brew.sh) via the
-[bufbuild/homebrew-buf](https://github.com/bufbuild/homebrew-buf) tap.
+You can install `buf` on macOS or Linux using [Homebrew](https://brew.sh):
 
 ```sh
-brew tap bufbuild/buf
-brew install buf
+brew install bufbuild/buf/buf
 ```
 
 This installs:
@@ -127,16 +125,16 @@ VERSION="1.0.0-rc12" && \
 The binary can be installed from source if `go` is installed, however we recommend using one of
 the release assets instead.
 
-```
+```sh
 # Substitute GOBIN for your bin directory
 # Leave unset to default to $GOPATH/bin
 GO111MODULE=on GOBIN=/usr/local/bin go install \
   github.com/bufbuild/buf/cmd/buf@v1.0.0-rc12
 ```
 
-## Use the Docker Image
+## Using the Docker Image
 
-Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that allows
+Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that enables
 you to use `buf` as part of your Docker workflow.
 
 For example, you can run `buf lint` with this command:

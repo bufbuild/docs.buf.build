@@ -4,7 +4,7 @@ title: buf.lock
 ---
 
 If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it's be accompanied by a `buf.lock` file that contains your
-[module](../../bsr/overview.md#module)'s dependency manifest. This manifest represents a single, reproducible build of your module.
+[module](../../bsr/overview.md#modules)'s dependency manifest. This manifest represents a single, reproducible build of your module.
 
 You can create or update a `buf.lock` file for your module by running the `buf mod update` command. For
 example, suppose that we have this directory layout and `buf.lock` content for the `buf.build/acme/petapis`
@@ -27,10 +27,7 @@ deps:
   - remote: buf.build
     owner: acme
     repository: paymentapis
-    branch: main
     commit: 42abe5cfeb904508839378050d95ab13
-    digest: b1-adftuIW3X3VYL65FfLiqkmW_DIDUuqRbyuxOSmscA4B=
-    create_time: 2021-06-02T10:28:18.283761Z
 ```
 
 ### `deps`
@@ -60,10 +57,11 @@ deps:
   - remote: buf.build
     owner: acme
     repository: paymentapis
-    branch: main
     commit: 5173e5cfeb904508839378050d95e1de
-    digest: b1-tteutIW3X3VYL65FfLiqkmW_DIDUuqRbyuxOSmscB5Q=
-    create_time: 2021-06-03T17:53:54.361543Z
 ```
+
+> Older versions of `buf` may include `branch`, `commit`, `digest`, and `create_time`
+> as a part of the dependencies. Your `buf.lock` shouldn't include these fields if you've
+> run `buf mod update` with a newer version of `buf`.
 
 For more on updating dependencies and pushing modules, please refer to the [Iterate on Modules](../../how-to/iterate-on-modules.md) guide.

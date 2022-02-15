@@ -4,7 +4,7 @@ title: 7 Push a Module
 ---
 
 Now that you've authenticated with the [BSR](../bsr/overview.md), you can create a
-repository and push a [module](../bsr/overview.md#module) that defines the
+repository and push a [module](../bsr/overview.md#modules) that defines the
 `PetStoreService` API.
 
 ## 7.1 Terminology {#terminology}

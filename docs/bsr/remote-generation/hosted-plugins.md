@@ -6,7 +6,7 @@ title: Remote Plugin Execution
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Remote Plugin Execution
+## Remote plugin execution
 
 One of the greatest challenges with Protobuf code generation is the complexity of working with `protoc` and custom plugins. Time and time again we've heard that developers want the benefits of code generation, but the existing tooling gets in the way.
 

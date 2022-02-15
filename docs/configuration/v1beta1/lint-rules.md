@@ -4,8 +4,9 @@ title: Lint Rules and Categories
 ---
 
 > Lint rules and categories have been simplified between `v1beta1` and `v1`. The old `v1beta1` documentation
-> is included here for posterity, but you are **strongly** encouraged to migrate to `v1`. Please refer
-> to the [migration guide](../v1beta1-migration-guide.md) to get started.
+> is included here for posterity, but you are **strongly** encouraged to migrate to `v1`. See the
+> [migration guide](../v1beta1-migration-guide.md) to get started. You can find the `v1` lint rules
+> [here](/lint/rules.md).
 
 `buf` provides a carefully curated set of lint rules designed to provide consistency and maintainability
 across a Protobuf schema of any size and any purpose, but without being so opinionated as to restrict
@@ -30,9 +31,9 @@ a human representation and is not actual configuration.
 - `UNARY_RPC`
 - `OTHER`
 
-## Style Guide
+## Style guide
 
-Our [Style Guide](../../best-practices/style-guide.md) provides a concise document that
+Our [style guide](../../best-practices/style-guide.md) provides a concise document that
 effectively includes all rules in the `DEFAULT` category, as well as additional
 recommendations that are not enforced. We provide this for ease of consumption across
 your various teams, while linking back to this document for rationale for individual

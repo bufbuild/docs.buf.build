@@ -13,13 +13,13 @@ collection of GitHub Actions that work together to provide a fully-featured CI/C
     and comments in-line on pull requests.
   - [buf-breaking](https://github.com/marketplace/actions/buf-breaking) verifies backwards compatibility
     for your Protobuf files with `buf`, and comments in-line on pull requests.
-  - [buf-push](https://github.com/marketplace/actions/buf-push) pushes a [module](../bsr/overview.md#module) to the Buf Schema Registry
+  - [buf-push](https://github.com/marketplace/actions/buf-push) pushes a [module](../bsr/overview.md#modules) to the Buf Schema Registry
     ([BSR](../bsr/overview.md)). The module is pushed with a tag equal to the git commit SHA.
 
 In this guide, you will configure these GitHub Actions so that `buf lint` and `buf breaking` are run on
 all pull requests, and `buf push` pushes your module to the BSR when your pull request is merged.
 
-## Create a BSR Token
+## Create a BSR token
 
 The `buf-push` step requires access to the BSR. For steps on obtaining a token, please see the
 [Authentication](../bsr/authentication.md) page for more details. This needs to be added as an encrypted
@@ -27,7 +27,7 @@ The `buf-push` step requires access to the BSR. For steps on obtaining a token, 
 
 In this guide, the API token is set to `BUF_TOKEN`.
 
-## buf-setup
+## `buf-setup`
 
 We will start with the `buf-setup` action. All the other Buf GitHub Actions require
 `buf` to be installed on your GitHub Action runner, and `buf-setup` will handle that for us.
@@ -66,7 +66,7 @@ steps:
       version: 'latest'
 ```
 
-## buf-lint
+## `buf-lint`
 
 Now that you have installed `buf`, let's configure lint. The `buf-lint` action lints your
 pull request and has the ability to provide in-line comments. Add this after your `buf-setup` step:
@@ -83,7 +83,7 @@ jobs:
       - uses: bufbuild/buf-lint-action@v1
 ```
 
-## buf-breaking
+## `buf-breaking`
 
 We will do something similar for the breaking change detection. The `buf-breaking` action prevents breaking
 changes to your API based on a given repository to check against, such as the `HEAD` of the `main` branch of
@@ -110,7 +110,7 @@ jobs:
 If any breaking changes are detected against the provided remote, `buf-breaking` adds
 inline comments to your pull request to indicate these changes.
 
-## buf-push
+## `buf-push`
 
 Now that we've added steps for pull request workflow, let's add a **second workflow**
 to push to the BSR once the pull request has merged. We cannot use the same workflow

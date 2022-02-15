@@ -3,7 +3,7 @@ id: iterate-on-modules
 title: Iterate on Modules
 ---
 
-> For a comprehensive guide on working with [modules](../bsr/overview.md#module) and the Buf
+> For a comprehensive guide on working with [modules](../bsr/overview.md#modules) and the Buf
 > Schema Registry ([BSR](../bsr/overview.md)), please check out [the tour](../tour/introduction.md)!
 
 As requirements change, you'll inevitably need to evolve your Protobuf APIs,
@@ -14,7 +14,7 @@ locally before pushing a new version to the BSR.
 
 This guide assumes that you've used and/or familiarized yourself with these topics:
 
-  - [Modules](../bsr/overview.md#module)
+  - [Modules](../bsr/overview.md#modules)
   - [BSR](../bsr/overview.md)
   - [Workspaces](../reference/workspaces.md)
 
@@ -24,7 +24,7 @@ The typical `buf` workflow involves editing your `.proto` files, and verifying
 the changes continue to conform to the configured [lint rules](../lint/rules.md).
 
 Once you've made your edits, you can manually verify your changes with the `buf` CLI,
-or by [configuring your editor](../editor-integration.mdx) to automatically
+or by [configuring your editor](../editor-integration.md) to automatically
 report errors on save.
 
 On the command line, that should look like this:

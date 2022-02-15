@@ -106,10 +106,10 @@ We'll do so locally by running this command:
 $ docker build -f Dockerfile.twirp -t plugins.buf.build/demolab/twirp:v8.1.0-1 .
 ```
 
-We're tagging the version as `v8.1.0-1` even though the upstream version of the plugin is `v8.1.0`. This structure allows us to make changes to the packaging of the plugin without changing the upstream version, for example, if we made a mistake in our Dockerfile. This pattern is commonly used in other systems where packaging is done externally to the upstream software, such as [Debian](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version) and [Arch](https://wiki.archlinux.org/title/Arch_package_guidelines#Package_versioning)
+We're tagging the version as `v8.1.0-1` even though the upstream version of the plugin is `v8.1.0`. This structure enables us to make changes to the packaging of the plugin without changing the upstream version, for example, if we made a mistake in our Dockerfile. This pattern is commonly used in other systems where packaging is done externally to the upstream software, such as [Debian](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version) and [Arch](https://wiki.archlinux.org/title/Arch_package_guidelines#Package_versioning)
 package versioning systems.
 
-## 5. Publish Plugin to the BSR
+## 5. Publish plugin to the BSR
 
 Lastly, publish the containerized `protoc`-based plugin to the BSR. Make sure you have [authenticated](#1-docker-registry-authentication) your docker client in step 1.
 

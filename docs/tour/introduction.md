@@ -4,7 +4,7 @@ title: Introduction
 ---
 
 The tour introduces you to the `buf` CLI and the Buf Schema Registry ([BSR](../bsr/introduction.md)). Along the way, you
-will enforce lint standards, detect breaking changes, generate code, create a [module](../bsr/overview.md#module), manage a
+will enforce lint standards, detect breaking changes, generate code, create a [module](../bsr/overview.md#modules), manage a
 non-trivial dependency graph, and publish the module to the BSR so that it can be consumed by others. The tour takes
 approximately 20 minutes to complete.
 
@@ -25,8 +25,8 @@ $ buf ls-files --help
 
  * Install [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
  * Install [`jq`](https://stedolan.github.io/jq)
- * Install [`buf`](../installation.mdx)
- * (Optional) [Editor Integration](../editor-integration.mdx)
+ * Install [`buf`](../installation.md)
+ * (Optional) [Editor Integration](../editor-integration.md)
 
 ## Clone the Git Repository {#clone-the-git-repository}
 

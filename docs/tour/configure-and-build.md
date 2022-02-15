@@ -43,7 +43,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 
 For those of you that have used `protoc`, the placement of the `buf.yaml` is analogous to a `protoc`
 include (`-I`) path. **With `buf`, there is no `-I` flag** - each `protoc` `-I` path maps to a directory
-that contains a `buf.yaml` (called a [module](../bsr/overview.md#module) in Buf parlance), and multiple modules
+that contains a `buf.yaml` (called a [module](../bsr/overview.md#modules) in Buf parlance), and multiple modules
 are stitched together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which defines a
 [workspace](../reference/workspaces.md).
 

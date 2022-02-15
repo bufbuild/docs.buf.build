@@ -4,7 +4,7 @@ title: Workspaces
 ---
 
 A workspace is a collection of one or more local modules that coexist and interoperate within a
-common directory. Workspaces make it possible for local [modules](../bsr/overview.md#module) to import
+common directory. Workspaces make it possible for local [modules](../bsr/overview.md#modules) to import
 Protobuf files from other local modules, and unlock other powerful use cases that operate on multiple
 modules at the same time.
 
@@ -119,7 +119,7 @@ one. For example, if `buf lint` is run for an [input](../reference/inputs.md) th
 each of the modules contained within the workspace is linted. Other commands, such as `buf build`, merge
 workspace modules into one, so that all of the files contained are consolidated into a single [image](../reference/images.md).
 
-## Importing Across Modules
+## Importing across modules
 
 In a workspace, **imports are resolved relative to each module's root**, or the placement of the `buf.yaml` (similar to
 include `-I` paths for `protoc`). For the example layout shown above, the `petapis/acme/pet/v1/pet.proto` file would import
