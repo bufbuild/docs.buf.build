@@ -404,7 +404,7 @@ the message name of RPC request/responses, and that all request/responses are un
 a unique request and response message for every RPC.** Separate RPCs should not have their
 request and response parameters controlled by the same Protobuf message, and if you share
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
-when fields on this Protobuf message change. **Even in simple cases**, best practice
+when fields on this Protobuf message change. **Even in straightforward cases**, best practice
 is to always have a wrapper message for your RPC request and response types. Buf enforces
 this with these three rules by verifying that:
 

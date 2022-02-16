@@ -4,7 +4,7 @@ title: Migration Guide (v1beta1 -> v1)
 ---
 
 Several changes were made between `v1beta1` and `v1`, but migrating between
-them is easy. This guide walks you through exactly what changed and what you need to
+them should be straightforward. This guide walks you through exactly what changed and what you need to
 update when upgrading from `v1beta1` to `v1`.
 
 ## Automatic migration

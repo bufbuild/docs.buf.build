@@ -84,7 +84,7 @@ This has two key benefits:
 
 * The Protobuf files you define don't collide with other modules so that they can always be
   compiled together.
-* The version element in the filepath makes it easy to roll out incompatible versions in the
+* The version element in the filepath enables you to roll out incompatible versions in the
   same module because they are consumed from different filepaths.
 
 Suppose that you have a module similar to the one described in [Module Layout](#module-layout),

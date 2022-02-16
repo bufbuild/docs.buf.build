@@ -41,8 +41,8 @@ can attest to the severity of the situation.
 
 ## Configuration
 
-Configuring **Managed Mode** is easy - all you need to do is add the `managed.enabled` option to your `buf.gen.yaml` template. An example `buf.gen.yaml`
-template that uses the `protoc-gen-java` plugin is shown below:
+To configure **Managed Mode**, add the `managed.enabled` option to your `buf.gen.yaml` template. An example `buf.gen.yaml`
+template that uses the `protoc-gen-java` plugin:
 
 ```yaml title="buf.gen.yaml"
 version: v1
@@ -147,8 +147,8 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 
 > If the Protobuf file's package declaration conforms to the `PACKAGE_VERSION_SUFFIX` lint rule, the final two path elements are
 > concatenated and included after the `;` element in the `go_package` result. The above example generates a Go package with a package
-> declaration equal to `weatherv1`, which makes it easier to import Go definitions from a variety of generated packages that would otherwise
-> collide (a lot of Protobuf packages contain the `v1` suffix).
+> declaration equal to `weatherv1`, which enables you to import Go definitions from a variety of generated packages that would otherwise
+> collide (a lot of Protobuf packages contain the `v1` suffix, for example).
 
 ##### `except`
 

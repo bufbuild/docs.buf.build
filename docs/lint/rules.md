@@ -412,7 +412,7 @@ These rules enforce the message name of RPC request/responses, and that all requ
 a unique request and response message for every RPC.** Separate RPCs should not have their
 request and response parameters controlled by the same Protobuf message, and if you share
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
-when fields on this Protobuf message change. **Even in simple cases**, best practice
+when fields on this Protobuf message change. **Even in straightforward cases**, best practice
 is to always have a wrapper message for your RPC request and response types. `buf` enforces
 this with these three rules by verifying that:
 
@@ -609,7 +609,7 @@ rules we purposefully did not write that deserve special mention.
 ### File option values
 
 `buf` does not include linting for specific file option values. It's not that we don't think consistency
-across these file options is important - in fact, we think it's very important for easy Protobuf stub
+across these file options is important - in fact, we think it simplifies Protobuf stub
 consumption. A core principle we feel strongly about is that **language-specific file options shouldn't be
 part of your core Protobuf schema** - your Protobuf schema should only describe language-independent elements
 as much as is possible.
@@ -645,4 +645,4 @@ standardization. This is to provide maximum usefulness of the `DEFAULT` category
 
 If you'd like a new rule added, please [contact us](../contact.md) to discuss it. We'll add rules if we think
 they're maintainable and could have widespread value. Most rules can be very easily added, and although
-[buf is OSS](https://github.com/bufbuild/buf), it's usually easier for us to add it ourselves.
+[Buf is OSS](https://github.com/bufbuild/buf), it's usually more efficient for us to add it ourselves.

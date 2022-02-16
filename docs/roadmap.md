@@ -47,7 +47,7 @@ beyond internal APIs, but for external APIs as well.
 ### Enforced linting and compatibility
 
 The BSR currently leans on the module author to verify that their proposed commit is backwards-compatible with previous commits
-before the module is pushed. It's easy enough to run `buf breaking`, but mistakes happen and users might forget to instrument
+before the module is pushed. `buf breaking` does help, of course, but mistakes happen and users might forget to instrument
 this in their CI pipeline.
 
 Instead, we can let users configure backwards-compatibility for the module itself so that it's **enforced on the server side**.

@@ -56,7 +56,7 @@ with the `buf mod update` command. This command resolves the latest commit on th
 and updates the contents of your module's [`buf.lock`](../configuration/v1/buf-lock.md).
 
 For example, if a [`buf.yaml`](../configuration/v1/buf-yaml.md) is in the current directory,
-updating your dependencies to their latest version is as simple as:
+you can update your dependencies with this command:
 
 ```sh
 $ buf mod update
@@ -79,7 +79,7 @@ $ buf build
 As you develop `buf` modules, you might find yourself in a situation where you own multiple modules
 that depend on each other. When you want to make a change to one of your modules, you normally need
 to push the update up to the BSR so that the other module can update its dependency and use it
-locally. This workflow incurs a frustrating feedback loop, and invites more opportunities for simple
+locally. This workflow imposes a frustrating feedback loop and invites more opportunities for
 mistakes in each pushed module commit.
 
 The `buf` module [workspace](../reference/workspaces.md) was created to solve exactly this problem (and more).

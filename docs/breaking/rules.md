@@ -198,9 +198,9 @@ the field (as well as reserving the name for JSON), so this is what we recommend
 **Category: `WIRE_JSON`**
 
 These check that no enum value or message field is deleted without reserving the
-name. This is the JSON-equivalent of reserving the number - JSON uses field names
-instead of numbers (this is optional for enum fields, but allowed). Generally you
-want to reserve both the number and the name. For example:
+name. This is the JSON equivalent of reserving the number - JSON uses field names
+instead of numbers (this is optional for enum fields, but allowed). Generally we
+reserving both the number and the name. Here's an example:
 
 ```protobuf
 enum Foo {
@@ -218,7 +218,8 @@ message Bar {
 }
 ```
 
-Note that it is significantly easier to just deprecate enum values and message fields.
+Note that it's usually better to deprecate enum values and message fields than to reserve them in
+advance.
 
 ### `RPC_NO_DELETE`
 

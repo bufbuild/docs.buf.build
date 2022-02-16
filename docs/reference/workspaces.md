@@ -13,8 +13,8 @@ modules at the same time.
 As you develop `buf` modules, you might find yourself in a situation where you own multiple modules
 that depend on each other. When you want to make a change to one of your modules, you normally need
 to push the update up to the [BSR](../bsr/overview.md) so that the other module can update its dependency
-and use it locally, potentially using an `alpha` branch to do so. This workflow incurs a frustrating
-feedback loop, and invites more opportunities for simple mistakes in each pushed module commit.
+and use it locally, potentially using an `alpha` branch to do so. This workflow imposes a frustrating
+feedback loop and invites more opportunities for mistakes in each pushed module commit.
 
 If you're familiar with `protoc`, a workspace is similar to specifying multiple include `-I` paths.
 For example, if the Pet team manually vendored the `acme/payment/v2/payment.proto` file from the Payment
@@ -236,7 +236,7 @@ The same holds true for the other `buf` operations including `buf {breaking,buil
 
 ## Module cache override
 
-As mentioned above, workspaces make it easier to work on multiple modules simultaneously, such as introducing
+As mentioned above, workspaces enable you to work on multiple modules simultaneously, such as introducing
 a new `message` in one module, and depending on it in another. Normally, the `buf` command relies on the module's
 [`buf.lock`](../configuration/v1/buf-lock.md) manifest to determine read its dependencies from the local [module cache](../bsr/overview.md#module-cache).
 However, this requires that the latest change has been pushed to the [BSR](../bsr/overview.md) and the user has run `buf mod update`

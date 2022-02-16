@@ -16,7 +16,7 @@ tooling set up locally.
 
 Furthermore, if you have Protobuf-based services your clients shouldn't have to deal
 with code generation. They should be able to consume your API immediately. *And* it should
-be as simple as pulling a generated client from their language's registry, that's it!
+involve nothing more than pulling a generated client from their language's registry, that's it!
 
 <Image alt="BSR module" src="/img/bsr/remote-code-gen.png" width={75} caption="The Buf Schema Registry's remote generation process" />
 

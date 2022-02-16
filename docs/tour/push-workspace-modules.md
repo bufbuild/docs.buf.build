@@ -3,7 +3,7 @@ id: push-workspace-modules
 title: 14 Push Workspace Modules
 ---
 
-[Workspaces](../reference/workspaces.md) make it easy to work with and modify multiple local
+[Workspaces](../reference/workspaces.md) enable you to work with and modify multiple local
 [modules](../bsr/overview.md#modules) at the same time. Once you're satisfied with your changes and
 are ready to push them to the [BSR](../bsr/overview.md), there are a few things you should
 keep in mind to make sure everything works as you expect.

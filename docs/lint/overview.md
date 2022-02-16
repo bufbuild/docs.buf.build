@@ -8,7 +8,7 @@ common set of rules. This is a good practice whether you're building a personal 
 maintaining a large set of Protobuf definitions across a major organization, or anything in-between.
 It's especially important for users and organizations that continually onboard new engineers without
 a wealth of experience in Protobuf schema design to make sure that APIs remain consistent and follow
-patterns that allow easy maintainability, but is useful even if you have years of Protobuf
+patterns that allow for maintainability, but is useful even if you have years of Protobuf
 experience as a forcing function on your API decisions.
 
 `buf` provides lint functionality through `buf lint`, which runs a set of [lint rules](rules.md) across your

@@ -21,7 +21,7 @@ make sure that we don't break you, not your responsibility to change because of 
 a lot about `buf` usage in the last two years of our beta, and have deprecated flags and commands as
 we go, but for v1.0, we are removing the deprecated items to make sure we have a clean setup going forward.
 
-All commands and flags have been printing warnings for a long time, and have an easy migration path.
+All commands and flags have been printing warnings for a long time, and have a smooth migration path.
 Simply update the command or flag, and you'll be good to go:
 
 - Removed the `buf login` command in favor of `buf registry login`.
@@ -138,7 +138,7 @@ To prepare for this, and to remove this warning, just add a version to the top o
 version: v1
 ```
 
-As a simple one-liner to do so, run this:
+Here's a one-liner for that:
 
 ```sh
 $ cat <(echo version: v1) buf.yaml > buf.yaml.tmp && mv buf.yaml.tmp buf.yaml

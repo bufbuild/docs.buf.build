@@ -33,7 +33,7 @@ below.
 ### The Buf Schema Registry (BSR)
 
 The core primitive for Buf is the module, which is emphasized by the Buf Schema Registry ([BSR](../bsr/overview.md)).
-With the BSR, it's easy to refer to any version of your module and use it as an input for each
+With the BSR, you can use any version of a module as an input for each
 of the `buf` commands.
 
 For example, you can run `buf lint` for all of the files contained in the `buf.build/acme/weather` module like

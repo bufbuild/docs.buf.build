@@ -202,8 +202,8 @@ for more details.
 
 ## Creating Images
 
-Images are created using `buf build`. If the current directory contains a valid
-[`buf.yaml`](../configuration/v1/buf-yaml.md), building an Image is as simple as:
+You can create images using `buf build`. If the current directory contains a valid
+[`buf.yaml`](../configuration/v1/buf-yaml.md), you can building an image with this command:
 
 ```sh
 $ buf build -o image.bin

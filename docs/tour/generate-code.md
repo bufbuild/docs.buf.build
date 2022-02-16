@@ -29,8 +29,8 @@ The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) file controls how the 
 executes `protoc` plugins. With a `buf.gen.yaml`, you can configure where each `protoc` plugin writes its result
 and specify options for each plugin independently.
 
-You can create a simple `buf.gen.yaml` file that configures the `protoc-gen-cpp` and `protoc-gen-java`
-plugins with this configuration:
+You can create a `buf.gen.yaml` file that configures the `protoc-gen-cpp` and `protoc-gen-java`
+plugins:
 
 ```yaml title="buf.gen.yaml"
 version: v1

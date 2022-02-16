@@ -234,7 +234,7 @@ require (
 When you update your module and push new commits, you can update your library version by
 incrementing the final element in the synthetic version (described above).
 
-To demonstrate, make a simple change by adding a comment to the `PetStoreService`:
+To demonstrate, make a small change by adding a comment to the `PetStoreService`:
 
 ```terminal
 $ cd petapis

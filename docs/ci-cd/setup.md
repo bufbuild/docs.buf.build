@@ -83,8 +83,8 @@ rm -rf $BUF_TMP
 
 To run lint checks with your job, simply add `buf lint` to it and you're good to go!
 
-If your [`buf.yaml`](../configuration/v1/buf-yaml.md) is defined at the root of your repository, the command is
-as simple as:
+If your [`buf.yaml`](../configuration/v1/buf-yaml.md) is defined at the root of your repository, you
+can run the linter with this command:
 
 ```sh
 buf lint

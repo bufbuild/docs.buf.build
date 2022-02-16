@@ -245,8 +245,8 @@ default location for a plugin template is [`buf.gen.yaml`](../configuration/v1/b
 
 There is no equivalent in `buf`.
 
-The command `prototool all` runs formatting and linting at once. It doesn't present
-an easy manner to extend what the definition of "all" means, for example breaking
+The command `prototool all` runs formatting and linting at once but it doesn't present
+a straightforward way to extend what the definition of "all" means, for example breaking
 change detection. Since `buf` is relatively fast in its various functionality (for example,
 compiling and linting all 2,311 files in [googleapis](https://github.com/googleapis/googleapis)
 takes about 0.8s with `buf`), we feel that it is better to run multiple commands for the
