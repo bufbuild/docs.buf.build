@@ -199,8 +199,8 @@ the field (as well as reserving the name for JSON), so this is what we recommend
 
 These check that no enum value or message field is deleted without reserving the
 name. This is the JSON equivalent of reserving the number - JSON uses field names
-instead of numbers (this is optional for enum fields, but allowed). Generally we
-reserving both the number and the name. Here's an example:
+instead of numbers (this is optional for enum fields, but allowed). We recommend
+reserving both the number and the name in most cases. Here's an example:
 
 ```protobuf
 enum Foo {
