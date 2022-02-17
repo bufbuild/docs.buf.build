@@ -528,7 +528,7 @@ Note that only leading comments are considered - trailing comments do not count 
 these rules.
 
 You may want to at least enforce that certain parts of your schema contain comments. For example, you
-can select individual rules in the `COMMENTS` category like so:
+can select individual rules in the `COMMENTS` category like this:
 
 ```yaml title="buf.yaml"
 version: v1

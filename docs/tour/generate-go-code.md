@@ -61,7 +61,7 @@ $ export PATH="$PATH:$(go env GOPATH)/bin"
 ## 10.3 Edit your `buf.gen.yaml` {#edit-your-bufgenyaml}
 
 Edit the [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) file so that it configures the
-`protoc-gen-go` and `protoc-gen-go-grpc` plugins (and their options) like so:
+`protoc-gen-go` and `protoc-gen-go-grpc` plugins (and their options):
 
 ```yaml title="buf.gen.yaml" {3-14}
  version: v1

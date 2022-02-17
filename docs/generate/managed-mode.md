@@ -220,7 +220,7 @@ influence the content of the generated code, and are less focused on the generat
 For this reason, **Managed Mode** lets users override the values of several options, including `cc_enable_arenas`, `java_multiple_files`,
 `java_string_check_utf8`, and `optimize_for`.
 
-You can configure each of these options under the `managed` key like so:
+You can configure each of these options under the `managed` key like this:
 
 ```yaml title="buf.gen.yaml"
 version: v1

@@ -304,7 +304,7 @@ petapis/acme/pet/v1/pet.proto:51:3:field acme.pet.v1.PurchasePetRequest.order: u
 ```
 
 We can define a `buf.work.yaml` at the root of the directory , so that the `buf.build/acme/petapis` module can use the
-latest changes made to the `buf.build/acme/paymentapis` module like so:
+latest changes made to the `buf.build/acme/paymentapis` module:
 
 ```sh
 .

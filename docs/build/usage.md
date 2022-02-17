@@ -186,7 +186,7 @@ Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't
 ## Run build
 
 You can run `buf build` on your module by specifying the filepath to the directory containing the
-`buf.yaml`. In the above example, you can target the module defined in the current directory like so:
+`buf.yaml` configuration file. To target the module defined in the current directory:
 
 ```sh
 $ buf build
@@ -258,7 +258,7 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 ```
 
 Images always include the `ImageExtension` field. However, if you want a pure FileDescriptorSet without
-this field set, to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag like so:
+this field set, to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag:
 
 ```sh
 $ buf build -o image.bin --as-file-descriptor-set
@@ -273,7 +273,8 @@ By default, `buf` builds all files under the `buf.yaml` configuration file. You 
 file or directory paths to build. This is an advanced feature intended to be used for editor or Bazel integration - it
 is better to let `buf` discover all files under management and handle this for you in general.
 
-The compiled result is limited to the given files if the `--path` flag is specified like so:
+The compiled result is limited to the given files if the `--path` flag is specified, as in this
+command:
 
 ```sh
 $ buf build --path path/to/foo.proto --path path/to/bar.proto

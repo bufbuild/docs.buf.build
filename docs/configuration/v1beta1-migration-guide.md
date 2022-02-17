@@ -98,7 +98,7 @@ build:
 
 Now that [workspaces](../reference/workspaces.md) are available, each of the roots can be defined as an independently configured
 [module](../bsr/overview.md#modules) that can be imported by others. In the example above, the `proto` and `vendor/googleapis`
-roots can be defined as separate modules like so:
+roots can be defined as separate modules, as in these configurations:
 
 ```yaml title=proto/buf.yaml
 version: v1
@@ -215,7 +215,8 @@ breaking:
 
 The `acme/pet/v1/{incompatible,private,store}.proto` files are defined in the `proto` root and the `google/type/{datetime,money}.proto`
 files are defined in the `vendor/googleapis` root. When we migrate this configuration to multiple `buf.yaml` files, the `build.excludes`,
-`lint.ignore{_only}` and `breaking.ignore{_only}` paths should only be migrated to the relevant `buf.yaml` files like so:
+`lint.ignore{_only}` and `breaking.ignore{_only}` paths should only be migrated to the relevant `buf.yaml` files,
+as in these configurations:
 
 ```yaml title="proto/buf.yaml"
 version: v1
@@ -249,7 +250,8 @@ The `buf.gen.yaml` configuration file is largely unchanged, but a few changes ex
 
 ### Managed Mode
 
-Previously, users could enable **Managed Mode** and configure specific file options in their `buf.gen.yaml` like so:
+Previously, users could enable **Managed Mode** and configure specific file options in their `buf.gen.yaml`,
+as in this example config:
 
 ```yaml title="buf.gen.yaml"
 version: v1beta1

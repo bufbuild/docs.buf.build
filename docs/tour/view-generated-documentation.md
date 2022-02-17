@@ -22,7 +22,7 @@ as your module's [`buf.yaml`](../configuration/v1/buf-yaml.md), and pushing it u
 In this way, the `buf.md` file is analogous to a GitHub repository's `README.md`. The `buf.md` file
 currently supports all of the [CommonMark](https://commonmark.org) syntax.
 
-Let's start by adding a quick note like so:
+Let's start by adding a quick note:
 
 ```terminal
 $ touch buf.md

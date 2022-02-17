@@ -56,8 +56,8 @@ there is no `-I` flag** - each `protoc` `-I` path maps to a directory that conta
 together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which defines a
 [workspace](../reference/workspaces.md).
 
-The example shown above can be adapted to `buf` by adding a `buf.yaml` to each of the `-I` directories,
-and by creating a `buf.work.yaml` that specifies both directories like so:
+The example shown above can be adapted to `buf` by adding a `buf.yaml` config file to each of the
+`-I` directories and creating a `buf.work.yaml` that specifies both directories:
 
 ```sh
 .

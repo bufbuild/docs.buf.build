@@ -5,7 +5,8 @@ title: buf.gen.yaml
 
 The `buf.gen.yaml` file defines a local generation template, and is used by the `buf generate` command
 to generate code for the language(s) of your choice. This file is often used with a [module](../../bsr/overview.md#modules)
-(or another [input](../../reference/inputs.md)), and is typically placed next to your [`buf.work.yaml`](buf-work-yaml.md) file like so:
+(or another [input](../../reference/inputs.md)), and is typically placed next to your
+[`buf.work.yaml`](buf-work-yaml.md) file:
 
 ```sh
 .
@@ -94,7 +95,7 @@ As you can see, you can provide options as either a single string or a list of s
 
 The `path` of a plugin is **optional**, and overrides the default location and explicitly specify where to
 locate the `protoc` plugin. For example, if another custom plugin called `protoc-gen-foo` is not located
-on your `PATH`, but is found at `bin/proto/protoc-gen-foo`, you can refer to it like so:
+on your `PATH`, but is found at `bin/proto/protoc-gen-foo`, you can refer to it like this:
 
 ```yaml title="buf.gen.yaml"
 version: v1
@@ -109,7 +110,7 @@ This field is **exclusive** with `remote` and only works with `name` for local p
 #### `strategy`
 
 Your `strategy` of a plugin is **optional**, and specifies the generation `strategy` for `buf generate` to use.
-For example, we can add a `strategy` to one of the plugins in the configuration shown above like so:
+For example, we can add a `strategy` to one of the plugins in the configuration shown above like this:
 
 ```yaml title="buf.gen.yaml"
 version: v1

@@ -63,14 +63,16 @@ $ buf mod update
 ```
 
 When your dependencies conform to `buf`'s default [lint](../lint/rules.md) and [breaking](../breaking/rules.md) rules,
-updating is straightforward. However, despite `buf`'s best effort, dependencies might make changes that can break
+updating is straightforward. Despite `buf`'s best efforts, however, dependencies sometimes undergo changes that can break
 compatibility, so you might encounter errors when you try to `buf push` a new version of your module to the BSR.
 
-With that said, we encourage you to validate compatibility with `buf build` after any call to `buf mod update`
-like so:
+We encourage you to validate compatibility with `buf build` after any call to `buf mod update`:
 
 ```sh
+# Update dependencies
 $ buf mod update
+
+# Verify that nothing has broken
 $ buf build
 ```
 
@@ -116,7 +118,8 @@ version: v1
 name: buf.build/acme/paymentapis
 ```
 
-You can add a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file in their parent directory like so:
+You can add a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file in the parent directory.
+Here's an example directory structure:
 
 ```sh
 .

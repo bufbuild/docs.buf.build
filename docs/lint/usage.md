@@ -29,7 +29,8 @@ breaking:
 ## Run lint
 
 You can run `buf lint` on your module by specifying the filepath to the directory containing the `buf.yaml`.
-In the above example, you can target the [input](../reference/inputs.md) defined in the current directory like so:
+In the above example, you can target the [input](../reference/inputs.md) defined in the current directory
+with this command:
 
 ```sh
 $ buf lint

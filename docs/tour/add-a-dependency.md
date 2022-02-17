@@ -125,7 +125,7 @@ the imports required to build your module. **You don't have to manually copy `.p
 
 You can pin to a specific tag or commit by specifying it in your `deps` after the `:` delimiter. For example,
 if you want to depend on the same commit you resolved above and prevent `buf` from updating it in the future,
-you can specify it like so:
+you can specify it like this:
 
 ```yaml title="buf.yaml" {3-4}
  version: v1
