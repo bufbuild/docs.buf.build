@@ -38,8 +38,6 @@ Organization owners can modify the base resource roles depending on the requirem
 
 ## Resource Roles
 
-> *Resource roles coming soon.*
-
 Resources such as repositories, templates and plugins are owned by either an individual user or an organization. In the case of user-owned resources, the user is granted the `Owner` role and for organization-owned resources members inherit the [base resource roles](#base-resource-roles) as defined by the organization.
 
 However, in some situations you'll need to give additional permissions to individual users over a user- or organization-owned resource.
