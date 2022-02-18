@@ -105,7 +105,7 @@ breaking:
 The default `buf.yaml` configuration files shown above are created with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 With this, you can verify that the workspace compiles with this command:

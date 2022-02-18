@@ -9,7 +9,7 @@ update when upgrading from `v1beta1` to `v1`.
 
 ## Automatic migration
 
-The `buf config migrate-v1beta1` command automatically migrates all of your `buf` configuration
+The `buf beta migrate-v1beta1` command automatically migrates all of your `buf` configuration
 files from `v1beta1` to `v1`.
 
 For example, consider this `buf.yaml` with multiple roots:
@@ -46,10 +46,10 @@ breaking:
 ```
 
 You can automatically migrate all of the files from `v1beta1` to `v1` by simply running
-`buf config migrate-v1beta1` in a directory containing a `buf.yaml`, `buf.lock`, or `buf.gen.yaml`:
+`buf beta migrate-v1beta1` in a directory containing a `buf.yaml`, `buf.lock`, or `buf.gen.yaml`:
 
 ```sh
-$ buf config migrate-v1beta1
+$ buf beta migrate-v1beta1
 Successfully migrated your buf.yaml, buf.gen.yaml, and buf.lock to v1.
 ```
 
@@ -242,7 +242,7 @@ lint:
 ```
 
 You'll notice that the filepath doesn't need to be updated because it's already relative to the module root. This transformation
-is automatically handled by the `buf config migrate-v1beta1` command, so you don't need to worry about these nuanced details.
+is automatically handled by the `buf beta migrate-v1beta1` command, so you don't need to worry about these nuanced details.
 
 ## `buf.gen.yaml`
 

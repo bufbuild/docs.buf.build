@@ -49,7 +49,7 @@ To get started, create a [module](../bsr/overview.md#modules) by adding a `buf.y
 that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"

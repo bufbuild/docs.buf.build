@@ -118,7 +118,7 @@ results, forever. In this spirit, we want to make sure that upgrading `buf` does
 in any configuration differences, and does not result in different lint or breaking change results.
 
 There are only a few exceptions to this rule that took place between `v1beta1` and `v1`. Fortunately,
-we've rolled out the `buf config migrate-v1beta1` command to automatically migrate your configuration
+we've rolled out the `buf beta migrate-v1beta1` command to automatically migrate your configuration
 for you. For more information on exactly what changed between `v1beta1` and `v1`, check out the
 [migration guide](configuration/v1beta1-migration-guide.md).
 

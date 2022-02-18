@@ -21,7 +21,7 @@ $ cd buf-tour/start/petapis
 create with this command:
 
 ```terminal
-$ buf config init
+$ buf mod init
 ```
 
 After you run this command, you'll notice a `buf.yaml` in the current directory with the

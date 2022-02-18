@@ -345,13 +345,13 @@ Prototool's `--json` flag can be replaced with `--error-format=json` with `buf`.
 ### `prototool lint --list-linters`
 
 ```sh
-$ buf config ls-lint-rules
+$ buf mod ls-lint-rules
 ```
 
 ### `prototool lint --list-all-linters`
 
 ```sh
-$ buf config ls-lint-rules --all
+$ buf mod ls-lint-rules --all
 ```
 
 ### `prototool version`

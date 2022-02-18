@@ -335,4 +335,4 @@ For example, if this option is set, these packages are ignored:
 ## Reference
 
 If you prefer, you can create a new `buf.yaml` with the reference material described here commented in-line
-with the `buf config init --doc` command. Give it a try!
+with the `buf mod init --doc` command. Give it a try!

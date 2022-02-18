@@ -25,7 +25,7 @@ file to the root of the directory that contains your Protobuf definitions. You c
 file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"

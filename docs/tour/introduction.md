@@ -16,8 +16,8 @@ $ buf build --help
 $ buf generate --help
 $ buf breaking --help
 $ buf lint --help
-$ buf config ls-breaking-rules --help
-$ buf config ls-lint-rules --help
+$ buf mod ls-breaking-rules --help
+$ buf mod ls-lint-rules --help
 $ buf ls-files --help
 ```
 

@@ -26,7 +26,7 @@ there:
 ```terminal
 $ mkdir paymentapis
 $ cd paymentapis
-$ buf config init
+$ buf mod init
 ```
 
 That creates this config file:
