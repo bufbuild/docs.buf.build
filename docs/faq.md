@@ -3,7 +3,7 @@ id: faq
 title: FAQ
 ---
 
-## CLi command or flag warnings
+## CLI command or flag warnings
 
 If you're using the [`buf` CLI][repo] and you get an error message saying that a flag or command has
 been moved or is no longer supported, the solution is to upgrade to version [1.0][v1] or greater of
