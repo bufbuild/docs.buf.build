@@ -47,7 +47,7 @@ For the `PetStoreService`, here's the proper order for publishing updates:
 ## 14.2 Push the `paymentapis` module {#push-the-paymentapis-module}
 
 You haven't made any changes to the `buf.build/googleapis/googleapis` module, so you don't need to
-push a new version of that module. However, you just introduced the
+push a new version of that module. But you just introduced the
 `buf.build/$BUF_USER/paymentapis` module, so you need to create the
 `buf.build/$BUF_USER/paymentapis` repository:
 

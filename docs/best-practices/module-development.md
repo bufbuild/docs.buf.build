@@ -59,7 +59,7 @@ compile. In other words, it's impossible for the compiler to distinguish between
 
 Do **not** push backwards-incompatible changes to your module.
 
-There are clearly exceptions to this rule for packages in-development (such as `alpha` and `beta`),
+There are clearly exceptions to this rule for packages in development (such as `alpha` and `beta`),
 but module authors should do everything they can to maintain compatibility in their module.
 
 If, for example, the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell)

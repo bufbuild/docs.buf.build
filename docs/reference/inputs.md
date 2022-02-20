@@ -3,10 +3,10 @@ id: inputs
 title: Inputs
 ---
 
-The various I/O options for `buf` can seem daunting and overly complex, so we'll break down how this
+The various I/O options for `buf` may seem a bit daunting, so we'll break down how this
 all fits together.
 
-In general, an input is a collection of `.proto` files used by many of the `buf` commands.
+In general, a Buf input is a collection of `.proto` files used by many of the `buf` commands.
 In most cases, this is a [module](../bsr/overview.md#modules), but a variety of other formats are supported
 and explained below.
 
@@ -16,31 +16,34 @@ and explained below.
 
 First, some basic terminology to help our discussion:
 
-- A **Source** is a set of `.proto` files that can be compiled.
-- An **Image** is a compiled set of `.proto` files. This is itself a Protobuf message. The exact
-  mechanics of Images are described in the [Image documentation](images.md). **Images** are created
-  from **Sources** using `buf build`.
-- An **Input** is either a **Source** or an **Image**.
-- All **Inputs** have a **Format**, which describes the type of the **Input**. This **Format** is
-  usually automatically derived, however it can be explicitly set.
+- A **source** is a set of `.proto` files that can be built into a single Buf **image** using the
+  `buf build` command.
+- A Buf **image** is encoded as an [`Image`][image-proto] Protobuf message. The mechanics of Buf
+  images are described in the [reference docs](images.md).
+- An **input** is either a **source**—a set of `.proto` files—or an **image**—a set of `.proto`
+  files built into a single, encapsulating Protobuf [`Image`][image-proto] message.
+- All **inputs** have a **format** that describes the type of the **input**. Commonly used formats
+  include [`dir`](#dir) and [`git`](#git). The **format** of an **input** is usually derived
+  automatically but you can opt to set it explicitly.
 
 ## Why?
 
-Generally, your only goal is to work with `.proto` files on disk. This is how `buf` works by default.
-However, there are cases where one wants to work with more than just local files, which are described
-below.
+Generally, your only goal is to work with `.proto` files on disk. The `buf` CLI works this way by default.
+But there are cases where you may want to work with more than just local files. Those cases are
+described below.
 
-### The Buf Schema Registry (BSR)
+### The Buf Schema Registry (BSR) {#bsr}
 
-The core primitive for Buf is the module, which is emphasized by the Buf Schema Registry ([BSR](../bsr/overview.md)).
-With the BSR, you can use any version of a module as an input for each
-of the `buf` commands.
+The core primitive for Buf is the [module](/bsr/overview.md#modules). Protobuf on its own has **no
+concept of modules**, only files. The Buf Schema Registry ([BSR](../bsr/overview.md)) is a registry
+for Buf modules that you want to manage across teams and even organizations.
 
-For example, you can run `buf lint` for all of the files contained in the `buf.build/acme/weather` module like
-so:
+With the BSR, you can refer to any version of a Buf module and use it as an input for each of the
+`buf` commands. You can lint all the Protobuf files in the `buf.build/acme/petapis` module, for
+example, with the `buf lint` command:
 
 ```sh
-$ buf lint buf.build/acme/weather
+$ buf lint buf.build/acme/petapis
 ```
 
 ### Breaking change detection
@@ -50,8 +53,8 @@ current Protobuf schema to an old version of your schema, you have to decide - w
 version stored? `buf` provides multiple options for this, including the ability to directly compile
 and compare against a Git branch or Git tag.
 
-However, it is sometimes preferable to store a representation of your old version in a file. `buf` provides
-this functionality with Images, allowing you to store your golden state, and then compare your
+It's sometimes preferable, however, to store a representation of your old version in a file. `buf` provides
+this functionality with [Buf images], allowing you to store your golden state, and then compare your
 current Protobuf schema against this golden state. This includes support for partial comparisons, as well
 as storing this golden state in a remote location.
 
@@ -62,53 +65,53 @@ $ buf build -o image.bin
 $ buf breaking --against image.bin
 ```
 
-## Specifying an Input
+## Specifying an input
 
-Inputs are specified as the first argument on the command line, and with the `--against` flag for the
-compare against Input on `buf breaking`.
+Buf inputs are specified as the first argument on the command line, and with the `--against` flag
+for the compare against input on `buf breaking`.
 
-For each of `buf {build,lint,breaking,generate,ls-files}`, the Input is specified as the first argument.
-Inputs are specified as a string, and have this structure:
+For each of `buf {build,lint,breaking,generate,ls-files}`, the input is specified as the first argument.
+Inputs are specified as a string and have this structure:
 
 ```
 path#option_key1=option_value1,option_key2=option_value2
 ```
 
-The path specifies the path to the Input. The options specify options to interpret the
-Input at the path.
+The path specifies the path to the input. The options specify options to interpret the
+input at the path.
 
 ### format option
 
-The `format` option can be used on any Input string to override the derived Format.
+The `format` option can be used on any input string to override the derived format.
 
 Examples:
 
-  - `path/to/file.data#format=bin` explicitly sets the Format to `bin`. By default this path
-    would be interpreted as Format `dir`.
-  - `https://github.com/googleapis/googleapis#format=git` explicitly sets the Format to `git`. In
+  - `path/to/file.data#format=bin` explicitly sets the format to `bin`. By default this path
+    would be interpreted as `dir` format.
+  - `https://github.com/googleapis/googleapis#format=git` explicitly sets the format to `git`. In
     this case however, note that `https://github.com/googleapis/googleapis.git` has the
-    same effect; the `.git` suffix is used to infer the Format (see below for derived Formats).
-  - `-#format=json` explicitly sets the Format to `json`, which reads from stdin as JSON, or in the case
+    same effect; the `.git` suffix is used to infer the format (see below for derived formats).
+  - `-#format=json` explicitly sets the format to `json`, which reads from stdin as JSON, or in the case
     of `buf build --output`, writes to stdout as JSON.
 
 ### Other options
 
-As of now, there are seven other options, all of which are Format-specific:
+As of now, there are seven other options, all of which are format specific:
 
-  - The `branch` option specifies the branch to clone for `git` Inputs.
-  - The `tag` option specifies the tag to clone for `git` Inputs.
-  - The `ref` option specifies an explicit `git` reference for `git` Inputs. Any ref that is a valid
+  - The `branch` option specifies the branch to clone for `git` inputs.
+  - The `tag` option specifies the tag to clone for `git` inputs.
+  - The `ref` option specifies an explicit `git` reference for `git` inputs. Any ref that is a valid
     input to `git checkout` is accepted.
   - The `depth` option optionally specifies how deep of a clone to perform.
     This defaults to 50 if ref is set, and 1 otherwise.
-  - The `recurse_submodules` option says to clone submodules recursively for `git` Inputs.
-  - The `strip_components` option specifies the number of directories to strip for `tar` or `zip` Inputs.
-  - The `subdir` option specifies a subdirectory to use within a `git`, `tar`, or `zip` Input.
+  - The `recurse_submodules` option says to clone submodules recursively for `git` inputs.
+  - The `strip_components` option specifies the number of directories to strip for `tar` or `zip` inputs.
+  - The `subdir` option specifies a subdirectory to use within a `git`, `tar`, or `zip` input.
 
 If `ref` is specified, `branch` can be further specified to clone a specific branch before checking
 out the `ref`.
 
-## Source Formats
+## Source formats
 
 All Sources contain a set of `.proto` files that can be compiled.
 
@@ -116,7 +119,7 @@ All Sources contain a set of `.proto` files that can be compiled.
 
 A local directory. The path can be either relative or absolute.
 
-**This is the default Format**. By default, `buf` uses the current directory as its input for all commands.
+**This is the default format**. By default, `buf` uses the current directory as its input for all commands.
 
 Examples:
 
@@ -236,15 +239,15 @@ Examples:
 
 ### Symlinks
 
-Note that symlinks are supported for `dir` and `file` inputs only, while `git`, `tar`, and `zip` Inputs
+Note that symlinks are supported for `dir` and `file` inputs only, while `git`, `tar`, and `zip` inputs
 ignore all symlinks.
 
-## Image Formats
+## Image formats
 
-All Images are files. Files can be read from a local path, a remote http/https location,
-or `-` for stdin.
+All Buf images are files. You can read image files from a local path, a remote HTTP/HTTPS location,
+or stdin (using `-`).
 
-Images are created using `buf build`. Examples:
+You can create images using `buf build`. Examples:
 
   - `buf build -o image.bin`
   - `buf build -o image.bin.gz`
@@ -259,12 +262,12 @@ Images are created using `buf build`. Examples:
 
 Note that `-o` is an alias for `--output`.
 
-**Images can also be created in the `bin` Format using `protoc`**. See the [internal compiler](../build/internal-compiler.md)
+**You can also create Buf images in the `bin` format using `protoc`**. See the [internal compiler](../build/internal-compiler.md)
 documentation for more details.
 
-For example, the command below shows a valid way to compile all Protobuf files in your current directory,
-produce a [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
-(which is also an Image, as described in the [Image documentation](images.md)) to stdout, and read this Image as binary
+The command below, for examples, shows a way to compile all Protobuf files in your current directory,
+produce a [`FileDescriptorSet`](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
+(which is also a Buf image, as described in the [reference documentation](images.md)) to stdout, and read this image as binary
 from stdin:
 
 ```sh
@@ -273,12 +276,12 @@ $ protoc -I . $(find. -name '*.proto') -o /dev/stdout | buf lint -
 
 ### bin
 
-A binary Image.
+A Buf image in binary format.
 
-Use `compression=gzip` to specify the Image is compressed with Gzip. This is automatically detected
+Use `compression=gzip` to specify that the Buf image is compressed using Gzip. This is automatically detected
 if the file extension is `.bin.gz`
 
-Use `compression=zstd` to specify the Image is compressed with Zstandard. This is automatically detected
+Use `compression=zstd` to specify that the Buf image is compressed using Zstandard. This is automatically detected
 if the file extension is `.bin.zst`
 
 Examples:
@@ -286,19 +289,19 @@ Examples:
   - `image.bin` says to read the file at this relative path.
   - `image.bin.gz` says to read the gzipped file at this relative path.
   - `image.bin.zst` says to read the zstandard file at this relative path.
-  - `-` says to read a binary Image from stdin.
-  - `-#compression=gzip` says to read a gzipped binary Image from stdin.
-  - `-#compression=zstd` says to read a zstandard binary Image from stdin.
+  - `-` says to read a binary image from stdin.
+  - `-#compression=gzip` says to read a gzipped binary image from stdin.
+  - `-#compression=zstd` says to read a zstandard binary image from stdin.
 
 ### json
 
-A JSON Image. This creates Images that take much more space, and are slower to parse, but results
-in diffs that show the actual differences between two Images in a readable format.
+A Buf image in JSON format. This creates images that use much more space and are slower to parse but result
+in diffs that show the actual differences between two Buf images in a readable format.
 
-Use `compression=gzip` to specify the Image is compressed with Gzip. This is automatically detected
+Use `compression=gzip` to specify the Buf image is compressed with Gzip. This is automatically detected
 if the file extension is `.json.gz`
 
-Use `compression=zstd` to specify the Image is compressed with Zstandard. This is automatically detected
+Use `compression=zstd` to specify that the Buf image is compressed with Zstandard. This is automatically detected
 if the file extension is `.json.zst`
 
 Examples:
@@ -306,9 +309,9 @@ Examples:
   - `image.json` says to read the file at this relative path.
   - `image.json.gz` says to read the gzipped file at this relative path.
   - `image.json.zst` says to read the zstandard file at this relative path.
-  - `-#format=json` says to read a JSON Image from stdin.
-  - `-#format=json,compression=gzip` says to read a gzipped JSON Image from stdin.
-  - `-#format=json,compression=zstd` says to read a zstandard JSON Image from stdin.
+  - `-#format=json` says to read a JSON image from stdin.
+  - `-#format=json,compression=gzip` says to read a gzipped JSON image from stdin.
+  - `-#format=json,compression=zstd` says to read a zstandard JSON image from stdin.
 
 When combined with [jq](https://stedolan.github.io/jq), this also allows for introspection. For example,
 to see a list of all packages:
@@ -327,12 +330,12 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 "google.ads.googleads.v2.errors"
 ```
 
-## Automatically derived Formats
+## Automatically derived formats
 
-By default, `buf` derives the Format and compression of an Input from the path via the file
+By default, `buf` derives the format and compression of an input from the path via the file
 extension.
 
-| Extension | Derived Format | Derived Compression |
+| Extension | Derived format | Derived Compression |
 | --- | --- | --- |
 | .bin | bin | none |
 | .bin.gz | bin | gzip |
@@ -353,7 +356,7 @@ There are also **two special cases**:
     Format.
 
     Of note, the special value `-` can also be used as a value to the `--output` flag of `buf build`,
-    which is interpreted to mean stdout, and also interpreted by default as the `bin` Format.
+    which is interpreted to mean stdout, and also interpreted by default as the `bin` format.
 
   - If the path is `/dev/null` on Linux or Mac, or `nul` for Windows, this is
     interpreted as the `bin` format.
@@ -361,33 +364,33 @@ There are also **two special cases**:
 **If no format can be automatically derived, the `dir` format is assumed**, meaning that `buf`
 assumes that the path is a path to a local directory.
 
-The format of an Input can be explicitly set as described above.
+The format of an input can be explicitly set as described above.
 
-## Deprecated Formats
+## Deprecated formats
 
 The formats below are deprecated. They should continue to work forever, but we recommend
 updating if you are explicitly specifying any of these.
 
 | Format | Replacement |
 | --- | --- |
-| bingz | Use the `bin` format with the `compression=gzip` option. |
-| jsongz | Use the `json` format with the `compression=gzip` option. |
-| targz | Use the `tar` format with the `compression=gzip` option. |
+| `bingz` | Use the `bin` format with the `compression=gzip` option. |
+| `jsongz` | Use the `json` format with the `compression=gzip` option. |
+| `targz` | Use the `tar` format with the `compression=gzip` option. |
 
 ## Authentication
 
-Archives, Git repositories, and Image files can be read from remote locations. For those remote
+Archives, Git repositories, and Buf image files can be read from remote locations. For those remote
 locations that need authentication, a couple mechanisms exist.
 
 ### HTTPS
 
-Remote archives and Image files use [netrc files](https://ec.haxx.se/usingcurl/usingcurl-netrc)
+Remote archives and Buf image files use [netrc files](https://ec.haxx.se/usingcurl/usingcurl-netrc)
 for authentication. `buf` looks for a netrc file at `$NETRC` first, defaulting to `~/.netrc`.
 
 Git repositories are cloned using the `git` command, so any credential helpers you have configured
 are automatically used.
 
-Basic authentication can be also specified for remote archives, Git repositories, and Image files over
+Basic authentication can be also specified for remote archives, Git repositories, and Buf image files over
 HTTPS with these environment variables:
 
 - `BUF_INPUT_HTTPS_USERNAME` is the username. For GitHub, this is your GitHub user.
@@ -432,11 +435,13 @@ file pre-installed, so this should work out of the box.
 
 By default, `buf` looks for a [`buf.yaml`](../configuration/v1/buf-yaml.md) in this manner:
 
-- For `dir, bin, json` Inputs, `buf` looks at your current directory for a `buf.yaml` file.
-- For `tar` and `zip` Inputs, `buf` looks at the root of the archive for a `buf.yaml` file
+- For `dir, bin, json` inputs, `buf` looks at your current directory for a `buf.yaml` file.
+- For `tar` and `zip` inputs, `buf` looks at the root of the archive for a `buf.yaml` file
   after `strip_components` is applied.
-- For `git` Inputs, `buf` looks at the root of the cloned repository at the head of the
+- For `git` inputs, `buf` looks at the root of the cloned repository at the head of the
   cloned branch.
 
 The configuration can be overridden with the `--config` flag. See the [configuration documentation](../configuration/overview.md#configuration-override)
 for more details.
+
+[image-proto]: https://buf.build/bufbuild/buf/docs/main/buf.alpha.image.v1#buf.alpha.image.v1.Image

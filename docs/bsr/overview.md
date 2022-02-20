@@ -147,4 +147,4 @@ $ buf generate buf.build/acme/weather
 
 > See the [Usage](../bsr/usage.md#code-generation) section for a detailed example.
 
-Although beyond the scope of this overview, we suggest taking a look at [Managed Mode](../generate/managed-mode.md) as it relates to code generation. Historically, *consumer concerns* are conflated with *producer concerns* due to hardcoding of language-specific options in Protobuf files, which in turn restricts their usefulness to consumers. Managed mode addresses existing limitations and offers a better separation of concerns.
+Although beyond the scope of this overview, we suggest taking a look at [managed mode](../generate/managed-mode.md) as it relates to code generation. Historically, *consumer concerns* are conflated with *producer concerns* due to hardcoding of language-specific options in Protobuf files, which in turn restricts their usefulness to consumers. Managed mode addresses existing limitations and offers a better separation of concerns.

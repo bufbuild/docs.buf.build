@@ -125,7 +125,7 @@ for you. For more information on exactly what changed between `v1beta1` and `v1`
 We also need to be able to enhance the lint and breaking change functionality, and improve
 on the configuration shape as well. To accomplish this, while not breaking users who have
 come to rely on the existing shape and rules, we have added this version. The only
-currently-available versions are `v1beta1` and `v1`.
+currently available versions are `v1beta1` and `v1`.
 
 **The `v1beta1` version will be supported forever.** This will not be removed when we hit v1.0.
 Having a `version` set in your configuration is currently optional, however we will

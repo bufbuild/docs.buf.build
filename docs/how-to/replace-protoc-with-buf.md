@@ -122,10 +122,9 @@ The `buf build` command:
   - Compiles all Protobuf files.
   - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
-> The `buf.yaml` files aren't actually required in this case. You can simply run `buf build`
-> without the `buf.yaml` configuration files and `buf` treats each directory specified
-> in the `buf.work.yaml` as a module by default. However, defining a `buf.yaml` is strongly
-> recommended.
+> The `buf.yaml` files aren't actually required in this case. You can run `buf build` without the
+> `buf.yaml` configuration files and `buf` treats each directory specified in the `buf.work.yaml` as
+> a module by default. We do, however, strongly recommend defining a `buf.yaml`file.
 
 Now that we've migrated the file layout to `buf`, we can simplify the `protoc` invocation used to
 generate Go/gRPC code with this [`buf.gen.yaml`](../configuration/v1/buf-work-yaml.md) template:
@@ -169,8 +168,8 @@ With this, you can generate the Go/gRPC client and server stubs with this comman
 $ buf generate
 ```
 
-Most users only need a single `buf.gen.yaml` code generation template. However, if your project
-has more complex code generation requirements you can use the `--template` flag to use more than
+Most users only need a single `buf.gen.yaml` code generation template. If your project
+has more complex code generation requirement, however, you can use the `--template` flag to use more than
 one `buf.gen.yaml` templates.
 
 For example, if you need different `buf.gen.yaml` configurations for your *public* and *private* API

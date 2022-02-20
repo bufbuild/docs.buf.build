@@ -103,9 +103,9 @@ start/
             └── pet.proto
 ```
 
-## 5.4 Use Managed mode {#use-managed-mode}
+## 5.4 Use managed mode {#use-managed-mode}
 
-[Managed Mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
+[Managed mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
 to set all of the file options in your module according to an opinionated set of values suitable for each of the
 supported Protobuf languages, such as Go, Java, and C#. The file options are written *on the fly* by
 `buf` so that you don't need to include them in your Protobuf source files.
@@ -189,7 +189,7 @@ start/
             └── pet.proto
 ```
 
-We'll come back to **Managed Mode** in a more complex example [later in the tour](use-managed-mode.md).
+We'll come back to managed mode in a more complex example [later in the tour](use-managed-mode.md).
 For now, restore your `buf.gen.yaml` configuration before you continue:
 
 ```yaml title=buf.gen.yaml {2-5}

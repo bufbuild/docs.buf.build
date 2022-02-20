@@ -3,7 +3,7 @@ id: managed-mode
 title: Managed mode
 ---
 
-**Managed Mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to set all of the file
+**Managed mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to set all of the file
 options in your module according to an opinionated set of values suitable for each of the supported Protobuf languages, such as Go, Java, and C#.
 The file options are written *on the fly* so that they never have to be written in the Protobuf source file itself.
 
@@ -37,11 +37,11 @@ Different consumers may (and usually do) want different values for these options
 many different places. This gets especially bad with imports - anyone in Go who has had to specify long chains of `--go_opt=Mpath/to/foo.proto=github.com/pkg/foo`
 can attest to the severity of the situation.
 
-**Managed Mode** addresses this problem head-on so that users can remove file options from their Protobuf APIs altogether.
+Managed mode addresses this problem head-on so that users can remove file options from their Protobuf APIs altogether.
 
 ## Configuration
 
-To configure **Managed Mode**, add the `managed.enabled` option to your `buf.gen.yaml` template. An example `buf.gen.yaml`
+To configure managed mode, add the `managed.enabled` option to your `buf.gen.yaml` template. Here's an example `buf.gen.yaml`
 template that uses the `protoc-gen-java` plugin:
 
 ```yaml title="buf.gen.yaml"
@@ -55,12 +55,12 @@ plugins:
 
 With this, you can remove all of the standard file option declarations from all of our Protobuf files entirely, and leave the rest to `buf`.
 
-> **Managed Mode** only supports the standard file options included in Protobuf by default. It's impossible for `buf` to establish an opinion
+> Managed mode only supports the standard file options included in Protobuf by default. It's impossible for `buf` to establish an opinion
 > for the custom options you might define, so such options still need to be checked into your Protobuf source files.
 
 ### `managed`
 
-The `managed` key is used to configure **Managed Mode**. A complete example of the `managed` configuration with the `protoc-gen-go` plugin is
+The `managed` key is used to configure managed mode. A complete example of the `managed` configuration with the `protoc-gen-go` plugin is
 shown below:
 
 ```yaml title="buf.gen.yaml"
@@ -90,7 +90,7 @@ plugins:
 #### `enabled`
 
 The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true`
-enables **Managed Mode** according to [default behavior](#default-behavior).
+enables managed mode according to [default behavior](#default-behavior).
 
 #### `cc_enable_arenas`
 
@@ -155,10 +155,10 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 The `except` key is **optional**, and removes certain modules from the `go_package` file option override behavior. The `except` values **must**
 be valid [module names](../bsr/overview.md#modules).
 
-There are situations where you may want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
+There are situations where you may want to enable managed mode for the `go_package` option in *most* of your Protobuf files, but not necessarily
 for *all* of your Protobuf files. This is particularly relevant for the `buf.build/googleapis/googleapis` module, which points its `go_package` value to
 an [external repository](https://github.com/googleapis/go-genproto). Popular libraries, such as [grpc-go](https://github.com/grpc/grpc-go) depend on these
-`go_package` values, so it's important that **Managed Mode** does not overwrite them.
+`go_package` values, so it's important that managed mode doesn't overwrite them.
 
 ##### `override`
 
@@ -191,7 +191,7 @@ When `managed.enabled` is set to `true`, these file options are set *on the fly*
 * `php_metadata_namespace` is set to the same value as php_namespace, with `\\GPBMetadata` appended.
 * `ruby_package` is set to the package name with each package sub-name capitalized, with "::" substituted for ".".
 
-For example, enabling **Managed Mode** for the `acme/weather/v1/weather.proto` file sets its file options to this:
+For example, enabling [managed mode](../generate/managed-mode.md) for the `acme/weather/v1/weather.proto` file sets its file options to this:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -209,15 +209,15 @@ option php_metadata_namespace = "Acme\\Weather\\V1\\GPBMetadata";
 option ruby_package = "Acme::Weather::V1";
 ```
 
-> Some options, such as `cc_enable_arenas` and `optimize_for`, are excluded from this list because **Managed Mode** agrees with the default
+> Some options, such as `cc_enable_arenas` and `optimize_for`, are excluded from this list because managed mode agrees with the default
 > values specified by [google/protobuf/descriptor.go](https://github.com/protocolbuffers/protobuf/blob/b650ea44b10133008baaea7488360c5b95c93c7b/src/google/protobuf/descriptor.proto#L385).
 > If you disagree with the default values, you can override these option values, which is described in the [next section](#file-option-overrides).
 
 ## File option overrides
 
-You might find that several of the options set by **Managed Mode** are not what you want. This is particularly relevant for options that
+You might find that several of the options set by managed mode are not what you want. This is particularly relevant for options that
 influence the content of the generated code, and are less focused on the generated package and/or file layout (such as `java_package`).
-For this reason, **Managed Mode** lets users override the values of several options, including `cc_enable_arenas`, `java_multiple_files`,
+For this reason, managed mode enables users override the values of several options, including `cc_enable_arenas`, `java_multiple_files`,
 `java_string_check_utf8`, and `optimize_for`.
 
 You can configure each of these options under the `managed` key like this:

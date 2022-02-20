@@ -141,7 +141,7 @@ you can specify it like this:
 ```
 
 This is **not recommended** in general since you should _always_ be able to update to the latest version of
-your dependencies if they remain backwards compatible. However, in some situations it is unavoidable.
+your dependencies if they remain backwards compatible. But in some situations it's unavoidable.
 With that said, restore the `buf.yaml` file to its previous state before you continue:
 
 ```yaml title="buf.yaml" {3-4}

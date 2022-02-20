@@ -126,10 +126,10 @@ The `paymentapis` module is ready to be used, but it's not yet clear if the API 
 Given that these APIs are meant to be used by other services, you need to test it in other
 applications to make sure it's the API you should to commit to. In general, such APIs should
 include an unstable [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#package_version_suffix), such
-as the `v1alpha1` version used above, to convey that these packages are still in-development and
+as the `v1alpha1` version used above, to convey that these packages are still in development and
 can have breaking changes.
 
-However, you can also use a **workspace** so that you can iterate on multiple modules locally
+You can also use a **workspace** so that you can iterate on multiple modules locally
 without pushing anything to the BSR. Then, only after you've verified that the API is what you want
 to move forward with, you can push the version to the BSR so that it can be used by others.
 

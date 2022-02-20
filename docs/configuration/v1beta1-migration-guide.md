@@ -246,12 +246,11 @@ is automatically handled by the `buf beta migrate-v1beta1` command, so you don't
 
 ## `buf.gen.yaml`
 
-The `buf.gen.yaml` configuration file is largely unchanged, but a few changes exist for configuring [Managed Mode](../generate/managed-mode.md).
+The `buf.gen.yaml` configuration file is largely unchanged, but a few changes exist for configuring [managed mode](../generate/managed-mode.md).
 
-### Managed Mode
+### Managed mode
 
-Previously, users could enable **Managed Mode** and configure specific file options in their `buf.gen.yaml`,
-as in this example config:
+Previously, users could enable **managed mode** and configure specific file options in their `buf.gen.yaml` like this:
 
 ```yaml title="buf.gen.yaml"
 version: v1beta1
@@ -260,7 +259,7 @@ options:
   optimize_for: CODE_SIZE
 ```
 
-The `buf.gen.yaml` configuration updates this so that **Managed Mode** and its corresponding file option overrides are encapsulated
+The `buf.gen.yaml` configuration updates this so that managed mode and its corresponding file option overrides are encapsulated
 under the `managed` key.
 
 ```yaml title="buf.gen.yaml"

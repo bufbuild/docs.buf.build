@@ -54,7 +54,7 @@ deps:
   - buf.build/acme/paymentapis
 ```
 
-However, `deps` require that the dependencies already exist in the BSR, which reduces to the same feedback
+But `deps` require that the dependencies already exist in the BSR, which reduces to the same feedback
 cycle problem illustrated above.
 
 The `buf` module workspace was created to solve exactly these problems (and more).
@@ -237,9 +237,9 @@ The same holds true for the other `buf` operations including `buf {breaking,buil
 ## Module cache override
 
 As mentioned above, workspaces enable you to work on multiple modules simultaneously, such as introducing
-a new `message` in one module, and depending on it in another. Normally, the `buf` command relies on the module's
-[`buf.lock`](../configuration/v1/buf-lock.md) manifest to determine read its dependencies from the local [module cache](../bsr/overview.md#module-cache).
-However, this requires that the latest change has been pushed to the [BSR](../bsr/overview.md) and the user has run `buf mod update`
+a new Protobuf message in one module and depending on it in another. Normally, the `buf` CLI relies on the module's
+[`buf.lock`](../configuration/v1/buf-lock.md) manifest to read its dependencies from the local [module cache](../bsr/overview.md#module-cache).
+This requires that the latest change has been pushed to the [BSR](../bsr/overview.md) and that the user has run `buf mod update`
 to update their dependencies and fetch the latest change.
 
 When a `buf.work.yaml` exists, the module cache is only used for dependencies **not defined in the workspace**.

@@ -55,7 +55,7 @@ $ bazel query 'kind(buf_lint_test, //...)'
 
 ## Breaking change detection
 
-We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to an [image](/reference/images) target to generate breaking change detection rules. Gazelle directives are top-level comments in build files that are used to configure Gazelle.
+We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to a [Buf image](/reference/images) target to generate breaking change detection rules. Gazelle directives are top-level comments in build files that are used to configure Gazelle.
 
 > Refer to this [section](overview#against-image) for a overview how the image file itself can be maintained.
 

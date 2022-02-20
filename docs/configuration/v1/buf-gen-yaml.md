@@ -56,7 +56,7 @@ For example, in the `buf.gen.yaml` example shown above, the `protoc-gen-go` plug
 By default, a `protoc-gen-<name>` program is expected to be on your `PATH` so that it can be discovered and
 executed by `buf`. This can be overridden with the [path](#path) option shown below.
 
-In the case of `<remote>`, this enables you to run `buf generate` with a remote plugin, using the fully-qualified
+In the case of `<remote>`, this enables you to run `buf generate` with a remote plugin, using the fully qualified
 path to the remote plugin defined via the BSR, `<remote>/<owner>/plugins/<plugin-name>:<plugin-version>`. In the `buf.gen.yaml`
 example shown above, the `go` plugin managed by `buf.build/grpc` is being used as a part of the generation,
 and does not require a local installation of the `go` plugin. If no version is specified, the generation defaults
@@ -155,7 +155,7 @@ There are two options:
 
 ### `managed`
 
-The `managed` key is used to configure [Managed Mode] and is an advanced feature. A complete example of the
+The `managed` key is used to configure [managed mode](../../generate/managed-mode) and is an advanced feature. A complete example of the
 `managed` configuration with the `protoc-gen-go` plugin is shown below:
 
 ```yaml title="buf.gen.yaml"
@@ -185,7 +185,7 @@ plugins:
 #### `enabled`
 
 The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true`
-enables [Managed Mode](../../generate/managed-mode) according to [default behavior](../../generate/managed-mode.md#default-behavior).
+enables [managed mode](../../generate/managed-mode) according to [default behavior](../../generate/managed-mode.md#default-behavior).
 
 #### `cc_enable_arenas`
 
@@ -250,10 +250,10 @@ option go_package = "github.com/acme/weather/gen/proto/go/acme/weather/v1;weathe
 The `except` key is **optional**, and removes certain modules from the `go_package` file option override behavior. The `except` values **must**
 be valid [module names](../../bsr/overview.md#modules).
 
-There are situations where you may want to enable **Managed Mode** for the `go_package` option in *most* of your Protobuf files, but not necessarily
+There are situations where you may want to enable [managed mode](../../generate/managed-mode.md) for the `go_package` option in *most* of your Protobuf files, but not necessarily
 for *all* of your Protobuf files. This is particularly relevant for the `buf.build/googleapis/googleapis` module, which points its `go_package` value to
 an [external repository](https://github.com/googleapis/go-genproto). Popular libraries, such as [grpc-go](https://github.com/grpc/grpc-go) depend on these
-`go_package` values, so it's important that **Managed Mode** does not overwrite them.
+`go_package` values, so it's important that managed mode does not overwrite them.
 
 ##### `override`
 

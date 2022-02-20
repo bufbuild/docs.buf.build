@@ -105,7 +105,7 @@ We will support Bazel as a first-class citizen with official Bazel rules.
 Buf currently supports both a [vim plugin](https://github.com/bufbuild/vim-buf) and a
 [VSCode plugin](https://github.com/bufbuild/vscode-buf) to provide Protobuf linting in these editors.
 But we recognize that we can do a lot more in this area, such as formatting your Protobuf files
-on save (via the formatter mentioned above), and a fully-fledged *Protobuf language server*, which
+on save (via the formatter mentioned above), and a full -fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
 With this, you will be able to use more editor features, such as auto-completion and

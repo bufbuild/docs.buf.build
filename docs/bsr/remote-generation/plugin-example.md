@@ -31,7 +31,7 @@ Before we can push a plugin to the BSR, a repository must exist. You can create 
 From the UI click your avatar in the top-right corner, select Plugins and click
 the Create Plugin button. Follow the on-screen instructions.
 
-However, for this example we'll use the `buf` CLI.
+For this example, however, we'll use the `buf` CLI.
 
 > This tutorial uses a real organization (demolab) and plugin name (twirp), make sure to substitute these with your own values.
 
@@ -63,7 +63,7 @@ FROM golang as builder
 ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 
 RUN go install github.com/twitchtv/twirp/protoc-gen-twirp@v8.1.0+incompatible
-# Note, the images must be built for amd64. If the host machine architecture is not amd64
+# Note, the Docker images must be built for amd64. If the host machine architecture is not amd64
 # you need to cross-compile the binary and move it into /go/bin.
 RUN bash -c 'find /go/bin/${GOOS}_${GOARCH}/ -mindepth 1 -maxdepth 1 -exec mv {} /go/bin \;'
 
@@ -82,7 +82,7 @@ ENTRYPOINT ["/protoc-gen-twirp"]
 
 This Dockerfile uses [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/).
 
-The intended `GOOS/GOARCH` **must** be `linux/amd64`. This is important, especially if you're building images on an ARM-based machine, such as Apple M1 computers.
+The intended `GOOS/GOARCH` **must** be `linux/amd64`. This is important, especially if you're building Docker images on an ARM-based machine, such as Apple M1 computers.
 
 Normally `go install` would install to `$GOPATH/bin/$GOOS_$GOARCH` when cross-compiling, so we added this line to copy the executable into the `/go/bin` path.
 

@@ -454,8 +454,8 @@ foo.bar.v1testfoo
 ```
 
 One of the core promises of Protobuf API development is to never have breaking changes
-in your APIs, and Buf helps enforce this through the [breaking change detector](../../breaking/overview.md). However,
-there are scenarios where you do want to properly version your API. Instead of making changes, the
+in your APIs, and Buf helps enforce this through the [breaking change detector](../../breaking/overview.md).
+There are scenarios, however, where you do want to properly version your API. Instead of making changes, the
 proper method to do so is to make a completely new Protobuf package that is a copy of your existing
 Protobuf package, serve both packages server-side, and manually migrate your callers. This rule
 enforces that all packages have a version attached so that it is clear when a package represents

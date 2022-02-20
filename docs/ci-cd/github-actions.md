@@ -5,7 +5,7 @@ title: GitHub Actions
 
 [GitHub Actions](https://github.com/features/actions) is a [CI/CD](https://en.wikipedia.org/wiki/CI/CD)
 system supported by GitHub that runs workflows against your code based on an event. Buf has published a
-collection of GitHub Actions that work together to provide a fully-featured CI/CD solution for Protobuf:
+collection of GitHub Actions that work together to provide a fully featured CI/CD solution for Protobuf:
 
   - [buf-setup](https://github.com/marketplace/actions/buf-setup) installs and sets up `buf`,
     so that it can be used by other steps.

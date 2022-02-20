@@ -3,9 +3,9 @@ id: overview
 title: Overview
 ---
 
-One of the core promises of Protobuf is forwards and backwards compatibility. However, making
+One of the core promises of Protobuf is forwards and backwards compatibility. But making
 sure that your Protobuf schema doesn't introduce breaking changes isn't automatic - there are
-rules you need to follow to ensure your schema remains compatible for its lifetime.
+rules you need to follow to ensure that your schema remains compatible for its lifetime.
 
 `buf` provides a breaking change detector through `buf breaking`, which runs a set of
 [breaking rules](rules.md) across the current version of your entire Protobuf schema in comparison
