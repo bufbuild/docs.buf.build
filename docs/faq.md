@@ -11,7 +11,7 @@ the CLI.
 
 Prior to v1.0, we frequently made changes to the CLI, some of them breaking. With the
 [1.0 release][v1], we removed all deprecated flags and commands and established a clean slate.
-For the future, our policy is to _never_ introducing breaking changes until v2.0 of the CLI, and
+For the future, our policy is to _never_ introduce breaking changes until v2.0 of the CLI, and
 we don't intend to ever release a v2.0.
 
 ## `buf.yaml` version
