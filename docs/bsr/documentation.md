@@ -1,6 +1,6 @@
 ---
 id: documentation
-title: Generated Documentation
+title: Generated documentation
 ---
 
 import Image from '@site/src/components/Image';

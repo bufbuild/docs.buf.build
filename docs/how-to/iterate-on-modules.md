@@ -1,6 +1,6 @@
 ---
 id: iterate-on-modules
-title: Iterate on Modules
+title: Iterate on modules
 ---
 
 > For a comprehensive guide on working with [modules](../bsr/overview.md#modules) and the Buf

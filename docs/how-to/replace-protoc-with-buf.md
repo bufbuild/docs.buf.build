@@ -1,6 +1,6 @@
 ---
 id: replace-protoc-with-buf
-title: Replace protoc With buf
+title: Replace protoc with buf
 ---
 
 The `buf` CLI acts as a build system for all your `.proto` compilation and

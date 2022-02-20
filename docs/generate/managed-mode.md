@@ -1,6 +1,6 @@
 ---
 id: managed-mode
-title: Managed Mode
+title: Managed mode
 ---
 
 **Managed Mode** is a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration option that tells `buf` to set all of the file

@@ -1,6 +1,6 @@
 ---
 id: use-a-workspace
-title: 12 Use a Workspace
+title: 12 Use a workspace
 ---
 
 In the last section, you used `buf generate` with a [module](../bsr/overview.md#modules) you

@@ -1,6 +1,6 @@
 ---
 id: v1beta1-migration-guide
-title: Migration Guide (v1beta1 -> v1)
+title: Migration guide (v1beta1 to v1)
 ---
 
 Several changes were made between `v1beta1` and `v1`, but migrating between

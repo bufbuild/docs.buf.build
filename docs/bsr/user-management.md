@@ -1,11 +1,9 @@
 ---
 id: user-management
-title: User Management
+title: User management
 ---
 
-# User Management
-
-## Organization Roles
+## Organization roles
 
 Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
 	
@@ -36,7 +34,7 @@ The default roles:
 
 Organization owners can modify the base resource roles depending on the requirements of the organization. These roles are configurable on the organization settings page.
 
-## Resource Roles
+## Resource roles
 
 Resources such as repositories, templates and plugins are owned by either an individual user or an organization. In the case of user-owned resources, the user is granted the `Owner` role and for organization-owned resources members inherit the [base resource roles](#base-resource-roles) as defined by the organization.
 

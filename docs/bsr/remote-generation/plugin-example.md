@@ -1,6 +1,6 @@
 ---
 id: plugin-example
-title: Authoring a Plugin
+title: Authoring a plugin
 ---
 
 > Remote code generation is an **experimental feature**. We started with Go and have plans to add support for other languages. [Let us know what language we should tackle next](../../contact.md).

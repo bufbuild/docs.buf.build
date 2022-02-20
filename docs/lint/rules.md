@@ -1,6 +1,6 @@
 ---
 id: rules
-title: Rules and Categories
+title: Rules and categories
 ---
 
 > The rules and categories described here belong to the latest [`v1`](../configuration/v1/buf-yaml.md)
