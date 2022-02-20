@@ -3,7 +3,18 @@ id: faq
 title: FAQ
 ---
 
-### `buf.yaml` version
+## CLi command or flag warnings
+
+If you're using the [`buf` CLI][repo] and you get an error message saying that a flag or command has
+been moved or is no longer supported, the solution is to upgrade to version [1.0][v1] or greater of
+the CLI.
+
+Prior to v1.0, we frequently made changes to the CLI, some of them breaking. With the
+[1.0 release][v1], we removed all deprecated flags and commands and established a clean slate.
+For the future, our policy is to _never_ introducing breaking changes until v2.0 of the CLI, and
+we don't intend to ever release a v2.0.
+
+## `buf.yaml` version
 
 You may have recently seen this warning:
 
@@ -59,3 +70,6 @@ $ protoc -I . \
 ```
 
 We apologize for any inconvenience this warning may have caused.
+
+[repo]: https://github.com/bufbuild/buf
+[v1]: https://github.com/bufbuild/buf/releases/tag/v1.0.0
