@@ -90,7 +90,7 @@ message Order {
 }
 ```
 
-## 12.2 Build the Module {#build-the-module}
+## 12.2 Build the module {#build-the-module}
 
 If you try to build the `paymentapis` module in its current state, you'll get an error:
 
@@ -136,7 +136,7 @@ to move forward with, you can push the version to the BSR so that it can be used
 In summary, workspaces prevent you from pushing up a new version of your module to the BSR every
 time you want to test the changes in another. Instead, you can do it all locally first.
 
-## 12.3 Define a Workspace {#define-a-workspace}
+## 12.3 Define a workspace {#define-a-workspace}
 
 A workspace is defined with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file, which is
 generally placed at the root of a version-controlled repository. Given that you're working from
@@ -262,7 +262,7 @@ Before we continue, restore the `buf.work.yaml` to its previous state:
    - petapis
 ```
 
-## 12.5 Multiple Module Operations {#multiple-module-operations}
+## 12.5 Multiple module operations {#multiple-module-operations}
 
 If the input for a `buf` command is a directory containing a `buf.work.yaml` file, the command will act
 upon all of the modules defined in the `buf.work.yaml`.

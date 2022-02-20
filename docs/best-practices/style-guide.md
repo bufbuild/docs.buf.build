@@ -1,6 +1,6 @@
 ---
 id: style-guide
-title: Style Guide
+title: Style guide
 ---
 
 This is our Style Guide for Protobuf.

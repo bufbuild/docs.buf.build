@@ -1,6 +1,6 @@
 ---
 id: use-managed-mode
-title: 13 Use Managed Mode
+title: 13 Use managed mode
 ---
 
 In this section, you'll learn how to use [**Managed Mode**](../generate/managed-mode.md) when
@@ -70,7 +70,7 @@ See https://developers.google.com/protocol-buffers/docs/reference/go-generated#p
 This error comes up because you haven't yet enabled Managed Mode, but you'll see how to do that in
 the next section.
 
-## 13.2 Configure Managed Mode {#configure-managed-mode}
+## 13.2 Configure managed mode {#configure-managed-mode}
 
 To configure Managed Mode, add the [`managed.enabled`](/configuration/v1/buf-gen-yaml#enabled)
 option to your `buf.gen.yaml` template and set a package prefix with the
@@ -160,7 +160,7 @@ Unfortunately, the [`grpc-go`][grpc-go] library depends on [`go-genproto`][go-ge
 so the import paths must match for the Go stubs to interoperate and the `go_package` option
 **must** be preserved.
 
-## 13.4 Remove Modules from Managed Mode {#remove-modules-from-managed-mode}
+## 13.4 Remove modules from managed mode {#remove-modules-from-managed-mode}
 
 > This is a particularly rare edge case, which primarily applies to
 > `buf.build/googleapis/googleapis`. You shouldn't need to use the `except` key in general.

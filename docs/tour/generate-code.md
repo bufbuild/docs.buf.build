@@ -1,6 +1,6 @@
 ---
 id: generate-code
-title: 5 Generate Code
+title: 5 Generate code
 ---
 
 `buf` provides a user-friendly experience for generating code locally that's completely compatible
@@ -12,7 +12,7 @@ Move back to the `start` directory with this command:
 $ cd ..
 ```
 
-## 5.1 Install Plugins {#install-plugins}
+## 5.1 Install plugins {#install-plugins}
 
 You'll use the `protoc-gen-cpp` and `protoc-gen-java` plugins to generate code using `buf generate`,
 so you'll need to install them.
@@ -50,7 +50,7 @@ Like `protoc`, `buf` infers the `protoc-gen-` prefix for each plugin specified b
 You can override this behavior with the [`path`](../configuration/v1/buf-gen-yaml.md#path) key, but
 this is an advanced feature that's usually unnecessary.
 
-## 5.3 Generate C++ and Java Stubs {#generate-c-and-java-stubs}
+## 5.3 Generate C++ and Java stubs {#generate-c-and-java-stubs}
 
 Now that you have a `buf.gen.yaml` with the `protoc-gen-{cpp,java}` plugins configured, you can generate the
 C++ and Java code associated with the `PetStoreService` API.
@@ -103,7 +103,7 @@ start/
             └── pet.proto
 ```
 
-## 5.4 Use Managed Mode {#use-managed-mode}
+## 5.4 Use Managed mode {#use-managed-mode}
 
 [Managed Mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
 to set all of the file options in your module according to an opinionated set of values suitable for each of the

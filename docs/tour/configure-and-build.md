@@ -1,6 +1,6 @@
 ---
 id: configure-and-build
-title: 1 Configure and Build
+title: 1 Configure and build
 ---
 
 We'll start our tour by configuring `buf` and building the `.proto` files that define

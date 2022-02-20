@@ -1,6 +1,6 @@
 ---
 id: internal-compiler
-title: Internal Compiler
+title: Internal compiler
 ---
 
 Protobuf is the most stable and widely adopted interface description language available

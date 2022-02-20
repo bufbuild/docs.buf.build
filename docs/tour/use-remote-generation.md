@@ -1,6 +1,6 @@
 ---
 id: use-remote-generation
-title: 16 Bonus — Use Remote Generation
+title: 16 Bonus — Use remote generation
 ---
 
 > The [Remote Generation](../bsr/remote-generation/overview.md) feature is **experimental** and
@@ -119,7 +119,7 @@ go: downloading go.buf.build/grpc/go/$BUF_USER/paymentapis v1.4.1
 The Go/gRPC client and server stubs are now included in your `go.mod` just like any other Go
 library.
 
-## 16.3 Run the Application {#run-the-application}
+## 16.3 Run the application {#run-the-application}
 
 You can run the application again to verify that the remote-generated library works as expected.
 

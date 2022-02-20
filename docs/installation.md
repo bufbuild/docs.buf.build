@@ -120,7 +120,7 @@ VERSION="1.0.0" && \
   minisign -Vm sha256.txt -P RWQ/i9xseZwBVE7pEniCNjlNOeeyp4BQgdZDLQcAohxEAH5Uj5DEKjv6
 ```
 
-## From Source
+## From source
 
 The binary can be installed from source if `go` is installed, however we recommend using one of
 the release assets instead.
@@ -132,7 +132,7 @@ GO111MODULE=on GOBIN=/usr/local/bin go install \
   github.com/bufbuild/buf/cmd/buf@v1.0.0
 ```
 
-## Using the Docker Image
+## Using the Docker image
 
 Buf ships a Docker image ([bufbuild/buf](https://hub.docker.com/r/bufbuild/buf)) that enables
 you to use `buf` as part of your Docker workflow.
@@ -144,6 +144,6 @@ $ docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
 ```
 
-## Windows Support
+## Windows support
 
 Buf has officially added support for Windows, available for both `x64_64` and `arm64` architectures. You can download the latest binary from the [release page](https://github.com/bufbuild/buf/releases/latest).

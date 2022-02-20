@@ -1,6 +1,6 @@
 ---
 id: protoc-plugin
-title: Protoc Plugin
+title: protoc plugin
 ---
 
 Buf ships a binary `protoc-gen-buf-breaking` that performs the breaking change detection

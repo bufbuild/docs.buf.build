@@ -1,6 +1,6 @@
 ---
 id: remote-plugin-execution
-title: Remote Plugin Execution
+title: Remote plugin execution
 ---
 
 import Tabs from '@theme/Tabs';

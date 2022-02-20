@@ -1,6 +1,6 @@
 ---
 id: generate-go-code
-title: 10 Generate Go Code
+title: 10 Generate Go code
 ---
 
 So far, you've created a new [module](../bsr/overview.md#modules), pushed it up to the
@@ -37,7 +37,7 @@ start/
             └── pet.proto
 ```
 
-## 10.1 Setup Go {#setup-go}
+## 10.1 Set up Go {#setup}
 
 Install `go` from [https://golang.org/doc/install](https://golang.org/doc/install). If you don't have any experience with Go,
 that's OK! We'll cover everything you need to know here.
@@ -88,7 +88,7 @@ generation outputs:
 * The `protoc-gen-go-grpc` plugin will generate Go code to the same `gen/proto/go` directory with
   two options: `paths=source_relative` and `require_unimplemeneted_servers=false`.
 
-## 10.4 Generate Go/gRPC Client and Server Stubs {#generate-stubs}
+## 10.4 Generate Go/gRPC client and server stubs {#generate-stubs}
 
 Now that you have a `buf.gen.yaml` with the `protoc-gen-go[-grpc]` plugins configured, you can generate the code
 required to implement the `PetStoreService` API with Go.

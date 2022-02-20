@@ -1,6 +1,6 @@
 ---
 id: wrapping-up
-title: 15 Wrapping Up
+title: 15 Wrapping up
 ---
 
 And that concludes the tour of Buf! The `start` directory should look exactly like the `finish`

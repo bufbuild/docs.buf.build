@@ -1,6 +1,6 @@
 ---
 id: add-a-dependency
-title: 9 Add a Dependency
+title: 9 Add a dependency
 ---
 
 Without the [BSR](../bsr/overview.md), you can only depend on other Protobuf APIs by manually

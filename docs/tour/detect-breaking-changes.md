@@ -1,6 +1,6 @@
 ---
 id: detect-breaking-changes
-title: 4 Detect Breaking Changes
+title: 4 Detect breaking changes
 ---
 
 You can detect [breaking changes][breaking] between different versions of your API. `buf` is able to
@@ -74,7 +74,7 @@ pet/v1/pet.proto:44:10:Field "1" on message "DeletePetRequest" changed name from
 > For remote locations that require authentication, see [HTTPSAuthentication](../reference/inputs.md#https)
 > and [SSH Authentication](../reference/inputs.md#ssh) for more details.
 
-## 4.3 Revert Changes {#revert-changes}
+## 4.3 Revert changes {#revert-changes}
 
 Once you've determined that your change is breaking, revert it:
 
@@ -87,7 +87,7 @@ Once you've determined that your change is breaking, revert it:
  }
 ```
 
-## 4.4 Read an Image from stdin {#read-an-image-from-stdin}
+## 4.4 Read an image from stdin {#read-an-image-from-stdin}
 
 Like all other `buf` commands, [`buf breaking`][breaking] can read input from stdin. This is useful
 if, for example, you're downloading an [Image](../reference/images.md) from a private location. As a
