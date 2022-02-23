@@ -3,6 +3,9 @@ id: managed-mode
 title: Managed Mode
 ---
 
+Protobuf enables you to set [file options][file-options] in your `.proto` files that dictate how
+code should be generated from those sources. Some file options, such as [`go_package_prefix`](#go_package_prefix),
+are recognized by the [`protoc`][protoc] compiler itself.
 
 **Managed Mode** enables you to use an opinionated set of configuration values when generating code
 stubs from Protobuf definitions rather than hard-coding those [file options][file-options] into your
@@ -308,4 +311,5 @@ can attest to the severity of the situation.
 [php_metadata_namespace]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L447
 [php_namespace]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L442
 [plugins]: /bsr/remote-generation/concepts#plugins
+[protoc]: https://github.com/protocolbuffers/protobuf
 [ruby_package]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L452
