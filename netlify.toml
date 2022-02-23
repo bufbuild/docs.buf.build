@@ -298,6 +298,11 @@
   status = 301
 
 [[redirects]]
+  from = "/bsr/remote-generation"
+  to = "/bsr/remote-generation/overview"
+  status = 301
+
+[[redirects]]
   from = "/best-practices"
   to = "/best-practices/style-guide"
   status = 301
@@ -315,4 +320,15 @@
 [[redirects]]
   from = "/generate/high-performance-protoc-replacement"
   to = "/generate/usage"
+  status = 301
+
+[[redirects]]
+  from = "/tour"
+  to = "/tour/introduction"
+  status = 301
+
+# Corrects a prior misspelling
+[[redirects]]
+  from = "/tour/login-to-the-bsr"
+  to = "/tour/log-into-the-bsr"
   status = 301

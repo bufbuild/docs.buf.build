@@ -5,7 +5,7 @@ title: GitHub Actions
 
 [GitHub Actions](https://github.com/features/actions) is a [CI/CD](https://en.wikipedia.org/wiki/CI/CD)
 system supported by GitHub that runs workflows against your code based on an event. Buf has published a
-collection of GitHub Actions that work together to provide a fully-featured CI/CD solution for Protobuf:
+collection of GitHub Actions that work together to provide a fully featured CI/CD solution for Protobuf:
 
   - [buf-setup](https://github.com/marketplace/actions/buf-setup) installs and sets up `buf`,
     so that it can be used by other steps.
@@ -48,15 +48,15 @@ jobs:
 This ensures that `buf` is installed with the latest release version and is available for all subsequent steps
 within the current job.
 
-If you'd like to pin the `buf` CLI to a specific version, update your setup step to include a version like so:
+To pin the `buf` CLI to a specific version, update your setup step to include a version:
 
-```yaml
+```yaml {2-3}
 - uses: bufbuild/buf-setup-action@v0.6.0
   with:
-    version: '1.0.0-rc6'
+    version: 1.0.0
 ```
 
-If you'd like to resolve the latest release from GitHub, you can specify `latest`, but this is **not** recommended:
+To resolve the latest release from GitHub, you can specify `latest`, but this is **not** recommended:
 
 ```yaml
 steps:
@@ -167,7 +167,8 @@ the `input` parameter (this is relevant for both `pull_request` and `push` workf
     └── buf.yaml
 ```
 
-You can adapt the `push` workflow shown above so that it targets the `./proto` directory like so:
+You can adapt the `push` workflow shown above so that it targets the `./proto` directory, as in
+this Action configuration:
 
 ```yaml title=".github/workflows/push.yaml" {14,17,23}
 name: buf-push

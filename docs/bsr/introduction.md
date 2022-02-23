@@ -7,27 +7,28 @@ Welcome to the **Buf Schema Registry (BSR)**! This overview covers what the BSR 
 
 ## What is the BSR?
 
-The BSR stores and manages Protobuf files as versioned [modules](overview.md#modules), so that individuals and organizations can consume and publish their APIs easier than ever before.
+The BSR stores and manages Protobuf files as versioned [modules](overview.md#modules) so that individuals and organizations can consume and publish their APIs without friction.
 
 The BSR comes with a browsable UI, dependency management, API validation and versioning, generated documentation, and an extensible plugin system which enables remote code generation.
 
 ### BSR goals
 
-1. **Centralized Registry** - The BSR is the source of truth for tracking and evolving your Protobuf APIs. A centralized registry enables you to maintain compatibility and manage dependencies, while making it easy for your clients to consume APIs reliably and efficiently. Having a centralized, Protobuf-aware, registry has the added benefit of protecting against broken builds.
+1. **Centralized registry** - The BSR is the source of truth for tracking and evolving your Protobuf APIs. A centralized registry enables you to maintain compatibility and manage dependencies, while enabling your clients to consume APIs reliably and efficiently. Having a centralized, Protobuf-aware, registry has the added benefit of protecting against broken builds.
 
-2. **Dependency Management** - The BSR _finally_ introduces dependency management to the Protobuf ecosystem. You can now declare, resolve and use hosted BSR modules as dependencies in your projects.
+2. **Dependency management** - The BSR _finally_ introduces dependency management to the Protobuf ecosystem. You can now declare, resolve and use hosted BSR modules as dependencies in your projects.
 
   Put simply, **you don't need to copy your `.proto` file dependencies around anymore**. The `buf` CLI interacts directly with the BSR to fetch your dependencies, (analogous to `npm` for Node.js, `pip` for Python, `cargo` for Rust, and Go modules in Go).
 
-3. **UI and Documentation** - The BSR offers complete documentation for your Protobuf files through a browsable UI with syntax highlighting, definitions, and references.
+3. **UI and documentation** - The BSR offers complete documentation for your Protobuf files through a browsable UI with syntax highlighting, definitions, and references.
 
 4. **Code Generation** - The BSR makes possible two distinct forms of code generation:
 
-    - *Local Code Generation*: The BSR contains remote references that allow you to immediately generate code for your language of choice. Use your existing `protoc` plugins,
+    - *Local code generation*: The BSR contains remote references that allow you to immediately generate code for your language of choice. Use your existing `protoc` plugins,
       run `buf generate`, and you're ready to go.
 
-    - *Remote Code Generation (experimental)*: Don't want to manage plugins? No problem. The BSR offers remote code generation through hosted plugins and templates.
-      The remote-generated code gets stored in a managed software repository that you fetch like any other library with tools you already know: `go get`, `mvn install`,
+    - *Remote code generation (alpha)*: Don't want to manage plugins? No problem. The BSR offers remote code generation through hosted plugins and templates.
+
+      The remote-generated code is stored in a managed software repository that you fetch like any other library with tools you already know: `go get`, `mvn install`,
       `pip install`, `npm install`, etc.
 
 ### Why the BSR?
@@ -43,7 +44,7 @@ Since the BSR is a Protobuf-aware registry, it prevents Protobuf files that don'
 
 **Generated documentation for all**
 
-Sadly, easy to consume *and* up-to-date documentation is rarely available for Protobuf files. Some organizations setup workflows to generate documentation, but this is yet another manual step that has to be configured, setup and maintained. Furthermore, much of the tooling and plugins are unsupported and generate incomplete documentation.
+Sadly, readily consumable *and* up-to-date documentation is rarely available for Protobuf files. Some organizations setup workflows to generate documentation, but this is yet another manual step that has to be configured, setup and maintained. Furthermore, much of the tooling and plugins are unsupported and generate incomplete documentation.
 
 The BSR comes built-in with **generated documentation**. You get live documentation for every commit to the BSR. Which means live and up-to-date documentation for latest and historic commits. Even better, the documentation the BSR provides has syntax highlighting, definitions, and references.
 
@@ -63,7 +64,7 @@ Before a client can consume a Protobuf-based API they need to generate an SDK fo
 
 The Buf ecosystem solves this by decoupling consumer and producer concerns. The `buf` CLI can modify language-specific options on the fly, and the BSR facilitates generating client SDKs by offering local and remote code generation.
 
-Generating an SDK client should be as simple as keeping code up-to-date like any other library in your language of choice.
+Generating an SDK client should only require you to keep code up to date like any other library in your language of choice. It shouldn't require you to generate anything manually.
 
 ## Let's get started
 
@@ -82,6 +83,6 @@ Here are a few ways to get moving:
 
 ## Experimental features
 
-[Remote Generation](remote-generation/overview.md) is currently an *experimental feature*. This feature lets the BSR generate data types and service stubs for your modules and store the generated code in a **hosted registry**. With this, you can consume the generated code like any other library in your language of choice.
+[Remote Generation](remote-generation/overview.md) is currently an *alpha feature*. This feature lets the BSR generate data types and service stubs for your modules and store the generated code in a **hosted registry**. With this, you can consume the generated code like any other library in your language of choice.
 
 > Note, this feature is currently available for Go. But we have plans to add additional support for other languages.

@@ -15,7 +15,7 @@ definitions.
 
 The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) template file controls how the `buf generate` command
 executes `protoc` plugins for any [input](../reference/inputs.md). The `buf.gen.yaml` template lists one or more
-plugins and, optionally, other file option configurations with [Managed Mode](managed-mode.md). For more information
+plugins and, optionally, other file option configurations with [managed mode](managed-mode.md). For more information
 on the `buf.gen.yaml` configuration, please refer to the [reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Define a module
@@ -25,7 +25,7 @@ file to the root of the directory that contains your Protobuf definitions. You c
 file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"
@@ -131,7 +131,7 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o b
 The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
 
-For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).
+For a complete list of supported inputs refer to the [Buf input format documentation](../reference/inputs.md#source-formats).
 
 
 ## Limit to specific files

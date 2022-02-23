@@ -156,7 +156,7 @@ This generates C++ and Java code in the local `/gen/proto/{cpp,java}` directorie
 
 ### Remote code generation
 
-If you don't want to manage plugins and generate code manually, and instead would prefer to simply consume generated code, check out the experimental [Remote Code Generation](../bsr/remote-generation/overview.md) section.
+If you don't want to manage plugins and generate code manually and would prefer to simply consume generated code, check out the [remote code generation](../bsr/remote-generation/overview.md) feature, which is currently in **alpha**.
 
 ### Deprecate or undeprecate a repository
 

@@ -1,10 +1,9 @@
 ---
 id: use-remote-generation
-title: 16 Bonus — Use Remote Generation
+title: 16 Bonus — Use remote generation
 ---
 
-> The [Remote Generation](../bsr/remote-generation/overview.md) feature is **experimental** and
-> thus likely to change.
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
 
 In this section, you'll learn how to use Buf's Go Module Proxy to import the Go/gRPC client and
 server stubs as you would import any other Go library. Remote Generation thus reduces the code
@@ -119,7 +118,7 @@ go: downloading go.buf.build/grpc/go/$BUF_USER/paymentapis v1.4.1
 The Go/gRPC client and server stubs are now included in your `go.mod` just like any other Go
 library.
 
-## 16.3 Run the Application {#run-the-application}
+## 16.3 Run the application {#run-the-application}
 
 You can run the application again to verify that the remote-generated library works as expected.
 
@@ -234,7 +233,7 @@ require (
 When you update your module and push new commits, you can update your library version by
 incrementing the final element in the synthetic version (described above).
 
-To demonstrate, make a simple change by adding a comment to the `PetStoreService`:
+To demonstrate, make a small change by adding a comment to the `PetStoreService`:
 
 ```terminal
 $ cd petapis

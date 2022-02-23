@@ -1,15 +1,15 @@
 ---
 id: v1beta1-migration-guide
-title: Migration Guide (v1beta1 -> v1)
+title: Migration guide (v1beta1 to v1)
 ---
 
 Several changes were made between `v1beta1` and `v1`, but migrating between
-them is easy. This guide walks you through exactly what changed and what you need to
+them should be straightforward. This guide walks you through exactly what changed and what you need to
 update when upgrading from `v1beta1` to `v1`.
 
 ## Automatic migration
 
-The `buf config migrate-v1beta1` command automatically migrates all of your `buf` configuration
+The `buf beta migrate-v1beta1` command automatically migrates all of your `buf` configuration
 files from `v1beta1` to `v1`.
 
 For example, consider this `buf.yaml` with multiple roots:
@@ -46,10 +46,10 @@ breaking:
 ```
 
 You can automatically migrate all of the files from `v1beta1` to `v1` by simply running
-`buf config migrate-v1beta1` in a directory containing a `buf.yaml`, `buf.lock`, or `buf.gen.yaml`:
+`buf beta migrate-v1beta1` in a directory containing a `buf.yaml`, `buf.lock`, or `buf.gen.yaml`:
 
 ```sh
-$ buf config migrate-v1beta1
+$ buf beta migrate-v1beta1
 Successfully migrated your buf.yaml, buf.gen.yaml, and buf.lock to v1.
 ```
 
@@ -98,7 +98,7 @@ build:
 
 Now that [workspaces](../reference/workspaces.md) are available, each of the roots can be defined as an independently configured
 [module](../bsr/overview.md#modules) that can be imported by others. In the example above, the `proto` and `vendor/googleapis`
-roots can be defined as separate modules like so:
+roots can be defined as separate modules, as in these configurations:
 
 ```yaml title=proto/buf.yaml
 version: v1
@@ -215,7 +215,8 @@ breaking:
 
 The `acme/pet/v1/{incompatible,private,store}.proto` files are defined in the `proto` root and the `google/type/{datetime,money}.proto`
 files are defined in the `vendor/googleapis` root. When we migrate this configuration to multiple `buf.yaml` files, the `build.excludes`,
-`lint.ignore{_only}` and `breaking.ignore{_only}` paths should only be migrated to the relevant `buf.yaml` files like so:
+`lint.ignore{_only}` and `breaking.ignore{_only}` paths should only be migrated to the relevant `buf.yaml` files,
+as in these configurations:
 
 ```yaml title="proto/buf.yaml"
 version: v1
@@ -241,15 +242,15 @@ lint:
 ```
 
 You'll notice that the filepath doesn't need to be updated because it's already relative to the module root. This transformation
-is automatically handled by the `buf config migrate-v1beta1` command, so you don't need to worry about these nuanced details.
+is automatically handled by the `buf beta migrate-v1beta1` command, so you don't need to worry about these nuanced details.
 
 ## `buf.gen.yaml`
 
-The `buf.gen.yaml` configuration file is largely unchanged, but a few changes exist for configuring [Managed Mode](../generate/managed-mode.md).
+The `buf.gen.yaml` configuration file is largely unchanged, but a few changes exist for configuring [managed mode](../generate/managed-mode.md).
 
-### Managed Mode
+### Managed mode
 
-Previously, users could enable **Managed Mode** and configure specific file options in their `buf.gen.yaml` like so:
+Previously, users could enable **managed mode** and configure specific file options in their `buf.gen.yaml` like this:
 
 ```yaml title="buf.gen.yaml"
 version: v1beta1
@@ -258,7 +259,7 @@ options:
   optimize_for: CODE_SIZE
 ```
 
-The `buf.gen.yaml` configuration updates this so that **Managed Mode** and its corresponding file option overrides are encapsulated
+The `buf.gen.yaml` configuration updates this so that managed mode and its corresponding file option overrides are encapsulated
 under the `managed` key.
 
 ```yaml title="buf.gen.yaml"

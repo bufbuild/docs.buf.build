@@ -1,6 +1,6 @@
 ---
 id: protoc-plugin
-title: Protoc Plugin
+title: protoc plugin
 ---
 
 Buf ships a binary `protoc-gen-buf-breaking` that performs the breaking change detection
@@ -36,7 +36,7 @@ For example:
 }
 ```
 
-  - `against_input` is required and limited to [image formats](../reference/images.md). The
+  - `against_input` is required and limited to [Buf image formats](../reference/images.md). The
     format must be `bin` or `json` and cannot be `dir`, `git`, `tar`, `zip`, etc.
   - `limit_to_input_files` says to limit checks to those files under build by `protoc` in the
      current invocation, in this case the `file_to_generate` in the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto).

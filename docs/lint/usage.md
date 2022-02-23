@@ -13,7 +13,7 @@ file to the root of the directory that contains your Protobuf definitions. You c
 file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"
@@ -29,7 +29,8 @@ breaking:
 ## Run lint
 
 You can run `buf lint` on your module by specifying the filepath to the directory containing the `buf.yaml`.
-In the above example, you can target the [input](../reference/inputs.md) defined in the current directory like so:
+In the above example, you can target the [input](../reference/inputs.md) defined in the current directory
+with this command:
 
 ```sh
 $ buf lint

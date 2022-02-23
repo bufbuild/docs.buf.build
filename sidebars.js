@@ -14,7 +14,7 @@ const sidebars = {
         "tour/lint-your-api",
         "tour/detect-breaking-changes",
         "tour/generate-code",
-        "tour/login-to-the-bsr",
+        "tour/log-into-the-bsr",
         "tour/push-a-module",
         "tour/view-generated-documentation",
         "tour/add-a-dependency",
@@ -76,7 +76,7 @@ const sidebars = {
         "bsr/user-management",
         {
           type: "category",
-          label: "Remote Generation",
+          label: "Remote generation",
           customProps: {
             badge: {
               label: "alpha",

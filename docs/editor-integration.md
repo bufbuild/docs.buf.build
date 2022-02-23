@@ -1,6 +1,6 @@
 ---
 id: editor-integration
-title: Editor Integration
+title: Editor integration
 ---
 
 `buf` produces structured machine readable error output for [build](build/usage), [lint](lint/overview),

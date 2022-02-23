@@ -70,7 +70,7 @@ via the command line, for example with [Bazel](https://bazel.build) integrations
 All commands have one or more `--.*config` flags that control this behavior. For example:
 
   * `buf build --config` specifies the config for the source input.
-  * `buf lint --config` specifies the config for the source or image input.
+  * `buf lint --config` specifies the config for the source or [Buf image](/reference/images) input.
   * `buf breaking --config` specifies the config for the source or image input.
   * `buf breaking --against-config` specifies the config for the source or image input to compare against.
 

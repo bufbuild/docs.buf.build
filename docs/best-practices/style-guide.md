@@ -1,6 +1,6 @@
 ---
 id: style-guide
-title: Style Guide
+title: Style guide
 ---
 
 This is our Style Guide for Protobuf.
@@ -144,7 +144,7 @@ Use `//` instead of `/* */` for comments.
 Over-document, and use complete sentences for comments. Put documentation above
 the type, instead of inline.
 
-Avoid widely-used keywords for all types, especially packages. For example, if your
+Avoid widely used keywords for all types, especially packages. For example, if your
 package name is `foo.internal.bar`, the `internal` component blocks importing
 the generated stubs in other packages for Golang.
 

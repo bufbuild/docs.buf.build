@@ -87,7 +87,7 @@ Once a dependency is added to the configuration file, you need to run:
 $ buf mod update
 ```
 
-This updates all your deps to their latest version and gets captured in a `buf.lock` file.
+This updates all your deps to their latest version and is captured in a `buf.lock` file.
 
 **You can now import the Protobuf types just like you would if you had the files locally:**
 
@@ -147,4 +147,4 @@ $ buf generate buf.build/acme/weather
 
 > See the [Usage](../bsr/usage.md#code-generation) section for a detailed example.
 
-Although beyond the scope of this overview, we suggest taking a look at [Managed Mode](../generate/managed-mode.md) as it relates to code generation. Historically, *consumer concerns* are conflated with *producer concerns* due to hardcoding of language-specific options in Protobuf files, which in turn restricts their usefulness to consumers. Managed mode addresses existing limitations and offers a better separation of concerns.
+Although beyond the scope of this overview, we suggest taking a look at [managed mode](../generate/managed-mode.md) as it relates to code generation. Historically, *consumer concerns* are conflated with *producer concerns* due to hardcoding of language-specific options in Protobuf files, which in turn restricts their usefulness to consumers. Managed mode addresses existing limitations and offers a better separation of concerns.

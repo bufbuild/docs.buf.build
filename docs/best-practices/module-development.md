@@ -1,6 +1,6 @@
 ---
 id: module-development
-title: Module Development
+title: Module development
 ---
 
 The Buf Schema Registry ([BSR](../bsr/overview.md)) automatically enforces that your
@@ -59,7 +59,7 @@ compile. In other words, it's impossible for the compiler to distinguish between
 
 Do **not** push backwards-incompatible changes to your module.
 
-There are clearly exceptions to this rule for packages in-development (such as `alpha` and `beta`),
+There are clearly exceptions to this rule for packages in development (such as `alpha` and `beta`),
 but module authors should do everything they can to maintain compatibility in their module.
 
 If, for example, the [Diamond Dependency Problem](https://en.wikipedia.org/wiki/Dependency_hell)
@@ -84,7 +84,7 @@ This has two key benefits:
 
 * The Protobuf files you define don't collide with other modules so that they can always be
   compiled together.
-* The version element in the filepath makes it easy to roll out incompatible versions in the
+* The version element in the filepath enables you to roll out incompatible versions in the
   same module because they are consumed from different filepaths.
 
 Suppose that you have a module similar to the one described in [Module Layout](#module-layout),

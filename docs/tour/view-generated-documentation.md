@@ -1,6 +1,6 @@
 ---
 id: view-generated-documentation
-title: 8 View Generated Documentation
+title: 8 View generated documentation
 ---
 
 You can browse generated documentation for your [module](../bsr/overview.md#modules) in the
@@ -22,7 +22,7 @@ as your module's [`buf.yaml`](../configuration/v1/buf-yaml.md), and pushing it u
 In this way, the `buf.md` file is analogous to a GitHub repository's `README.md`. The `buf.md` file
 currently supports all of the [CommonMark](https://commonmark.org) syntax.
 
-Let's start by adding a simple note like so:
+Let's start by adding a quick note:
 
 ```terminal
 $ touch buf.md
@@ -60,7 +60,7 @@ $ buf push
 If you refresh the documentation page you visited above, you should see the changes you just
 introduced with your `buf.md` documentation.
 
-## 8.2 Package Documentation {#package-documentation}
+## 8.2 Package documentation {#package-documentation}
 
 As you can see from the module documentation page, both the `pet.v1` and `google.type`
 packages are available as links. Click on the `pet.v1` link to navigate to its

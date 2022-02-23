@@ -16,8 +16,8 @@ $ buf build --help
 $ buf generate --help
 $ buf breaking --help
 $ buf lint --help
-$ buf config ls-breaking-rules --help
-$ buf config ls-lint-rules --help
+$ buf mod ls-breaking-rules --help
+$ buf mod ls-lint-rules --help
 $ buf ls-files --help
 ```
 
@@ -28,7 +28,7 @@ $ buf ls-files --help
  * Install [`buf`](../installation.md)
  * (Optional) [Editor Integration](../editor-integration.md)
 
-## Clone the Git Repository {#clone-the-git-repository}
+## Clone the Git repository {#clone-the-git-repository}
 
 First, clone the Git repository that contains the starter code for the `PetStore` service.
 From the development directory of your choice, run this command:

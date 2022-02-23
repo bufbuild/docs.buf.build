@@ -82,4 +82,4 @@ $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdi
 
 You can now use any of the authenticated `buf` commands, such as `buf push`.
 
-> Note that we have [official GitHub Actions](../ci-cd/github-actions.md) which makes it easy to configure authentication for CI jobs.
+> Note that we have [official GitHub Actions](../ci-cd/github-actions.md) that enable you to quickly configure authentication for CI jobs.

@@ -1,9 +1,9 @@
 ---
 id: template-example
-title: Authoring a Template
+title: Authoring a template
 ---
 
-> Remote code generation is an **experimental feature**. We started with Go and have plans to add support for other languages. [Let us know what language we should tackle next](../../contact.md).
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
 
 A BSR Template is a collection of one or more plugins that facilitates remote code generation.
 
