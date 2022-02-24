@@ -67,7 +67,7 @@ see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 
-To generate for the input in your current directory, simply run:
+Run this to generate from the [input] in your current directory:
 
 ```sh
 $ buf generate
@@ -106,33 +106,49 @@ $ buf generate --error-format=json
 
 ## Common use cases
 
-These commands illustrate several common cases for `buf generate`:
+Generate using the current directory as [input], assuming that a [`buf.gen.yaml`][buf-gen-yaml]
+exists in the current directory:
 
-```sh
-# Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.
+```terminal
 $ buf generate
+```
 
-# Uses the buf.build/acme/petapis module as input, using a `buf.gen.yaml` in the current directory.
+Generate using the [`buf.build/acme/petapis`][petapis] [module] as [input], assuming that a
+[`buf.gen.yaml`][buf-gen-yaml] exists in the current directory:
+
+```terminal
 $ buf generate buf.build/acme/petapis
+```
 
-# Uses the current directory as input, and explicitly specifies a custom template in another directory.
+Generate using the current directory as [input] while specifying a custom template in another
+directory:
+
+```terminal
 $ buf generate --template data/generate.yaml
+```
 
-# The --template flag also takes YAML or JSON data as input, so it can be used without a file.
+Generate using a custom template supplied as JSON:
+
+```terminal
 $ buf generate --template '{"version":"v1","plugins":[{"name":"go","out":"gen/go"}]}'
+```
 
-# Download the repository, compile it, and generate per the generate.yaml template.
+Generate using a remote Git repository as [input] while specifying a custom template:
+
+```terminal
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml
+```
 
-# Generate to the bar/ directory, prepending bar/ to the out directives in the template.
+Generate to the `bar/` directory while prepending `bar/` to the out directives in the template:
+
+```terminal
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
 ```
 
 The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
 
-For a complete list of supported inputs refer to the [Buf input format documentation](../reference/inputs.md#source-formats).
-
+For a complete list of supported inputs, see the [Buf input format documentation](../reference/inputs.md#source-formats).
 
 ## Limit to specific files
 
@@ -164,3 +180,7 @@ $ docker run \
   --workdir /workspace \
   bufbuild/buf generate
 ```
+
+[buf-gen-yaml]: ../configuration/v1/buf-gen-yaml.md
+[input]: ../reference/inputs.md
+[petapis]: https://buf.build/acme/petapis
