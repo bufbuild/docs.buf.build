@@ -336,12 +336,8 @@ to use different values for these options. A Java developer, for example, may wa
 The problem really comes to a head when it comes to import paths. With [`protoc`][protoc], a Go
 developer, for example, would need to invoke the [`--go_opt`](#go_opt) flag when generating code,
 for example `--go_opt=Mpath/to/foo.proto=github.com/pkg/foo`, to specify the import path.
-But with the `buf` CLI and managed mode, 
-
-None of these options have anything to do with the API definition within Protobuf - they are all API *consumer* concerns, not API *producer* concerns.
-Different consumers may (and usually do) want different values for these options, especially when a given set of Protobuf definitions is consumed in
-many different places. This gets especially bad with imports - anyone in Go who has had to specify long chains of `--go_opt=Mpath/to/foo.proto=github.com/pkg/foo`
-can attest to the severity of the situation.
+With the `buf` CLI and managed mode, you can avoid these complex `protoc` invocations and use
+[configuration](#configuration) instead.
 
 [apple-warning]: https://github.com/apple/swift-protobuf/blob/main/Documentation/API.md#generated-struct-name
 [buf-gen-yaml]: /configuration/v1/buf-gen-yaml.md
