@@ -106,40 +106,53 @@ $ buf generate --error-format=json
 
 ## Common use cases
 
-Generate using the current directory as [input], assuming that a [`buf.gen.yaml`][buf-gen-yaml]
-exists in the current directory:
+The most common use case is to generate using the current directory as [input]:
 
 ```terminal
 $ buf generate
 ```
 
-Generate using the [`buf.build/acme/petapis`][petapis] [module] as [input], assuming that a
-[`buf.gen.yaml`][buf-gen-yaml] exists in the current directory:
+This command assumes that a [`buf.gen.yaml`][buf-gen-yaml] exists in the directory where you run the
+command.
+
+### Generating from a Buf module {#from-module}
+
+You can generate from a Buf [module] on the [Buf Schema Registry][bsr] (BSR) by providing the module
+name as the [input]:
 
 ```terminal
 $ buf generate buf.build/acme/petapis
 ```
 
-Generate using the current directory as [input] while specifying a custom template in another
-directory:
+> This examples uses a Buf module as the input, but other inputs are available. For a complete list,
+> see the [Buf input format documentation](../reference/inputs.md#source-formats).
+
+### Generating using multiple templates {#multiple-templates}
+
+The [`buf.gen.yaml`][buf-gen-yaml] file enables you to configure one generation template. For cases
+where you need to use multiple templates for the same [input], we recommend using multiple
+configuration files with different names.
+
+If you needed to use one template for Go and a different template for Java, for example, you could
+create a `buf.gen.go.yaml` file and a `buf.gen.java.yaml` file and use separate commands to generate
+code:
 
 ```terminal
-$ buf generate --template data/generate.yaml
+$ buf generate --template buf.gen.go.yaml
+$ buf generate --template buf.gen.java.yaml
 ```
 
-Generate using a custom template supplied as JSON:
+You could also specify those different templates as JSON:
 
 ```terminal
 $ buf generate --template '{"version":"v1","plugins":[{"name":"go","out":"gen/go"}]}'
+$ buf generate --template '{"version":"v1","plugins":[{"name":"java","out":"gen/java"}]}'
 ```
 
-Generate using a remote Git repository as [input] while specifying a custom template:
+### Generating to a specific directory {#output}
 
-```terminal
-$ buf generate https://github.com/foo/bar.git --template data/generate.yaml
-```
-
-Generate to the `bar/` directory while prepending `bar/` to the out directives in the template:
+You can generate to a specific output directory using the `--output` or `-o` flag. This command
+generates to the `bar/` directory while prepending `bar/` to the `out` directives in the template:
 
 ```terminal
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
@@ -147,8 +160,6 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o b
 
 The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
-
-For a complete list of supported inputs, see the [Buf input format documentation](../reference/inputs.md#source-formats).
 
 ## Limit to specific files
 
@@ -171,8 +182,8 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml --pa
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
-you to use `buf` as part of your Docker workflow. For example:
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables you to
+use `buf` as part of your Docker workflow. For example:
 
 ```sh
 $ docker run \
@@ -181,6 +192,9 @@ $ docker run \
   bufbuild/buf generate
 ```
 
+[bsr]: ../bsr/introduction.md
 [buf-gen-yaml]: ../configuration/v1/buf-gen-yaml.md
+[git]: ../reference/inputs.md#git
 [input]: ../reference/inputs.md
+[module]: ../bsr/overview.md#modules
 [petapis]: https://buf.build/acme/petapis
