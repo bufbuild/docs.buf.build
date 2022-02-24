@@ -56,7 +56,7 @@ version: v1
 
 Here's a one-liner for that:
 
-```sh
+```terminal
 $ cat <(echo version: v1) buf.yaml > buf.yaml.tmp && mv buf.yaml.tmp buf.yaml
 ```
 

@@ -17,9 +17,9 @@ generation workflow to two steps:
 You won't need to generate any code locally at this stage, so you can remove the `buf.gen.yaml` as
 well as the generated code in the `gen` directory:
 
-```terminal
-$ rm buf.gen.yaml
-$ rm -rf gen
+```sh
+rm buf.gen.yaml
+rm -rf gen
 ```
 
 As expected, if you try to recompile your Go program, you'll notice a compilation error:

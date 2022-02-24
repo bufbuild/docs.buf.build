@@ -23,7 +23,7 @@ Failure: pet/v1/pet.proto:5:8:payment/v1alpha1/payment.proto: does not exist.
 
 This is a bit puzzling because you can successfully build the module locally:
 
-```
+```terminal
 $ buf build
 ```
 

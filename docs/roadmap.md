@@ -28,7 +28,7 @@ generated code for:
 
 All via a `go` command that results in a Go module:
 
-```sh
+```terminal
 $ go get go.buf.build/grpc/go/acme/weather
 ```
 

@@ -193,7 +193,7 @@ You should end up with this structure:
   ]}>
   <TabItem value="go">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -207,7 +207,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="javascript">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -221,7 +221,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="python">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -235,7 +235,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="ruby">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -249,7 +249,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="java">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen

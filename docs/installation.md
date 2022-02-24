@@ -22,8 +22,8 @@ import DownloadButton, {mac, linux, windows} from '@site/src/components/Download
 
 You can install `buf` on macOS or Linux using [Homebrew](https://brew.sh):
 
-```sh
-brew install bufbuild/buf/buf
+```terminal
+$ brew install bufbuild/buf/buf
 ```
 
 This installs:
@@ -139,8 +139,9 @@ you to use `buf` as part of your Docker workflow.
 
 For example, you can run `buf lint` with this command:
 
-```sh
+```terminal
 $ docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
+---
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
 ```
 
