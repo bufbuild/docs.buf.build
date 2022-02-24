@@ -24,7 +24,7 @@ To get started, create a [module](../bsr/overview.md#modules) by adding a
 [`buf.yaml`](../configuration/v1/buf-yaml.md) file to the root of the directory that contains your
 Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
-```sh
+```terminal
 $ buf mod init
 ```
 
@@ -69,7 +69,7 @@ see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 Run this to generate from the [input](../reference/inputs.md) in your current directory:
 
-```sh
+```terminal
 $ buf generate
 ```
 
@@ -77,7 +77,7 @@ You can also run `buf generate` on an input by specifying the filepath to the
 directory containing the root of your `.proto` definitions. For example if all of
 your `.proto` files are in directory `foo`:
 
-```sh
+```terminal
 $ buf generate foo
 ```
 
@@ -98,7 +98,7 @@ acme/pet/v1/pet.proto:5:8:acme/payment/v1alpha1/payment.proto: does not exist
 
 Generate output can also be printed as JSON:
 
-```sh
+```terminal
 $ buf generate --error-format=json
 ---
 {"path":"acme/pet/v1/pet.proto","start_line":5,"start_column":8,"end_line":5,"end_column":8,"type":"COMPILE","message":"acme/payment/v1alpha1/payment.proto: does not exist"}
@@ -172,7 +172,7 @@ integration - it is better to let `buf` discover all files under management and 
 
 If you only want to generate stubs for a subset of your input, you can do so via the `--path` flag:
 
-```sh
+```terminal
 # Only generate for the files in the directories proto/foo and proto/bar
 $ buf generate --path proto/foo --path proto/bar
 
@@ -188,7 +188,7 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml --pa
 Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables you to
 use `buf` as part of your Docker workflow. For example:
 
-```sh
+```terminal
 $ docker run \
   --volume "$(pwd):/workspace" \
   --workdir /workspace \
