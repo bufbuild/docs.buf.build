@@ -6,15 +6,9 @@ title: 13 Use managed mode
 In this section, you'll learn how to use [**managed mode**](../generate/managed-mode.md) when
 [generating code](generate-code.md) using Protobuf. Managed mode is a configuration option in your
 [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) that tells `buf` to set all of the [file
-options] in your module according to an opinionated set of values. Buf currently offers Managed Mode
-options for these languages:
-
-* [C++](/generate/managed-mode.md#cc_enable_arenas)
-* [Java](/generate/managed-mode.md#java_multiple_files)
-* [Go](/generate/managed-mode.md#go_package_prefix) (you'll use these options here)
-
-With Managed Mode, file options are written on the fly, which means that you can remove them from
-your `.proto` source files.
+options] in your module according to an opinionated set of values suitable for each of the
+supported Protobuf languages, such as Go, Java, and C#. Those file options are written *on the fly*
+so that you can remove them from your `.proto` source files.
 
 > We created managed mode because those file options have long been a source of confusion and
 > frustration for Protobuf users.
