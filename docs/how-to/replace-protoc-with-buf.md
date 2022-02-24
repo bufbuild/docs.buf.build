@@ -1,6 +1,6 @@
 ---
 id: replace-protoc-with-buf
-title: Replace protoc With buf
+title: Replace protoc with buf
 ---
 
 The `buf` CLI acts as a build system for all your `.proto` compilation and
@@ -52,12 +52,12 @@ and `validate/validate.proto`, respectively.
 
 The placement of the `buf.yaml` is analogous to a `protoc` include (`-I`) path. **With `buf`,
 there is no `-I` flag** - each `protoc` `-I` path maps to a directory that contains a `buf.yaml`
-(called a [module](../bsr/overview.md#module) in Buf parlance), and multiple modules are stitched
+(called a [module](../bsr/overview.md#modules) in Buf parlance), and multiple modules are stitched
 together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which defines a
 [workspace](../reference/workspaces.md).
 
-The example shown above can be adapted to `buf` by adding a `buf.yaml` to each of the `-I` directories,
-and by creating a `buf.work.yaml` that specifies both directories like so:
+The example shown above can be adapted to `buf` by adding a `buf.yaml` config file to each of the
+`-I` directories and creating a `buf.work.yaml` that specifies both directories:
 
 ```sh
 .
@@ -105,7 +105,7 @@ breaking:
 The default `buf.yaml` configuration files shown above are created with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 With this, you can verify that the workspace compiles with this command:
@@ -122,10 +122,9 @@ The `buf build` command:
   - Compiles all Protobuf files.
   - Outputs the compiled result to a configurable location (defaults to `/dev/null`)
 
-> The `buf.yaml` files aren't actually required in this case. You can simply run `buf build`
-> without the `buf.yaml` configuration files and `buf` treats each directory specified
-> in the `buf.work.yaml` as a module by default. However, defining a `buf.yaml` is strongly
-> recommended.
+> The `buf.yaml` files aren't actually required in this case. You can run `buf build` without the
+> `buf.yaml` configuration files and `buf` treats each directory specified in the `buf.work.yaml` as
+> a module by default. We do, however, strongly recommend defining a `buf.yaml`file.
 
 Now that we've migrated the file layout to `buf`, we can simplify the `protoc` invocation used to
 generate Go/gRPC code with this [`buf.gen.yaml`](../configuration/v1/buf-work-yaml.md) template:
@@ -169,8 +168,8 @@ With this, you can generate the Go/gRPC client and server stubs with this comman
 $ buf generate
 ```
 
-Most users only need a single `buf.gen.yaml` code generation template. However, if your project
-has more complex code generation requirements you can use the `--template` flag to use more than
+Most users only need a single `buf.gen.yaml` code generation template. If your project
+has more complex code generation requirement, however, you can use the `--template` flag to use more than
 one `buf.gen.yaml` templates.
 
 For example, if you need different `buf.gen.yaml` configurations for your *public* and *private* API

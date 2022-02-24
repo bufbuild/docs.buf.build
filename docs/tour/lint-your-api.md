@@ -37,7 +37,7 @@ $ buf lint --error-format=json
 {"path":"pet/v1/pet.proto","start_line":49,"start_column":9,"end_line":49,"end_column":17,"type":"SERVICE_SUFFIX","message":"Service name \"PetStore\" should be suffixed with \"Service\"."}
 ```
 
-## 3.1 Lint Exceptions {#lint-exceptions}
+## 3.1 Lint exceptions {#lint-exceptions}
 
 The [`DEFAULT`](/lint/rules#default) lint category failures come from these rules:
 
@@ -86,7 +86,7 @@ the lint failures. You can restore the `buf.yaml` to its previous state with the
      - FILE
 ```
 
-## 3.2 Fix Lint Failures {#fix-lint-failures}
+## 3.2 Fix lint failures {#fix-lint-failures}
 
 Start by fixing the lint failures for the `pet/v1/pet.proto` file, which stem from the `FIELD_LOWER_SNAKE_CASE`
 and `SERVICE_SUFFIX` rules. `buf` indicates exactly what you need to change to fix the errors, so you can
@@ -124,7 +124,7 @@ $ buf lint
 google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
 ```
 
-## 3.3 Ignore Lint Failures {#ignore-lint-failures}
+## 3.3 Ignore lint failures {#ignore-lint-failures}
 
 The `google/type/datetime.proto` isn't actually a file in your local project. Instead, it's one of your
 dependencies, provided by [googleapis](https://buf.build/googleapis/googleapis), so you can't change its
@@ -159,7 +159,7 @@ lint:
 
 In this case, you don't own the `google/type/datetime.proto` file, so it's best to `ignore` it altogether.
 
-## 3.4 Remote Inputs {#remote-inputs}
+## 3.4 Remote inputs {#remote-inputs}
 
 The `buf lint` command also works with remote inputs, using the local `buf.yaml` configuration. For example, you can see all
 the original lint failures if you reference a `tar.gz` archive from the `main` branch:

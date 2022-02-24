@@ -1,10 +1,10 @@
 ---
 id: push-a-module
-title: 7 Push a Module
+title: 7 Push a module
 ---
 
 Now that you've authenticated with the [BSR](../bsr/overview.md), you can create a
-repository and push a [module](../bsr/overview.md#module) that defines the
+repository and push a [module](../bsr/overview.md#modules) that defines the
 `PetStoreService` API.
 
 ## 7.1 Terminology {#terminology}
@@ -25,7 +25,7 @@ version is identified by a commit and (optionally) a tag.
 While roughly analogous to Git repositories, a BSR repository is only a remote location - there is
 no concept of a repository "clone". In other words, repositories do not exist in multiple locations.
 
-### 7.1.3 Module Names {#module-names}
+### 7.1.3 Module names {#module-names}
 
 A module has a `name` and three other components:
 
@@ -41,7 +41,7 @@ Name | Remote | Owner | Repository
 `buf.build/acme/weather` | `buf.build` | `acme` | `weather`
 `my-private-bsr.io/omnicorp/biz` | `my-private-bsr.io` | `omnicorp` | `biz`
 
-## 7.2 Create a Repository {#create-a-repository}
+## 7.2 Create a repository {#create-a-repository}
 
 Create a new `petapis` repository for your module with this command:
 
@@ -73,7 +73,7 @@ Update your `buf.yaml` so that its `name` matches the repository you just create
      - FILE
 ```
 
-## 7.4 Push the Module {#push-the-module}
+## 7.4 Push the module {#push-the-module}
 
 Push the module to the `buf.build/$BUF_USER/petapis` repository with this command (in the
 `petapis` directory containing your `buf.yaml`):

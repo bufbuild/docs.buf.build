@@ -1,9 +1,9 @@
 ---
 id: iterate-on-modules
-title: Iterate on Modules
+title: Iterate on modules
 ---
 
-> For a comprehensive guide on working with [modules](../bsr/overview.md#module) and the Buf
+> For a comprehensive guide on working with [modules](../bsr/overview.md#modules) and the Buf
 > Schema Registry ([BSR](../bsr/overview.md)), please check out [the tour](../tour/introduction.md)!
 
 As requirements change, you'll inevitably need to evolve your Protobuf APIs,
@@ -14,7 +14,7 @@ locally before pushing a new version to the BSR.
 
 This guide assumes that you've used and/or familiarized yourself with these topics:
 
-  - [Modules](../bsr/overview.md#module)
+  - [Modules](../bsr/overview.md#modules)
   - [BSR](../bsr/overview.md)
   - [Workspaces](../reference/workspaces.md)
 
@@ -56,21 +56,23 @@ with the `buf mod update` command. This command resolves the latest commit on th
 and updates the contents of your module's [`buf.lock`](../configuration/v1/buf-lock.md).
 
 For example, if a [`buf.yaml`](../configuration/v1/buf-yaml.md) is in the current directory,
-updating your dependencies to their latest version is as simple as:
+you can update your dependencies with this command:
 
 ```sh
 $ buf mod update
 ```
 
 When your dependencies conform to `buf`'s default [lint](../lint/rules.md) and [breaking](../breaking/rules.md) rules,
-updating is straightforward. However, despite `buf`'s best effort, dependencies might make changes that can break
+updating is straightforward. Despite `buf`'s best efforts, however, dependencies sometimes undergo changes that can break
 compatibility, so you might encounter errors when you try to `buf push` a new version of your module to the BSR.
 
-With that said, we encourage you to validate compatibility with `buf build` after any call to `buf mod update`
-like so:
+We encourage you to validate compatibility with `buf build` after any call to `buf mod update`:
 
 ```sh
+# Update dependencies
 $ buf mod update
+
+# Verify that nothing has broken
 $ buf build
 ```
 
@@ -79,7 +81,7 @@ $ buf build
 As you develop `buf` modules, you might find yourself in a situation where you own multiple modules
 that depend on each other. When you want to make a change to one of your modules, you normally need
 to push the update up to the BSR so that the other module can update its dependency and use it
-locally. This workflow incurs a frustrating feedback loop, and invites more opportunities for simple
+locally. This workflow imposes a frustrating feedback loop and invites more opportunities for
 mistakes in each pushed module commit.
 
 The `buf` module [workspace](../reference/workspaces.md) was created to solve exactly this problem (and more).
@@ -116,7 +118,8 @@ version: v1
 name: buf.build/acme/paymentapis
 ```
 
-You can add a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file in their parent directory like so:
+You can add a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file in the parent directory.
+Here's an example directory structure:
 
 ```sh
 .

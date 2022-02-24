@@ -13,7 +13,7 @@ $ buf registry login
 
 Follow the prompts to enter your username and password (API Token). This adds an entry into your `$HOME/.netrc` (Linux or macOS) or `%HOME%/_netrc` (Windows).
 
-## Push a Module
+## Push a module
 
 The only requirement to push to the BSR is to have a module that [builds](../build/usage.md)
 successfully, meaning that you should be able to run `buf build` successfully on your module.
@@ -80,7 +80,7 @@ Sure you can have CI workflows to automatically catch compilation errors, but by
 
 That's it. This module can now be consumed as a first class dependency and its [generated documentation](documentation.md) can be viewed on the BSR.
 
-## Add a Dependency
+## Add a dependency
 
 If, for example, you are using one of the files from the [googleapis](https://github.com/googleapis/googleapis) repository in your Protobuf files, and you're having to copy files into your local Protobuf generation tree, you can instead use `buf` to manage this dependency for you.
 
@@ -156,9 +156,9 @@ This generates C++ and Java code in the local `/gen/proto/{cpp,java}` directorie
 
 ### Remote code generation
 
-If you don't want to manage plugins and generate code manually, and instead would prefer to simply consume generated code, check out the experimental [Remote Code Generation](../bsr/remote-generation/overview.md) section.
+If you don't want to manage plugins and generate code manually and would prefer to simply consume generated code, check out the [remote code generation](../bsr/remote-generation/overview.md) feature, which is currently in **alpha**.
 
-### Deprecate or Undeprecate a Repository
+### Deprecate or undeprecate a repository
 
 BSR repositories can be deprecated. `buf` warns you when you run `buf mod update` on a module that depends on a 
 deprecated repository.

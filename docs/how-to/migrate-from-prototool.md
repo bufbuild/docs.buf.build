@@ -3,20 +3,20 @@ id: migrate-from-prototool
 title: Migrate From Prototool
 ---
 
-[Prototool](https://github.com/uber/prototool) is a widely-used Protobuf tool that has a builder,
+[Prototool](https://github.com/uber/prototool) is a widely used Protobuf tool that has a builder,
 linter, formatter, breaking change detector, gRPC CLI, and configurable plugin executor.
 
 In this document, we'll discuss the pros and cons of Prototool vs `buf`'s build, lint
 and breaking change detection functionality, as well as `buf`-equivalent commands
 and migration.
 
-## Prototool Pros
+## Prototool pros
 
 - Prototool has a formatter via `prototool format`. `buf` does not have a formatter as of
   now, but one may exist in the near future. The short is that Protobuf linters that exist
   today either rely on third-party Protobuf parsers (as Prototool does), which can result in
-  corrupt files, or on FileDescriptorSets, which are lossy. However, if you're willing to assume
-  the risks, this is functionality that Prototool has that `buf` does not.
+  corrupt files, or on `FileDescriptorSet`s, which are lossy. If you're willing to assume the risks,
+  however, this is functionality that Prototool has that `buf` does not.
 - Prototool has gRPC CLI functionality via `prototool grpc`. This functionality
   roughly models parts of [grpcurl](https://github.com/fullstorydev/grpcurl) but with
   fewer available features. We think gRPC CLI functionality is better left to gRPC-specific
@@ -30,7 +30,7 @@ and migration.
   do not have plans to provide such functionality.
 
 
-## Prototool Cons
+## Prototool cons
 
 - By far the biggest con of Prototool is that it both uses a third-party Protobuf parser
   that is not tested to cover every edge case of the Protobuf grammar, while additionally shelling
@@ -75,7 +75,7 @@ and migration.
   breaking changes. Within these categories, you can go further and enable or
   disable individual rules through configuration. Prototool effectively only
   checks per-package generated stub breaking changes.
-- Prototool does not cover all possible issues per the FileDescriptorSet definition
+- Prototool does not cover all possible issues per the `FileDescriptorSet` definition
   of what is a breaking change, even for per-package generated stub breaking changes.
 - `buf` provides `file:line:column:message` references for breaking change violations,
   letting you know where a violation occurred, including potentially integrating this
@@ -83,7 +83,7 @@ and migration.
   if types move across files between versions of your Protobuf schema. The error output
   can be outputted as text or JSON, with other formats coming in the future.
   Prototool prints out unreferenced messages.
-- Since `buf` can process FileDescriptorSets as input, `buf` provides
+- Since `buf` can process `FileDescriptorSet`s as input, `buf` provides
   `protoc` plugins [protoc-gen-buf-lint](../lint/protoc-plugin.md) and
   [protoc-gen-buf-breaking](../breaking/protoc-plugin.md) to allow you to use `buf`'s
   lint breaking change detection functionality with your current `protoc` setup.
@@ -115,7 +115,7 @@ lint:
     - PACKAGE_LOWER_SNAKE_CASE
 ```
 
-However, we recommend using one of the "top-level categories" `MINIMAL`, `BASIC`, or
+But we recommend using one of the "top-level categories" `MINIMAL`, `BASIC`, or
 `DEFAULT` instead. See the [lint rules](../lint/rules.md) documentation for more
 details.
 
@@ -245,17 +245,17 @@ default location for a plugin template is [`buf.gen.yaml`](../configuration/v1/b
 
 There is no equivalent in `buf`.
 
-The command `prototool all` runs formatting and linting at once. It doesn't present
-an easy manner to extend what the definition of "all" means, for example breaking
+The command `prototool all` runs formatting and linting at once but it doesn't present
+a straightforward way to extend what the definition of "all" means, for example breaking
 change detection. Since `buf` is relatively fast in its various functionality (for example,
 compiling and linting all 2,311 files in [googleapis](https://github.com/googleapis/googleapis)
 takes about 0.8s with `buf`), we feel that it is better to run multiple commands for the
 functionality you want to perform.
 
-### `prototool break check --git-branch master`
+### `prototool break check --git-branch main`
 
 ```sh
-$ buf breaking --against '.git#branch=master'
+$ buf breaking --against '.git#branch=main'
 $ buf breaking --against '.git#tag=v1.0.0'
 ```
 
@@ -301,8 +301,8 @@ There is no equivalent in `buf`.
 $ buf build --exclude-imports --exclude-source-info -o -
 ```
 
-This writes a binary [Image](../reference/images.md) to stdout. While Images are wire-compatible with
-FileDescriptorSets, you can strip the extra metadata with the `--as-file-descriptor-set` flag. If you want to write
+This writes a binary [Buf image](../reference/images.md) to stdout. While images are wire compatible with
+`FileDescriptorSet`s, you can strip the extra metadata with the `--as-file-descriptor-set` flag. If you want to write
 to a file, specify the file path for `-o` instead of `-`.
 
 ### `prototool files`
@@ -331,7 +331,7 @@ There is no equivalent in `buf`.
 
 `buf` does not have gRPC functionality, as discussed above. We recommend using
 [grpcurl](https://github.com/fullstorydev/grpcurl) instead. See the [gRPC](grpc.md)
-documentation for details on how to use FileDescriptorSets produced by `buf` for
+documentation for details on how to use `FileDescriptorSet`s produced by `buf` for
 `grpcurl` input.
 
 ### `prototool lint`
@@ -345,13 +345,13 @@ Prototool's `--json` flag can be replaced with `--error-format=json` with `buf`.
 ### `prototool lint --list-linters`
 
 ```sh
-$ buf config ls-lint-rules
+$ buf mod ls-lint-rules
 ```
 
 ### `prototool lint --list-all-linters`
 
 ```sh
-$ buf config ls-lint-rules --all
+$ buf mod ls-lint-rules --all
 ```
 
 ### `prototool version`

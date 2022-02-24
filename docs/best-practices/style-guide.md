@@ -1,6 +1,6 @@
 ---
 id: style-guide
-title: Style Guide
+title: Style guide
 ---
 
 This is our Style Guide for Protobuf.
@@ -22,14 +22,14 @@ their individual APIs.
 
 ## Requirements
 
-### Files and Packages
+### Files and packages
 
 All files should have a package defined. [(Why?)](../lint/rules.md#package_defined)
 
 All files of the same package should be in the same directory. All files should
 be in a directory that matches their package name. [(Why?)](../lint/rules.md#why)
 
-For example, if we have a [module](../bsr/overview.md#module) defined in the `proto` directory, we
+For example, if we have a [module](../bsr/overview.md#modules) defined in the `proto` directory, we
 expect these `package` values:
 
 ```sh
@@ -144,7 +144,7 @@ Use `//` instead of `/* */` for comments.
 Over-document, and use complete sentences for comments. Put documentation above
 the type, instead of inline.
 
-Avoid widely-used keywords for all types, especially packages. For example, if your
+Avoid widely used keywords for all types, especially packages. For example, if your
 package name is `foo.internal.bar`, the `internal` component blocks importing
 the generated stubs in other packages for Golang.
 

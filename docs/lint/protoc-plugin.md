@@ -1,6 +1,6 @@
 ---
 id: protoc-plugin
-title: Protoc Plugin
+title: protoc plugin
 ---
 
 Buf ships a binary `protoc-gen-buf-lint` that performs the lint functionality as a `protoc`

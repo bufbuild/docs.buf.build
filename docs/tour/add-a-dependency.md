@@ -1,6 +1,6 @@
 ---
 id: add-a-dependency
-title: 9 Add a Dependency
+title: 9 Add a dependency
 ---
 
 Without the [BSR](../bsr/overview.md), you can only depend on other Protobuf APIs by manually
@@ -13,7 +13,7 @@ Even worse, this way of managing dependencies is prone to API drift, where the `
 code may evolve over time, leaving your local copies inconsistent with the latest version and your
 modules thus out of date. It turns out that this is exactly what you did with the `PetStoreService`:
 the `google/type/datetime.proto` file is actually present in your local directory and currently
-used to build your [module](../bsr/overview.md#module).
+used to build your [module](../bsr/overview.md#modules).
 
 Now that you're familiar with the BSR, you can simplify this entire workflow immensely.
 
@@ -125,7 +125,7 @@ the imports required to build your module. **You don't have to manually copy `.p
 
 You can pin to a specific tag or commit by specifying it in your `deps` after the `:` delimiter. For example,
 if you want to depend on the same commit you resolved above and prevent `buf` from updating it in the future,
-you can specify it like so:
+you can specify it like this:
 
 ```yaml title="buf.yaml" {3-4}
  version: v1
@@ -141,7 +141,7 @@ you can specify it like so:
 ```
 
 This is **not recommended** in general since you should _always_ be able to update to the latest version of
-your dependencies if they remain backwards compatible. However, in some situations it is unavoidable.
+your dependencies if they remain backwards compatible. But in some situations it's unavoidable.
 With that said, restore the `buf.yaml` file to its previous state before you continue:
 
 ```yaml title="buf.yaml" {3-4}

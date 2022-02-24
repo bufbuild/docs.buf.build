@@ -31,9 +31,9 @@ a human representation and is not actual configuration.
 - `UNARY_RPC`
 - `OTHER`
 
-## Style Guide
+## Style guide
 
-Our [Style Guide](../../best-practices/style-guide.md) provides a concise document that
+Our [style guide](../../best-practices/style-guide.md) provides a concise document that
 effectively includes all rules in the `DEFAULT` category, as well as additional
 recommendations that are not enforced. We provide this for ease of consumption across
 your various teams, while linking back to this document for rationale for individual
@@ -404,7 +404,7 @@ the message name of RPC request/responses, and that all request/responses are un
 a unique request and response message for every RPC.** Separate RPCs should not have their
 request and response parameters controlled by the same Protobuf message, and if you share
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
-when fields on this Protobuf message change. **Even in simple cases**, best practice
+when fields on this Protobuf message change. **Even in straightforward cases**, best practice
 is to always have a wrapper message for your RPC request and response types. Buf enforces
 this with these three rules by verifying that:
 
@@ -454,8 +454,8 @@ foo.bar.v1testfoo
 ```
 
 One of the core promises of Protobuf API development is to never have breaking changes
-in your APIs, and Buf helps enforce this through the [breaking change detector](../../breaking/overview.md). However,
-there are scenarios where you do want to properly version your API. Instead of making changes, the
+in your APIs, and Buf helps enforce this through the [breaking change detector](../../breaking/overview.md).
+There are scenarios, however, where you do want to properly version your API. Instead of making changes, the
 proper method to do so is to make a completely new Protobuf package that is a copy of your existing
 Protobuf package, serve both packages server-side, and manually migrate your callers. This rule
 enforces that all packages have a version attached so that it is clear when a package represents

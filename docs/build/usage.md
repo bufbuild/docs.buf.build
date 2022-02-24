@@ -45,11 +45,11 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 
 ## Define a Module
 
-To get started, create a [module](../bsr/overview.md#module) by adding a `buf.yaml` file to the root of the directory
+To get started, create a [module](../bsr/overview.md#modules) by adding a `buf.yaml` file to the root of the directory
 that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"
@@ -62,7 +62,7 @@ breaking:
     - FILE
 ```
 
-## Modules and Workspaces
+## Modules and workspaces
 
 For those of you that have used `protoc`, the placement of the `buf.yaml` is analogous to a `protoc`
 include (`-I`) path. **With `buf`, there is no `-I` flag** - each `protoc` `-I` path maps to a directory
@@ -186,7 +186,7 @@ Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't
 ## Run build
 
 You can run `buf build` on your module by specifying the filepath to the directory containing the
-`buf.yaml`. In the above example, you can target the module defined in the current directory like so:
+`buf.yaml` configuration file. To target the module defined in the current directory:
 
 ```sh
 $ buf build
@@ -216,11 +216,11 @@ $ buf build --error-format=json
 
 ## Output format
 
-By default, `buf build` outputs the its result to `/dev/null`. In this case, it's common to use
+By default, `buf build` outputs its result to `/dev/null`. In this case, it's common to use
 `buf build` as a validation step, analogous to checking if the input compiles.
 
-However, `buf build` also supports outputting [FileDescriptorSets](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
-and [Images](../reference/images.md), which is Buf's custom extension of the FileDescriptorSet. Better yet, these outputs
+`buf build` also supports outputting [`FileDescriptorSet`s](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto)
+and [Images](../reference/images.md), which is Buf's custom extension of the `FileDescriptorSet`. Better yet, these outputs
 can be formatted in a variety of ways.
 
 `buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
@@ -257,15 +257,15 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 "google.ads.googleads.v2.errors"
 ```
 
-Images always include the `ImageExtension` field. However, if you want a pure FileDescriptorSet without
-this field set, to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag like so:
+Images always include the `ImageExtension` field. But if you want a pure `FileDescriptorSet` without
+this field set, and thus to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag:
 
 ```sh
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
 The `ImageExtension` field doesn't affect Protobuf plugins or any other operations, as they merely see this as an unknown
-field. However, we provide the option in case you want it.
+field. But we provide the option in case you want it.
 
 ## Limit to specific files
 
@@ -274,7 +274,8 @@ file or directory paths to build. This is an advanced feature intended to be use
 [Bazel](/build-systems/bazel.md) integration - it
 is better to let `buf` discover all files under management and handle this for you in general.
 
-The compiled result is limited to the given files if the `--path` flag is specified like so:
+The compiled result is limited to the given files if the `--path` flag is specified, as in this
+command:
 
 ```sh
 $ buf build --path path/to/foo.proto --path path/to/bar.proto
@@ -291,3 +292,5 @@ $ docker run \
   --workdir /workspace \
   bufbuild/buf build
 ```
+
+[filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto

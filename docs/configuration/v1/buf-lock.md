@@ -4,7 +4,7 @@ title: buf.lock
 ---
 
 If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it's be accompanied by a `buf.lock` file that contains your
-[module](../../bsr/overview.md#module)'s dependency manifest. This manifest represents a single, reproducible build of your module.
+[module](../../bsr/overview.md#modules)'s dependency manifest. This manifest represents a single, reproducible build of your module.
 
 You can create or update a `buf.lock` file for your module by running the `buf mod update` command. For
 example, suppose that we have this directory layout and `buf.lock` content for the `buf.build/acme/petapis`

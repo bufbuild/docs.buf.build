@@ -1,14 +1,14 @@
 ---
 id: push-workspace-modules
-title: 14 Push Workspace Modules
+title: 14 Push workspace modules
 ---
 
-[Workspaces](../reference/workspaces.md) make it easy to work with and modify multiple local
-[modules](../bsr/overview.md#module) at the same time. Once you're satisfied with your changes and
+[Workspaces](../reference/workspaces.md) enable you to work with and modify multiple local
+[modules](../bsr/overview.md#modules) at the same time. Once you're satisfied with your changes and
 are ready to push them to the [BSR](../bsr/overview.md), there are a few things you should
 keep in mind to make sure everything works as you expect.
 
-## 14.1 Try to Push {#try-to-push}
+## 14.1 Try to push {#try-to-push}
 
 You successfully generated Go/gRPC client and server stubs in a [previous
 step](/tour/generate-go-code.md), but if you try to push your `petapis` Protobuf module to the BSR
@@ -44,10 +44,10 @@ For the `PetStoreService`, here's the proper order for publishing updates:
 1. `paymentapis`
 1. `petapis`
 
-## 14.2 Push the `paymentapis` Module {#push-the-paymentapis-module}
+## 14.2 Push the `paymentapis` module {#push-the-paymentapis-module}
 
 You haven't made any changes to the `buf.build/googleapis/googleapis` module, so you don't need to
-push a new version of that module. However, you just introduced the
+push a new version of that module. But you just introduced the
 `buf.build/$BUF_USER/paymentapis` module, so you need to create the
 `buf.build/$BUF_USER/paymentapis` repository:
 
@@ -67,7 +67,7 @@ $ buf push
 2675d6a595ac4e0fb45cedc62edfc611
 ```
 
-## 14.3 Push the `petapis` Module {#push-the-petapis-module}
+## 14.3 Push the `petapis` module {#push-the-petapis-module}
 
 The `buf.build/$BUF_USER/paymentapis` repository now contains the same content you have locally, so
 you can add it as a dependency to the local `petapis` module:

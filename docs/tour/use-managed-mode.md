@@ -1,16 +1,16 @@
 ---
 id: use-managed-mode
-title: 13 Use Managed Mode
+title: 13 Use managed mode
 ---
 
-In this section, you'll learn how to use [**Managed Mode**](../generate/managed-mode.md) when
-[generating code](generate-code.md) using Protobuf. Managed Mode is a configuration option in your
+In this section, you'll learn how to use [**managed mode**](../generate/managed-mode.md) when
+[generating code](generate-code.md) using Protobuf. Managed mode is a configuration option in your
 [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) that tells `buf` to set all of the [file
 options] in your module according to an opinionated set of values suitable for each of the
 supported Protobuf languages, such as Go, Java, and C#. Those file options are written *on the fly*
 so that you can remove them from your `.proto` source files.
 
-> We created Managed Mode because those file options have long been a source of confusion and
+> We created managed mode because those file options have long been a source of confusion and
 > frustration for Protobuf users.
 
 ## 13.1 Remove `go_package` {#remove-go_package}
@@ -32,7 +32,7 @@ API definition in Protobuf. It's an API *consumer* concern, not an API *producer
 Different consumers may—and usually do—want to provide custom values for this option, especially
 when a set of Protobuf definitions has many different consumers.
 
-With Managed Mode, you can remove the `go_package` option altogether, as in these two diffs:
+With managed mode, you can remove the `go_package` option altogether, as in these two diffs:
 
 ```protobuf title="petapis/pet/v1/pet.proto" {5}
  syntax = "proto3";
@@ -67,12 +67,12 @@ See https://developers.google.com/protocol-buffers/docs/reference/go-generated#p
 ...
 ```
 
-This error comes up because you haven't yet enabled Managed Mode, but you'll see how to do that in
+This error comes up because you haven't yet enabled managed mode, but you'll see how to do that in
 the next section.
 
-## 13.2 Configure Managed Mode {#configure-managed-mode}
+## 13.2 Configure managed mode {#configure-managed-mode}
 
-To configure Managed Mode, add the [`managed.enabled`](/configuration/v1/buf-gen-yaml#enabled)
+To configure managed mode, add the [`managed.enabled`](/configuration/v1/buf-gen-yaml#enabled)
 option to your `buf.gen.yaml` template and set a package prefix with the
 [`managed`](/configuration/v1/buf-gen-yaml#go_package_prefix) parameter.
 
@@ -82,7 +82,7 @@ option to your `buf.gen.yaml` template and set a package prefix with the
 > the module.
 
 
-With **Managed Mode** you don't have to worry about this nuanced behavior. You can set the
+With managed mode you don't have to worry about this nuanced behavior. You can set the
 set the `go_package_prefix.default` value to the `name` in your `go.mod` joined with the `out` path
 configured for the `protoc-gen-go` plugin. In the example below, the module path
 (`github.com/bufbuild/buf-tour/petstore`) and the plugin output path (`gen/proto/go`) result in a
@@ -160,13 +160,13 @@ Unfortunately, the [`grpc-go`][grpc-go] library depends on [`go-genproto`][go-ge
 so the import paths must match for the Go stubs to interoperate and the `go_package` option
 **must** be preserved.
 
-## 13.4 Remove Modules from Managed Mode {#remove-modules-from-managed-mode}
+## 13.4 Remove modules from managed mode {#remove-modules-from-managed-mode}
 
 > This is a particularly rare edge case, which primarily applies to
 > `buf.build/googleapis/googleapis`. You shouldn't need to use the `except` key in general.
 
 You can fix these errors by _excluding_ the `buf.build/googleapis/googleapis` module from
-Managed Mode:
+managed mode:
 
 ```yaml title="buf.gen.yaml" {6-7}
  version: v1

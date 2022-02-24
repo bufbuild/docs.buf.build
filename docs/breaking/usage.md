@@ -8,12 +8,12 @@ title: Usage
 
 ## Define a module
 
-To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
+To get started, create a [module](../bsr/overview.md#modules) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
 file with this command:
 
 ```sh
-$ buf config init
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"
@@ -30,7 +30,7 @@ breaking:
 
 You can run `buf breaking` on your module by specifying the filepath to the directory containing the `buf.yaml`
 and choosing an [input](../reference/inputs.md) to compare it against. In the above example, you can target the
-input defined in the current directory, and compare it against the `main` `git` branch like so:
+input defined in the current directory and compare it against the `main` `git` branch:
 
 ```sh
 $ buf breaking --against '.git#branch=main'
@@ -153,7 +153,8 @@ feature intended to be used for editor or [Bazel](/build-systems/bazel.md) integ
 to let `buf` discover all files under management and handle this for you in general, especially when
 using the `FILE` category.
 
-Breaking change detection is limited to the given files if the `--path` flag is specified like so:
+Breaking change detection is limited to the given files if the `--path` flag is specified, as in
+this command:
 
 ```sh
 $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/to/bar.proto
@@ -185,20 +186,23 @@ archive.
 
 You should be able to copy/paste this into your terminal:
 
-```sh
+```terminal
 $ buf breaking \
   "https://github.com/googleapis/googleapis.git" \
   --against "https://github.com/googleapis/googleapis/archive/b89f7fa5e7cc64e9e38a59c97654616ad7b5932d.tar.gz#strip_components=1" \
   --config '{"breaking":{"use":["PACKAGE"]}}'
+---
 google/cloud/asset/v1/assets.proto:27:1:File option "cc_enable_arenas" changed from "false" to "true".
 ```
 
-To explicitly target the `main` branch, you can adapt the command like so:
+To explicitly target the `main` branch, you can adapt the command to include `branch=main` in the
+`git` input:
 
-```sh
+```terminal {2}
 $ buf breaking \
   "https://github.com/googleapis/googleapis.git#branch=main" \
   --against "https://github.com/googleapis/googleapis/archive/b89f7fa5e7cc64e9e38a59c97654616ad7b5932d.tar.gz#strip_components=1" \
   --config '{"breaking":{"use":["PACKAGE"]}}'
+---
 google/cloud/asset/v1/assets.proto:27:1:File option "cc_enable_arenas" changed from "false" to "true".
 ```

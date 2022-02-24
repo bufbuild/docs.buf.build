@@ -1,6 +1,6 @@
 ---
-id: login-to-the-bsr
-title: 6 Log in to the BSR
+id: log-into-the-bsr
+title: 6 Log into the BSR
 ---
 
 You've gone over many of the primary `buf` commands, so now you'll shift gears and learn how to use

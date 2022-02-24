@@ -3,7 +3,7 @@ id: buf-yaml
 title: buf.yaml
 ---
 
-The `buf.yaml` file defines a [module](../../bsr/overview.md#module), and is placed at the root of the Protobuf source files
+The `buf.yaml` file defines a [module](../../bsr/overview.md#modules), and is placed at the root of the Protobuf source files
 it defines. The placement of the `buf.yaml` configuration tells `buf` where to search for `.proto` files,
 and how to handle imports.
 
@@ -42,7 +42,7 @@ values are `v1beta1` and `v1`.
 
 ### `name`
 
-The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#module)
+The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#modules)
 and is directly associated with the repository that owns it.
 
 ### `deps`
@@ -183,8 +183,7 @@ package A;
 The `enum_zero_value_suffix` key is **optional**, and controls the behavior of the
 `ENUM_ZERO_VALUE_SUFFIX` lint rule. By default, this rule verifies that the zero value of all
 enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide](https://developers.google.com/protocol-buffers/docs/style#enums).
-However, organizations may have a different preferred suffix, for example `_NONE`, and this
-allows this to be set like so:
+But organizations may have a different preferred suffix, for example `_NONE`. To set that:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -222,8 +221,8 @@ recommend using this option in general**.
 #### `service_suffix`
 
 The `service_suffix` key is **optional**, and controls the behavior of the `SERVICE_SUFFIX` lint rule.
-By default, this rule verifies that all service names are suffixed with `Service`. However, organizations
-may have a different preferred suffix, for example `API`, and this allows this to be set like so:
+By default, this rule verifies that all service names are suffixed with `Service`. But organizations
+may have a different preferred suffix, for example `API`. To set that:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -336,4 +335,4 @@ For example, if this option is set, these packages are ignored:
 ## Reference
 
 If you prefer, you can create a new `buf.yaml` with the reference material described here commented in-line
-with the `buf config init --doc` command. Give it a try!
+with the `buf mod init --doc` command. Give it a try!

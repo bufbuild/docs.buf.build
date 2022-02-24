@@ -4,7 +4,7 @@ title: Introduction
 ---
 
 The tour introduces you to the `buf` CLI and the Buf Schema Registry ([BSR](../bsr/introduction.md)). Along the way, you
-will enforce lint standards, detect breaking changes, generate code, create a [module](../bsr/overview.md#module), manage a
+will enforce lint standards, detect breaking changes, generate code, create a [module](../bsr/overview.md#modules), manage a
 non-trivial dependency graph, and publish the module to the BSR so that it can be consumed by others. The tour takes
 approximately 20 minutes to complete.
 
@@ -16,8 +16,8 @@ $ buf build --help
 $ buf generate --help
 $ buf breaking --help
 $ buf lint --help
-$ buf config ls-breaking-rules --help
-$ buf config ls-lint-rules --help
+$ buf mod ls-breaking-rules --help
+$ buf mod ls-lint-rules --help
 $ buf ls-files --help
 ```
 
@@ -28,7 +28,7 @@ $ buf ls-files --help
  * Install [`buf`](../installation.md)
  * (Optional) [Editor Integration](../editor-integration.md)
 
-## Clone the Git Repository {#clone-the-git-repository}
+## Clone the Git repository {#clone-the-git-repository}
 
 First, clone the Git repository that contains the starter code for the `PetStore` service.
 From the development directory of your choice, run this command:

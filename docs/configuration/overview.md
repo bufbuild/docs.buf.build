@@ -11,22 +11,22 @@ the relevant `buf` configuration files for `v1` is shown below:
   * [`buf.gen.yaml`](v1/buf-gen-yaml.md)
   * [`buf.work.yaml`](v1/buf-work-yaml.md)
 
-## buf.yaml
+## `buf.yaml`
 
-The `buf.yaml` is used to define a [module](../bsr/overview.md#module). The `buf.yaml` is the primary configuration file,
+The `buf.yaml` is used to define a [module](../bsr/overview.md#modules). The `buf.yaml` is the primary configuration file,
 and is responsible for the module's name, the module's dependencies, as well as the module's `lint` and `breaking`
 configuration.
 
 For more on the `buf.yaml` file, refer to the [`buf.yaml`](v1/buf-yaml.md) page!
 
-## buf.lock
+## `buf.lock`
 
 The `buf.lock` file contains the module's dependency manifest, and represents a single, reproducible build
 of your module's dependencies.
 
 For more on the `buf.lock` file, refer to the [`buf.lock`](v1/buf-lock.md) page!
 
-## buf.gen.yaml
+## `buf.gen.yaml`
 
 The `buf.gen.yaml` file is used to define a **local generation template** that works directly with the `buf generate`
 command. In short, the `buf.gen.yaml` file is used to easily generate code with `protoc` plugins and simplifies
@@ -34,7 +34,7 @@ the `protoc` experience significantly.
 
 For more on the `buf.gen.yaml` file, refer to the [`buf.gen.yaml`](v1/buf-gen-yaml.md) page!
 
-## buf.work.yaml
+## `buf.work.yaml`
 
 The `buf.work.yaml` file is used to define a [workspace](../reference/workspaces.md), which is an advanced local development feature. In
 short, the `buf.work.yaml` file makes it possible to consolidate one or more modules into a single buildable unit.
@@ -70,7 +70,7 @@ via the command line, for example with [Bazel](/build-systems/bazel.md) integrat
 All commands have one or more `--.*config` flags that control this behavior. For example:
 
   * `buf build --config` specifies the config for the source input.
-  * `buf lint --config` specifies the config for the source or image input.
+  * `buf lint --config` specifies the config for the source or [Buf image](/reference/images) input.
   * `buf breaking --config` specifies the config for the source or image input.
   * `buf breaking --against-config` specifies the config for the source or image input to compare against.
 
@@ -82,7 +82,7 @@ The value of this flag is interpreted as follows:
 
 For example:
 
-```
+```sh
 # Read the JSON file foo/bar.json.
 $ buf lint --config foo/bar.json
 

@@ -3,14 +3,13 @@ id: introduction
 title: Introduction
 ---
 
-Buf's long-term goal is to enable [Schema-Driven Development](https://buf.build/blog/api-design-is-stuck-in-the-past): a future where APIs
-are defined consistently, in a way that service owners and clients can depend on.
+Buf's goal is to shift API development toward a [schema-driven paradigm](https://buf.build/blog/api-design-is-stuck-in-the-past) and thus pave the way for a future in which APIs are defined in a way that service owners and clients can depend on.
 
-Defining APIs using an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) provides a number of benefits over simply exposing JSON/REST
-services, and today, [Protobuf](https://developers.google.com/protocol-buffers) is the most stable, widely-adopted IDL in the industry. However, as it
-stands, using Protobuf is much more difficult than using JSON as your data transfer format.
+Defining APIs using an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) provides a number of benefits over simply exposing REST/JSON
+services, and today, [Protobuf](https://developers.google.com/protocol-buffers) is the most stable, widely adopted IDL in the industry. But as things
+stand today, using Protobuf is much more difficult than using JSON as your data transfer format.
 
-Buf is building tooling to make Protobuf reliable and easy to use for service owners and clients, while keeping it the obvious choice on the technical
+Buf is building tooling to make Protobuf reliable and user friendly for service owners and clients, while keeping it the obvious choice on the technical
 merits. Your organization should not have to reinvent the wheel to create, maintain, and consume Protobuf APIs efficiently and effectively. We'll handle
 your Protobuf management strategy for you, so you can focus on what matters.
 
@@ -18,7 +17,7 @@ your Protobuf management strategy for you, so you can focus on what matters.
 
 Traditionally, adopting Protobuf presents a number of challenges across the API lifecycle. These are the problems we aim to solve:
 
-  - **API designs are often inconsistent**: Writing maintainable, consistent Protobuf APIs isn't as widely understood as writing maintainable JSON/REST-based APIs.
+  - **API designs are often inconsistent**: Writing maintainable, consistent Protobuf APIs isn't as widely understood as writing maintainable REST/JSON-based APIs.
     With no standards enforcement, inconsistency can arise across an organization's Protobuf APIs, and design decisions can inadvertently affect your API's future
     iterability.
 
@@ -34,8 +33,8 @@ Traditionally, adopting Protobuf presents a number of challenges across the API 
     manner, organizations often struggle with distributing their Protobuf files and stubs. This creates substantial overhead, and often requires a dedicated team to manage
     the process. Even when using a build system like [Bazel](/build-systems/bazel.md), exposing APIs to external customers remains problematic.
 
-  - **The tooling ecosystem is limited**: Lots of easy-to-use tooling exists today for JSON/REST APIs. Mock server generation, fuzz testing, documentation, and other daily
-    API concerns are not widely standardized and easy to use for Protobuf APIs. As a result, teams regularly reinvent the wheel and build custom tooling to replicate the
+  - **The tooling ecosystem is limited**: Many user-friendly tools exist for REST/JSON APIs today. but mock server generation, fuzz testing, documentation, and other daily
+    API concerns are not widely standardized or user friendly for Protobuf APIs. As a result, teams regularly reinvent the wheel and build custom tooling to replicate the
     JSON ecosystem.
 
 ## Buf is building a modern Protobuf ecosystem
@@ -45,10 +44,10 @@ and infrastructure.
 
 ### The `buf` CLI
 
-The `buf` CLI is designed to be extremely simple to use, and helps you create consistent Protobuf APIs that preserve compatibility and comply with design best-practices.
+The `buf` CLI enables you to create consistent Protobuf APIs that preserve compatibility and comply with best practices.
 The tool is currently available on an open-source basis. The `buf` CLI incorporates these components to help you create consistent Protobuf APIs:
 
-- A newly-developed [high performance Protobuf compiler](build/internal-compiler.md).
+- A new developed [high-performance Protobuf compiler](build/internal-compiler.md).
 - A [linter](lint/overview.md) that enforces good API design choices and structure.
 - A [breaking change detector](breaking/overview.md) that enforces compatibility at the source code or wire level.
 - A [generator](generate/usage.md) that invokes your `protoc` plugins based on a configurable template.
