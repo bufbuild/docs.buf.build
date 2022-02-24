@@ -286,6 +286,8 @@ option objc_class_prefix = "AWX";
 option php_namespace = "Acme\\Weather\\V1";
 option php_metadata_namespace = "Acme\\Weather\\V1\\GPBMetadata";
 option ruby_package = "Acme::Weather::V1";
+
+// Messages, enums, service, etc.
 ```
 
 But with the `buf` CLI, you wouldn't ever _see_ this file. Those options would be written on the fly
