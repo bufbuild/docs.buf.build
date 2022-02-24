@@ -163,9 +163,9 @@ import "baz/baz.proto";
 
 Which file is being imported here? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
 on the order of the `-I` flags given to `protoc`, or (if `buf` didn't error in this scenario
-pre-compilation, which `buf` does) the order of the imports given to the internal compiler. If
-the authors are being honest, we can't remember if it's the first `-I` or second `-I` that wins -
-we have outlawed this in our own builds for a long time.
+pre-compilation, which `buf` does) the order of the imports given to the
+[internal compiler](../reference/internal-compiler.md). If the authors are being honest, we can't
+remember if it's the first `-I` or second `-I` that wins - we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
 have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
