@@ -25,7 +25,9 @@ Managed mode provides options for these languages:
 * [Ruby](#ruby)
 
 > If you're generating code for a language that isn't on this list, managed mode has no implications
-> and enabling it is likely to have no effect.
+> and enabling it has no effect. And if you're generating Swift code, Protobuf does offer a
+> [`swift_prefix`][swift_prefix] file option, but Apple specifically
+> [counsels against using it][apple-warning], so managed mode doesn't support it.
 
 ## Configuration
 
@@ -341,26 +343,28 @@ Different consumers may (and usually do) want different values for these options
 many different places. This gets especially bad with imports - anyone in Go who has had to specify long chains of `--go_opt=Mpath/to/foo.proto=github.com/pkg/foo`
 can attest to the severity of the situation.
 
+[apple-warning]: https://github.com/apple/swift-protobuf/blob/main/Documentation/API.md#generated-struct-name
 [buf-gen-yaml]: /configuration/v1/buf-gen-yaml.md
-[cc_enable_arenas]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L419
-[csharp_namespace]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L427
+[cc_enable_arenas]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L419
+[csharp_namespace]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L427
 [descriptor.go]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L341
-[file-options]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L341
+[file-options]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L341
 [generating]: ../generate/usage.md
 [go.import]: https://golang.org/ref/spec#ImportPath
 [go_opt]: https://developers.google.com/protocol-buffers/docs/reference/go-generated
-[go_package]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L391
+[go_package]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L391
 [hosted]: ../bsr/remote-generation/overview.md#hosted-plugins
 [input]: /reference/inputs.md
-[java_multiple_files]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L363
-[java_outer_classname]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L355
-[java_package]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L347
-[java_string_check_utf8]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L374
-[objc_class_prefix]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L424
-[optimize_for]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L384
+[java_multiple_files]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L363
+[java_outer_classname]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L355
+[java_package]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L347
+[java_string_check_utf8]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L374
+[objc_class_prefix]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L424
+[optimize_for]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L384
 [pascal]: https://techterms.com/definition/pascalcase
-[php_metadata_namespace]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L447
-[php_namespace]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L442
+[php_metadata_namespace]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L447
+[php_namespace]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L442
 [plugins]: /bsr/remote-generation/concepts#plugins
 [protoc]: https://github.com/protocolbuffers/protobuf
-[ruby_package]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L452
+[ruby_package]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L452
+[swift_prefix]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L433
