@@ -227,13 +227,13 @@ can be formatted in a variety of ways.
 
 `buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
 
-```sh
-buf build -o image.bin
-buf build -o image.bin.gz
-buf build -o image.bin.zst
-buf build -o image.json
-buf build -o image.json.gz
-buf build -o image.json.zst
+```terminal
+$ buf build -o image.bin
+$ buf build -o image.bin.gz
+$ buf build -o image.bin.zst
+$ buf build -o image.json
+$ buf build -o image.json.gz
+$ buf build -o image.json.zst
 ```
 
 The special value `-` is used to denote stdout, and you can manually set the format. For example:
