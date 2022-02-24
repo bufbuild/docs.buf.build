@@ -4,15 +4,15 @@ title: Managed mode
 ---
 
 Protobuf enables you to set [file options][file-options] in your `.proto` files that dictate aspects
-of how code is generated from those sources. Some file options are required by the [`protoc`][protoc]
+of how code is generated from those files. Some file options are required by the [`protoc`][protoc]
 compiler in some circumstances, such as [`go_package`](#go_package_prefix) when generating Go code.
 These options have been a pain point in Protobuf development for many years because they require API producers to set
 values that [don't really belong](#background) in API definitions.
 
 You can avoid setting these file options when [generating] code from Protobuf sources by enabling
 **managed mode** in your [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration file.
-When managed mode is [enabled](#enabled), the `buf` CLI sets some file options on the fly during
-code generation so that you don't need to hard-code them.
+When managed mode is [enabled](#enabled), the `buf` CLI sets specified file options on the fly during
+code generation so that you don't need to hard-code them in your `.proto` files.
 
 Managed mode provides options for these languages:
 
@@ -43,12 +43,11 @@ plugins:
 ```
 
 With `enabled` set to `true` here, you can remove any [Java](#java)-specific file options from the
-Protobuf files covered by this configuration. When you do that, the `buf` CLI injects those values
-on the fly instead.
+Protobuf files covered by this configuration and let the `buf` CLI inject those values on the fly
+instead.
 
-> Managed mode only supports the standard file options included in Protobuf by default and doesn't
-> cover options outside of this. If you're using custom file options, you'll need to include them in
-> your `.proto` files.
+> Managed mode only supports the standard file options included in Protobuf by default. If you're
+> using custom file options, you need to include them in your `.proto` files.
 
 ### `managed`
 
@@ -116,6 +115,8 @@ override:
 
 ### C++ {#cpp}
 
+If you're generating C++ code with managed mode enabled, there are two options that apply:
+
 #### `cc_enable_arenas`
 
 The `cc_enable_arenas` key is an **optional** Boolean that controls which [`cc_enable_arenas`][cc_enable_arenas]
@@ -128,9 +129,12 @@ You can set [`optimize_for`](#optimize_for) for C++ using managed mode.
 ### C# {#csharp}
 
 If you enable managed mode, [`csharp_namespace`][csharp_namespace] is set to the package name with
-each package sub-name capitalized.
+each package sub-name capitalized. This converts the `acme.weather.v1` package name, for example,
+to `Acme.Weather.V1`.
 
 ### Go
+
+If you're generating Go code with managed mode enabled, there are several options that apply:
 
 #### `go_package_prefix`
 
@@ -183,6 +187,8 @@ definitions from their public API definitions (as is the case for `buf`).
 
 ### Java
 
+If you're generating Java code with managed mode enabled, there are several options that apply:
+
 #### `optimize_for` {#optimize_for-java}
 
 You can set [`optimize_for`](#optimize_for) for Java using managed mode.
@@ -203,17 +209,19 @@ The default is `com`.
 
 If you enable managed mode, [`java_outer_classname`][java_outer_classname] is set to the
 [PascalCase][pascal]-equivalent of the file's name, removing the `.` from the `.proto` extension.
+This converts the `weather.proto` filename, for example, to `WeatherProto`.
 
 #### `java_string_check_utf8`
 
-The `java_string_check_utf8` key is an **optional** Boolean that controls the which
+The `java_string_check_utf8` key is an **optional** Boolean that controls which
 [`java_string_check_utf8`][java_string_check_utf8] value is used in all the files in the
 generation target [input]. The default is `false`.
 
 ### Objective-C
 
 For Objective-C, enabling managed mode means that [`objc_class_prefix`][objc_class_prefix] is set to
-the uppercase first letter of each package sub-name, not including the package version, with these rules:
+the uppercase first letter of each package sub-name, not including the package version,
+with these rules:
 
 * If the resulting abbreviation is 2 characters, `X` is added.
 * If the resulting abbreviation is 1 character, `XX` is added.
@@ -225,7 +233,7 @@ Managed mode would automatically convert the `acme.weather.v1` package name, for
 
 ### PHP
 
-If you enable managed mode and generate PHP code:
+If you're generating PHP code and you enable managed mode:
 
 * [`php_namespace`][php_namespace] is set to the package name with each package sub-name
   capitalized, with `\\` substituted for `.`. This would automatically convert the package name
@@ -236,14 +244,33 @@ If you enable managed mode and generate PHP code:
 
 ### Ruby
 
-If you enable managed mode, [`ruby_package`][ruby_package] is set to the package name with each
-package sub-name capitalized, with `::` substituted for `.`. This would automatically convert the
-`acme.weather.v1` package name, for example, to `Acme::Weather::V1`.
+If you're generating Ruby code and you enable managed mode, [`ruby_package`][ruby_package] is set to
+the package name with each package sub-name capitalized, with `::` substituted for `.`. This would
+automatically convert the `acme.weather.v1` package name, for example, to `Acme::Weather::V1`.
 
 ## Managed mode example {#example}
 
-To see how managed mode can change your Protobuf sources, take this `weather.proto` file as an
-example:
+To see how managed mode changes your Protobuf sources, take this initial `.proto` file:
+
+```protobuf title="acme/weather/v1/weather.proto"
+syntax = "proto3";
+
+package acme.weather.v1;
+
+// Messages, enums, service, etc.
+```
+
+Now take this configuration:
+
+```yaml title="buf.gen.yaml"
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/acme/weather/private/gen/proto/go
+```
+
+Applying the configuration to the initial file would yield this `.proto` file:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -261,7 +288,8 @@ option php_metadata_namespace = "Acme\\Weather\\V1\\GPBMetadata";
 option ruby_package = "Acme::Weather::V1";
 ```
 
-In this file, _nine_ language-specific options are set.
+But with the `buf` CLI, you wouldn't ever _see_ this file. Those options would be written on the fly
+and used as part of the generation process.
 
 ## Background
 
