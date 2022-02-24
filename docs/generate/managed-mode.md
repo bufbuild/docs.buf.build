@@ -195,9 +195,9 @@ target [input]. The default is `true`.
 
 #### `java_package_prefix`
 
-The `java_package_prefix` key is **optional**, and controls what the [`java_package`][java_package]
-prefix value is set to in all of the files contained within the generation target input. The default
-value is `com`.
+The `java_package_prefix` key is an **optional** string that controls which
+[`java_package`][java_package] prefix value is used in all the files in the generation target [input].
+The default is `com`.
 
 #### `java_outer_classname`
 
@@ -206,9 +206,9 @@ If you enable managed mode, [`java_outer_classname`][java_outer_classname] is se
 
 #### `java_string_check_utf8`
 
-The `java_string_check_utf8` key is **optional** and controls the value of
-[`java_string_check_utf8`][java_string_check_utf8] in all of the files contained within the
-generation target input. Accepted values are `false` and `true`, with `false` as the default.
+The `java_string_check_utf8` key is an **optional** Boolean that controls the which
+[`java_string_check_utf8`][java_string_check_utf8] value is used in all the files in the
+generation target [input]. The default is `false`.
 
 ### Objective-C
 
