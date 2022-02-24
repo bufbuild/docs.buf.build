@@ -5,14 +5,14 @@ title: Managed mode
 
 Protobuf enables you to set [file options][file-options] in your `.proto` files that dictate aspects
 of how code is generated from those sources. Some file options are required by the [`protoc`][protoc]
-compiler, such as [`go_package`](#go_package_prefix) when generating Go code. These options have
-been a pain point in Protobuf development for many years because they require API producers to set
+compiler in some circumstances, such as [`go_package`](#go_package_prefix) when generating Go code.
+These options have been a pain point in Protobuf development for many years because they require API producers to set
 values that [don't really belong](#background) in API definitions.
 
 You can avoid setting these file options when [generating] code from Protobuf sources by enabling
 **managed mode** in your [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) configuration file.
-When [enabled](#enabled), the `buf` CLI sets file options *on the fly* according to an opinionated
-set of values so that you no longer need to hard-code them.
+When managed mode is [enabled](#enabled), the `buf` CLI sets some file options on the fly during
+code generation so that you don't need to hard-code them.
 
 Managed mode provides options for these languages:
 
@@ -24,69 +24,74 @@ Managed mode provides options for these languages:
 * [PHP](#php)
 * [Ruby](#ruby)
 
-If you're generating code for a language that isn't on this list, managed mode has no implications
-and enabling it is likely to have no effect.
+> If you're generating code for a language that isn't on this list, managed mode has no implications
+> and enabling it is likely to have no effect.
 
 ## Configuration
 
-To enable managed mode, add the `managed.enabled` option to your [`buf.gen.yaml`][buf-gen-yaml]
-configuration. Here's an example configuration that uses the `protoc-gen-java` [plugin][plugins]:
+To enable managed mode, set the `managed.enabled` option in your [`buf.gen.yaml`][buf-gen-yaml]
+configuration. Here's an example configuration that uses a [hosted plugin][hosted] to generate
+Java code and write the resulting files to the `gen/proto/java` directory:
 
 ```yaml title="buf.gen.yaml"
 version: v1
 managed:
   enabled: true
 plugins:
-  - name: java
+  - remote: buf.build/protocolbuffers/plugins/java
     out: gen/proto/java
 ```
 
-With `enabled` set to `true`, you can remove [Java](#java)-specific file options from the Protobuf
-files covered by this configuration and let the `buf` CLI inject those values instead.
+With `enabled` set to `true` here, you can remove any [Java](#java)-specific file options from the
+Protobuf files covered by this configuration. When you do that, the `buf` CLI injects those values
+on the fly instead.
 
-
-> Managed mode only supports the standard file options included in Protobuf by default. It's impossible for `buf` to establish an opinion
-> for the custom options you might define, so such options still need to be checked into your Protobuf source files.
+> Managed mode only supports the standard file options included in Protobuf by default and doesn't
+> cover options outside of this. If you're using custom file options, you'll need to include them in
+> your `.proto` files.
 
 ### `managed`
 
-The `managed` key is used to configure managed mode. Here's a complete example of a `managed`
-configuration with the `protoc-gen-go` plugin:
+You can use the `managed` key to configure managed mode.
+
+Here's an example `buf.gen.yaml` configuration that uses managed mode plus [hosted plugins][hosted]
+to generate Go and Java code:
 
 ```yaml title="buf.gen.yaml"
 version: v1
 managed:
   enabled: true
-  optimize_for: CODE_SIZE # Applies to Java
-  override:
-    JAVA_PACKAGE:
-      acme/weather/v1/weather.proto: "org"
-  cc_enable_arenas: false
-  go_package_prefix:
-    default: github.com/acme/weather/private/gen/proto/go
-    except:
-      - buf.build/googleapis/googleapis
-    override:
-      buf.build/acme/weather: github.com/acme/weather/gen/proto/go
   java_multiple_files: false
   java_package_prefix: com
   java_string_check_utf8: false
+  go_package_prefix:
+    default: github.com/acme/weather/private/gen/proto/go
+      except:
+        - buf.build/googleapis/googleapis
+   override:
+    JAVA_PACKAGE:
+      acme/weather/v1/weather.proto: org
 plugins:
-  - name: go
+  - remote: buf.build/protocolbuffers/plugins/go
     out: gen/proto/go
     opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/plugins/java
+    out: gen/proto/java
 ```
+
+With this configuration, you could remove _all_ file options specific to [Go](#go) and [Java](#java)
+from your `.proto` files.
 
 #### `enabled`
 
-The `enabled` key is **required** if *any* other `managed` keys are set. Setting `enabled` equal to `true`
-enables managed mode according to [default behavior](#default-behavior).
+The `enabled` key is **required** if you set *any* other keys under `managed`. Setting `enabled`
+to `true` has a variety of implications for different [languages](#languages).
 
 #### `optimize_for`
 
-The `optimize_for` key is **optional** and dictates which [`optimize_for`][optimize_for] is applied
-in the Protobuf files covered by the configuration. The `optimize_for` setting applies to both
-[C++](#cpp) and [Java](#java) but may effect other plugins. Accepted values:
+The `optimize_for` key is **optional** and dictates which Protobuf [`optimize_for`][optimize_for]
+setting is applied to Protobuf files in the [input]. This setting applies to both
+[C++](#cpp) and [Java](#java) but may effect third-party plugins as well. Accepted values:
 
 Value | Description | Default
 :-----|:------------|:-------
@@ -94,10 +99,48 @@ Value | Description | Default
 `CODE_SIZE` | Generate minimal classes and instead rely on shared, reflection-based code for serialization, parsing, and other operations |
 `LITE_RUNTIME` | Generate classes that depend only on the "lite" Protobuf runtime |
 
+#### `override`
+
+This setting enables you to apply per-file overrides for any given setting. In the `buf.gen.yaml`
+[above](#managed), for example, the [`java_package_prefix`](#java_package_prefix) setting is
+set to `com` but overridden and set to `org` for the `acme/weather/v1/weather.proto` file and only
+that file:
+
+```yaml
+override:
+  JAVA_PACKAGE:
+    acme/weather/v1/weather.proto: org
+```
+
+## Languages
+
+### C++ {#cpp}
+
+#### `cc_enable_arenas`
+
+The `cc_enable_arenas` key is an **optional** Boolean that controls which [`cc_enable_arenas`][cc_enable_arenas]
+value is used in all files in the generation target [input]. The default is `false`.
+
+#### `optimize_for` {#optimize_for-cpp}
+
+You can set [`optimize_for`](#optimize_for) for C++ using managed mode.
+
+### C# {#csharp}
+
+If you enable managed mode, [`csharp_namespace`][csharp_namespace] is set to the package name with
+each package sub-name capitalized.
+
+### Go
+
+#### `go_package_prefix`
+
+The `go_package_prefix` key is **optional** and controls which [`go_package`][go_package]
+value is used in all the Protobuf files in the target [input].
+
 ##### `default`
 
-The `default` key is **required** if the `go_package_prefix` key is set. The `default` value is used as a prefix for the
-`go_package` value set in each of the files. The `default` value **must** be a relative filepath that **must not** jump context
+The `default` key is **required** if you set [`go_package_prefix`](#go_package_prefix). The `default`
+value is used as a prefix for the `go_package` value set in each of the files. The `default` value **must** be a relative filepath that **must not** jump context
 from the current directory, that is they must be subdirectories relative to the current working directory. As an example,
 `../external` is invalid.
 
@@ -138,16 +181,69 @@ This setting is used for [workspace](../reference/workspaces.md) environments, w
 you need to generate the Go code for each module in different directories. This is particularly relevant for repositories that decouple their private API
 definitions from their public API definitions (as is the case for `buf`).
 
-#### `override`
+### Java
 
-This is a list of per-file overrides for each modifier. In the example provided above, an override for `acme/weather/v1/weather.proto` is set for the `java_package_prefix`
-modifier to be `org` instead of `com`. This sets `org` as the package prefix for **only** the specific `acme/weather/v1/weather.proto` file and **not** for the rest of the module.
+#### `optimize_for` {#optimize_for-java}
+
+You can set [`optimize_for`](#optimize_for) for Java using managed mode.
+
+#### `java_multiple_files`
+
+The `java_multiple_files` key is an **optional** Boolean that controls which
+[`java_multiple_files`][java_multiple_files] value is used in all the files in the generation
+target [input]. The default is `true`.
+
+#### `java_package_prefix`
+
+The `java_package_prefix` key is **optional**, and controls what the [`java_package`][java_package]
+prefix value is set to in all of the files contained within the generation target input. The default
+value is `com`.
+
+#### `java_outer_classname`
+
+If you enable managed mode, [`java_outer_classname`][java_outer_classname] is set to the
+[PascalCase][pascal]-equivalent of the file's name, removing the `.` from the `.proto` extension.
+
+#### `java_string_check_utf8`
+
+The `java_string_check_utf8` key is **optional** and controls the value of
+[`java_string_check_utf8`][java_string_check_utf8] in all of the files contained within the
+generation target input. Accepted values are `false` and `true`, with `false` as the default.
+
+### Objective-C
+
+For Objective-C, enabling managed mode means that [`objc_class_prefix`][objc_class_prefix] is set to
+the uppercase first letter of each package sub-name, not including the package version, with these rules:
+
+* If the resulting abbreviation is 2 characters, `X` is added.
+* If the resulting abbreviation is 1 character, `XX` is added.
+* If the resulting abbreviation is `GPB`, it's changed to `GPX`, as `GPB` is reserved by Google for
+  the Protocol Buffers implementation.
+
+Managed mode would automatically convert the `acme.weather.v1` package name, for example, to
+`AWX`.
+
+### PHP
+
+If you enable managed mode and generate PHP code:
+
+* [`php_namespace`][php_namespace] is set to the package name with each package sub-name
+  capitalized, with `\\` substituted for `.`. This would automatically convert the package name
+  `acme.weather.v1`, for example, to `Acme\\Weather\\V1`.
+* [`php_metadata_namespace`][php_metadata_namespace] is set to the same value as `php_namespace`,
+  with `\\GPBMetadata` appended. This would automatically convert the package name `acme.weather.v1`,
+  for example, to `Acme\\Weather\\V1\\GPBMetadata`.
+
+### Ruby
+
+If you enable managed mode, [`ruby_package`][ruby_package] is set to the package name with each
+package sub-name capitalized, with `::` substituted for `.`. This would automatically convert the
+`acme.weather.v1` package name, for example, to `Acme::Weather::V1`.
 
 ## Managed mode example {#example}
 
-Take this `weather.proto` definition as an example:
-
-For example, enabling [managed mode](../generate/managed-mode.md) for the `acme/weather/v1/weather.proto` file sets its file options to this:
+To see how managed mode can change your Protobuf sources, take this `weather.proto` file as an
+example:
 
 ```protobuf title="acme/weather/v1/weather.proto"
 syntax = "proto3";
@@ -165,112 +261,7 @@ option php_metadata_namespace = "Acme\\Weather\\V1\\GPBMetadata";
 option ruby_package = "Acme::Weather::V1";
 ```
 
-Some options, such as [`cc_enable_arenas`][cc_enable_arenas] and [`optimize_for`][optimize_for]
-
-> Some options, such as `cc_enable_arenas` and `optimize_for`, are excluded from this list because
-> the Buf team agrees with the default values specified by [`google/protobuf/descriptor.go`][descriptor.go].
-> If you disagree with the default values, you can override these option values, which is described in the [next section](#file-option-overrides).
-
-## File option overrides
-
-You might find that several of the options set by managed mode are not what you want. This is particularly relevant for options that
-influence the content of the generated code, and are less focused on the generated package and/or file layout (such as `java_package`).
-For this reason, managed mode enables users override the values of several options, including `cc_enable_arenas`, `java_multiple_files`,
-`java_string_check_utf8`, and `optimize_for`.
-
-You can configure each of these options under the `managed` key like this:
-
-```yaml title="buf.gen.yaml"
-version: v1
-managed:
-  enabled: true
-  cc_enable_arenas: false
-  java_multiple_files: false
-  java_string_check_utf8: false
-  optimize_for: CODE_SIZE
-plugins:
-  - name: java
-    out: gen/proto/java
-```
-
-## Languages
-
-### C++ {#cpp}
-
-#### `cc_enable_arenas`
-
-The `cc_enable_arenas` key is **optional**, and controls what the [`cc_enable_arenas`][cc_enable_arenas]
-value is set to in all of the files in the generation target [Input]. Accepted values
-are `false` and `true`, with `false` as the default.
-
-#### `optimize_for` {#optimize_for-cpp}
-
-You can set [`optimize_for`](#optimize_for) for C++ using managed mode.
-
-### C# {#csharp}
-
-If you enable managed mode, [`csharp_namespace`][csharp_namespace] is set to the package name with
-each package sub-name capitalized.
-
-### Go
-
-#### `go_package_prefix`
-
-The `go_package_prefix` key is **optional**, and controls what the [`go_package`][go_package]
-value is set to in all the files contained within the generation target input.
-
-### Java
-
-#### `optimize_for` {#optimize_for-java}
-
-You can set [`optimize_for`](#optimize_for) for Java using managed mode.
-
-#### `java_multiple_files`
-
-The `java_multiple_files` key is **optional**, and controls what the
-[`java_multiple_files`][java_multiple_files] value is set to in all of the files contained within
-the generation target input. Accepted values are `false` and `true`, with `true` as the default.
-
-#### `java_package_prefix`
-
-The `java_package_prefix` key is **optional**, and controls what the [`java_package`][java_package]
-prefix value is set to in all of the files contained within the generation target input. The default
-value is `com`.
-
-#### `java_outer_classname`
-
-If you enable managed mode, [`java_outer_classname`][java_outer_classname] is set to the
-[PascalCase][pascal]-equivalent of the file's name, removing the `.` from the `.proto` extension.
-
-#### `java_string_check_utf8`
-
-The `java_string_check_utf8` key is **optional** and controls the value of
-[`java_string_check_utf8`][java_string_check_utf8] in all of the files contained within the
-generation target Input. Accepted values are `false` and `true`, with `false` as the default.
-
-### Objective-C
-
-For Objective-C, enabling managed mode means that [`objc_class_prefix`][objc_class_prefix] is set to
-the uppercase first letter of each package sub-name, not including the package version, with these rules:
-
-* If the resulting abbreviation is 2 characters, `X` is added.
-* If the resulting abbreviation is 1 character, `XX` is added.
-* If the resulting abbreviation is `GPB`, it's changed to `GPX`, as `GPB` is reserved by Google for
-  the Protocol Buffers implementation.
-
-### PHP
-
-If you enable managed mode:
-
-* [`php_namespace`][php_namespace] is set to the package name with each package sub-name
-  capitalized, with `\\` substituted for `.`.
-* [`php_metadata_namespace`][php_metadata_namespace] is set to the same value as `php_namespace`,
-  with `\\GPBMetadata` appended.
-
-### Ruby
-
-If you enable managed mode, [`ruby_package`][ruby_package] is set to the package name with each
-package sub-name capitalized, with `::` substituted for `.`.
+In this file, _nine_ language-specific options are set.
 
 ## Background
 
@@ -329,6 +320,7 @@ can attest to the severity of the situation.
 [go.import]: https://golang.org/ref/spec#ImportPath
 [go_opt]: https://developers.google.com/protocol-buffers/docs/reference/go-generated
 [go_package]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L391
+[hosted]: ../bsr/remote-generation/overview.md#hosted-plugins
 [input]: /reference/inputs.md
 [java_multiple_files]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L363
 [java_outer_classname]: https://github.com/protocolbuffers/protobuf/blob/b7fe12e3670c68dc30517c418bee9dc2e2e6915e/src/google/protobuf/descriptor.proto#L355
