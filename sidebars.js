@@ -31,7 +31,7 @@ const sidebars = {
     {
       type: "category",
       label: "Build",
-      items: ["build/usage", "build/internal-compiler"],
+      items: ["build/usage"],
       collapsed: false
     },
     {
@@ -154,7 +154,12 @@ const sidebars = {
     {
       type: "category",
       label: "Reference",
-      items: ["reference/workspaces", "reference/images", "reference/inputs"],
+      items: [
+        "reference/workspaces",
+        "reference/images",
+        "reference/inputs",
+        "reference/internal-compiler"
+      ],
       collapsed: false
     },
     "editor-integration",

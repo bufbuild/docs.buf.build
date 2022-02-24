@@ -43,9 +43,9 @@ and migration.
   from `protoc` output, which has breaking changes across minor versions of `protoc`. By default, Prototool
   downloads `protoc` for you, which is helpful for many cases, but can cause issues if the download [fails](https://github.com/uber/prototool/issues/512),
   the cache is corrupted, or if the `protoc` version is not locked. We highly recommend reading [our
-  discussion](../build/internal-compiler) on Protobuf compilation for more details.
+  discussion](../reference/internal-compiler) on Protobuf compilation for more details.
 
-  Instead, `buf` lets you use either the [internal compiler](../build/internal-compiler.md)
+  Instead, `buf` lets you use either the [internal compiler](../reference/internal-compiler.md)
   that is tested to cover every edge case and only parse valid files, or use `protoc` output as `buf` input.
   `buf` can actually use [many types of input](../reference/inputs.md), including `protoc` output,
   local or remote Git repositories, and local or remote archives. `buf` never shells out to external commands

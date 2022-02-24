@@ -41,7 +41,7 @@ Other features of `buf`'s breaking change detector include:
   a reference to the field. If a field is deleted, `buf` produces a reference to the location
   of the message in the current file.
 
-- **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all
+- **Speed**. `buf`'s [internal Protobuf compiler](../reference/internal-compiler.md) utilizes all
   available cores to compile your Protobuf schema, while still maintaining deterministic output. Additionally files
   are copied into memory before processing. As an unscientific example, `buf` can compile all 2,311 `.proto` files in
   [googleapis](https://github.com/googleapis/googleapis) in about *0.8s* on a four-core machine, as opposed

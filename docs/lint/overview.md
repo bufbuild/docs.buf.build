@@ -28,7 +28,7 @@ Features of `buf`'s linter include:
   [Vim and Visual Studio Code integration](../editor-integration.md), but may extend this in the
   future to include other editors such as Emacs and IntelliJ IDEs.
 
-- **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all
+- **Speed**. `buf`'s [internal Protobuf compiler](../reference/internal-compiler.md) utilizes all
   available cores to compile your Protobuf schema, while still maintaining deterministic output. Additionally files
   are copied into memory before processing. As an unscientific example, `buf` can compile all 2,311 `.proto` files in
   [googleapis](https://github.com/googleapis/googleapis) in about *0.8s* on a four-core machine, as opposed

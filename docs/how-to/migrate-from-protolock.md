@@ -29,7 +29,7 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
   can both have breakages for valid Protobuf file, and happily parse Protobuf files that are
   not valid. Instead, `buf` lets you use either the internal compiler that is tested to
   cover every edge case and parses only valid files, or use `protoc` output
-  as `buf` input. See our [compiler](../build/internal-compiler.md) discussion
+  as `buf` input. See our [compiler](../reference/internal-compiler.md) discussion
   for more details.
 - Protolock uses a custom structure, represented in [JSON](https://github.com/nilslice/protolock/blob/1a3dd1a15d36f26d0a616be4584da6a4589e7844/parse.go#L19),
   to store your Protobuf schema state. This structure is populated based on the results

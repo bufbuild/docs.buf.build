@@ -327,6 +327,11 @@
   to = "/tour/introduction"
   status = 301
 
+[[redirects]]
+  from = "/build/internal-compiler"
+  to = "/reference/internal-compiler"
+  status = 301
+
 # Corrects a prior misspelling
 [[redirects]]
   from = "/tour/login-to-the-bsr"

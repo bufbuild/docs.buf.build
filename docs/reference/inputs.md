@@ -262,7 +262,7 @@ You can create images using `buf build`. Examples:
 
 Note that `-o` is an alias for `--output`.
 
-**You can also create Buf images in the `bin` format using `protoc`**. See the [internal compiler](../build/internal-compiler.md)
+**You can also create Buf images in the `bin` format using `protoc`**. See the [internal compiler](../reference/internal-compiler.md)
 documentation for more details.
 
 The command below, for examples, shows a way to compile all Protobuf files in your current directory,
