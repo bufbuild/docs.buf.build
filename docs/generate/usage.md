@@ -20,9 +20,9 @@ on the `buf.gen.yaml` configuration, please refer to the [reference](../configur
 
 ## Define a module
 
-To get started, create a [module](../bsr/overview.md#modules) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
-file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with this command:
+To get started, create a [module](../bsr/overview.md#modules) by adding a
+[`buf.yaml`](../configuration/v1/buf-yaml.md) file to the root of the directory that contains your
+Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```sh
 $ buf mod init
@@ -67,7 +67,7 @@ see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 
-Run this to generate from the [input] in your current directory:
+Run this to generate from the [input](../reference/inputs.md) in your current directory:
 
 ```sh
 $ buf generate
@@ -106,19 +106,21 @@ $ buf generate --error-format=json
 
 ## Common use cases
 
-The most common use case is to generate using the current directory as [input]:
+The most common use case is to generate using the current directory as
+[input](../reference/inputs.md):
 
 ```terminal
 $ buf generate
 ```
 
-This command assumes that a [`buf.gen.yaml`][buf-gen-yaml] exists in the directory where you run the
-command.
+This command assumes that a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) exists in the
+directory where you run the command.
 
 ### Generating from a Buf module {#from-module}
 
-You can generate from a Buf [module] on the [Buf Schema Registry][bsr] (BSR) by providing the module
-name as the [input]:
+You can generate from a Buf [module](../bsr/overview.md#modules) on the [Buf Schema
+Registry](../bsr/introduction.md) (BSR) by providing the module name as the
+[input](../reference/inputs.md):
 
 ```terminal
 $ buf generate buf.build/acme/petapis
@@ -129,9 +131,10 @@ $ buf generate buf.build/acme/petapis
 
 ### Generating using multiple templates {#multiple-templates}
 
-The [`buf.gen.yaml`][buf-gen-yaml] file enables you to configure one generation template. For cases
-where you need to use multiple templates for the same [input], we recommend using multiple
-configuration files with different names.
+The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) file enables you to configure one
+generation template. For cases where you need to use multiple templates for the same
+[input](../reference/inputs.md), we recommend using multiple configuration files with different
+names.
 
 If you needed to use one template for Go and a different template for Java, for example, you could
 create a `buf.gen.go.yaml` file and a `buf.gen.java.yaml` file and use separate commands to generate
@@ -191,10 +194,3 @@ $ docker run \
   --workdir /workspace \
   bufbuild/buf generate
 ```
-
-[bsr]: ../bsr/introduction.md
-[buf-gen-yaml]: ../configuration/v1/buf-gen-yaml.md
-[git]: ../reference/inputs.md#git
-[input]: ../reference/inputs.md
-[module]: ../bsr/overview.md#modules
-[petapis]: https://buf.build/acme/petapis
