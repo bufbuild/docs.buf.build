@@ -248,11 +248,12 @@ The special value `-` is used to denote stdout. You can manually set the format.
 $ buf build -o -#format=json
 ```
 
-When combined with [jq](https://stedolan.github.io/jq), this also allows for introspection. For example,
-to see a list of all packages:
+You can combine this with [jq](https://stedolan.github.io/jq) to introspect the built image. To see
+a list of all packages:
 
-```sh
+```terminal
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+---
 "google.actions.type"
 "google.ads.admob.v1"
 "google.ads.googleads.v1.common"
@@ -281,7 +282,7 @@ Since `buf` speaks in terms of [Buf images](../reference/images.md) and
 [`FileDescriptorSet`s][filescriptorset] are images, we can use`protoc` output as `buf` input. Here's
 an example for [`buf lint`](../lint/usage.md):
 
-```sh
+```terminal
 $ protoc -I . --include_source_info -o /dev/stdout foo.proto | buf lint -
 ```
 

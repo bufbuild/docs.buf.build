@@ -48,8 +48,9 @@ breaking:
 You can automatically migrate all of the files from `v1beta1` to `v1` by simply running
 `buf beta migrate-v1beta1` in a directory containing a `buf.yaml`, `buf.lock`, or `buf.gen.yaml`:
 
-```sh
+```terminal
 $ buf beta migrate-v1beta1
+---
 Successfully migrated your buf.yaml, buf.gen.yaml, and buf.lock to v1.
 ```
 

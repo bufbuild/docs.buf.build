@@ -48,7 +48,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 To get started, create a [module](../bsr/overview.md#modules) by adding a `buf.yaml` file to the root of the directory
 that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
-```sh
+```terminal
 $ buf mod init
 ```
 
@@ -72,7 +72,7 @@ together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which d
 To illustrate how all these pieces fit together here's a quick example using `protoc` and its equivalent
 in `buf`:
 
-```sh
+```terminal
 $ protoc \
     -I proto \
     -I vendor/protoc-gen-validate \
@@ -188,7 +188,7 @@ Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't
 You can run `buf build` on your module by specifying the filepath to the directory containing the
 `buf.yaml` configuration file. To target the module defined in the current directory:
 
-```sh
+```terminal
 $ buf build
 ```
 
@@ -202,15 +202,17 @@ The `buf build` command:
 If there are errors, they are printed out in a `file:line:column:message` format by default.
 For example:
 
-```sh
+```terminal
 $ buf build
+---
 acme/pet/v1/pet.proto:5:8:acme/payment/v1alpha1/payment.proto: does not exist
 ```
 
 Build output can also be printed as JSON:
 
-```sh
+```terminal
 $ buf build --error-format=json
+---
 {"path":"acme/pet/v1/pet.proto","start_line":5,"start_column":8,"end_line":5,"end_column":8,"type":"COMPILE","message":"acme/payment/v1alpha1/payment.proto: does not exist"}
 ```
 
@@ -226,25 +228,26 @@ can be formatted in a variety of ways.
 `buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
 
 ```sh
-$ buf build -o image.bin
-$ buf build -o image.bin.gz
-$ buf build -o image.bin.zst
-$ buf build -o image.json
-$ buf build -o image.json.gz
-$ buf build -o image.json.zst
+buf build -o image.bin
+buf build -o image.bin.gz
+buf build -o image.bin.zst
+buf build -o image.json
+buf build -o image.json.gz
+buf build -o image.json.zst
 ```
 
 The special value `-` is used to denote stdout, and you can manually set the format. For example:
 
-```sh
+```terminal
 $ buf build -o -#format=json
 ```
 
 When combined with [jq](https://stedolan.github.io/jq), `buf build` also allows for introspection. For example,
 to see a list of all packages, you can run this command:
 
-```
+```terminal
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+---
 "google.actions.type"
 "google.ads.admob.v1"
 "google.ads.googleads.v1.common"
@@ -260,7 +263,7 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 Images always include the `ImageExtension` field. But if you want a pure `FileDescriptorSet` without
 this field set, and thus to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag:
 
-```sh
+```terminal
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
@@ -276,7 +279,7 @@ is better to let `buf` discover all files under management and handle this for y
 The compiled result is limited to the given files if the `--path` flag is specified, as in this
 command:
 
-```sh
+```terminal
 $ buf build --path path/to/foo.proto --path path/to/bar.proto
 ```
 
@@ -285,7 +288,7 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
-```sh
+```terminal
 $ docker run \
   --volume "$(pwd):/workspace" \
   --workdir /workspace \

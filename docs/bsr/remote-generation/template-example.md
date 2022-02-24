@@ -107,7 +107,7 @@ require (
 
 As you iterate on a Protobuf API and push to the BSR, you likely need to generate and update code. To do so, update the go.mod file by setting the desired version explicitly and then run `go mod tidy`. This once again remote generates code and caches the result.
 
-```bash {4}
+```sh {4}
 require (
 	github.com/twitchtv/twirp v8.1.0+incompatible // indirect
 - 	go.buf.build/demolab/twirp-go/demolab/theweather v1.1.1

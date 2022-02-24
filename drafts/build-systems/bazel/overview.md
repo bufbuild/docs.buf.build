@@ -72,7 +72,8 @@ buf_lint_test(
 ```
 
 This can be run as:
-```
+
+```terminal
 $ bazel test :foo_proto_lint
 ```
 
@@ -112,7 +113,8 @@ buf_breaking_test(
 ```
 
 This can be run as:
-```
+
+```terminal
 $ bazel test :foo_proto_breaking
 ```
 
