@@ -158,7 +158,7 @@ scoop install buf
 To update Buf:
 
 ```powershell
-scoop install buf
+scoop update buf
 ```
 
 ### Binary
