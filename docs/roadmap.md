@@ -28,7 +28,7 @@ generated code for:
 
 All via a `go` command that results in a Go module:
 
-```sh
+```terminal
 $ go get go.buf.build/grpc/go/acme/weather
 ```
 
@@ -106,7 +106,7 @@ We will support Bazel as a first-class citizen with official Bazel rules.
 Buf currently supports both a [vim plugin](https://github.com/bufbuild/vim-buf) and a
 [VSCode plugin](https://github.com/bufbuild/vscode-buf) to provide Protobuf linting in these editors.
 But we recognize that we can do a lot more in this area, such as formatting your Protobuf files
-on save (via the formatter mentioned above), and a full -fledged *Protobuf language server*, which
+on save (via the formatter mentioned above), and a full-fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
 With this, you will be able to use more editor features, such as auto-completion and
@@ -137,3 +137,4 @@ old API structures into their current API structures.
 The BSR is perfectly positioned to bring this solution to Protobuf users. The BSR tracks the entire history of
 your module, and can theoretically apply a series of changes (specified in a changelog) to your API so that
 you can stop worrying about API compatibility entirely.
+

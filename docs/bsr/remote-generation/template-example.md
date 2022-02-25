@@ -107,7 +107,7 @@ require (
 
 As you iterate on a Protobuf API and push to the BSR, you likely need to generate and update code. To do so, update the go.mod file by setting the desired version explicitly and then run `go mod tidy`. This once again remote generates code and caches the result.
 
-```bash {4}
+```sh {4}
 require (
 	github.com/twitchtv/twirp v8.1.0+incompatible // indirect
 - 	go.buf.build/demolab/twirp-go/demolab/theweather v1.1.1
@@ -146,7 +146,7 @@ You can now build and run your API as you normally would.
 
 ### Consumer (Client SDK)
 
-The really neat feature of BSR Remote Generation is consumers of the Twirp API get JSON/Protobuf clients for free. No Protobuf files, no local protoc plugins. No hand writing clients. Simply fetch the generated code like any other library.
+The really neat feature of BSR remote generation is consumers of the Twirp API get JSON/Protobuf clients for free. No Protobuf files, no local protoc plugins. No hand writing clients. Simply fetch the generated code like any other library.
 
 Here is a fully working Go client SDK for the above Twirp server. Again, we're importing remote-generated code from the BSR Go module proxy.
 

@@ -195,9 +195,9 @@ With the `except` setting, the `go_package` option in all of the files provided 
 
 If you regenerate the stubs, you'll notice that it's successful:
 
-```terminal
-$ rm -rf gen
-$ buf generate
+```sh
+rm -rf gen
+buf generate
 ```
 
 You can also verify that the generated code compiles with this command:

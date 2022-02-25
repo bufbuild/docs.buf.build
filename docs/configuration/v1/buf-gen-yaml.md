@@ -70,8 +70,8 @@ depends on where `buf generate` is run. For example, running `buf generate` from
 shown above would result in a new `gen/proto/go` directory within the same root:
 
 ```sh
-$ buf generate
-$ tree
+buf generate
+tree
 .
 ├── acme
 │   └── pet
@@ -133,8 +133,8 @@ There are two options:
   This results in `buf` splitting the input files by directory and making separate plugin invocations in parallel.
   That's roughly the concurrent equivalent of this operation:
 
-  ```sh
-  for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
+  ```terminal
+  $ for dir in $(find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq); do
     protoc -I . $(find "${dir}" -name '*.proto')
   done
   ```
@@ -147,7 +147,7 @@ There are two options:
   This results in `buf` making a single plugin invocation with all input files, which is roughly
   equivalent to this:
 
-  ```
+  ```terminal
   $ protoc -I . $(find . -name '*.proto')
   ```
 

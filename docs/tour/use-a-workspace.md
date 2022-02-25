@@ -158,7 +158,7 @@ directories:
 
 Your directory structure should now look like this:
 
-```terminal
+```sh
 start/
 ├── buf.gen.yaml
 ├── buf.work.yaml
@@ -243,6 +243,7 @@ the result:
 
 ```terminal
 $ buf build petapis
+---
 petapis/pet/v1/pet.proto:7:8:payment/v1alpha1/payment.proto: does not exist
 ```
 
@@ -290,6 +291,7 @@ in the `buf.work.yaml` with a single command:
 
 ```terminal
 $ buf lint
+---
 paymentapis/payment/v1alpha1/payment.proto:20:10:Field name "orderID" should be lower_snake_case, such as "order_id".
 petapis/pet/v1/pet.proto:28:10:Field name "petID" should be lower_snake_case, such as "pet_id".
 ```

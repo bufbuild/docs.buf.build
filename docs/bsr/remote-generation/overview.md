@@ -52,7 +52,7 @@ Buf maintains several official templates:
 ## Remote generation registries
 
 With a specific Template version and a specific Module version, the BSR has enough information
-to perform code generation. The output of this operation is stored in a Remote Generation Registry.
+to perform code generation. The output of this operation is stored in a remote generation registry.
 This is **extremely** powerful, because producers and consumers of Protobuf-based API
 can import type definitions and/or service stubs in their language directly from the registry without having
 to deal with code generation.

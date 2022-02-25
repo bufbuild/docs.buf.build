@@ -43,7 +43,8 @@ For example:
      Generally, you want to set this option when using this plugin. We do not make this
      the default to have symmetry with `buf breaking`.
 
-```sh
+```terminal
 $ protoc -I . --buf-breaking_out=. '--buf-breaking_opt={"against_input":"image.bin","limit_to_input_files":true}' $(find . -name '*.proto')
+---
 pet/v1/pet.proto:18:3:Field "1" on message "Pet" changed type from "enum" to "string".
 ```
