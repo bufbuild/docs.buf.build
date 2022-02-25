@@ -147,18 +147,24 @@ google/type/datetime.proto:17:1:Package name "google.type" should be suffixed wi
 
 ## Windows support {#windows}
 
-### Binary
-
-Buf offers Windows binaries for both the `x86_64` and `arm64` architectures. You can download the
-latest binaries from [GitHub Releases][releases].
-
 ### Scoop
 
-You can also install Buf using the [Scoop] installer for Windows:
+You can install the `buf` CLI using the [Scoop] installer for Windows:
 
 ```powershell
 scoop install buf
 ```
+
+To update Buf:
+
+```powershell
+scoop install buf
+```
+
+### Binary
+
+Buf offers Windows binaries for both the `x86_64` and `arm64` architectures. You can download the
+latest binaries from [GitHub Releases][releases].
 
 [releases]: https://github.com/bufbuild/buf/releases/latest
 [scoop]: https://scoop.sh
