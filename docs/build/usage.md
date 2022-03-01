@@ -285,12 +285,12 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 
 ## Limit to specific types
 
-The output FileDescritptorSet or image from a `buf build` will contain all types
-declared in the module. For advanced usecases, users may want an image or
-FileDescriptorSet containing only a subset of types. Introduced in `v1.1`, the
-`--type` flag accepts fully qualified protobuf names and limits the output image
+The output `FileDescriptorSet` or image from a `buf build` will contain all types
+declared in the module. For advanced use cases, users may want an image or
+FileDescriptorSet containing only a subset of types. Introduced in `v1.1.0`, the
+`--type` flag accepts fully qualified Protobuf names and limits the output image
 to contain only descriptors required to represent those types and their required
-dependencies. The type flag supports messages, enums and services.
+dependencies. The type flag supports messages, enums, and services.
 
 ```terminal
 $ buf build --type pkg.foo.Bar
@@ -315,7 +315,7 @@ is needed to accurately and completely represent that descriptor. These include:
       in which the message is defined
 
 As an example, consider the these sample protos:
-```proto
+```protobuf
 --- foo.proto ---
 package pkg;
 message Foo {
