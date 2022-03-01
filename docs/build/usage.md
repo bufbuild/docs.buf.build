@@ -287,7 +287,7 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 
 The output `FileDescriptorSet` or image from a `buf build` will contain all types
 declared in the module. For advanced use cases, users may want an image or
-FileDescriptorSet containing only a subset of types. Introduced in `v1.1.0`, the
+`FileDescriptorSet` containing only a subset of types. Introduced in `v1.1.0`, the
 `--type` flag accepts fully qualified Protobuf names and limits the output image
 to contain only descriptors required to represent those types and their required
 dependencies. The type flag supports messages, enums, and services.
