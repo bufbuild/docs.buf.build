@@ -286,17 +286,20 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 ## Limit to specific types
 
 When you run `buf build` to create a [`FileDescriptorSet`][filedescriptorset] or Buf [image], the
-output contains all of the types declared in the [module]. But for some advanced use cases, you may
-want the image or `FileDescriptorSet` to contain only a subset of the types.
+output contains all of the Protobuf types declared in the [module]. But for some advanced use cases,
+you may want the image or `FileDescriptorSet` to contain only a subset of those types.
 
 Versions 1.1.0 and later of the `buf` CLI include a `--type` option for the `buf build` command that
 enables you to supply a fully qualified Protobuf name and limit the resulting image or
-`FileDescriptorSet` to only the descriptors required to represent those types and their required
-dependencies. This example usage restricts the types to `pkg.foo.Bar`:
+`FileDescriptorSet` to only those descriptors required to represent those types and their required
+dependencies. This example usage restricts the output types to those required to represent
+`pkg.foo.Bar`:
 
 ```terminal
 $ buf build --type pkg.foo.Bar
 ```
+
+### Supported constructs {#constructs}
 
 The `--type` option supports these Protobuf constructs:
 
@@ -312,6 +315,8 @@ The `--type` option supports these Protobuf constructs:
 - [Services], including:
   - Request and response types referenced in service methods
   - Any custom options for the services, its methods, and the file in which the service is defined
+
+### Type restriction example
 
 As an example, consider these two `.proto` files:
 
@@ -339,8 +344,8 @@ extend google.protobuf.FieldOptions {
 }
 ```
 
-This table shows which types, files, messages, and extensions would be included for various types if
-specified as the argument to `--type`:
+This table shows which files, messages, and extensions would be included for various types from
+`foo.proto` and `bar.proto` if specified as the argument to `--type`:
 
 Type | Files | Messages | Extensions
 :----|:------|:---------|:----------
