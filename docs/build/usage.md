@@ -283,6 +283,75 @@ command:
 $ buf build --path path/to/foo.proto --path path/to/bar.proto
 ```
 
+## Limit to specific types
+
+The output FileDescritptorSet or image from a `buf build` will contain all types
+declared in the module. For advanced usecases, users may want an image or
+FileDescriptorSet containing only a subset of types. Introduced in `v1.1`, the
+`--type` flag accepts fully qualified protobuf names and limits the output image
+to contain only descriptors required to represent those types and their required
+dependencies. The type flag supports messages, enums and services.
+
+```terminal
+$ buf build --type pkg.foo.Bar
+```
+
+A descriptor is said to require another descriptor if the dependent descriptor
+is needed to accurately and completely represent that descriptor. These include:
+  - Messages
+    - messages & enums referenced in fields
+    - proto2 extension declarations for this field
+    - the parent message if this message is a nested definition
+    - custom options for the message, its fields, and the file in which the
+      message is defined
+  - Enums
+    - the EnumValue descriptors for this enum
+    - the parent message if this message is a nested definition
+    - Custom options used in the enum, enum values, and the file
+      in which the message is defined
+  - Services
+    - request & response types referenced in methods
+    - custom options for the service, its methods, and the file
+      in which the message is defined
+
+As an example, consider the these sample protos:
+```proto
+--- foo.proto ---
+package pkg;
+message Foo {
+  optional Bar bar = 1;
+  extensions 2 to 3;
+}
+message Bar { ... }
+message Baz {
+  other.Qux qux = 1 [(other.my_option).field = "buf"];
+}
+--- baz.proto ---
+package other;
+extend Foo {
+  optional Qux baz = 2;
+}
+message Qux{ ... }
+message Quux{ ... }
+extend google.protobuf.FieldOptions {
+  optional Quux my_option = 51234;
+}
+```
+
+A filtered image for type `pkg.Foo` would include: 
+  - Files:      `foo.proto`, `bar.proto`
+  - Messages:   `pkg.Foo`, `pkg.Bar`, `other.Qux`
+  - Extensions: `other.baz`
+
+A filtered image for type `pkg.Bar` would include:
+  - Files:      `foo.proto`
+  - Messages:   `pkg.Bar`
+
+A filtered image for type `pkg.Baz` would include:
+  - Files:      `foo.proto`, `bar.proto`
+  - Messages:   `pkg.Baz`, `other.Quux`, `other.Qux`
+  - Extensions: `other.my_option`
+
 ## Docker
 
 Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
