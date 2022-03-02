@@ -40,7 +40,7 @@ are uniquely represented and reproducible.
 ### Push and update modules
 
 You can then publish and share this particular snapshot with your consumers and/or collaborators by
-pushing it to the [BSR](../../bsr/overview.md) with th command:
+pushing it to the [BSR](../../bsr/overview.md) with the command:
 
 ```terminal
 $ buf push
