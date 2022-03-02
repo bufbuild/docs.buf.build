@@ -1,5 +1,5 @@
 ---
-id: protoc-plugin
+id: protoc-plugins
 title: protoc plugins
 ---
 

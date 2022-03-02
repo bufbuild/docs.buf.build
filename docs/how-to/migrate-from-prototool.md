@@ -84,8 +84,8 @@ and migration.
   can be outputted as text or JSON, with other formats coming in the future.
   Prototool prints out unreferenced messages.
 - Since `buf` can process `FileDescriptorSet`s as input, `buf` provides
-  `protoc` plugins [protoc-gen-buf-lint](../lint/protoc-plugin.md) and
-  [protoc-gen-buf-breaking](../breaking/protoc-plugin.md) to allow you to use `buf`'s
+  `protoc` plugins [protoc-gen-buf-lint](../reference/protoc-plugins.md#lint) and
+  [protoc-gen-buf-breaking](../reference/protoc-plugins.md#breaking) to allow you to use `buf`'s
   lint breaking change detection functionality with your current `protoc` setup.
 
 ## Prototool lint groups to `buf` lint categories

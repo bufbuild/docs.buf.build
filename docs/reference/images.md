@@ -289,7 +289,7 @@ $ protoc -I . --include_source_info -o /dev/stdout foo.proto | buf lint -
 ## Protoc lint and breaking change detection plugins
 
 Since `buf` "understands" [`FileDescriptorSet`s][filedescriptorset], we can provide
-plugins [`protoc-gen-buf-lint`](../lint/protoc-plugin.md) and [`protoc-gen-buf-breaking`](../breaking/protoc-plugin.md)
+plugins [`protoc-gen-buf-lint`](../reference/protoc-plugins.md#lint) and [`protoc-gen-buf-breaking`](../reference/protoc-plugins.md#breaking)
 as standard Protobuf plugins as well.
 
 [codegeneratorrequest]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto#L68

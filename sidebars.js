@@ -147,7 +147,7 @@ const sidebars = {
         "reference/images",
         "reference/inputs",
         "reference/internal-compiler",
-        "reference/plugins"
+        "reference/protoc-plugins"
       ],
       collapsed: false
     },
