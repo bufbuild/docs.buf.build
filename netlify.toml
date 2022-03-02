@@ -332,6 +332,16 @@
   to = "/reference/internal-compiler"
   status = 301
 
+[[redirects]]
+  from = "/breaking/protoc-plugin"
+  to = "/reference/plugins#breaking"
+  status = 301
+
+[[redirects]]
+  from = "/lint/protoc-plugin"
+  to = "/reference/plugins#lint"
+  status = 301
+
 # Corrects a prior misspelling
 [[redirects]]
   from = "/tour/login-to-the-bsr"

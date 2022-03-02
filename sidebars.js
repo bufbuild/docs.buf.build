@@ -43,25 +43,13 @@ const sidebars = {
     {
       type: "category",
       label: "Lint",
-      items: [
-        "lint/overview",
-        "lint/usage",
-        "lint/configuration",
-        "lint/rules",
-        "lint/protoc-plugin"
-      ],
+      items: ["lint/overview", "lint/usage", "lint/configuration", "lint/rules"],
       collapsed: false
     },
     {
       type: "category",
       label: "Breaking Change Detection",
-      items: [
-        "breaking/overview",
-        "breaking/usage",
-        "breaking/configuration",
-        "breaking/rules",
-        "breaking/protoc-plugin"
-      ],
+      items: ["breaking/overview", "breaking/usage", "breaking/configuration", "breaking/rules"],
       collapsed: false
     },
     {
@@ -158,7 +146,8 @@ const sidebars = {
         "reference/workspaces",
         "reference/images",
         "reference/inputs",
-        "reference/internal-compiler"
+        "reference/internal-compiler",
+        "reference/plugins"
       ],
       collapsed: false
     },
