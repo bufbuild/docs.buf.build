@@ -334,12 +334,12 @@
 
 [[redirects]]
   from = "/breaking/protoc-plugin"
-  to = "/reference/plugins#breaking"
+  to = "/reference/protoc-plugins#breaking"
   status = 301
 
 [[redirects]]
   from = "/lint/protoc-plugin"
-  to = "/reference/plugins#lint"
+  to = "/reference/protoc-plugins#lint"
   status = 301
 
 # Corrects a prior misspelling
