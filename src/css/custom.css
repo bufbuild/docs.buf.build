@@ -147,6 +147,15 @@ figcaption {
   border: 2px solid #e67e22;
 }
 
+.admonition a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.admonition a:hover {
+  text-decoration: underline;
+}
+
 /* Markdown blockquotes */
 blockquote {
   color: rgb(0, 0, 0);

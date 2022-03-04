@@ -1,27 +1,43 @@
 ---
 id: npm
-title: The BSR npm registry
+title: BSR npm registry
 ---
 
-> Remote code generation is an **alpha feature**. We started with [Go](../../tour/use-remote-generation.md) and have since added support for generated JavaScript and TypeScript code stubs. We intend to add support for other languages as well. [Let us know](/contact.md) which language we should tackle next.
+> The BSR npm registry is currently an **alpha** feature. Although you're free to experiment with it, be aware that we're likely to make breaking changes that may affect your workflows.
 
-Now that the BSR supports **remote code generation**, you no longer have to maintain Protobuf files, `protoc`-based plugins or generate code locally. This is especially useful for API clients, who just want a JS SDK to start consuming an API immediately.
+The [Buf Schema Registry][bsr] (BSR) offers an [npm] registry that you can use to consume JavaScript and TypeScript packages generated from [Buf modules][modules]. It uses the BSR's [remote code generation](overview.md) feature to generate those packages upon request. With the BSR npm registry, you no longer need to maintain Protobuf files or runtime dependencies like [protoc] plugins—in fact, JavaScript and TypeScript developers can avoid local code generation altogether for any Buf modules that have been pushed to the BSR.
 
-First offering: Go module proxy
-Why it was tricky: the npm registry needs to rewrite imports from local file paths to absolute paths
+## Setup
 
-You no longer have to maintain Protobuf files, runtime library dependencies, and protoc-based plugins. And most importantly, you no longer need to generate code locally.
+npm is configured to use the public npm registry at [registry.npmjs.org][npm-registry] by default. To configure npm to use Buf's npm registry at [npm.buf.build][buf-npm] in addition to the default registry, use this command to [set][npm-config] your npm config:
 
-Implements the npm's [public registry API][registry]
-It generates packages on the fly when you `npm install`.
+```terminal
+$ npm config set @buf:registry https://npm.buf.build
+```
+
+This binds the `@buf` package scope to the BSR and updates your global [`.npmrc`][npmrc] accordingly.
+
+## Installing packages {#install}
+
+With your npm config set, you can install `@buf/*` packages in any standard npm project with a `package.json` configuration. Here's an example installation command:
+
+```terminal
+$ npm install @buf/protocolbuffers_js_acme_paymentapis
+```
+
+:::warning Slow installation?
+You may notice that installing packages from the BSR npm registry using `npm install` can take longer than installing from the standard npm registry. This happens because packages are generated "on the fly"—that is, they're built upon request and then cached. The first `npm install` typically takes a while, but future `npm install`s should be more brisk. More details are [below](#how-it-works).
+:::
 
 ## Package names
+
+The BSR npm registry has a special syntax for package names that you need to adhere to when installing packages:
 
 import Syntax from "@site/src/components/Syntax";
 
 <Syntax
-  title="Name syntax for BSR npm registry packages"
-  examples={["@buf/grpc_web_googleapis_googleapis"]}
+  title="Syntax for BSR npm registry package names"
+  examples={["@buf/protocolbuffers_js_acme_petapis"]}
   segments={[
     {label: "@buf", kind: "static"},
     {separator: "/"},
@@ -35,40 +51,23 @@ import Syntax from "@site/src/components/Syntax";
   ]
 } />
 
-This package was created from the [`googleapis/googleapis`](https://buf.build/googleapis/googleapis)
-module using the [`grpc/web` template](https://buf.build/grpc/templates/web).
+In this example, the BSR npm registry generates the `@buf/protocolbuffers_js_acme_petapis` package applying the [`protocolbuffers/js`](https://buf.build/protocolbuffers/templates/js) template to the [`acme/petapis`](https://buf.build/acme/petapis) module.
 
-## Installing packages {#install}
+This table shows some example template/module/package name combinations:
 
-npm is configured to use the public npm registry at https://registry.npmjs.org by default. To configure npm to use Buf's npm registry at https://npm.buf.build, use the [`npm config set`][config_set] command:
+Template | Buf module | Package name
+:--------|:-----------|:------------
+`grpc/web` | `acme/petapis` | `@buf/grpc_web_acme_petapis`
+`protocolbuffers/js` | `bufbuild/buf` | `@buf/protocolbuffers_js_bufbuild_buf`
+`protocolbuffers/js` | `acme/paymentapis` | `@buf/protocolbuffers_js_acme_paymentapis`
 
-```terminal
-$ npm config set @buf:registry https://npm.buf.build
-```
+## Using private packages {#private}
 
-This binds the scope `@buf` to the Buf registry and updates your global [`.npmrc`][npmrc]. With this set, you can install `@buf/*` packages in any npm project with a `package.json` configuration.
-
-```terminal
-$ npm install @buf/grpc_web_googleapis_googleapis
-```
-
-### Time to install
-
-You may notice that installing packages from the BSR npm registry using `npm install` typically takes longer than installing from the default public npm registry at https://registry.npmjs.org. That's the case because packages are generated "on the fly," that is, packages aren't pre-built
-
-We provide more details around this [below](#how)
-
-### Other package managers
-
-Because the Buf npm registry implements npm's [public registry API][registry], you should be able to use it with package management tools outside of npm, such as [Yarn] and [pnpm], though with [some known limitations](#yarn).
-
-## Generating private packages {#generate}
-
-To generate npm packages from private Buf [modules], you need to configure npm to send an authentication token with each request to the BSR npm registry. Add a line with this syntax to your [`.npmrc`][npmrc] file:
+To install npm packages generated from private [Buf modules][modules], you need to configure npm to send an authentication token with each request to the BSR npm registry. Add a line with this syntax to your [`.npmrc`][npmrc] file:
 
 <Syntax
   title="npmrc token syntax"
-  examples={["//npm.buf.build/a75c6ca7a..."]}
+  examples={["//npm.buf.build/84612b6cbe8f41ddb3ac46c691f05a978e20a555ba5d4bc289a0a8289abe75ef"]}
   segments={[
     {separator: "//"},
     {label: "npm.buf.build", kind: "static"},
@@ -79,11 +78,17 @@ To generate npm packages from private Buf [modules], you need to configure npm t
 
 You can use an existing auth token or generate a new one. To create a new one, log into the [BSR], navigate to your [user settings][settings] page, and click **Create Token**.
 
+## Other package managers
+
+Because the Buf npm registry implements npm's [public registry API][registry], you should be able to use it with package management tools outside of npm, such as [Yarn] and [pnpm], though with [some known limitations](#yarn).
+
 ## Restrictions
+
+The BSR npm registry has some known limitations that you should be aware of.
 
 ### Runtime dependencies
 
-You can use [labels] to declare runtime dependencies for plugins. The BSR npm registry currently supports [semantic versioning][semver] for versions but _not_ semver [ranges] like `>=1.2.7` or `<1.3.0`.
+If you're [creating your own plugins](../remote-generation/plugin-example.md), You can use [labels] to declare runtime dependencies for plugins. The BSR npm registry currently supports [semantic versioning][semver] for versions but _not_ semver [ranges] like `>=1.2.7` or `<1.3.0`.
 
 ### Yarn compatibility {#yarn}
 
@@ -91,19 +96,13 @@ You can use [labels] to declare runtime dependencies for plugins. The BSR npm re
 
 ### Import rewrites
 
-The BSR rewrites import statements and `require()` calls in `.js` and `.d.ts` files. It matches generated files with their `.proto` sources based on their path. Generate files _must_ use the same path as the `.proto` counterpart, although suffixes like `_pb` and additional file extensions are allowed.
+The BSR rewrites all `import` statements and `require()` calls in `.js` and `.d.ts` files, matching generated files with their `.proto` sources based on their path. Generated files _must_ use the same path as their `.proto` counterparts, although suffixes like `_pb` and additional file extensions are allowed.
 
-### Correctness
+## How it works
 
-All generated code must be syntactically correct.
+When you install a package for a Buf [module][modules] using `npm install`, [`yarn install`](#yarn), or an analogous method, the BSR npm registry runs the Protobuf [plugins] specified in the module's [template]. Once generation is complete, the BSR returns the generated assets to your npm client, which finally writes those assets to your `node_modules`.
 
-## How the npm registry works {#how}
-
-When you request a package for a Buf [module][modules] using `npm install` or an analogous method, the BSR npm registry runs the Protobuf [plugins] specified in the module's [template].
-
-> TODO: diagram
-
-If the requested module has [dependencies][deps], the npm registry rewrites the relative import paths so that they point to the package with a full package name. Here's an example:
+If the requested module has [dependencies][deps], the npm registry rewrites any relative import paths so that they point to the package with a full package name. Here's an example rewrite:
 
 ```javascript
 // generated import
@@ -113,10 +112,28 @@ require("../../google/storage/v1/storage_pb.js");
 require("@buf/grpc_web_googleapis_googleapis/google/storage/v1/storage_pb.js");
 ```
 
-Why it was tricky: the npm registry needs to rewrite imports from local file paths to absolute paths
+[bsr]: /bsr/overview
+[buf-npm]: https://npm.buf.build
+[deps]: /bsr/overview#dependencies
+[labels]: /bsr/remote-generation/plugin-example#3-prepare-the-dockerfile
+[modules]: /bsr/overview#modules
+[npm]: https://npmjs.org
+[npm-config]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
+[npmrc]: https://docs.npmjs.com/cli/v8/configuring-npm/npmrc
+[plugins]: /bsr/remote-generation/concepts#plugins
+[protoc]: https://github.com/protocolbuffers/protobuf
+[pnpm]: https://pnpm.io
+[ranges]: https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
+[npm-registry]: https://registry.npmjs.org
+[registry-api]: https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md
+[semver]: https://semver.org
+[settings]: https://buf.build/settings/user
+[template]: /bsr/remote-generation/concepts#templates
+[yarn]: https://yarnkpkg.com
+[yarn_v1]: https://github.com/yarnpkg/yarn/releases/tag/v1.10.0
+[yarn_v2]: https://github.com/yarnpkg/yarn/releases/tag/v2.0.0
 
-Implements the npm's [public registry API][registry]
-It generates packages on the fly when you `npm install`.
+---
 
 [bsr]: /bsr/overview
 [config_set]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
