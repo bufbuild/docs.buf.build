@@ -118,7 +118,7 @@ Why it was tricky: the npm registry needs to rewrite imports from local file pat
 Implements the npm's [public registry API][registry]
 It generates packages on the fly when you `npm install`.
 
-[bsr]: /bsr
+[bsr]: /bsr/overview
 [config_set]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
 [deps]: /bsr/overview#dependencies
 [labels]: /bsr/remote-generation/plugin-example#3-prepare-the-dockerfile
