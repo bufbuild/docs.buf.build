@@ -5,7 +5,7 @@ title: The BSR npm registry
 
 > Remote code generation is an **alpha feature**. We started with [Go](../../tour/use-remote-generation.md) and have since added support for generated JavaScript and TypeScript code stubs. We intend to add support for other languages as well. [Let us know](/contact.md) which language we should tackle next.
 
-Now that the BSR supports **remote code generation**, you no longer have to maintain Protobuf files, `protoc`-based plugins or generate code locally. This is especially useful for API clients, who just want a [Go] SDK to start consuming an API immediately.
+Now that the BSR supports **remote code generation**, you no longer have to maintain Protobuf files, `protoc`-based plugins or generate code locally. This is especially useful for API clients, who just want a JS SDK to start consuming an API immediately.
 
 First offering: Go module proxy
 Why it was tricky: the npm registry needs to rewrite imports from local file paths to absolute paths
