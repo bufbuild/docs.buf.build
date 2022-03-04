@@ -347,3 +347,8 @@
   from = "/tour/login-to-the-bsr"
   to = "/tour/log-into-the-bsr"
   status = 301
+
+[[redirects]]
+  from = "/bsr-npm"
+  to = "/bsr/remote-generation/overview"
+  status = 302
