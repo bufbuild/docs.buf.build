@@ -74,6 +74,7 @@ const sidebars = {
           items: [
             "bsr/remote-generation/overview",
             "bsr/remote-generation/concepts",
+            "bsr/remote-generation/npm",
             "bsr/remote-generation/plugin-example",
             "bsr/remote-generation/template-example",
             "bsr/remote-generation/remote-plugin-execution",
