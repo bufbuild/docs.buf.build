@@ -1,27 +1,45 @@
-import { Command } from '.';
+import {
+  Arg,
+  commitArg,
+  directoryArg,
+  inputArg,
+  moduleArg,
+  organizationArg,
+  pluginArg,
+  referenceArg,
+  registryArg,
+  repositoryArg,
+  sourceArg,
+  tagArg,
+  templateArg,
+  trackArg,
+} from './args';
+import { link } from './links';
 
-
-const links: Record<string, string> = {
-  bsr: "/bsr/overview",
+type Command = {
+  name: string;
+  description: string;
+  arg?: Arg;
+  args?: Arg[];
+  commands?: Command[];
 };
 
-const link = (name: string, text?: string): string => {
-  const txt = (text) ? text : name;
-  return `<a href="${links[name]}">${txt}</a>`
-}
-
-export const commands: Command[] = [
+const commands: Command[] = [
   {
     name: "beta",
     description: "Beta commands. Unstable and likely to change.",
     commands: [
       {
         name: "convert",
-        description: "Use a source reference to convert a binary or JSON-serialized message supplied through stdin or the input flag."
+        description:
+          "Use a source reference to convert a binary or JSON-serialized message supplied through stdin or the input flag.",
+        arg: sourceArg
       },
       {
         name: "migrate-v1beta1",
-        description: "Migrate any v1beta1 configuration files in the current directory to the latest version."
+        description:
+          "Migrate any v1beta1 configuration files in the current directory to the latest version.",
+        arg: directoryArg
       },
       {
         name: "registry",
@@ -33,11 +51,13 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "get",
-                description: ""
+                description: "",
+                arg: referenceArg
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: moduleArg,
               }
             ]
           },
@@ -47,15 +67,18 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "create",
-                description: ""
+                description: "",
+                arg: organizationArg,
               },
               {
                 name: "delete",
-                description: ""
+                description: "",
+                arg: organizationArg,
               },
               {
                 name: "get",
-                description: ""
+                description: "",
+                arg: organizationArg,
               }
             ]
           },
@@ -65,27 +88,39 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "create",
-                description: ""
+                description: "",
+                arg: pluginArg,
               },
               {
                 name: "delete",
-                description: ""
+                description: "",
+                arg: pluginArg,
               },
               {
                 name: "deprecate",
-                description: ""
+                description: "",
+                arg: pluginArg,
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: registryArg,
               },
               {
                 name: "undeprecate",
-                description: ""
+                description: "",
+                arg: pluginArg,
               },
               {
                 name: "version",
-                description: ""
+                description: "",
+                commands: [
+                  {
+                    name: "list",
+                    description: "List versions.",
+                    arg: pluginArg,
+                  }
+                ]
               }
             ]
           },
@@ -95,27 +130,33 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "create",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               },
               {
                 name: "delete",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               },
               {
                 name: "deprecate",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               },
               {
                 name: "get",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: registryArg,
               },
               {
                 name: "undeprecate",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               }
             ]
           },
@@ -125,11 +166,13 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "create",
-                description: ""
+                description: "",
+                args: [commitArg, tagArg],
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               }
             ]
           },
@@ -139,27 +182,44 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "create",
-                description: ""
+                description: "",
+                arg: templateArg,
               },
               {
                 name: "delete",
-                description: ""
+                description: "",
+                arg: templateArg,
               },
               {
                 name: "deprecate",
-                description: ""
+                description: "",
+                arg: templateArg
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: registryArg
               },
               {
                 name: "undeprecate",
-                description: ""
+                description: "",
+                arg: templateArg,
               },
               {
                 name: "version",
-                description: ""
+                description: "",
+                commands: [
+                  {
+                    name: "create",
+                    description: "Create a new template version",
+                    arg: templateArg
+                  },
+                  {
+                    name: "list",
+                    description: "List versions for the specified template.",
+                    arg: templateArg,
+                  }
+                ]
               }
             ]
           },
@@ -169,11 +229,13 @@ export const commands: Command[] = [
             commands: [
               {
                 name: "delete",
-                description: ""
+                description: "",
+                arg: trackArg,
               },
               {
                 name: "list",
-                description: ""
+                description: "",
+                arg: repositoryArg,
               }
             ]
           }
@@ -183,11 +245,13 @@ export const commands: Command[] = [
   },
   {
     name: "breaking",
-    description: "Breaking change detection"
+    description: "Breaking change detection",
+    arg: inputArg,
   },
   {
     name: "build",
-    description: "Build"
+    description: "Build",
+    arg: inputArg
   },
   {
     name: "completion",
@@ -213,11 +277,18 @@ export const commands: Command[] = [
   },
   {
     name: "export",
-    description: "Export"
+    description: "Export",
+    arg: inputArg
+  },
+  {
+    name: "generate",
+    description: "Generate code stubs",
+    arg: inputArg
   },
   {
     name: "lint",
-    description: "Lint Protobuf sources"
+    description: "Lint Protobuf sources",
+    arg: inputArg
   },
   {
     name: "ls-files",
@@ -245,21 +316,25 @@ export const commands: Command[] = [
       },
       {
         name: "open",
-        description: ""
+        description: "",
+        arg: directoryArg,
       },
       {
         name: "prune",
-        description: ""
+        description: "",
+        arg: directoryArg
       },
       {
         name: "update",
-        description: ""
+        description: "",
+        arg: directoryArg,
       }
     ]
   },
   {
     name: "push",
-    description: "Push a module to the BSR."
+    description: "Push a module to the BSR.",
+    arg: sourceArg
   },
   {
     name: "registry",
@@ -276,3 +351,9 @@ export const commands: Command[] = [
     ]
   }
 ];
+
+export {
+  Command,
+  commands,
+  link
+}

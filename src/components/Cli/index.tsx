@@ -1,13 +1,8 @@
 import React from 'react';
 
-import { commands } from './commands';
+import { args } from './args';
+import { Command, commands } from './commands';
 import styles from './styles.module.css';
-
-export type Command = {
-  name: string;
-  description: string;
-  commands?: Command[];
-};
 
 type Props = {
   parent?: string;
@@ -19,11 +14,30 @@ const CommandEl = ({ parent, cmd }: Props) => {
   const id = name.replace(/ /g, "_");
 
   return (
-    <div className={styles.cli}>
+    <div className={styles.cli} id={id}>
       <div className={styles.commandTitle}>
-        <a id={id} href={`#${id}`}>
-          <code>{name}</code>
-        </a>
+        <span>{name}</span>
+        {cmd.arg && (
+          <>
+            {" "}
+            {"<"}
+            <a href={`#arg-${cmd.arg.name}`}>{cmd.arg.name}</a>
+            {">"}
+          </>
+        )}
+
+        {cmd.args && (
+          <span>
+            {cmd.args.map((arg) => (
+              <>
+                {" "}
+                {"<"}
+                <a href={`#arg-${arg.name}`}>{arg.name}</a>
+                {">"}
+              </>
+            ))}
+          </span>
+        )}
       </div>
 
       <div dangerouslySetInnerHTML={{ __html: cmd.description }} />
@@ -50,6 +64,26 @@ const Cli = () => {
         {commands.map((cmd) => (
           <CommandEl cmd={cmd} parent="buf" />
         ))}
+      </div>
+
+      <div>
+        <h2>Arguments</h2>
+
+        <div>
+          {args.map((arg) => (
+            <div id={`arg-${arg.name}`}>
+              <code>{arg.name}</code>
+
+              <div dangerouslySetInnerHTML={{ __html: arg.description }} />
+
+              {arg.default && (
+                <p>
+                  Default: <code>{arg.default}</code>
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
