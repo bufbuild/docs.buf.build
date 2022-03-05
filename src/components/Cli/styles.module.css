@@ -1,0 +1,19 @@
+.cli {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.title {
+  font-size: 1.25rem;
+}
+
+.commandTitle {
+  font-size: 1.1rem;
+}
+
+.commandList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

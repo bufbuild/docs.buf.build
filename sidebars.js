@@ -143,6 +143,7 @@ const sidebars = {
       type: "category",
       label: "Reference",
       items: [
+        "reference/cli",
         "reference/workspaces",
         "reference/images",
         "reference/inputs",
