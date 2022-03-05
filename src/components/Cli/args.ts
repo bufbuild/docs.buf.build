@@ -90,8 +90,9 @@ const args: Arg[] = [
   trackArg
 ];
 
+export default Arg;
+
 export {
-  Arg,
   args,
   commitArg,
   directoryArg,

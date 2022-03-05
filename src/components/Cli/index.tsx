@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { args } from './args';
-import { Command, commands } from './commands';
+import Command, { commands } from './commands';
 import styles from './styles.module.css';
 
 type Props = {
