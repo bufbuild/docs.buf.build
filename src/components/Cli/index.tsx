@@ -16,7 +16,8 @@ const CommandEl = ({ parent, cmd }: Props) => {
   return (
     <div className={styles.cli} id={id}>
       <div className={styles.commandTitle}>
-        <span>{name}</span>
+        <a href={`#${id}`}>{name}</a>
+        
         {cmd.arg && (
           <>
             {" "}
@@ -72,7 +73,9 @@ const Cli = () => {
         <div>
           {args.map((arg) => (
             <div id={`arg-${arg.name}`}>
-              <code>{arg.name}</code>
+              <a href={`#arg-${arg.name}`}>
+                <code>{arg.name}</code>
+              </a>
 
               <div dangerouslySetInnerHTML={{ __html: arg.description }} />
 
