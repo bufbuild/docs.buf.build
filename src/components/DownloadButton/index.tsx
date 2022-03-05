@@ -1,7 +1,7 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import React from 'react';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from "react";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 export const mac = "buf-Darwin-x86_64";
 export const linux = "buf-Linux-x86_64";

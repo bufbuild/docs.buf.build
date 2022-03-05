@@ -1,4 +1,4 @@
-import { link } from './links';
+import { link } from "./links";
 
 type Arg = {
   name: string;
@@ -107,4 +107,4 @@ export {
   tagArg,
   templateArg,
   trackArg
-}
+};

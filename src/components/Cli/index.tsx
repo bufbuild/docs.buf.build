@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { args } from './args';
-import Command, { commands } from './commands';
-import styles from './styles.module.css';
+import { args } from "./args";
+import Command, { commands } from "./commands";
+import styles from "./styles.module.css";
 
 type Props = {
   parent?: string;
@@ -17,7 +17,7 @@ const CommandEl = ({ parent, cmd }: Props) => {
     <div className={styles.cli} id={id}>
       <div className={styles.commandTitle}>
         <a href={`#${id}`}>{name}</a>
-        
+
         {cmd.arg && (
           <>
             {" "}

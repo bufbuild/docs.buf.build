@@ -8,6 +8,4 @@ const links: Record<string, string> = {
   inputs: "/reference/inputs"
 };
 
-export {
-  link,
-}
+export { link };

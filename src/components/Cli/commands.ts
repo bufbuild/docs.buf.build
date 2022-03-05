@@ -11,8 +11,8 @@ import Arg, {
   sourceArg,
   tagArg,
   templateArg,
-  trackArg,
-} from './args';
+  trackArg
+} from "./args";
 import Flag, {
   allFlag,
   configFlag,
@@ -33,9 +33,9 @@ import Flag, {
   reverseFlag,
   templateConfigFlag,
   typeFlag,
-  visibilityFlag,
-} from './flags';
-import { link } from './links';
+  visibilityFlag
+} from "./flags";
+import { link } from "./links";
 
 type Command = {
   name: string;
