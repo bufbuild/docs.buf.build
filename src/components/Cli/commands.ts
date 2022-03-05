@@ -281,7 +281,7 @@ const commands: Command[] = [
                 name: "list",
                 description: "",
                 arg: repositoryArg,
-                args: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
               }
             ]
           }
