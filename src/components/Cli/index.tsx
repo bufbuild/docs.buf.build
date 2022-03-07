@@ -1,22 +1,27 @@
-import React from "react";
+import React from 'react';
 
-import { args } from "./args";
-import Command, { commands } from "./commands";
-import styles from "./styles.module.css";
+import { args } from './args';
+import Command, { commands } from './commands';
+import styles from './styles.module.css';
 
 type Props = {
   parent?: string;
   cmd: Command;
 };
 
+const Html = ({ text }: { text: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: text }} />;
+};
+
 const CommandEl = ({ parent, cmd }: Props) => {
   const name: string = parent ? `${parent} ${cmd.name}` : cmd.name;
   const id = name.replace(/ /g, "_");
+  const href = `#${id}`;
 
   return (
     <div className={styles.cli} id={id}>
       <div className={styles.commandTitle}>
-        <a href={`#${id}`}>{name}</a>
+        <a href={href}>{name}</a>
 
         {cmd.arg && (
           <>
@@ -41,7 +46,7 @@ const CommandEl = ({ parent, cmd }: Props) => {
         )}
       </div>
 
-      <div dangerouslySetInnerHTML={{ __html: cmd.description }} />
+      <Html text={cmd.description} />
 
       {cmd.commands && (
         <div className={styles.commandList}>
@@ -77,7 +82,7 @@ const Cli = () => {
                 <code>{arg.name}</code>
               </a>
 
-              <div dangerouslySetInnerHTML={{ __html: arg.description }} />
+              <Html text={arg.description} />
 
               {arg.default && (
                 <p>
