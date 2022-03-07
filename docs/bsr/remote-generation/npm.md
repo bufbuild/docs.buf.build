@@ -26,7 +26,7 @@ $ npm install @buf/protocolbuffers_js_acme_paymentapis
 ```
 
 :::info Slow installation?
-You may notice that installing packages from the BSR npm registry using `npm install` can take longer than installing from the standard npm registry. This happens because packages are generated "on the fly"—that is, they're built upon request and then cached. The first `npm install` typically takes a while, but future `npm install`s should be more brisk.
+You may notice that installing packages from the BSR npm registry using `npm install` can take longer than installing from the standard npm registry. This happens because packages are generated "on the fly"—that is, they're built upon request and then cached. The first `npm install` typically takes longer than subsequent requests.
 :::
 
 ## Package names
