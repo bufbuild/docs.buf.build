@@ -324,8 +324,8 @@ $ buf build \
   --type acme.weather.v1.CurrentWeather.Temperature
 ```
 
-In this case, all dependent descriptors are built for both `acme.weather.v1.Units` and
-`acme.weather.v1.CurrentWeather.Temperature`.
+In this case, dependent descriptors for both `acme.weather.v1.Units` and
+`acme.weather.v1.CurrentWeather.Temperature` are included in the output.
 :::
 
 ### Type restriction example
