@@ -310,7 +310,7 @@ The type flag accepts fully qualified names for [messages], [enums], and [servic
 - [Enums]
   - The enum value descriptors for this enum
   - The parent message is this enum is a nested definition
-  - Any custom options used in the enum, enum values, and the file in which the enum is defined
+  - Any custom options for the enum, enum values, and the file in which the enum is defined
 - [Services]
   - Request and response types referenced in service methods
   - Any custom options for the services, its methods, and the file in which the service is defined
