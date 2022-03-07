@@ -25,8 +25,8 @@ With your npm config set, you can install `@buf/*` packages in any standard npm 
 $ npm install @buf/protocolbuffers_js_acme_paymentapis
 ```
 
-:::warning Slow installation?
-You may notice that installing packages from the BSR npm registry using `npm install` can take longer than installing from the standard npm registry. This happens because packages are generated "on the fly"—that is, they're built upon request and then cached. The first `npm install` typically takes a while, but future `npm install`s should be more brisk. More details are [below](#how-it-works).
+:::info Slow installation?
+You may notice that installing packages from the BSR npm registry using `npm install` can take longer than installing from the standard npm registry. This happens because packages are generated "on the fly"—that is, they're built upon request and then cached. The first `npm install` typically takes a while, but future `npm install`s should be more brisk.
 :::
 
 ## Package names
@@ -84,9 +84,9 @@ You can use an existing auth token or generate a new one. To create a new one, l
 
 Because the Buf npm registry implements npm's [public registry API][registry], you should be able to use it with package management tools outside of npm, such as [Yarn] and [pnpm], though with [some known limitations](#yarn).
 
-## Restrictions
+## Known limitations
 
-The BSR npm registry has some known limitations that you should be aware of.
+The BSR npm registry has a few limitations that you should be aware of.
 
 ### Runtime dependencies
 
@@ -98,13 +98,7 @@ If you're [creating your own plugins](../remote-generation/plugin-example.md), Y
 
 ### Import rewrites
 
-The BSR rewrites all `import` statements and `require()` calls in `.js` and `.d.ts` files, matching generated files with their `.proto` sources based on their path. Generated files _must_ use the same path as their `.proto` counterparts, although suffixes like `_pb` and additional file extensions are allowed.
-
-## How it works
-
-When you install a package for a Buf [module][modules] using `npm install`, [`yarn install`](#yarn), or an analogous method, the BSR npm registry runs the Protobuf [plugins] specified in the module's [template]. Once generation is complete, the BSR returns the generated assets to your npm client, which finally writes those assets to your `node_modules`.
-
-If the requested module has [dependencies][deps], the npm registry rewrites any relative import paths so that they point to the package with a full package name. Here's an example rewrite:
+If module you request has [dependencies][deps], the npm registry rewrites any relative import paths so that they point to the package with a full package name. Here's an example rewrite:
 
 ```javascript
 // generated import
@@ -113,6 +107,8 @@ require("../../google/storage/v1/storage_pb.js");
 // replacement
 require("@buf/grpc_web_googleapis_googleapis/google/storage/v1/storage_pb.js");
 ```
+
+The BSR rewrites all `import` statements and `require()` calls in `.js` and `.d.ts` files, matching generated files with their `.proto` sources based on their path. Generated files _must_ use the same path as their `.proto` counterparts, although suffixes like `_pb` and additional file extensions are allowed.
 
 [bsr]: /bsr/overview
 [buf-npm]: https://npm.buf.build
