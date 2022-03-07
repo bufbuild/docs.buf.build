@@ -67,11 +67,13 @@ To install npm packages generated from private [Buf modules][modules], you need 
 
 <Syntax
   title="npmrc token syntax"
-  examples={["//npm.buf.build/84612b6cbe8f41ddb3ac46c691f05a978e20a555ba5d4bc289a0a8289abe75ef"]}
+  examples={["//npm.buf.build/:_authToken=84612b6cbe8f4..."]}
   segments={[
     {separator: "//"},
     {label: "npm.buf.build", kind: "static"},
-    {separator: "/"},
+    {separator: "/:"},
+    {label: "_authToken", kind: "static"},
+    {separator: "="},
     {label: "token", kind: "variable"},
   ]}
 />
