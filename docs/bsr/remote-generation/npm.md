@@ -19,7 +19,7 @@ This binds the `@buf` package scope to the BSR and updates your global [`.npmrc`
 
 ## Installing packages {#install}
 
-With your npm config set, you can install `@buf/*` packages in any standard npm project with a `package.json` configuration. Here's an example installation command:
+With your npm config set, you can install `@buf/*` packages in any standard npm project.[^1] Here's an example installation command:
 
 ```terminal
 $ npm install @buf/protocolbuffers_js_acme_paymentapis
@@ -124,25 +124,6 @@ The BSR rewrites all `import` statements and `require()` calls in `.js` and `.d.
 [ranges]: https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
 [npm-registry]: https://registry.npmjs.org
 [registry-api]: https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md
-[semver]: https://semver.org
-[settings]: https://buf.build/settings/user
-[template]: /bsr/remote-generation/concepts#templates
-[yarn]: https://yarnkpkg.com
-[yarn_v1]: https://github.com/yarnpkg/yarn/releases/tag/v1.10.0
-[yarn_v2]: https://github.com/yarnpkg/yarn/releases/tag/v2.0.0
-
----
-
-[bsr]: /bsr/overview
-[config_set]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
-[deps]: /bsr/overview#dependencies
-[labels]: /bsr/remote-generation/plugin-example#3-prepare-the-dockerfile
-[modules]: /bsr/overview#modules
-[npmrc]: https://docs.npmjs.com/cli/v8/configuring-npm/npmrc
-[plugins]: /bsr/remote-generation/concepts#plugins
-[pnpm]: https://pnpm.io
-[ranges]: https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
-[registry]: https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md
 [semver]: https://semver.org
 [settings]: https://buf.build/settings/user
 [template]: /bsr/remote-generation/concepts#templates
