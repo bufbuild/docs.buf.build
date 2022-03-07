@@ -300,7 +300,8 @@ dependencies. This example usage restricts the output types to those required to
 $ buf build --type pkg.foo.Bar
 ```
 
-The type flag accepts fully qualified names for [messages], [enums], and [services]. The following qualify as dependent descriptors that are included in the build:
+The `--type` flag accepts fully qualified names for [messages], [enums], and [services]. These
+dependent descriptors are included in the build:
 
 - [Messages]
   - Messages and enums referenced in message fields
