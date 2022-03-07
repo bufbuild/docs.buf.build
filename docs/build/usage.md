@@ -300,8 +300,7 @@ dependencies. This example usage restricts the output types to those required to
 $ buf build --type pkg.foo.Bar
 ```
 
-Three Protobuf constructs can act as descriptors: [messages], [enums], and [services]. Each of these
-constructs has a set of dependent descriptors that are included in the build:
+The type flag accepts fully qualified names for [messages], [enums], and [services]. The following qualify as dependent descriptors that are included in the build:
 
 - [Messages]
   - Messages and enums referenced in message fields
