@@ -286,8 +286,9 @@ $ buf build --path path/to/foo.proto --path path/to/bar.proto
 ## Limit to specific types
 
 When you run `buf build` to create a [`FileDescriptorSet`][filedescriptorset] or Buf [image], the
-output contains all of the Protobuf types declared in the [module]. But for some advanced use cases,
-you may want the image or `FileDescriptorSet` to contain only a subset of those types.
+output contains all of the Protobuf types declared in the [module] by default. But for some advanced
+use cases, you may want the image or `FileDescriptorSet` to contain only a subset of the types
+described in your Protobuf API.
 
 Versions 1.1.0 and later of the `buf` CLI include a `--type` option for the `buf build` command that
 enables you to supply a fully qualified Protobuf name and limit the resulting image or
@@ -299,22 +300,34 @@ dependencies. This example usage restricts the output types to those required to
 $ buf build --type pkg.foo.Bar
 ```
 
-### Supported constructs {#constructs}
+Three Protobuf constructs can act as descriptors: [messages], [enums], and [services]. Each of these
+constructs has a set of dependent descriptors that are included in the build:
 
-The `--type` option supports these Protobuf constructs:
-
-- [Messages], including:
+- [Messages]
   - Messages and enums referenced in message fields
   - Any [proto2] extension declarations for message fields
   - The parent message if this message is a nested definition
   - Any custom options for the message, its fields, and the file in which the message is defined
-- [Enums], including:
+- [Enums]
   - The enum value descriptors for this enum
   - The parent message is this enum is a nested definition
   - Any custom options used in the enum, enum values, and the file in which the enum is defined
-- [Services], including:
+- [Services]
   - Request and response types referenced in service methods
   - Any custom options for the services, its methods, and the file in which the service is defined
+
+:::success Supplying multiple types
+You can specify multiple types by applying the `--type` option multiple times, as in this example:
+
+```terminal
+$ buf build \
+  --type acme.weather.v1.Units \
+  --type acme.weather.v1.CurrentWeather.Temperature
+```
+
+In this case, all dependent descriptors are built for both `acme.weather.v1.Units` and
+`acme.weather.v1.CurrentWeather.Temperature`.
+:::
 
 ### Type restriction example
 
@@ -349,9 +362,9 @@ This table shows which files, messages, and extensions would be included for var
 
 Type | Files | Messages | Extensions
 :----|:------|:---------|:----------
-`pkg.Foo` | `foo.proto`, `bar.proto` | `pkg.Foo`, `pkg.Bar`, `other.Qux` | `other.baz`
-`pkg.Bar` | `foo.proto` | `pkg.Bar` | |
-`pkg.Baz` | `foo.proto`, `bar.proto` | `pkg.Baz`, `other.Quux`, `other.Qux` | `other.my_option`
+`buf build --type pkg.Foo` | `foo.proto`, `bar.proto` | `pkg.Foo`, `pkg.Bar`, `other.Qux` | `other.baz`
+`buf build --type pkg.Bar` | `foo.proto` | `pkg.Bar` | |
+`buf build --type pkg.Baz` | `foo.proto`, `bar.proto` | `pkg.Baz`, `other.Quux`, `other.Qux` | `other.my_option`
 
 ## Docker
 
