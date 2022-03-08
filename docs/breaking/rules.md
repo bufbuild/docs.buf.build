@@ -1,6 +1,6 @@
 ---
 id: rules
-title: Rules and Categories
+title: Rules and categories
 ---
 
 As discussed in the overview, `buf` categorizes breaking rules into four main categories:
@@ -51,8 +51,8 @@ We recommend using `FILE` or `PACKAGE` (**`FILE` is the default**). Generally, t
 (and all the organization's external customers) is rarer than many think.
 
 Also as opposed to lint rules, there is not a strict subset relationship between the
-main categories in terms of what rules belong to what categories. However, in terms
-of strictness, the order is:
+main categories in terms of what rules belong to what categories. In terms of strictness, however,
+the order is:
 
 `FILE` > `PACKAGE` > `WIRE_JSON` > `WIRE`
 
@@ -198,9 +198,9 @@ the field (as well as reserving the name for JSON), so this is what we recommend
 **Category: `WIRE_JSON`**
 
 These check that no enum value or message field is deleted without reserving the
-name. This is the JSON-equivalent of reserving the number - JSON uses field names
-instead of numbers (this is optional for enum fields, but allowed). Generally you
-want to reserve both the number and the name. For example:
+name. This is the JSON equivalent of reserving the number - JSON uses field names
+instead of numbers (this is optional for enum fields, but allowed). We recommend
+reserving both the number and the name in most cases. Here's an example:
 
 ```protobuf
 enum Foo {
@@ -218,7 +218,8 @@ message Bar {
 }
 ```
 
-Note that it is significantly easier to just deprecate enum values and message fields.
+Note that it's usually better to deprecate enum values and message fields than to reserve them in
+advance.
 
 ### `RPC_NO_DELETE`
 
@@ -498,9 +499,11 @@ can result in different HTTP verbs being used.
 ## What we left out
 
 We think the rules above represent a complete view of what is and isn't compatible with respect to Protobuf schema. We cover
-every available field within a [FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/044c766fd4777713fef2d1a9a095e4308d770c68/src/google/protobuf/descriptor.proto#L57)
+every available field within a [`FileDescriptorSet`][filedescriptorset]
 as of protobuf v3.11.4, as well as additional fields as added. If we missed something, please [let us know](../contact.md).
 
-However, we did leave out custom options. There's no way for `buf` to know the effects of your custom options, so we cannot
+We did leave out custom options, though. There's no way for `buf` to know the effects of your custom options, so we cannot
 reliably determine their compatibility. We may add the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api)
 options in the future if there is sufficient demand, especially [google.api.http](https://github.com/googleapis/googleapis/blob/master/google/api/annotations.proto).
+
+[filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto#L57

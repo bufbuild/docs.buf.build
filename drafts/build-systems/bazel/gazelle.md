@@ -10,7 +10,7 @@ title: Gazelle
 Start by [setting up](overview) `rules_buf`, then setup Gazelle according to these [instructions](https://github.com/bazelbuild/bazel-gazelle#setup).
 
 Modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
-```starlark title="BUIlD" {1-2,4-14,18}
+```starlark title="BUILD" {1-2,4-14,18}
 -load("@bazel_gazelle//:def.bzl", "gazelle")
 +load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
@@ -36,7 +36,8 @@ Export the `buf.yaml` file by adding `exports_files(["buf.yaml"])` to the `BUILD
 
 > For workspaces do this for each `buf.yaml` file.
 
-Now run Gazelle
+Now run Gazelle:
+
 ```terminal
 $ bazel run //:gazelle
 ```
@@ -55,7 +56,7 @@ $ bazel query 'kind(buf_lint_test, //...)'
 
 ## Breaking change detection
 
-We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to an [image](/reference/images) target to generate breaking change detection rules. Gazelle directives are top-level comments in build files that are used to configure Gazelle.
+We need to add a gazelle [directive](https://github.com/bazelbuild/bazel-gazelle#directives) that points to a [Buf image](/reference/images) target to generate breaking change detection rules. Gazelle directives are top-level comments in build files that are used to configure Gazelle.
 
 > Refer to this [section](overview#against-image) for a overview how the image file itself can be maintained.
 
@@ -64,7 +65,8 @@ Add this Gazelle directive:
 ```starlark
 # gazelle:buf_breaking_against //:against_image_file
 ```
-> The directive should be in the `BUILD` file at the root of the buf [module](/bsr/overview#module). In other words, in the directory containing a `buf.yaml`.
+
+> The directive should be in the `BUILD` file at the root of the buf [module](/bsr/overview#modules). In other words, in the directory containing a `buf.yaml`.
 
 `buf_breaking_test` rules can be generated in two different modes.
 
@@ -73,6 +75,7 @@ Add this Gazelle directive:
 This is the default and preferred mode. `buf_breaking_test` is generated for each buf module. The rule will reference all the `proto_library` rules that are part of a buf module. This way the test can detect if any files are deleted.
 
 Once the `buf_breaking_against` directive is added, run `gazelle`:
+
 ```terminal
 $ bazel run //:gazelle
 ```
@@ -96,6 +99,7 @@ To switch to package mode, add this Gazelle directive:
 ```
 
 Now run Gazelle again:
+
 ```terminal
 $ bazel run //:gazelle
 ```
@@ -110,7 +114,7 @@ $ bazel query 'kind(buf_breaking_test, //...)'
 
 Let's consider a buf module with this directory structure:
 
-```terminal
+```sh
 ├── buf.yaml
 ├── BUILD
 ├── foo
@@ -122,6 +126,7 @@ Let's consider a buf module with this directory structure:
         ├── bar.proto
         └── BUILD
 ```
+
 #### Module mode
 
 A single `buf_breaking_test` rule is generated in `BUILD`. If a breaking change occurs in either `foo.proto` or `bar.proto` this test will detect it (even if `foo.proto` is deleted entirely).

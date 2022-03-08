@@ -15,17 +15,17 @@ definitions.
 
 The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) template file controls how the `buf generate` command
 executes `protoc` plugins for any [input](../reference/inputs.md). The `buf.gen.yaml` template lists one or more
-plugins and, optionally, other file option configurations with [Managed Mode](managed-mode.md). For more information
+plugins and, optionally, other file option configurations with [managed mode](managed-mode.md). For more information
 on the `buf.gen.yaml` configuration, please refer to the [reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Define a module
 
-To get started, create a [module](../bsr/overview.md#module) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
-file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with this command:
+To get started, create a [module](../bsr/overview.md#modules) by adding a
+[`buf.yaml`](../configuration/v1/buf-yaml.md) file to the root of the directory that contains your
+Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
-```sh
-$ buf config init
+```terminal
+$ buf mod init
 ```
 
 ```yaml title="buf.yaml"
@@ -67,9 +67,9 @@ see the [`buf.gen.yaml` reference](../configuration/v1/buf-gen-yaml.md).
 
 ## Run generate
 
-To generate for the input in your current directory, simply run:
+Run this to generate from the [input](../reference/inputs.md) in your current directory:
 
-```sh
+```terminal
 $ buf generate
 ```
 
@@ -77,7 +77,7 @@ You can also run `buf generate` on an input by specifying the filepath to the
 directory containing the root of your `.proto` definitions. For example if all of
 your `.proto` files are in directory `foo`:
 
-```sh
+```terminal
 $ buf generate foo
 ```
 
@@ -91,47 +91,79 @@ The `buf generate` command will:
 Any errors are printed out in a `file:line:column:message` format by default.
 For example:
 
-```sh
+```terminal
 $ buf generate
+---
 acme/pet/v1/pet.proto:5:8:acme/payment/v1alpha1/payment.proto: does not exist
 ```
 
 Generate output can also be printed as JSON:
 
-```sh
+```terminal
 $ buf generate --error-format=json
+---
 {"path":"acme/pet/v1/pet.proto","start_line":5,"start_column":8,"end_line":5,"end_column":8,"type":"COMPILE","message":"acme/payment/v1alpha1/payment.proto: does not exist"}
 ```
 
 ## Common use cases
 
-These commands illustrate several common cases for `buf generate`:
+The most common use case is to generate using the current directory as
+[input](../reference/inputs.md):
 
-```sh
-# Uses the current directory as input, and assumes a `buf.gen.yaml` also exists in the current directory.
+```terminal
 $ buf generate
+```
 
-# Uses the buf.build/acme/petapis module as input, using a `buf.gen.yaml` in the current directory.
+This command assumes that a [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) exists in the
+directory where you run the command.
+
+### Generating from a Buf module {#from-module}
+
+You can generate from a Buf [module](../bsr/overview.md#modules) on the [Buf Schema
+Registry](../bsr/introduction.md) (BSR) by providing the module name as the
+[input](../reference/inputs.md):
+
+```terminal
 $ buf generate buf.build/acme/petapis
+```
 
-# Uses the current directory as input, and explicitly specifies a custom template in another directory.
-$ buf generate --template data/generate.yaml
+> This examples uses a Buf module as the input, but other inputs are available. For a complete list,
+> see the [Buf input format documentation](../reference/inputs.md#source-formats).
 
-# The --template flag also takes YAML or JSON data as input, so it can be used without a file.
+### Generating using multiple templates {#multiple-templates}
+
+The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) file enables you to configure one
+generation template. For cases where you need to use multiple templates for the same
+[input](../reference/inputs.md), we recommend using multiple configuration files with different
+names.
+
+If you needed to use one template for Go and a different template for Java, for example, you could
+create a `buf.gen.go.yaml` file and a `buf.gen.java.yaml` file and use separate commands to generate
+code:
+
+```terminal
+$ buf generate --template buf.gen.go.yaml
+$ buf generate --template buf.gen.java.yaml
+```
+
+You could also specify those different templates as JSON:
+
+```terminal
 $ buf generate --template '{"version":"v1","plugins":[{"name":"go","out":"gen/go"}]}'
+$ buf generate --template '{"version":"v1","plugins":[{"name":"java","out":"gen/java"}]}'
+```
 
-# Download the repository, compile it, and generate per the generate.yaml template.
-$ buf generate https://github.com/foo/bar.git --template data/generate.yaml
+### Generating to a specific directory {#output}
 
-# Generate to the bar/ directory, prepending bar/ to the out directives in the template.
+You can generate to a specific output directory using the `--output` or `-o` flag. This command
+generates to the `bar/` directory while prepending `bar/` to the `out` directives in the template:
+
+```terminal
 $ buf generate https://github.com/foo/bar.git --template data/generate.yaml -o bar
 ```
 
 The paths in the template and the `-o` flag are interpreted as relative to your
 **current directory**, so you can place your template files anywhere.
-
-For a complete list of supported inputs refer to the [Input format documentation](../reference/inputs.md#source-formats).
-
 
 ## Limit to specific files
 
@@ -141,7 +173,7 @@ integration - it is better to let `buf` discover all files under management and 
 
 If you only want to generate stubs for a subset of your input, you can do so via the `--path` flag:
 
-```sh
+```terminal
 # Only generate for the files in the directories proto/foo and proto/bar
 $ buf generate --path proto/foo --path proto/bar
 
@@ -154,10 +186,10 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml --pa
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that allows
-you to use `buf` as part of your Docker workflow. For example:
+Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables you to
+use `buf` as part of your Docker workflow. For example:
 
-```sh
+```terminal
 $ docker run \
   --volume "$(pwd):/workspace" \
   --workdir /workspace \

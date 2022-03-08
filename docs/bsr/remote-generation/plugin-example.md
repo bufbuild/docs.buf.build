@@ -1,9 +1,9 @@
 ---
 id: plugin-example
-title: Authoring a Plugin
+title: Authoring a plugin
 ---
 
-> Remote code generation is an **experimental feature**. We started with Go and have plans to add support for other languages. [Let us know what language we should tackle next](../../contact.md).
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
 
 The purpose of this guide is to walk you through a concrete example of how to publish an existing `protoc`-based plugin to the BSR.
 
@@ -31,7 +31,7 @@ Before we can push a plugin to the BSR, a repository must exist. You can create 
 From the UI click your avatar in the top-right corner, select Plugins and click
 the Create Plugin button. Follow the on-screen instructions.
 
-However, for this example we'll use the `buf` CLI.
+For this example, however, we'll use the `buf` CLI.
 
 > This tutorial uses a real organization (demolab) and plugin name (twirp), make sure to substitute these with your own values.
 
@@ -63,7 +63,7 @@ FROM golang as builder
 ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 
 RUN go install github.com/twitchtv/twirp/protoc-gen-twirp@v8.1.0+incompatible
-# Note, the images must be built for amd64. If the host machine architecture is not amd64
+# Note, the Docker images must be built for amd64. If the host machine architecture is not amd64
 # you need to cross-compile the binary and move it into /go/bin.
 RUN bash -c 'find /go/bin/${GOOS}_${GOARCH}/ -mindepth 1 -maxdepth 1 -exec mv {} /go/bin \;'
 
@@ -82,7 +82,7 @@ ENTRYPOINT ["/protoc-gen-twirp"]
 
 This Dockerfile uses [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/).
 
-The intended `GOOS/GOARCH` **must** be `linux/amd64`. This is important, especially if you're building images on an ARM-based machine, such as Apple M1 computers.
+The intended `GOOS/GOARCH` **must** be `linux/amd64`. This is important, especially if you're building Docker images on an ARM-based machine, such as Apple M1 computers.
 
 Normally `go install` would install to `$GOPATH/bin/$GOOS_$GOARCH` when cross-compiling, so we added this line to copy the executable into the `/go/bin` path.
 
@@ -109,7 +109,7 @@ $ docker build -f Dockerfile.twirp -t plugins.buf.build/demolab/twirp:v8.1.0-1 .
 We're tagging the version as `v8.1.0-1` even though the upstream version of the plugin is `v8.1.0`. This structure enables us to make changes to the packaging of the plugin without changing the upstream version, for example, if we made a mistake in our Dockerfile. This pattern is commonly used in other systems where packaging is done externally to the upstream software, such as [Debian](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version) and [Arch](https://wiki.archlinux.org/title/Arch_package_guidelines#Package_versioning)
 package versioning systems.
 
-## 5. Publish Plugin to the BSR
+## 5. Publish plugin to the BSR
 
 Lastly, publish the containerized `protoc`-based plugin to the BSR. Make sure you have [authenticated](#1-docker-registry-authentication) your docker client in step 1.
 
@@ -123,6 +123,6 @@ v8.1.0-1: digest: sha256:782f6522b2bc8cc943338b61a73e795c4309969f9974ef3431e4aa1
 
 Awesome, you've successfully published your first BSR plugin! 
 
-Remember, plugins are the smallest reusable components required for Code Generation. In the next section we'll prepare a BSR Template and use the `demolab/twirp` plugin created above.
+Remember, plugins are the smallest reusable components required for code generation. In the next section we'll prepare a BSR Template and use the `demolab/twirp` plugin created above.
 
 Continue to the next section to learn more about authoring *and using* [BSR Templates](template-example.md)

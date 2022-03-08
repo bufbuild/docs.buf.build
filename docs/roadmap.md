@@ -19,15 +19,16 @@ One of the promises of the BSR is to allow the generation of your APIs on demand
 we want to enable modules to have stubs generated on-demand, for every version, for every possible
 Protobuf plugin, with consumption via language-native mechanisms.
 
-This feature is currently available for Buf's *experimental* [Go Module Proxy](bsr/remote-generation/overview.md#go-module-proxy).
-Given a module, such as `buf.build/acme/weather`, you can consume generated code for:
+This feature is currently available for Buf's [Go Module Proxy](bsr/remote-generation/overview.md#go-module-proxy)
+which is currently in **alpha**. Given a module, such as `buf.build/acme/weather`, you can consume
+generated code for:
 
   - Plugin `protoc-gen-go` version `1.4.0`
   - Plugin `protoc-gen-go-grpc` version `1.0.0`
 
 All via a `go` command that results in a Go module:
 
-```sh
+```terminal
 $ go get go.buf.build/grpc/go/acme/weather
 ```
 
@@ -47,7 +48,7 @@ beyond internal APIs, but for external APIs as well.
 ### Enforced linting and compatibility
 
 The BSR currently leans on the module author to verify that their proposed commit is backwards-compatible with previous commits
-before the module is pushed. It's easy enough to run `buf breaking`, but mistakes happen and users might forget to instrument
+before the module is pushed. `buf breaking` does help, of course, but mistakes happen and users might forget to instrument
 this in their CI pipeline.
 
 Instead, we can let users configure backwards-compatibility for the module itself so that it's **enforced on the server side**.
@@ -71,7 +72,7 @@ not be resolved, and the developer can simply adjust their requirements as neede
 
 ### Reflection Service
 
-The BSR holds all of your Protobuf API definitions so it can very easily act as a reflection server for your
+The BSR holds all of your Protobuf API definitions so it can easily act as a reflection server for your
 Protobuf messages. This typically involves exposing a set of reflection endpoints on *your* server, but this
 is no longer required because the BSR has all of your definitions and it can host this functionality for you.
 
@@ -105,7 +106,7 @@ We will support Bazel as a first-class citizen with official Bazel rules.
 Buf currently supports both a [vim plugin](https://github.com/bufbuild/vim-buf) and a
 [VSCode plugin](https://github.com/bufbuild/vscode-buf) to provide Protobuf linting in these editors.
 But we recognize that we can do a lot more in this area, such as formatting your Protobuf files
-on save (via the formatter mentioned above), and a fully-fledged *Protobuf language server*, which
+on save (via the formatter mentioned above), and a full-fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
 With this, you will be able to use more editor features, such as auto-completion and
@@ -136,3 +137,4 @@ old API structures into their current API structures.
 The BSR is perfectly positioned to bring this solution to Protobuf users. The BSR tracks the entire history of
 your module, and can theoretically apply a series of changes (specified in a changelog) to your API so that
 you can stop worrying about API compatibility entirely.
+

@@ -175,7 +175,7 @@ annotations.
 The `enum_zero_value_suffix` key is **optional**, and controls the behavior of the
 `ENUM_ZERO_VALUE_SUFFIX` lint rule. By default, this rule verifies that the zero value of all
 enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide](https://developers.google.com/protocol-buffers/docs/style#enums).
-However, organizations may have a different preferred suffix, for example `_NONE`, and `enum_zero_value_suffix`
+But organizations may have a different preferred suffix, for example `_NONE`, and `enum_zero_value_suffix`
 enables you to set a suffix like this:
 
 ```yaml title="buf.yaml"
@@ -203,7 +203,7 @@ lint rules.
 a unique request and response message for every RPC.** Separate RPCs should not have their
 request and response parameters controlled by the same Protobuf message, and if you share
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
-when fields on this Protobuf message change. **Even in simple cases**, best practice
+when fields on this Protobuf message change. **Even in straightforward cases**, best practice
 is to always have a wrapper message for your RPC request and response types. `buf` enforces
 this as part of the `DEFAULT` category by verifying that:
 
@@ -224,7 +224,8 @@ service FooService {
 }
 ```
 
-However, **while not recommended**, `buf` provides a few options to slightly loosen these restrictions:
+But while do **not** recommend it, `buf` provides a few options to loosen these restrictions
+somewhat:
 
 - `rpc_allow_same_request_response` allows the same message type to be used for a single RPC's
   request and response type.
@@ -253,7 +254,7 @@ service BarService {
 ### `service_suffix`
 
 The `service_suffix` key is **optional**, and controls the behavior of the `SERVICE_SUFFIX` lint rule.
-By default, this rule verifies that all service names are suffixed with `Service`. However, organizations
+By default, this rule verifies that all service names are suffixed with `Service`. But organizations
 may have a different preferred suffix, for example `API`, and `service_suffix` enables you to
 set that suffix explicitly:
 

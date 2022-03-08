@@ -1,6 +1,6 @@
 ---
 id: rules
-title: Rules and Categories
+title: Rules and categories
 ---
 
 > The rules and categories described here belong to the latest [`v1`](../configuration/v1/buf-yaml.md)
@@ -24,7 +24,7 @@ a human representation and is not actual configuration.
   - `COMMENTS`
   - `UNARY_RPC`
 
-## Style Guide
+## Style guide
 
 The [Style Guide](../best-practices/style-guide.md) provides a concise document that includes all rules in the
 `DEFAULT` category, as well as additional recommendations that are not enforced. We provide this for ease of consumption
@@ -100,7 +100,7 @@ only one such directory exists. For example, consider this `tree`:
                 └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-`protoc` doesn't enforce file structure in any way, but you're likely to have a *very* bad time
+`protoc` doesn't enforce file structure in any way, but you're likely to have a rough time
 with many Protobuf plugins across various languages if you do not do this.
 
 This structure has the effect of allowing imports to self-document their package. For example,
@@ -191,7 +191,7 @@ This rule checks that services are PascalCase.
 #### `PACKAGE_SAME_*`
 
 `buf` does not lint file option values, as explained in the [What we left out](#what-we-left-out) section below.
-However, it's important that your file option values are consistent across all files in a given Protobuf package
+It's important, however, that your file option values are consistent across all files in a given Protobuf package
 if you do use them.
 
   - `PACKAGE_SAME_CSHARP_NAMESPACE` checks that all files with a given package have the same value for the `csharp_namespace` option.
@@ -412,7 +412,7 @@ These rules enforce the message name of RPC request/responses, and that all requ
 a unique request and response message for every RPC.** Separate RPCs should not have their
 request and response parameters controlled by the same Protobuf message, and if you share
 a Protobuf message between multiple RPCs, this results in multiple RPCs being affected
-when fields on this Protobuf message change. **Even in simple cases**, best practice
+when fields on this Protobuf message change. **Even in straightforward cases**, best practice
 is to always have a wrapper message for your RPC request and response types. `buf` enforces
 this with these three rules by verifying that:
 
@@ -462,7 +462,7 @@ foo.bar.v1testfoo
 
 One of the core promises of Protobuf API development is to never have breaking changes
 in your APIs, and `buf` helps enforce this through the [breaking change detector](../breaking/overview.md).
-However, there are scenarios where you do want to properly version your API. Instead of making changes, the
+There are scenarios, however, where you do want to properly version your API. Instead of making changes, the
 proper method to do so is to make a completely new Protobuf package that is a copy of your existing
 Protobuf package, serve both packages server-side, and manually migrate your callers. This rule
 enforces that all packages have a version attached so that it is clear when a package represents
@@ -528,7 +528,7 @@ Note that only leading comments are considered - trailing comments do not count 
 these rules.
 
 You may want to at least enforce that certain parts of your schema contain comments. For example, you
-can select individual rules in the `COMMENTS` category like so:
+can select individual rules in the `COMMENTS` category like this:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -609,7 +609,7 @@ rules we purposefully did not write that deserve special mention.
 ### File option values
 
 `buf` does not include linting for specific file option values. It's not that we don't think consistency
-across these file options is important - in fact, we think it's very important for easy Protobuf stub
+across these file options is important - in fact, we think it simplifies Protobuf stub
 consumption. A core principle we feel strongly about is that **language-specific file options shouldn't be
 part of your core Protobuf schema** - your Protobuf schema should only describe language-independent elements
 as much as is possible.
@@ -620,16 +620,16 @@ we think that `java_package` should likely be a constant prefix followed by the 
 These aren't defaults, for backwards-compatibility reasons, but if you're using a tool like `buf` to produce your
 stubs, you shouldn't have to think about any of this.
 
-This is exactly why we've created [Managed Mode](../generate/managed-mode.md), which sets all of these file options
+This is exactly why we've created [managed mode](../generate/managed-mode.md), which sets all of these file options
 *on the fly* with `buf generate`.
 
 `buf` still enforces that specific file options are the same across a given package, done through the `BASIC` and
 `DEFAULT` categories described above. We do find this to be important, regardless of what values you choose. Fortunately,
-with **Managed Mode**, you can remove your file option declarations altogether and leave the rest to `buf`.
+with managed mode you can remove your file option declarations altogether and leave the rest to `buf`.
 
 ### Custom options
 
-There are no lint rules for widely-used custom options such as [google.api options](https://github.com/googleapis/googleapis/tree/master/google/api)
+There are no lint rules for widely used custom options such as [google.api options](https://github.com/googleapis/googleapis/tree/master/google/api)
 or [protoc-gen-validate](https://github.com/envoyproxy/protoc-gen-validate/blob/master/validate/validate.proto).
 There's a lot of thought that needs to go into issues such as forwards and backwards compatibility for custom options,
 so we currently only support the standard set of file options. Please [contact us](../contact.md) if this is a big need for
@@ -644,5 +644,5 @@ standardization. This is to provide maximum usefulness of the `DEFAULT` category
 ## Adding or requesting new rules
 
 If you'd like a new rule added, please [contact us](../contact.md) to discuss it. We'll add rules if we think
-they're maintainable and could have widespread value. Most rules can be very easily added, and although
-[buf is OSS](https://github.com/bufbuild/buf), it's usually easier for us to add it ourselves.
+they're maintainable and could have widespread value. Most rules can be easily added, and although
+[Buf is OSS](https://github.com/bufbuild/buf), it's usually more efficient for us to add it ourselves.

@@ -1,6 +1,6 @@
 ---
 id: implement-grpc-endpoints
-title: 11 Implement gRPC Endpoints
+title: 11 Implement gRPC endpoints
 ---
 
 In this section, you'll implement a `PetStoreService` client and server, both of which you can run
@@ -17,7 +17,7 @@ $ go mod init github.com/bufbuild/buf-tour/petstore
 Similar to the [`buf.yaml`](/configuration/v1/buf-yaml) config file, the `go.mod` file tracks your
 code's Go dependencies.
 
-## 11.2 Implement the Server {#implement-the-server}
+## 11.2 Implement the server {#implement-the-server}
 
 You can start implementing a server by creating a `server/main.go` file:
 
@@ -81,7 +81,7 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 }
 ```
 
-## 11.3 Implement the Client {#implement-the-client}
+## 11.3 Implement the client {#implement-the-client}
 
 You can start implementing a client by creating a `client/main.go` file:
 
@@ -132,7 +132,7 @@ func run() error {
 }
 ```
 
-## 11.4 Resolve Go Dependencies {#resolve-go-dependencies}
+## 11.4 Resolve Go dependencies {#resolve-go-dependencies}
 
 Now that you have code for both a client and a server, run this command to resolve
 some of the dependencies you need for the generated code:

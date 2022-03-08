@@ -125,6 +125,10 @@ figcaption {
   color: var(--ifm-font-color-base);
 }
 
+.admonition .prism-code {
+  border: 1px solid var(--ifm-color-gray);
+}
+
 .admonition.admonition-success,
 .admonition.admonition-tip {
   border: 2px solid rgb(0, 200, 83);

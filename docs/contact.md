@@ -1,6 +1,6 @@
 ---
 id: contact
-title: Contact Us
+title: Contact us
 ---
 
 We'd love to stay in touch, here's a few ways to stay up to date:

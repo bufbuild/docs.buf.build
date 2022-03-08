@@ -1,6 +1,6 @@
 ---
 id: generate-code
-title: 5 Generate Code
+title: 5 Generate code
 ---
 
 `buf` provides a user-friendly experience for generating code locally that's completely compatible
@@ -12,7 +12,7 @@ Move back to the `start` directory with this command:
 $ cd ..
 ```
 
-## 5.1 Install Plugins {#install-plugins}
+## 5.1 Install plugins {#install-plugins}
 
 You'll use the `protoc-gen-cpp` and `protoc-gen-java` plugins to generate code using `buf generate`,
 so you'll need to install them.
@@ -29,8 +29,8 @@ The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) file controls how the 
 executes `protoc` plugins. With a `buf.gen.yaml`, you can configure where each `protoc` plugin writes its result
 and specify options for each plugin independently.
 
-You can create a simple `buf.gen.yaml` file that configures the `protoc-gen-cpp` and `protoc-gen-java`
-plugins with this configuration:
+You can create a `buf.gen.yaml` file that configures the `protoc-gen-cpp` and `protoc-gen-java`
+plugins:
 
 ```yaml title="buf.gen.yaml"
 version: v1
@@ -50,7 +50,7 @@ Like `protoc`, `buf` infers the `protoc-gen-` prefix for each plugin specified b
 You can override this behavior with the [`path`](../configuration/v1/buf-gen-yaml.md#path) key, but
 this is an advanced feature that's usually unnecessary.
 
-## 5.3 Generate C++ and Java Stubs {#generate-c-and-java-stubs}
+## 5.3 Generate C++ and Java stubs {#generate-c-and-java-stubs}
 
 Now that you have a `buf.gen.yaml` with the `protoc-gen-{cpp,java}` plugins configured, you can generate the
 C++ and Java code associated with the `PetStoreService` API.
@@ -103,9 +103,9 @@ start/
             └── pet.proto
 ```
 
-## 5.4 Use Managed Mode {#use-managed-mode}
+## 5.4 Use managed mode {#use-managed-mode}
 
-[Managed Mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
+[Managed mode](../generate/managed-mode.md) is a `buf.gen.yaml` configuration option that tells `buf`
 to set all of the file options in your module according to an opinionated set of values suitable for each of the
 supported Protobuf languages, such as Go, Java, and C#. The file options are written *on the fly* by
 `buf` so that you don't need to include them in your Protobuf source files.
@@ -189,7 +189,7 @@ start/
             └── pet.proto
 ```
 
-We'll come back to **Managed Mode** in a more complex example [later in the tour](use-managed-mode.md).
+We'll come back to managed mode in a more complex example [later in the tour](use-managed-mode.md).
 For now, restore your `buf.gen.yaml` configuration before you continue:
 
 ```yaml title=buf.gen.yaml {2-5}

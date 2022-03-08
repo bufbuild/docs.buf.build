@@ -1,11 +1,9 @@
 ---
 id: user-management
-title: User Management
+title: User management
 ---
 
-# User Management
-
-## Organization Roles
+## Organization roles
 
 Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
 	
@@ -13,7 +11,7 @@ Every user that is part of an organization has an explicit role. Note that users
 
 - Users that require unrestricted access to the organization, its settings and all resources owned by the organization. 
 - Can delete organization. All resources such as repositories, templates and plugins must be deleted before the organization can be deleted.
-- Can add and delete resources such as [repositories](../bsr/overview.md#module), [templates](../bsr/remote-generation/concepts/#template) and [plugins](../bsr/remote-generation/concepts/#plugin).
+- Can add and delete resources such as [repositories](../bsr/overview.md#modules), [templates](../bsr/remote-generation/concepts/#templates) and [plugins](../bsr/remote-generation/concepts/#plugins).
 
 ### Admin
 
@@ -36,13 +34,11 @@ The default roles:
 
 Organization owners can modify the base resource roles depending on the requirements of the organization. These roles are configurable on the organization settings page.
 
-## Resource Roles
-
-> *Resource roles coming soon.*
+## Resource roles
 
 Resources such as repositories, templates and plugins are owned by either an individual user or an organization. In the case of user-owned resources, the user is granted the `Owner` role and for organization-owned resources members inherit the [base resource roles](#base-resource-roles) as defined by the organization.
 
-However, in some situations you'll need to give additional permissions to individual users over a user- or organization-owned resource.
+In some situations, however, you'll need to give additional permissions to individual users over a user- or organization-owned resource.
 
 The most common use-cases are:
 

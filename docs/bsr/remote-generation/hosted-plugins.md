@@ -1,18 +1,18 @@
 ---
 id: remote-plugin-execution
-title: Remote Plugin Execution
+title: Remote plugin execution
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Remote Plugin Execution
+## Remote plugin execution
 
 One of the greatest challenges with Protobuf code generation is the complexity of working with `protoc` and custom plugins. Time and time again we've heard that developers want the benefits of code generation, but the existing tooling gets in the way.
 
-There is a high barrier to entry due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem gets compounded as you scale out code generation across many developers.
+There is a high barrier to entry due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem is compounded as you scale out code generation across many developers.
 
-Every organization and open source project develops homegrown tooling in an effort to simplify the developer experience and maintain consistent output across developers. A handful of organizations might get a workable solution, but these remain brittle and difficult to maintain over time. Furthermore, domain knowledge of these homegrown solutions gets lost and upgrade paths become challenging.
+Every organization and open source project develops homegrown tooling in an effort to simplify the developer experience and maintain consistent output across developers. A handful of organizations might get a workable solution, but these remain brittle and difficult to maintain over time. Furthermore, domain knowledge of these homegrown solutions is lost and upgrade paths become challenging.
 
 At Buf, we believe code generation is a key building block and the Protobuf ecosystem deserves a proper solution.
 
@@ -193,7 +193,7 @@ You should end up with this structure:
   ]}>
   <TabItem value="go">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -207,7 +207,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="javascript">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -221,7 +221,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="python">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -235,7 +235,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="ruby">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -249,7 +249,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="java">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen

@@ -1,9 +1,9 @@
 ---
 id: use-a-workspace
-title: 12 Use a Workspace
+title: 12 Use a workspace
 ---
 
-In the last section, you used `buf generate` with a [module](../bsr/overview.md#module) you
+In the last section, you used `buf generate` with a [module](../bsr/overview.md#modules) you
 pushed to the [BSR](../bsr/overview.md) to implement a gRPC client and server in Go.
 That's a great start, but product requirements always evolve and new features need to be built over
 time.
@@ -26,7 +26,7 @@ there:
 ```terminal
 $ mkdir paymentapis
 $ cd paymentapis
-$ buf config init
+$ buf mod init
 ```
 
 That creates this config file:
@@ -90,7 +90,7 @@ message Order {
 }
 ```
 
-## 12.2 Build the Module {#build-the-module}
+## 12.2 Build the module {#build-the-module}
 
 If you try to build the `paymentapis` module in its current state, you'll get an error:
 
@@ -126,17 +126,17 @@ The `paymentapis` module is ready to be used, but it's not yet clear if the API 
 Given that these APIs are meant to be used by other services, you need to test it in other
 applications to make sure it's the API you should to commit to. In general, such APIs should
 include an unstable [`PACKAGE_VERSION_SUFFIX`](../lint/rules.md#package_version_suffix), such
-as the `v1alpha1` version used above, to convey that these packages are still in-development and
+as the `v1alpha1` version used above, to convey that these packages are still in development and
 can have breaking changes.
 
-However, you can also use a **workspace** so that you can iterate on multiple modules locally
+You can also use a **workspace** so that you can iterate on multiple modules locally
 without pushing anything to the BSR. Then, only after you've verified that the API is what you want
 to move forward with, you can push the version to the BSR so that it can be used by others.
 
 In summary, workspaces prevent you from pushing up a new version of your module to the BSR every
 time you want to test the changes in another. Instead, you can do it all locally first.
 
-## 12.3 Define a Workspace {#define-a-workspace}
+## 12.3 Define a workspace {#define-a-workspace}
 
 A workspace is defined with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md) file, which is
 generally placed at the root of a version-controlled repository. Given that you're working from
@@ -158,7 +158,7 @@ directories:
 
 Your directory structure should now look like this:
 
-```terminal
+```sh
 start/
 ├── buf.gen.yaml
 ├── buf.work.yaml
@@ -243,6 +243,7 @@ the result:
 
 ```terminal
 $ buf build petapis
+---
 petapis/pet/v1/pet.proto:7:8:payment/v1alpha1/payment.proto: does not exist
 ```
 
@@ -262,7 +263,7 @@ Before we continue, restore the `buf.work.yaml` to its previous state:
    - petapis
 ```
 
-## 12.5 Multiple Module Operations {#multiple-module-operations}
+## 12.5 Multiple module operations {#multiple-module-operations}
 
 If the input for a `buf` command is a directory containing a `buf.work.yaml` file, the command will act
 upon all of the modules defined in the `buf.work.yaml`.
@@ -290,6 +291,7 @@ in the `buf.work.yaml` with a single command:
 
 ```terminal
 $ buf lint
+---
 paymentapis/payment/v1alpha1/payment.proto:20:10:Field name "orderID" should be lower_snake_case, such as "order_id".
 petapis/pet/v1/pet.proto:28:10:Field name "petID" should be lower_snake_case, such as "pet_id".
 ```

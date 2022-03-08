@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 
 PROJECT=<your-project-name>
 # Use your desired buf version
-BUF_VERSION=1.0.0-rc12
+BUF_VERSION=1.1.0
 # buf is installed to ~/bin/your-project-name.
 BIN_DIR=$HOME/bin/$(PROJECT)
 
@@ -83,37 +83,45 @@ rm -rf $BUF_TMP
 
 To run lint checks with your job, simply add `buf lint` to it and you're good to go!
 
-If your [`buf.yaml`](../configuration/v1/buf-yaml.md) is defined at the root of your repository, the command is
-as simple as:
+If your [`buf.yaml`](../configuration/v1/buf-yaml.md) is defined at the root of your repository, you
+can run the linter with this command:
 
-```sh
-buf lint
+```terminal
+$ buf lint
 ```
 
 If, on the other hand, your `buf.yaml` is defined in a nested directory, such as the `proto`
 directory, the command looks like this:
 
-```sh
-buf lint proto
+```terminal
+$ buf lint proto
 ```
 
 For `buf breaking`, the process is similar, but be sure to set the full `https` or `ssh`
 remote as the target. If your `buf.yaml` is defined at the root of your repository,
 the command looks like this:
 
-```sh
-buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
-# or
-buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main"
+```terminal
+$ buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
+```
+
+Also valid:
+
+```terminal
+$ buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main"
 ```
 
 Again, if your `buf.yaml` is defined in a nested directory, such as the `proto` directory,
 the command looks like this (notice the `subdir` parameter):
 
-```sh
-buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
-# or
-buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
+```terminal
+$ buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
+```
+
+Also valid:
+
+```terminal
+$ buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
 ```
 
 If you are on [TravisCI](https://travis-ci.org) or [CircleCI](https://circleci.com) they

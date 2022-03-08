@@ -4,9 +4,7 @@ title: Overview
 description: The BSR supports remote code generation, which means you fetch generated source code like any other dependency.
 ---
 
-import Image from '@site/src/components/Image';
-
-> Remote code generation is an **experimental feature**. We started with Go and have plans to add support for other languages. [Let us know what language we should tackle next](../../contact.md).
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
 
 A common frustration when working with Protobuf is the dependency on language
 specific generated code. Many teams implement custom tooling and scripts
@@ -16,7 +14,9 @@ tooling set up locally.
 
 Furthermore, if you have Protobuf-based services your clients shouldn't have to deal
 with code generation. They should be able to consume your API immediately. *And* it should
-be as simple as pulling a generated client from their language's registry, that's it!
+involve nothing more than pulling a generated client from their language's registry, that's it!
+
+import Image from '@site/src/components/Image';
 
 <Image alt="BSR module" src="/img/bsr/remote-code-gen.png" width={75} caption="The Buf Schema Registry's remote generation process" />
 
@@ -49,19 +49,19 @@ Buf maintains several official templates:
 - https://buf.build/grpc/templates/web
 - https://buf.build/grpc/templates/go
 
-## Remote Generation Registries
+## Remote generation registries
 
 With a specific Template version and a specific Module version, the BSR has enough information
-to perform code generation. The output of this operation is stored in a Remote Generation Registry.
+to perform code generation. The output of this operation is stored in a remote generation registry.
 This is **extremely** powerful, because producers and consumers of Protobuf-based API
 can import type definitions and/or service stubs in their language directly from the registry without having
 to deal with code generation.
 
-Initially we are targeting the Go ecosystem. However, most modern language ecosystems have some concept of
-a "registry" where you can depend on external code artifacts in a well versioned way.
+Initially we are targeting the Go ecosystem. Most modern language ecosystems, however, have some
+concept of a "registry" where you can depend on external code artifacts in a well versioned way.
 Examples include: Maven Central, RubyGems, Go modules, PyPI, crates.io, NPM, etc.
 
 Remote generation registries must have a consistent way of versioning the output of code generation,
 and it must ensure that it always serves the exact same content once a version has been released.
 To accomplish this consistent versioning, the BSR adopts something we call
-[synthetic versions](concepts.md#synthetic-version).
+[synthetic versions](concepts.md#synthetic-versions).

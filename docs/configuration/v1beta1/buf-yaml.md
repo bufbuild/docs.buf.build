@@ -6,7 +6,7 @@ title: buf.yaml
 > The `v1beta1` version described in this page is deprecated and should be replaced with [`v1`](../v1/buf-yaml.md).
 > You can easily migrate your `v1beta1` configuration to `v1` by following the [migration guide](../v1beta1-migration-guide.md).
 
-The `buf.yaml` file defines a [module](../../bsr/overview.md#module), and is placed at the root of the Protobuf source files
+The `buf.yaml` file defines a [module](../../bsr/overview.md#modules), and is placed at the root of the Protobuf source files
 it defines. The placement of the `buf.yaml` configuration tells `buf` where to search for `.proto` files,
 and how to handle imports.
 
@@ -47,7 +47,7 @@ values are `v1beta1` and `v1`.
 
 ### `name`
 
-The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#module)
+The `name` is **optional**, and uniquely identifies your module. The `name` **must** be a valid [module name](../../bsr/overview.md#modules)
 and is directly associated with the repository that owns it.
 
 ### `deps`
@@ -130,7 +130,7 @@ import "foo/bar/bar.proto";
 > that are still using `v1beta1`. For more information, please refer to the [migration guide](../v1beta1-migration-guide.md).
 
 There are two additional requirements that `buf` imposes on your `.proto` file structure for compilation to succeed that
-are not enforced by `protoc`, both of which are very important for successful modern Protobuf development across a number
+are not enforced by `protoc`, both of which are essential to successful modern Protobuf development across a number
 of languages.
 
 **1. Roots must not overlap, that is one root can not be a sub-directory of another root.**

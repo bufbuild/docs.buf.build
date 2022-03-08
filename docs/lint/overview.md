@@ -8,7 +8,7 @@ common set of rules. This is a good practice whether you're building a personal 
 maintaining a large set of Protobuf definitions across a major organization, or anything in-between.
 It's especially important for users and organizations that continually onboard new engineers without
 a wealth of experience in Protobuf schema design to make sure that APIs remain consistent and follow
-patterns that allow easy maintainability, but is useful even if you have years of Protobuf
+patterns that allow for maintainability, but is useful even if you have years of Protobuf
 experience as a forcing function on your API decisions.
 
 `buf` provides lint functionality through `buf lint`, which runs a set of [lint rules](rules.md) across your
@@ -23,15 +23,15 @@ Features of `buf`'s linter include:
   rules into logical categories. While we recommend using the `DEFAULT` set of lint rules, `buf`
   enables you to easily understand and select the exact set of rules your organization needs.
 
-- **Editor integration**. The default error output is easily parsable by any editor, making the
-  feedback loop for lint errors very short. Currently, we provide
+- **Editor integration**. The default error output is easily parsable by any editor, which provides
+  a tight feedback loop for lint errors. Currently, we provide
   [Vim and Visual Studio Code integration](../editor-integration.md), but may extend this in the
   future to include other editors such as Emacs and IntelliJ IDEs.
 
-- **Speed**. `buf`'s [internal Protobuf compiler](../build/internal-compiler.md) utilizes all
+- **Speed**. `buf`'s [internal Protobuf compiler](../reference/internal-compiler.md) utilizes all
   available cores to compile your Protobuf schema, while still maintaining deterministic output. Additionally files
   are copied into memory before processing. As an unscientific example, `buf` can compile all 2,311 `.proto` files in
   [googleapis](https://github.com/googleapis/googleapis) in about *0.8s* on a four-core machine, as opposed
-  to about 4.3s for `protoc` on the same machine. While both are very fast, this provides instantaneous feedback,
+  to about 4.3s for `protoc` on the same machine. While both are fast, this provides instantaneous feedback,
   which is especially useful with Editor integration. `buf`'s speed is directly proportional to the input size, so
   linting a single file only takes a few milliseconds.

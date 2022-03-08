@@ -4,7 +4,7 @@ title: Workspaces
 ---
 
 A workspace is a collection of one or more local modules that coexist and interoperate within a
-common directory. Workspaces make it possible for local [modules](../bsr/overview.md#module) to import
+common directory. Workspaces make it possible for local [modules](../bsr/overview.md#modules) to import
 Protobuf files from other local modules, and unlock other powerful use cases that operate on multiple
 modules at the same time.
 
@@ -13,8 +13,8 @@ modules at the same time.
 As you develop `buf` modules, you might find yourself in a situation where you own multiple modules
 that depend on each other. When you want to make a change to one of your modules, you normally need
 to push the update up to the [BSR](../bsr/overview.md) so that the other module can update its dependency
-and use it locally, potentially using an `alpha` branch to do so. This workflow incurs a frustrating
-feedback loop, and invites more opportunities for simple mistakes in each pushed module commit.
+and use it locally, potentially using an `alpha` branch to do so. This workflow imposes a frustrating
+feedback loop and invites more opportunities for mistakes in each pushed module commit.
 
 If you're familiar with `protoc`, a workspace is similar to specifying multiple include `-I` paths.
 For example, if the Pet team manually vendored the `acme/payment/v2/payment.proto` file from the Payment
@@ -54,7 +54,7 @@ deps:
   - buf.build/acme/paymentapis
 ```
 
-However, `deps` require that the dependencies already exist in the BSR, which reduces to the same feedback
+But `deps` require that the dependencies already exist in the BSR, which reduces to the same feedback
 cycle problem illustrated above.
 
 The `buf` module workspace was created to solve exactly these problems (and more).
@@ -119,7 +119,7 @@ one. For example, if `buf lint` is run for an [input](../reference/inputs.md) th
 each of the modules contained within the workspace is linted. Other commands, such as `buf build`, merge
 workspace modules into one, so that all of the files contained are consolidated into a single [image](../reference/images.md).
 
-## Importing Across Modules
+## Importing across modules
 
 In a workspace, **imports are resolved relative to each module's root**, or the placement of the `buf.yaml` (similar to
 include `-I` paths for `protoc`). For the example layout shown above, the `petapis/acme/pet/v1/pet.proto` file would import
@@ -141,8 +141,8 @@ the BSR, which is described [here](#pushing-modules).
 ## Workspace requirements
 
 There are two additional requirements that `buf` imposes on your `.proto` file structure
-for compilation to succeed that are not enforced by `protoc`, both of which are very
-important for successful modern Protobuf development across a number of languages
+for compilation to succeed that are not enforced by `protoc`, both of which are
+essential to successful modern Protobuf development across a number of languages.
 
 **1. Workspace modules must not overlap, that is one workspace module can not be a sub-directory of another workspace module.**
 
@@ -236,10 +236,10 @@ The same holds true for the other `buf` operations including `buf {breaking,buil
 
 ## Module cache override
 
-As mentioned above, workspaces make it easier to work on multiple modules simultaneously, such as introducing
-a new `message` in one module, and depending on it in another. Normally, the `buf` command relies on the module's
-[`buf.lock`](../configuration/v1/buf-lock.md) manifest to determine read its dependencies from the local [module cache](../bsr/overview.md#module-cache).
-However, this requires that the latest change has been pushed to the [BSR](../bsr/overview.md) and the user has run `buf mod update`
+As mentioned above, workspaces enable you to work on multiple modules simultaneously, such as introducing
+a new Protobuf message in one module and depending on it in another. Normally, the `buf` CLI relies on the module's
+[`buf.lock`](../configuration/v1/buf-lock.md) manifest to read its dependencies from the local [module cache](../bsr/overview.md#module-cache).
+This requires that the latest change has been pushed to the [BSR](../bsr/overview.md) and that the user has run `buf mod update`
 to update their dependencies and fetch the latest change.
 
 When a `buf.work.yaml` exists, the module cache is only used for dependencies **not defined in the workspace**.
@@ -304,7 +304,7 @@ petapis/acme/pet/v1/pet.proto:51:3:field acme.pet.v1.PurchasePetRequest.order: u
 ```
 
 We can define a `buf.work.yaml` at the root of the directory , so that the `buf.build/acme/petapis` module can use the
-latest changes made to the `buf.build/acme/paymentapis` module like so:
+latest changes made to the `buf.build/acme/paymentapis` module:
 
 ```sh
 .
