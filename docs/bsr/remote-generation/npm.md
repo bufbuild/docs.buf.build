@@ -138,6 +138,6 @@ If you're a plugin author, be sure to heed this naming structure; otherwise, con
 [semver]: https://semver.org
 [settings]: https://buf.build/settings/user
 [template]: /bsr/remote-generation/concepts#templates
-[yarn]: https://yarnkpkg.com
+[yarn]: https://yarnpkg.com
 [yarn_v1]: https://github.com/yarnpkg/yarn/releases/tag/v1.10.0
 [yarn_v2]: https://github.com/yarnpkg/yarn/releases/tag/v2.0.0
