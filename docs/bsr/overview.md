@@ -153,13 +153,14 @@ A tag reference always has an equivalent commit reference. If you apply the `v0.
 
 ### Track
 
-A **track** is a set of [commits](#commit) that share a name that you provide. You might create
-`development` and `production` tracks for a module, for example, to group commits based on the
-intended environment.
+A **track** is a set of [commits](#commit) that share a name that you provide. Tracks are somewhat
+like [branches] in version control systems. As with branches, commits in tracks are in reverse
+chronological order. But unlike branches, commits in a BSR track have no logical connection to one
+another; you can assign any commits you like to any track. Some possible usage patterns for tracks:
 
-Tracks are somewhat like [branches] in version control systems. As with branches, commits in tracks
-are in reverse chronological order. But unlike branches, commits in a BSR track have no logical
-connection to one another; you can assign any commits you like to any track.
+* Create `development` and `production` tracks for a module to group commits based on the intended
+  environment.
+* Create a track for each Git branch in a repository.
 
 A track reference always resolves to the most recent commit in the track. If the
 `cb646a22bf8b430d9018e47a7e06986f` commit is the most recent in the `v1-staging` track, for example,
