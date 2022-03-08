@@ -156,7 +156,7 @@ A tag reference always has an equivalent commit reference. If you apply the `v0.
 A **track** is a set of [commits](#commit) that share a name that you provide. Tracks are somewhat
 like [branches] in version control systems. As with branches, commits in tracks are in reverse
 chronological order. But unlike branches, commits in a BSR track have no logical connection to one
-another; you can assign any commits you like to any track. Some possible usage patterns for tracks:
+another; you can push any commits you like to any track. Some possible usage patterns for tracks:
 
 * Create `development` and `production` tracks for a module to group commits based on the intended
   environment.
