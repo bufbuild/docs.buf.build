@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 enum Kind {
   STATIC = "static",
@@ -29,10 +29,11 @@ const Example = ({ examples }: { examples: string[] }) => {
   return (
     <div className={styles.examples}>
       {examples.length == 1 && (
-        <span>
-          Example:&nbsp;&nbsp;
+        <>
+          <strong>Example</strong>
+          <br />
           <span className={styles.example}>{examples[0]}</span>
-        </span>
+        </>
       )}
     </div>
   );

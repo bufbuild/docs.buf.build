@@ -34,6 +34,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 .legend .legendName {
@@ -46,10 +47,8 @@
   gap: 0.5rem;
 }
 
-.examples {
-}
-
 .example {
+  font-size: 0.9rem;
   font-family: var(--ifm-font-family-monospace);
   font-weight: 500;
 }

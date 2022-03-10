@@ -148,6 +148,7 @@ vimrc
 Vm
 vn
 wc
+wkt
 workdir
 www
 xargs
