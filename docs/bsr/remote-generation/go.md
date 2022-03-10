@@ -3,17 +3,25 @@ id: go
 title: Go module proxy
 ---
 
-> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. This doc discusses Go, the first language we added support for, but we have plans to add support for others. [Let us know](/contact.md) which language we should tackle next.
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**.
+> This doc discusses Go, the first language we added support for, but we have plans to add support
+> for others. [Let us know](/contact.md) which language we should tackle next.
 
-Now that the BSR supports **remote code generation**, you no longer have to maintain Protobuf files, `protoc`-based plugins or generate code locally. This is especially useful for API clients, who just want a Go SDK to start consuming an API immediately.
+The BSR supports [remote code generation](../overview.md) for [Go]. With this feature, you can
+push [Buf modules][modules] to the BSR and then `go get` Go code stubs generated from those Protobuf
+definitions. The generated source code is hosted in the [BSR Go module proxy](#proxy).
 
-The generated source code is hosted in the BSR Go module proxy.
+This feature is especially useful for creating API clients in Go, as you essentially have access to
+generated Go SDKs on demand. With remote generation, you no longer need to generate Go code from
+Protobuf locally, and so you also no longer need to maintain Protobuf files or protoc-based plugins.
 
-## BSR Go module proxy
+## BSR Go module proxy {#proxy}
 
-The BSR Go module proxy implements the [GOPROXY protocol](https://golang.org/ref/mod#goproxy-protocol) for Protobuf modules by generating assets on-the-fly.
+The BSR Go module proxy implements the [GOPROXY protocol][goproxy] for [Buf modules][modules] by
+generating assets on the fly—Go code stubs aren't generated until you request them using `go get`.
 
-The key to consuming from the BSR Go module proxy is choosing the **Go module path**. The import path for a specific set of generated assets is constructed by putting together the chosen template with the chosen Protobuf module according to this format:
+The key to consuming from the BSR Go module proxy is choosing the right **Go module path**. The
+import path for generated Go code has this format:
 
 import Syntax from "@site/src/components/Syntax";
 
@@ -32,21 +40,27 @@ import Syntax from "@site/src/components/Syntax";
 	{"label": "module name", "kind": "variable"},
 ]} />
 
-For example, if you wanted to generate the Protobuf module [googleapis/googleapis](https://buf.build/googleapis/googleapis) with the template [grpc/go](https://buf.build/grpc/templates/go), the Go module path would look like this:
+For example, if you wanted to generate the Protobuf module [`googleapis/googleapis`][googleapis]
+with the [`grpc/go`][grpc-go] template, you could install the generated
+code like this:
 
-```
-go.buf.build/grpc/go/googleapis/googleapis
+```terminal
+$ go get go.buf.build/grpc/go/googleapis/googleapis
 ```
 
-Any template that generates Go code can be used. Simplifying workflows down to **`buf push`** and **`go get`**.
+You can use _any_ template that generates Go, which can simplify Protobuf workflows down to two
+steps:
+
+1. `buf push` your [module][modules] to the BSR
+1. `go get` your generated Go module
 
 ## Try it out!
 
-In this example we're using the Go gRPC client for the [GCP Cloud Storage](https://cloud.google.com/storage) service. Since this is a gRPC/Protobuf API we get a client SDK with minimal effort.
+In this example we're using the Go gRPC client for the [GCP Cloud Storage][storage] service. Since
+this is a gRPC/Protobuf API we get a client SDK with minimal effort. The [`grpc/go`][grpc-go]
+template is used to generate the [`googleapis/googleapis`][googleapis] module.
 
-The [grpc/go](https://buf.build/grpc/templates/go) template is used to generate the [googleapis/googleapis](https://buf.build/googleapis/googleapis) module.
-
-The import path is the combination of the BSR Go module proxy (go.buf.build), the template (grpc/go), module (googleapis/googleapis) followed by the package (google/storage/v1).
+See the [above](#proxy) for a refresher on Go module import paths.
 
 ```go {9}
 package main
@@ -83,9 +97,13 @@ func main() {
 }
 ```
 
-Unfortunately running the above will error, as GCP Cloud Storage doesn't yet support gRPC for all public buckets, but it serves an example of what's possible with remote code generation and the BSR Go module proxy.
+Unfortunately running the above will error, as GCP Cloud Storage doesn't yet support gRPC for all
+public buckets, but it serves an example of what's possible with remote code generation and the BSR
+Go module proxy.
 
-If you're using Go modules you'll observe a version such as `v1.4.246` in the go.mod file. To better understand versioning please refer to the [synthetic version](overview.md#synthetic-versions) section.
+If you're using Go modules you'll observe a version such as `v1.4.246` in the `go.mod` file. To
+better understand versioning, see the [synthetic versions](overview.md#synthetic-versions)
+documentation.
 
 ```sh title="go.mod"
 require (
@@ -93,44 +111,58 @@ require (
 )
 ```
 
-## Generate private modules
+## Generate private modules {#private}
 
 To generate Go code from private modules you'll need to make sure the Go tooling is correctly configured.
 
-1. Login to the BSR:
+1. Log into the BSR:
 
-   The `go` tool uses [`.netrc` credentials](https://golang.org/ref/mod#private-module-proxy-auth) if available and you can use `buf registry login` to add this to your `.netrc` file.
-   You can obtain an API token (password) from the [Settings Page](https://buf.build/settings/user).
+	The `go` tool uses [`.netrc` credentials][netrc] if available and you can use `buf registry login` to add this to your `.netrc` file.
+	You can obtain an API token (password) from the [Settings page][settings].
 
-   ```terminal
-   $ buf registry login
-   ```
+	```terminal
+	$ buf registry login
+	```
 
-   ```sh title="~/.netrc"
-   machine buf.build
-       login <USERNAME>
-       password <TOKEN>
-   machine go.buf.build
-       login <USERNAME>
-       password <TOKEN>
-   ```
+	```sh title="~/.netrc"
+	machine buf.build
+			login <USERNAME>
+			password <TOKEN>
+	machine go.buf.build
+			login <USERNAME>
+			password <TOKEN>
+	```
 
 2. Go Environment Configuration
 
-   The `GOPRIVATE` environment variable controls which modules the `go` command considers to be private and should therefore not use the proxy or checksum database. This is important since we do not want to send private information to the default Go module proxy at https://proxy.golang.org.
+	The `GOPRIVATE` environment variable controls which modules the `go` command considers to be
+	private and thus shouldn't use the proxy or checksum database. This is important since you don't
+	want to send private information to the default Go module proxy at https://proxy.golang.org.
 
-   Set this environment variable.
+	Set this environment variable:
 
-   ```terminal
-   $ export GOPRIVATE=go.buf.build
-   ```
+	```terminal
+	$ export GOPRIVATE=go.buf.build
+	```
 
-   If you already have `GONOSUMDB` configured, you will also need to add `go.buf.build` to it:
+	If you already have `GONOSUMDB` configured, you also need to add `go.buf.build` to it:
 
-   ```terminal
-   $ export GONOSUMDB=$GONOSUMDB,go.buf.build
-   ```
+	```terminal
+	$ export GONOSUMDB=$GONOSUMDB,go.buf.build
+	```
 
-   This is not necessary if you do not already have `GONOSUMDB` configured, as `GOPRIVATE` automatically sets it in this case.
+   This isn't necessary if you do not already have `GONOSUMDB` configured, as `GOPRIVATE`
+	 automatically sets it in this case.
 
-   For more information please refer to the official [Private modules documentation](https://golang.org/ref/mod#private-modules).
+   For more information, see the official [private modules documentation][private].
+
+
+[go]: https://golang.org
+[googleapis]: https://buf.build/googleapis/googleapis
+[goproxy]: https://golang.org/ref/mod#goproxy-protocol
+[grpc-go]: https://buf.build/grpc/templates/go
+[modules]: ../overview.md#modules
+[netrc]: https://golang.org/ref/mod#private-module-proxy-auth
+[private]: https://golang.org/ref/mod#private-modules
+[settings]: https://buf.build/settings/user
+[storage]: https://cloud.google.com/storage
