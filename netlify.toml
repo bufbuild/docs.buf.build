@@ -350,5 +350,5 @@
 
 [[redirects]]
   from = "/bsr-npm"
-  to = "/bsr/remote-generation/overview"
-  status = 302
+  to = "/bsr/remote-generation/npm"
+  status = 301
