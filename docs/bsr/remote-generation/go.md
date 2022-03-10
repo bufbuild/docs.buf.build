@@ -31,21 +31,20 @@ import Syntax from "@site/src/components/Syntax";
 	segments={[
 	{"label": "go.buf.build", "kind": "static"},
 	{"separator": "/"},
-	{"label": "template owner", "kind": "variable"},
+	{"label": "templateOwner", "kind": "variable"},
 	{"separator": "/"},
-	{"label": "template name", "kind": "variable"},
+	{"label": "templateName", "kind": "variable"},
 	{"separator": "/"},
-	{"label": "module owner", "kind": "variable"},
+	{"label": "moduleOwner", "kind": "variable"},
 	{"separator": "/"},
-	{"label": "module name", "kind": "variable"},
+	{"label": "moduleName", "kind": "variable"},
 ]} />
 
-For example, if you wanted to generate the Protobuf module [`googleapis/googleapis`][googleapis]
-with the [`grpc/go`][grpc-go] template, you could install the generated
-code like this:
+So if you wanted to, for example, generate the [`acme/paymentapis`][api] Protobuf module with the
+[`grpc/go`][grpc-go] template, you could install the generated code like this:
 
 ```terminal
-$ go get go.buf.build/grpc/go/googleapis/googleapis
+$ go get go.buf.build/grpc/go/acme/paymentapis
 ```
 
 You can use _any_ template that generates Go, which can simplify Protobuf workflows down to two
@@ -56,9 +55,9 @@ steps:
 
 ## Try it out!
 
-In this example we're using the Go gRPC client for the [GCP Cloud Storage][storage] service. Since
-this is a gRPC/Protobuf API we get a client SDK with minimal effort. The [`grpc/go`][grpc-go]
-template is used to generate the [`googleapis/googleapis`][googleapis] module.
+In this example, we'll use the Go gRPC client for the [GCP Cloud Storage][storage] service. Since
+this is a gRPC/Protobuf API we get a generated client SDK with minimal effort. The
+[`grpc/go`][grpc-go] template is used to generate the [`googleapis/googleapis`][googleapis] module.
 
 See the [above](#proxy) for a refresher on Go module import paths.
 
@@ -156,7 +155,7 @@ To generate Go code from private modules you'll need to make sure the Go tooling
 
    For more information, see the official [private modules documentation][private].
 
-
+[api]: https://buf.build/acme/paymentapis
 [go]: https://golang.org
 [googleapis]: https://buf.build/googleapis/googleapis
 [goproxy]: https://golang.org/ref/mod#goproxy-protocol
