@@ -1,9 +1,9 @@
 ---
-id: consume-generated-go-code
-title: Consume generated Go code
+id: go
+title: Go module proxy
 ---
 
-> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. This doc discusses Go, the first language we added support for, but we have plans to add support for others. [Let us know](/contact.md) which language we should tackle next.
 
 Now that the BSR supports **remote code generation**, you no longer have to maintain Protobuf files, `protoc`-based plugins or generate code locally. This is especially useful for API clients, who just want a Go SDK to start consuming an API immediately.
 
