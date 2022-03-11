@@ -37,16 +37,17 @@ The Buf team has published a set of [official plugins](#official-plugins) for yo
 
 The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. Here is a list of supported `protoc`-based plugins:
 
-- https://buf.build/protocolbuffers/plugins/go
-- https://buf.build/protocolbuffers/plugins/java
-- https://buf.build/protocolbuffers/plugins/python
 - https://buf.build/protocolbuffers/plugins/cpp
 - https://buf.build/protocolbuffers/plugins/csharp
+- https://buf.build/protocolbuffers/plugins/dart
+- https://buf.build/protocolbuffers/plugins/go
+- https://buf.build/protocolbuffers/plugins/java
 - https://buf.build/protocolbuffers/plugins/js
+- https://buf.build/protocolbuffers/plugins/kotlin
 - https://buf.build/protocolbuffers/plugins/objc
 - https://buf.build/protocolbuffers/plugins/php
+- https://buf.build/protocolbuffers/plugins/python
 - https://buf.build/protocolbuffers/plugins/ruby
-- https://buf.build/protocolbuffers/plugins/kotlin
 
 This is powerful because you no longer need to have `protoc` installed, or understand how to invoke it (a daunting task in and of itself). Furthermore you don't need to install additional plugins not already built-in to the `protoc` compiler, such as [protoc-gen-go](https://pkg.go.dev/github.com/golang/protobuf/protoc-gen-go).
 
@@ -54,17 +55,17 @@ This is powerful because you no longer need to have `protoc` installed, or under
 
 In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. Here is a list of supported gRPC plugins:
 
-- https://buf.build/grpc/plugins/go
-- https://buf.build/grpc/plugins/java
-- https://buf.build/grpc/plugins/python
 - https://buf.build/grpc/plugins/cpp
 - https://buf.build/grpc/plugins/csharp
+- https://buf.build/grpc/plugins/go
+- https://buf.build/grpc/plugins/java
+- https://buf.build/grpc/plugins/kotlin
 - https://buf.build/grpc/plugins/node
-- https://buf.build/grpc/plugins/web
 - https://buf.build/grpc/plugins/objc
 - https://buf.build/grpc/plugins/php
+- https://buf.build/grpc/plugins/python
 - https://buf.build/grpc/plugins/ruby
-- https://buf.build/grpc/plugins/kotlin
+- https://buf.build/grpc/plugins/web
 
 ## Example
 
