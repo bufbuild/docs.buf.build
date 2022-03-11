@@ -41,13 +41,13 @@ import Syntax from "@site/src/components/Syntax";
   segments={[
     {label: "@buf", kind: "static"},
     {separator: "/"},
-    {label: "template owner", kind: "variable"},
+    {label: "templateOwner", kind: "variable"},
     {separator: "_"},
-    {label: "template name", kind: "variable"},
+    {label: "templateName", kind: "variable"},
     {separator: "_"},
-    {label: "module owner", kind: "variable"},
+    {label: "moduleOwner", kind: "variable"},
     {separator: "_"},
-    {label: "module name", kind: "variable"},
+    {label: "moduleName", kind: "variable"},
   ]
 } />
 
