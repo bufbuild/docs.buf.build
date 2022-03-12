@@ -35,7 +35,7 @@ The `excludes` key is **optional**, and lists directories to ignore from `.proto
 added to this list are completely skipped and excluded in the result. **We do not recommend using this
 option in general**, however in some situations it is unavoidable.
 
-For more information on the `buf.yaml` configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
+For more information on `buf.yaml` configuration, see the [reference](../configuration/v1/buf-yaml.md).
 
 ### Default values
 

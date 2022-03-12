@@ -12,7 +12,7 @@ If a `buf.yaml` file is not contained in the input, `buf` operates as if there i
 [default values](#default-values).
 
 The example config below shows all available configuration options. For more information on the `buf.yaml`
-configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
+configuration, see the [reference](../configuration/v1/buf-yaml.md).
 
 ```yaml title="buf.yaml"
 version: v1

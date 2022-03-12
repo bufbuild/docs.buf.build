@@ -5,7 +5,7 @@ title: User management
 
 ## Organization roles
 
-Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access please have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
+Every user that is part of an organization has an explicit role. Note that users are unable to modify their own role. If you need to lower your access, have another organization user perform this action, or, leave the organization and request to be re-added with the desired role.
 	
 ### Owner
 

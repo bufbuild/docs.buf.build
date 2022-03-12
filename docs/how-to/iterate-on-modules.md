@@ -4,7 +4,7 @@ title: Iterate on modules
 ---
 
 > For a comprehensive guide on working with [modules](../bsr/overview.md#modules) and the Buf
-> Schema Registry ([BSR](../bsr/overview.md)), please check out [the tour](../tour/introduction.md)!
+> Schema Registry ([BSR](../bsr/overview.md)), check out the [tour](../tour/introduction.md)!
 
 As requirements change, you'll inevitably need to evolve your Protobuf APIs,
 and potentially update your dependencies. As much as `buf`'s breaking change detection
@@ -159,7 +159,7 @@ the upstream modules first (`buf.build/acme/paymentapis` in this case). Once the
 are published, you can run the `buf mod update` command in the downstream module to fetch the latest version,
 and continue to push each of your modules until all of your local changes are published to the BSR.
 
-For more on workspaces, please refer to the [workspace documentation](../reference/workspaces.md).
+For more on workspaces, see the [workspace documentation](../reference/workspaces.md).
 
 `buf` provides a variety of powerful tools that help you develop your APIs and iterate on one or more
 modules at a time. Make sure to check out more of the how-to guides to learn more!

@@ -17,7 +17,7 @@ module.exports = function (context) {
 
   if (!siteId) {
     throw new Error(
-      `You specified the 'fathomAnalytics' object in 'themeConfig' but the 'siteId' field was missing. Please ensure this is not a mistake.`
+      `You specified the 'fathomAnalytics' object in 'themeConfig' but the 'siteId' field was missing. Check to ensure that this isn't a mistake.`
     );
   }
 

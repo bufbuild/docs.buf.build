@@ -20,12 +20,12 @@ This guide is also supplemented by the [buf-example](https://github.com/bufbuild
 repository, which provides a functional example for integrating `buf` into [CircleCI](https://circleci.com),
 [TravisCI](https://travis-ci.org), or [GitHub Actions](https://github.com/features/actions).
 For a quick solution that uses a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
-please refer to [buf-example](https://github.com/bufbuild/buf-example)!
+see to [buf-example](https://github.com/bufbuild/buf-example)!
 
 ## Installation
 
-> This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
-> repository for a functional example.
+> For a functional example, see the [buf-example](https://github.com/bufbuild/buf-example)
+> repository.
 
 The first step is to get `buf` running on your CI/CD worker. In order to do so, you'll need an install
 script. `buf` can be downloaded from a release or built from source.
@@ -63,7 +63,7 @@ for the given `BUF_VERSION` and operating system. The binary is then given execu
 <TabItem value="build">
 
 If you intend on building `buf` from source, this assumes that you have the Go toolchain available in your CI/CD.
-If not, please refer to the [Go Documentation](https://golang.org/) for more details.
+If not, see the [Go Documentation](https://golang.org/) for more details.
 
 ```bash title="install.sh"
 #!/bin/bash
@@ -78,8 +78,7 @@ rm -rf $BUF_TMP
 
 ## Running lint and breaking change detection {#checks}
 
-> This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
-> repository for a functional example.
+> For a functional example, see the [buf-example](https://github.com/bufbuild/buf-example) repository.
 
 To run lint checks with your job, simply add `buf lint` to it and you're good to go!
 
@@ -147,7 +146,7 @@ and your username as `BUF_USER`:
 $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 
-For more details on authenticating to the `BSR`, please see [Authentication](../bsr/authentication.md).
+For more details on authenticating to the `BSR`, see [Authentication](../bsr/authentication.md).
 
 ## CI caching
 
