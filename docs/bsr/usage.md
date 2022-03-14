@@ -3,8 +3,6 @@ id: usage
 title: Usage
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 To execute `buf` commands below make sure you are [authenticated](../bsr/authentication.md). Obtain a token from the BSR and run:
 
 ```terminal
@@ -22,7 +20,7 @@ Before you can push a module into the BSR there needs to exist a repository, own
 
 If you want to collaborate with other users on a module, select an organization as the owner of the repository.
 
-**1. Create a Repository**
+### 1. Create a Repository
 
 Through the **UI** log in at [https://buf.build/login](https://buf.build/login) and navigate to Your repositories and click **Create Repository**. Select an owner for the repository and give it a repository name. The visibility can be either public or private.
 
@@ -35,7 +33,7 @@ $ buf beta registry repository create <MODULE_NAME> --visibility [public,private
 The module name takes the form `<remote>/<owner>/<repository_name>` (for example, `buf.build/acme/weather`).<br/>
 The `--visibility` flag is **required** and must be one of: `private` or `public`.
 
-**2. Configure a name**
+### 2. Configure a name
 
 You'll need to configure your `buf.yaml` file to match the BSR repository. To do so, add the module name as a `name` key:
 
@@ -44,7 +42,7 @@ version: v1
 name: buf.build/acme/weather
 ```
 
-**3. Push to the Repository**
+### 3. Push to the Repository
 
 Push your module to the BSR by running this command:
 
@@ -52,13 +50,41 @@ Push your module to the BSR by running this command:
 $ buf push
 ```
 
-This command returns the commit reference.
+This returns the [commit ID][commit] for the pushed state of the module.
 
-One of the main benefits of a centralized, Protobuf-aware registry is you're guaranteed not to push
-broken modules. This means that consumers can have confidence that modules hosted on the BSR
-always compile.
+#### Tags and tracks
 
-Suppose we mistyped an identifier:
+You can apply [tags][tag] upon push using the `--tag` flag:
+
+```terminal
+$ buf push --tag v2-almost-done
+```
+
+To apply multiple tags:
+
+```terminal
+$ buf push --tag v2-almost-done --tag failing-tests
+```
+
+You can also associate a specific push with a [BSR track][track] using the `--track` flag:
+
+```terminal
+$ buf push --track development
+```
+
+To associate a push with multiple tracks:
+
+```terminal
+$ buf push --track development --track public-api
+```
+
+#### Built-in compilation checks
+
+One of the benefits of using the BSR is that you **can't push broken modules**. This means that any
+consumers of your API can be confident that BSR-hosted modules can be used without issue.
+
+To give an example, imagine that you're create a Protobuf API definition and you mistype an
+identifier (note the `messag` misspelling):
 
 ```proto {5}
 syntax = "proto3";
@@ -70,15 +96,17 @@ messag Metric {
 }
 ```
 
-If we try to `buf push` to the BSR we'll get an immediate error:
+If you tried to `buf push` this definition to the BSR, you'd get an error along these lines:
 
 ```
 Failure: units/v1/metric.proto:5:1:syntax error: unexpected identifier.
 ```
 
-Sure you can have CI workflows to automatically catch compilation errors, but by using the BSR these guarantees are made available to everyone out-of-the-box.
+You _could_ set up your existing CI workflows to automatically catch compilation errors, but with
+the BSR these guarantees are built in.
 
-That's it. This module can now be consumed as a first class dependency and its [generated documentation](documentation.md) can be viewed on the BSR.
+Your API consumers can now use this module as a first-class dependency and view its [generated
+documentation](documentation.md) on the BSR.
 
 ## Add a dependency
 
@@ -174,3 +202,8 @@ Undeprecate a deprecated repository with
 ```terminal
 $ buf beta registry repository undeprecate <buf.build/owner/repository>
 ```
+
+[commit]: ./overview.md#commit
+[reference]: ./overview.md#referencing-a-module
+[tag]: ./overview.md#tag
+[track]: ./overview.md#track
