@@ -68,7 +68,7 @@
   --ifm-color-warning: rgba(230, 126, 34, 0.1);
 
   /* Syntax widget */
-  --syntax-color-static: var(--ifm-color-gray);
+  --syntax-color-constant: var(--ifm-color-gray);
   --syntax-color-variable: var(--ifm-color-primary);
   --syntax-color-default: var(--ifm-color-orange);
 }

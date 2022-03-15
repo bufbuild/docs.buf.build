@@ -75,7 +75,7 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   examples={["v1.3.5"]}
   segments={[
-    {label: "v1", kind: "static"},
+    {label: "v1", kind: "constant"},
     {separator: "."},
     {label: "template version", kind: "variable"},
     {separator: "."},

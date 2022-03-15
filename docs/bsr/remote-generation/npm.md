@@ -39,7 +39,7 @@ import Syntax from "@site/src/components/Syntax";
   title="Syntax for BSR npm registry package names"
   examples={["@buf/protocolbuffers_js_acme_petapis"]}
   segments={[
-    {label: "@buf", kind: "static"},
+    {label: "@buf", kind: "constant"},
     {separator: "/"},
     {label: "templateOwner", kind: "variable"},
     {separator: "_"},
@@ -70,9 +70,9 @@ To install npm packages generated from private [Buf modules][modules], you need 
   examples={["//npm.buf.build/:_authToken=84612b6cbe8f4..."]}
   segments={[
     {separator: "//"},
-    {label: "npm.buf.build", kind: "static"},
+    {label: "npm.buf.build", kind: "constant"},
     {separator: "/:"},
-    {label: "_authToken", kind: "static"},
+    {label: "_authToken", kind: "constant"},
     {separator: "="},
     {label: "token", kind: "variable"},
   ]}

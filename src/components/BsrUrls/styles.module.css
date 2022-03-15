@@ -1,0 +1,39 @@
+.urlsContainer {
+  border: 1.5px solid var(--buf-light-button-border-color);
+  border-radius: 0.25rem;
+}
+
+.urlsContainer h3,
+.urlsContainer h4,
+.urlsContainer p {
+  margin: 0;
+  padding: 0;
+}
+
+.urlContainer {
+  padding: 1rem;
+  border-top: 1.25px solid var(--buf-light-button-border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.url {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  font-family: var(--ifm-font-family-monospace);
+  background-color: rgb(246, 248, 250);
+}
+
+.constant {
+  color: var(--syntax-color-static);
+}
+
+.variable {
+  color: var(--syntax-color-variable);
+}
+
+.separator {
+  color: var(--syntax-color-static);
+}
