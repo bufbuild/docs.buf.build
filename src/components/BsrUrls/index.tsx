@@ -13,7 +13,6 @@ type SegmentProps = {
   label?: string;
   kind?: Kind;
   separator?: string;
-  varName?: string;
 };
 
 type UrlProps = {
@@ -31,7 +30,7 @@ const Url = ({ title, description, segments }: UrlProps) => {
 
       <div className={styles.url}>
         {segments.map((segment) => (
-          <Segment {...segment} />
+          <Segment key={segment.label ?? segment.separator} {...segment} />
         ))}
       </div>
     </div>
@@ -192,7 +191,7 @@ const BsrUrls = () => {
   return (
     <div className={styles.urlsContainer}>
       {urls.map((url) => (
-        <Url {...url} />
+        <Url key={url.title} {...url} />
       ))}
     </div>
   );

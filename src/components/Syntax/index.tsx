@@ -41,8 +41,8 @@ const Example = ({ examples }: { examples: string[] }) => {
 const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
   let item: JSX.Element;
   switch (kind) {
-    case Kind.STATIC:
-      item = <span className={styles.static}>{label}</span>;
+    case Kind.CONSTANT:
+      item = <span className={styles.constant}>{label}</span>;
       break;
     case Kind.DEFAULT:
       item = (
@@ -74,7 +74,7 @@ const Legend = ({ segments }: { segments: SegmentProps[] }) => {
         <span>:</span>
       </span>
       <span className={styles.legendContent}>
-        {hasKind(segments, Kind.STATIC) && <span className={styles.static}>static</span>}
+        {hasKind(segments, Kind.CONSTANT) && <span className={styles.constant}>constant</span>}
         {hasKind(segments, Kind.DEFAULT) && (
           <span className={styles.default}>
             {"("}default{")"}

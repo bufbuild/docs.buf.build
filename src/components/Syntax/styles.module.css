@@ -57,8 +57,8 @@
   font-weight: 500;
 }
 
-.static {
-  color: var(--syntax-color-static);
+.constant {
+  color: var(--syntax-color-constant);
 }
 
 .default {
