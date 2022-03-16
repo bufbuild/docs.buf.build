@@ -227,7 +227,7 @@ const urls: UrlProps[] = [
   },
   {
     title: "Docs for a specific reference",
-    docsPath: "/bsr",
+    docsPath: "/bsr/overview#referencing-a-module",
     example: example("acme/paymentapis/docs/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
@@ -243,7 +243,7 @@ const urls: UrlProps[] = [
   },
   {
     title: "Code for a specific reference",
-    docsPath: "/bsr",
+    docsPath: "/bsr/overview#referencing-a-module",
     example: example("acme/paymentapis/tree/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
@@ -259,7 +259,7 @@ const urls: UrlProps[] = [
   },
   {
     title: "Generated assets for a specific reference",
-    docsPath: "/bsr",
+    docsPath: "/bsr/overview#referencing-a-module",
     example: example("acme/paymentapis/assets/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
