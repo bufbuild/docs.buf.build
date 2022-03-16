@@ -163,7 +163,7 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Module assets",
+    title: "Generated module assets",
     docsPath: "/bsr/overview#code-generation",
     example: example("acme/paymentapis/assets"),
     description: <></>,
@@ -218,6 +218,54 @@ const urls: UrlProps[] = [
       constant("plugins"),
       slash,
       variable("plugin")
+    ]
+  },
+  {
+    title: "Docs for a specific reference",
+    docsPath: "/bsr",
+    example: example("acme/paymentapis/docs/6e230f46113f498392c82d12b1a07b70"),
+    segments: [
+      root,
+      slash,
+      variable("user|organization"),
+      slash,
+      variable("module"),
+      slash,
+      constant("docs"),
+      slash,
+      variable("reference")
+    ]
+  },
+  {
+    title: "Code for a specific reference",
+    docsPath: "/bsr",
+    example: example("acme/paymentapis/tree/6e230f46113f498392c82d12b1a07b70"),
+    segments: [
+      root,
+      slash,
+      variable("user|organization"),
+      slash,
+      variable("module"),
+      slash,
+      constant("tree"),
+      slash,
+      variable("reference")
+    ]
+  },
+  {
+    title: "Generated assets for a specific reference",
+    docsPath: "/bsr",
+    example: example("acme/paymentapis/assets/6e230f46113f498392c82d12b1a07b70"),
+    segments: [
+      root,
+      slash,
+      variable("user|organization"),
+      slash,
+      variable("module"),
+      slash,
+      constant("assets"),
+      slash,
+      variable("reference")
     ]
   }
 ];
