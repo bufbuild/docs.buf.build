@@ -101,9 +101,14 @@ const example = (path: string): string => {
 
 const urls: UrlProps[] = [
   {
-    title: "User info",
+    title: "User settings",
     docsPath: "/bsr/user-management",
-    example: example("bufbuild"),
+    segments: [root, slash, constant("settings"), slash, constant("user")]
+  },
+  {
+    title: "User profile",
+    docsPath: "/bsr/user-management",
+    example: example("bufbot"),
     segments: [root, slash, variable("user")]
   },
   {
