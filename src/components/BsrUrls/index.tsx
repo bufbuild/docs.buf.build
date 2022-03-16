@@ -198,9 +198,9 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Templates associated with a user or organization",
+    title: "Hosted template",
     docsPath: "/bsr/remote-generation/concepts#templates",
-    example: example("protocolbuffers/templates/go"),
+    example: example("protocolbuffers/templates/python"),
     segments: [
       root,
       slash,
@@ -212,7 +212,13 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Plugins associated with a user or organization",
+    title: "Hosted templates associated with a user or organization",
+    docsPath: "/bsr/remote-generation/concepts#templates",
+    example: example("protocolbuffers/templates"),
+    segments: [root, slash, variable("user|organization"), slash, constant("templates")]
+  },
+  {
+    title: "Hosted plugin",
     docsPath: "/bsr/remote-generation/concepts#plugins",
     example: example("protocolbuffers/plugins/python"),
     segments: [
@@ -226,7 +232,13 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Docs for a specific reference",
+    title: "Hosted plugins associated with a user or organization",
+    docsPath: "/bsr/remote-generation/concepts#plugins",
+    example: example("protocolbuffers/plugins"),
+    segments: [root, slash, variable("user|organization"), slash, constant("plugins")]
+  },
+  {
+    title: "Generated documentation for a specific reference",
     docsPath: "/bsr/overview#referencing-a-module",
     example: example("acme/paymentapis/docs/6e230f46113f498392c82d12b1a07b70"),
     segments: [
