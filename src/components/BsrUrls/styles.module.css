@@ -12,13 +12,27 @@
 
 .urlContainer {
   padding: 1rem;
-  border-top: 1.25px solid var(--buf-light-button-border-color);
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
+.urlContainer + .urlContainer {
+  border-top: 1.25px solid var(--buf-light-button-border-color);
+}
+
+.urlTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.docsPath {
+  font-size: 0.75rem;
+}
+
 .url {
+  font-size: 0.9rem;
   margin: 0;
   padding: 0.5rem 1rem;
   border-radius: 2px;
@@ -36,4 +50,10 @@
 
 .separator {
   color: var(--syntax-color-static);
+}
+
+.example {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 0.8rem;
 }

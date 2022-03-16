@@ -17,22 +17,40 @@ type SegmentProps = {
 
 type UrlProps = {
   title: string;
-  description: JSX.Element;
+  description?: JSX.Element;
+  docsPath?: string;
+  example?: string;
   segments: SegmentProps[];
 };
 
-const Url = ({ title, description, segments }: UrlProps) => {
+const Url = ({ title, description, docsPath, example, segments }: UrlProps) => {
   return (
     <div className={styles.urlContainer}>
-      <h4>{title}</h4>
+      <div className={styles.urlTitle}>
+        <h3>{title}</h3>
 
-      <div>{description}</div>
+        {docsPath && (
+          <span className={styles.docsPath}>
+            <Link to={docsPath}>docs</Link>
+          </span>
+        )}
+      </div>
+
+      {description}
 
       <div className={styles.url}>
         {segments.map((segment) => (
           <Segment key={segment.label ?? segment.separator} {...segment} />
         ))}
       </div>
+
+      {example && (
+        <div className={styles.example}>
+          <span>
+            Example: <Link to={example}>{example}</Link>
+          </span>
+        </div>
+      )}
     </div>
   );
 };
@@ -77,54 +95,47 @@ const slash: SegmentProps = {
   separator: "/"
 };
 
+const example = (path: string): string => {
+  return `https://buf.build/${path}`;
+};
+
 const urls: UrlProps[] = [
   {
-    title: "User",
-    description: (
-      <>
-        <Link to="/bsr/user-management">User</Link>
-      </>
-    ),
+    title: "User info",
+    docsPath: "/bsr/user-management",
+    example: example("bufbuild"),
     segments: [root, slash, variable("user")]
   },
   {
-    title: "Organization",
-    description: <></>,
+    title: "Organization info",
+    docsPath: "/bsr/user-management#organization-roles",
+    example: example("acme"),
     segments: [root, slash, variable("organization")]
   },
   {
-    title: "Repository",
+    title: "Members of an organization",
+    docsPath: "/bsr/user-management#organization-roles",
+    example: example("acme/members"),
     description: <></>,
-    segments: [root, slash, variable("repoName")]
+    segments: [root, slash, variable("organization"), slash, constant("members")]
   },
   {
-    title: "Templates",
+    title: "Organizations a user belongs to",
+    docsPath: "/bsr/user-management#organization-roles",
+    example: example("bufbot/organizations"),
     description: <></>,
-    segments: [
-      root,
-      slash,
-      variable("user|organization"),
-      slash,
-      constant("templates"),
-      slash,
-      variable("template")
-    ]
+    segments: [root, slash, variable("user"), slash, constant("organizations")]
   },
   {
-    title: "Plugins",
-    description: <></>,
-    segments: [
-      root,
-      slash,
-      variable("user|organization"),
-      slash,
-      constant("plugins"),
-      slash,
-      variable("plugin")
-    ]
+    title: "Module",
+    docsPath: "/bsr/user-management#organization-roles",
+    example: example("acme/paymentapis"),
+    segments: [root, slash, variable("user|organization"), slash, variable("module")]
   },
   {
     title: "Module documentation",
+    docsPath: "/bsr/overview#documentation",
+    example: example("acme/paymentapis/docs"),
     description: <></>,
     segments: [
       root,
@@ -138,6 +149,8 @@ const urls: UrlProps[] = [
   },
   {
     title: "Module code",
+    docsPath: "/bsr/overview#modules",
+    example: example("acme/paymentapis/tree"),
     description: <></>,
     segments: [
       root,
@@ -151,6 +164,8 @@ const urls: UrlProps[] = [
   },
   {
     title: "Module assets",
+    docsPath: "/bsr/overview#code-generation",
+    example: example("acme/paymentapis/assets"),
     description: <></>,
     segments: [
       root,
@@ -164,6 +179,8 @@ const urls: UrlProps[] = [
   },
   {
     title: "Module history",
+    docsPath: "/bsr/overview#referencing-a-module",
+    example: example("acme/paymentapis/history"),
     description: <></>,
     segments: [
       root,
@@ -176,14 +193,32 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Organization members",
-    description: <></>,
-    segments: [root, slash, variable("organization"), slash, constant("members")]
+    title: "Templates associated with a user or organization",
+    docsPath: "/bsr/remote-generation/concepts#templates",
+    example: example("protocolbuffers/templates/go"),
+    segments: [
+      root,
+      slash,
+      variable("user|organization"),
+      slash,
+      constant("templates"),
+      slash,
+      variable("template")
+    ]
   },
   {
-    title: "User organizations",
-    description: <></>,
-    segments: [root, slash, variable("user"), slash, constant("organizations")]
+    title: "Plugins associated with a user or organization",
+    docsPath: "/bsr/remote-generation/concepts#plugins",
+    example: example("protocolbuffers/plugins/python"),
+    segments: [
+      root,
+      slash,
+      variable("user|organization"),
+      slash,
+      constant("plugins"),
+      slash,
+      variable("plugin")
+    ]
   }
 ];
 
