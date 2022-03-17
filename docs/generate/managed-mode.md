@@ -14,6 +14,10 @@ You can avoid setting these file options when [generating] code from Protobuf so
 When managed mode is [enabled](#enabled), the `buf` CLI sets specified file options on the fly during
 code generation so that you don't need to hard-code them in your `.proto` files.
 
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="using managed mode" projects={["managed-mode"]} />
+
 Managed mode provides options for these languages:
 
 * [C++](#cpp)

@@ -151,6 +151,11 @@ figcaption {
   border: 2px solid #e67e22;
 }
 
+.admonition ul,
+.admonition p {
+  margin: 0;
+}
+
 .admonition a {
   color: var(--ifm-color-primary);
   text-decoration: none;

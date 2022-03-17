@@ -80,6 +80,10 @@ lint:
       - pet/v1/pet.proto
 ```
 
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="linting Protobuf sources with Buf" projects={["linting"]} />
+
 ## Common use cases
 
 `buf` can lint additional inputs instead of just your local Protobuf files. This is useful in a

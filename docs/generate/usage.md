@@ -11,6 +11,10 @@ the complexity of `protoc`. The `buf generate` command simplifies this experienc
 developers can stop worrying about complex `protoc` invocations and instead focus on their schema
 definitions.
 
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="generating code stubs using Buf" projects={["plugin-execution-local", "plugin-execution-remote", "managed-mode"]} />
+
 ## Configuration
 
 The [`buf.gen.yaml`](../configuration/v1/buf-gen-yaml.md) template file controls how the `buf generate` command
