@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
+import Link from "@docusaurus/Link";
+import React from "react";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 enum Kind {
   CONSTANT,
