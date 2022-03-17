@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 enum Kind {
   CONSTANT = "constant",
@@ -26,14 +26,24 @@ const hasKind = (segments: SegmentProps[], kind: Kind): boolean => {
 };
 
 const Example = ({ examples }: { examples: string[] }) => {
+  const multiple = examples.length > 1;
+  const title = multiple ? "Examples" : "Example";
+
   return (
     <div className={styles.examples}>
-      {examples.length == 1 && (
-        <span className={styles.exampleTitle}>
-          <span>Example:</span>
-          <span className={styles.example}>{examples[0]}</span>
-        </span>
-      )}
+      <div className={styles.exampleContainer}>
+        <p>
+          <strong>{title}</strong>
+        </p>
+        {!multiple && <span className={styles.example}>{examples[0]}</span>}
+        {multiple && (
+          <div className={styles.multipleExamples}>
+            {examples.map((example) => (
+              <pre className={styles.example}>{example}</pre>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -47,15 +47,32 @@
   gap: 0.5rem;
 }
 
-.exampleTitle {
+.exampleContainer {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.exampleContainer p {
+  margin: 0;
 }
 
 .example {
-  font-size: 0.9rem;
-  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
   font-weight: 500;
+  max-width: 100%;
+  overflow: scroll;
+}
+
+.multipleExamples {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.multipleExamples pre {
+  padding: 0.5rem 1rem;
+  margin: 0;
 }
 
 .constant {

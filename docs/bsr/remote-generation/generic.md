@@ -32,7 +32,7 @@ Tarball URLs consist of these components:
 * Buf module name
 * BSR repository owner
 * BSR repository name
-* [Reference]
+* A module [reference]
 
 ## Tarball options
 
@@ -45,13 +45,16 @@ There are three different tarballs that you can download for each template/modul
 ### No dependencies {#no-deps}
 
 The URL structure for downloading a generic registry tarball with no Protobuf dependencies is
-covered in the diagram below.
+shown in the diagram below.
 
 import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Tarball with no dependencies"
-  examples={["https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz"]}
+  examples={[
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.tar.gz",
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz"
+  ]}
   segments={[
     {label: "https://", kind: "constant"},
     {label: "archive.buf.build", kind: "default", varName: "remote"},
@@ -75,13 +78,15 @@ import Syntax from "@site/src/components/Syntax";
 
 ### Full dependency tree {#full-deps}
 
-
 The URL structure for downloading a generic registry tarball with [all Protobuf
-dependencies](../../bsr/overview.md#dependencies) is covered in the diagram below.
+dependencies](../../bsr/overview.md#dependencies) is shown in the diagram below.
 
 <Syntax
   title="Tarball with the full dependency tree"
-  examples={["https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz"]}
+  examples={[
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz",
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.include_imports.tar.gz"
+  ]}
   segments={[
     {label: "https://", kind: "constant"},
     {label: "archive.buf.build", kind: "default", varName: "remote"},
@@ -109,12 +114,15 @@ In contrast with the [no dependencies](#no-deps) variant, note that the tarball 
 ### Full dependency tree plus Well-Known Types {#full-deps-wkt}
 
 The URL structure for downloading a generic registry tarball with [all Protobuf
-dependencies](../../bsr/overview.md#dependencies) plus the [Well-Known Types][wkt] is covered in the
+dependencies](../../bsr/overview.md#dependencies) plus the [Well-Known Types][wkt] is shown in the
 diagram below.
 
 <Syntax
   title="Tarball with the full dependency tree plus Well-Known Types"
-  examples={["https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports_and_wkt.tar.gz"]}
+  examples={[
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.include_imports_and_wkt.tar.gz",
+    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports_and_wkt.tar.gz"
+  ]}
   segments={[
     {label: "https://", kind: "constant"},
     {label: "archive.buf.build", kind: "default", varName: "remote"},
