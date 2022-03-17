@@ -64,4 +64,4 @@ deps:
 > as a part of the dependencies. Your `buf.lock` shouldn't include these fields if you've
 > run `buf mod update` with a newer version of `buf`.
 
-For more on updating dependencies and pushing modules, please refer to the [Iterate on Modules](../../how-to/iterate-on-modules.md) guide.
+For more on updating dependencies and pushing modules, see the guide to [iterating on Modules](../../how-to/iterate-on-modules.md).

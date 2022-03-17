@@ -50,7 +50,7 @@ to generate *with*:
 	title="Generated Go module path syntax"
 	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
 	segments={[
-    {"label": "go.buf.build", "kind": "static"},
+    {"label": "go.buf.build", "kind": "constant"},
     {"separator": "/"},
     {"label": "template owner", "kind": "variable"},
     {"separator": "/"},
@@ -204,7 +204,7 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   examples={["v1.3.5"]}
   segments={[
-    {label: "v1", kind: "static"},
+    {label: "v1", kind: "constant"},
     {separator: "."},
     {label: "template version", kind: "variable"},
     {separator: "."},

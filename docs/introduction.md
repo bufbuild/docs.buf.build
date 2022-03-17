@@ -63,7 +63,7 @@ are planning with the BSR. For a quick overview, see our [roadmap](roadmap.md).
 
 ## Where to go from here
 
-To install `buf`, please see the [installation](installation.md) page.
+See the [installation](installation.md) page to install the `buf` CLI.
 
 Next, we recommend completing the [tour](tour/introduction.md). The tour provides an overview of most of the existing functionality of Buf and takes
 approximately 20 minutes to complete.

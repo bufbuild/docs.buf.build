@@ -61,6 +61,10 @@ $ buf breaking --against '.git#branch=main' --error-format=json
 {"path":"acme/pet/v1/pet.proto","start_line":18,"start_column":3,"end_line":18,"end_column":9,"type":"FIELD_SAME_TYPE","message":"Field \"1\" on message \"Pet\" changed type from \"enum\" to \"string\"."}
 ```
 
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="breaking change detection with the Buf CLI" projects={["breaking-change-detection"]} />
+
 ## Common use cases
 
 `buf`'s breaking change detector works by comparing a previous version of your Protobuf schema to

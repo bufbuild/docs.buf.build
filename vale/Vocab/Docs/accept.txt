@@ -136,10 +136,11 @@ Twirp
 Uber
 uname
 uncategorized
-Undeprecate
+undeprecate
 uniq
 unreferenced
-Uri
+uri
+urls
 usingcurl
 usr
 vendored

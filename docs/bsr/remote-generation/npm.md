@@ -39,15 +39,15 @@ import Syntax from "@site/src/components/Syntax";
   title="Syntax for BSR npm registry package names"
   examples={["@buf/protocolbuffers_js_acme_petapis"]}
   segments={[
-    {label: "@buf", kind: "static"},
+    {label: "@buf", kind: "constant"},
     {separator: "/"},
-    {label: "template owner", kind: "variable"},
+    {label: "templateOwner", kind: "variable"},
     {separator: "_"},
-    {label: "template name", kind: "variable"},
+    {label: "templateName", kind: "variable"},
     {separator: "_"},
-    {label: "module owner", kind: "variable"},
+    {label: "moduleOwner", kind: "variable"},
     {separator: "_"},
-    {label: "module name", kind: "variable"},
+    {label: "moduleName", kind: "variable"},
   ]
 } />
 
@@ -70,9 +70,9 @@ To install npm packages generated from private [Buf modules][modules], you need 
   examples={["//npm.buf.build/:_authToken=84612b6cbe8f4..."]}
   segments={[
     {separator: "//"},
-    {label: "npm.buf.build", kind: "static"},
+    {label: "npm.buf.build", kind: "constant"},
     {separator: "/:"},
-    {label: "_authToken", kind: "static"},
+    {label: "_authToken", kind: "constant"},
     {separator: "="},
     {label: "token", kind: "variable"},
   ]}
@@ -82,7 +82,7 @@ You can use an existing auth token or generate a new one. To create a new one, l
 
 ## Other package managers
 
-Because the Buf npm registry implements npm's [public registry API][registry], you should be able to use it with package management tools outside of npm, such as [Yarn] and [pnpm], though with [some known limitations](#yarn).
+Because the Buf npm registry implements npm's [public registry API][registry-api], you should be able to use it with package management tools outside of npm, such as [Yarn] and [pnpm], though with [some known limitations](#yarn).
 
 ## Known limitations
 
@@ -90,7 +90,7 @@ The BSR npm registry has a few limitations that you should be aware of.
 
 ### Yarn compatibility {#yarn}
 
-[Yarn] versions greater than [v1.10.0][yarn_v1] and less than [v2.0.0] are _not_ supported. These versions of Yarn require the `shasum` field in the dist object to be set, but the BSR can't compute a digest without generating the code for all possible versions of the package.
+[Yarn] versions greater than [v1.10.0][yarn_v1] and less than [v2][yarn_v2] are _not_ supported. These versions of Yarn require the `shasum` field in the dist object to be set, but the BSR can't compute a digest without generating the code for all possible versions of the package.
 
 ### Runtime dependencies
 

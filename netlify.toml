@@ -352,3 +352,8 @@
   from = "/bsr-npm"
   to = "/bsr/remote-generation/npm"
   status = 301
+
+[[redirects]]
+  from = "/bsr/remote-generation/consuming-generated-code"
+  to = "/bsr/remote-generation/go"
+  status = 301

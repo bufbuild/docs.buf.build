@@ -3,8 +3,6 @@ id: usage
 title: Usage
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 To execute `buf` commands below make sure you are [authenticated](../bsr/authentication.md). Obtain a token from the BSR and run:
 
 ```terminal
@@ -174,3 +172,9 @@ Undeprecate a deprecated repository with
 ```terminal
 $ buf beta registry repository undeprecate <buf.build/owner/repository>
 ```
+
+## Buf Schema Registry URLs {#urls}
+
+import BsrUrls from "@site/src/components/BsrUrls";
+
+<BsrUrls />

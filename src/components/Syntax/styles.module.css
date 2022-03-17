@@ -47,14 +47,19 @@
   gap: 0.5rem;
 }
 
+.exampleTitle {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .example {
   font-size: 0.9rem;
   font-family: var(--ifm-font-family-monospace);
   font-weight: 500;
 }
 
-.static {
-  color: var(--syntax-color-static);
+.constant {
+  color: var(--syntax-color-constant);
 }
 
 .default {

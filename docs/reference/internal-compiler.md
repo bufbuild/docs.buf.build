@@ -93,7 +93,7 @@ buf build -o - | protoc --descriptor_set_in=/dev/stdin --java_out=java $(buf ls-
 ```
 
 This results in protoc's internal parser not being used at all, so you can verify our claims further. If you do find
-an issue, please [contact us](../contact.md).
+an issue, [contact us](../contact.md).
 
 Having this new compiler is a key component of Buf's future. Right now, it enables reliable [linting](../lint/overview.md),
 [breaking change detection](../breaking/overview.md), [generation](../generate/usage.md), and the [BSR](../bsr/overview.md).

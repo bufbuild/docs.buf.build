@@ -21,7 +21,7 @@ all pull requests, and `buf push` pushes your module to the BSR when your pull r
 
 ## Create a BSR token
 
-The `buf-push` step requires access to the BSR. For steps on obtaining a token, please see the
+The `buf-push` step requires access to the BSR. For steps on obtaining a token, see the
 [Authentication](../bsr/authentication.md) page for more details. This needs to be added as an encrypted
 [GitHub Secret](https://docs.github.com/en/actions/reference/encrypted-secrets).
 

@@ -8,7 +8,7 @@ products that utilize the BSR as a foundation to understand and reason about API
 including in real time.
 
 Here, we outline some (but not all!) of the products on our roadmap. We'd love your input
-and feedback, please [contact us](contact.md) to discuss any of the below, or any other products
+and feedback, [Contact us](contact.md) to discuss any of the below, or any other products
 you'd like to see.
 
 ## The Buf Schema Registry (BSR) {#bsr}

@@ -5,7 +5,7 @@ title: Rules and categories
 
 > The rules and categories described here belong to the latest [`v1`](../configuration/v1/buf-yaml.md)
 > release. If you're still using `v1beta1` and haven't [migrated](../configuration/v1beta1-migration-guide.md) yet,
-> please refer to the previous [reference](../configuration/v1beta1/lint-rules.md).
+> refer to the previous [reference](../configuration/v1beta1/lint-rules.md).
 
 `buf` provides a carefully curated set of lint rules designed to provide consistency and maintainability
 across a Protobuf schema of any size and any purpose, but without being so opinionated as to restrict
@@ -632,7 +632,7 @@ with managed mode you can remove your file option declarations altogether and le
 There are no lint rules for widely used custom options such as [google.api options](https://github.com/googleapis/googleapis/tree/master/google/api)
 or [protoc-gen-validate](https://github.com/envoyproxy/protoc-gen-validate/blob/master/validate/validate.proto).
 There's a lot of thought that needs to go into issues such as forwards and backwards compatibility for custom options,
-so we currently only support the standard set of file options. Please [contact us](../contact.md) if this is a big need for
+so we currently only support the standard set of file options. [Contact us](../contact.md) if this is a big need for
 your organization.
 
 ### Naming opinions
@@ -643,6 +643,6 @@ standardization. This is to provide maximum usefulness of the `DEFAULT` category
 
 ## Adding or requesting new rules
 
-If you'd like a new rule added, please [contact us](../contact.md) to discuss it. We'll add rules if we think
+If you'd like a new rule added, [contact us](../contact.md) to discuss it. We'll add rules if we think
 they're maintainable and could have widespread value. Most rules can be easily added, and although
 [Buf is OSS](https://github.com/bufbuild/buf), it's usually more efficient for us to add it ourselves.
