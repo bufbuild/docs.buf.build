@@ -12,7 +12,6 @@ type SegmentProps = {
   label: string;
   kind?: Kind;
   separator?: string;
-  varName?: string;
 };
 
 type Props = {
@@ -48,7 +47,7 @@ const Example = ({ examples }: { examples: string[] }) => {
   );
 };
 
-const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
+const Segment = ({ label, kind, separator }: SegmentProps) => {
   let item: JSX.Element;
   switch (kind) {
     case Kind.CONSTANT:
@@ -57,7 +56,7 @@ const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
     case Kind.DEFAULT:
       item = (
         <span className={styles.default}>
-          {`(${varName && `${varName}:`}`}
+          {"("}
           {label}
           {")"}
         </span>

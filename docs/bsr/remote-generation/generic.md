@@ -20,19 +20,20 @@ You can download generated assets from the generic registry by making requests t
 using a file retrieval tool like [cURL] or [wget]. Here's an example request:
 
 ```terminal
-$ wget https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz
+$ wget https://archive.buf.build/v1/protocolbuffers/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz
 ```
 
 Tarball URLs consist of these components:
 
-* Generation [template] owner
-* Generation template name
-* Generation template version
-* Buf [module] owner
-* Buf module name
-* BSR repository owner
-* BSR repository name
-* A module [reference]
+Component | Example
+:---------|:-------
+Generic registry version | `v1` (the only currently supported version)
+Generation [template] owner | [`protocolbuffers`](https://buf.build/protocolbuffers)
+Generation template name | [`go`](https://buf.build/protocolbuffers/templates/go)
+Generation template version | [`v1`](https://buf.build/protocolbuffers/templates/go)
+BSR [repository](../../bsr/overview.md#modules) owner | [`acme`](https://buf.build/acme)
+BSR repository name | [`paymentapis`](https://buf.build/acme/paymentapis)
+A module [reference] | [`6e230f46113f498392c82d12b1a07b70`](https://buf.build/acme/paymentapis/tree/6e230f46113f498392c82d12b1a07b70)
 
 ## Tarball options
 
@@ -52,12 +53,12 @@ import Syntax from "@site/src/components/Syntax";
 <Syntax
   title="Tarball with no dependencies"
   examples={[
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.tar.gz",
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz"
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/main.tar.gz",
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.tar.gz"
   ]}
   segments={[
     {label: "https://", kind: "constant"},
-    {label: "archive.buf.build", kind: "default", varName: "remote"},
+    {label: "archive.buf.build", kind: "default"},
     {separator: "/"},
     {label: "v1", kind: "constant"},
     {separator: "/"},
@@ -84,12 +85,12 @@ dependencies](../../bsr/overview.md#dependencies) is shown in the diagram below.
 <Syntax
   title="Tarball with the full dependency tree"
   examples={[
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz",
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.include_imports.tar.gz"
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz",
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/main.include_imports.tar.gz"
   ]}
   segments={[
     {label: "https://", kind: "constant"},
-    {label: "archive.buf.build", kind: "default", varName: "remote"},
+    {label: "archive.buf.build", kind: "default"},
     {separator: "/"},
     {label: "v1", kind: "constant"},
     {separator: "/"},
@@ -120,12 +121,12 @@ diagram below.
 <Syntax
   title="Tarball with the full dependency tree plus Well-Known Types"
   examples={[
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/main.include_imports_and_wkt.tar.gz",
-    "https://archive.buf.build/v1/grpc/go/v2/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports_and_wkt.tar.gz"
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/main.include_imports_and_wkt.tar.gz",
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports_and_wkt.tar.gz"
   ]}
   segments={[
     {label: "https://", kind: "constant"},
-    {label: "archive.buf.build", kind: "default", varName: "remote"},
+    {label: "archive.buf.build", kind: "default"},
     {separator: "/"},
     {label: "v1", kind: "constant"},
     {separator: "/"},

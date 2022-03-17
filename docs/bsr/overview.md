@@ -30,7 +30,7 @@ import Syntax from "@site/src/components/Syntax";
   title="Module name syntax"
   examples={["buf.build/acme/weather"]}
   segments={[
-    {label: "buf.build", kind: "default", varName: "remote"},
+    {label: "buf.build", kind: "default"},
     {separator: "/"},
     {label: "owner", kind: "variable"},
     {separator: "/"},
