@@ -8,6 +8,10 @@ common directory. Workspaces make it possible for local [modules](../bsr/overvie
 Protobuf files from other local modules, and unlock other powerful use cases that operate on multiple
 modules at the same time.
 
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="using Buf workspaces" projects={["workspace"]} />
+
 ## Background
 
 As you develop `buf` modules, you might find yourself in a situation where you own multiple modules
