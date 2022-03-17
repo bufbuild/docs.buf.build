@@ -1,22 +1,22 @@
 ---
-id: generic
-title: Generic registry
+id: tarball
+title: Tarball registry
 ---
 
 The [Buf Schema Registry](../../bsr/overview.md) (BSR) enables you to [remotely
 generate](../remote-generation/overview.md) code stubs from [Buf
 modules](../../bsr/overview.md#modules) that you've pushed to the registry. While the BSR offers
 language-specific registries for [Go](go.md) and [JavaScript/TypeScript](npm.md), you may need to
-use code stubs for languages that aren't officially supported. To fill this gap, the BSR's **generic
+use code stubs for languages that aren't officially supported. To fill this gap, the BSR's **tarball
 registry** enables you to download remote-generated assets as [tarballs][tar].
 
-As with the [Go module proxy](go.md) and the [npm registry](npm.md), the generic registry generates 
+As with the [Go module proxy](go.md) and the [npm registry](npm.md), the tarball registry generates 
 assets on the fly, that is, it generates first only upon request and then caches the result for the
 sake of future requests.
 
 ## Downloading generated assets
 
-You can download generated assets from the generic registry by making requests to the correct URL
+You can download generated assets from the tarball registry by making requests to the correct URL
 using a file retrieval tool like [cURL] or [wget]. Here's an example request:
 
 ```terminal
@@ -27,7 +27,7 @@ Tarball URLs consist of these components:
 
 Component | Example
 :---------|:-------
-Generic registry version | `v1` (the only currently supported version)
+Tarball registry version | `v1` (currently the only version)
 Generation [template] owner | [`protocolbuffers`](https://buf.build/protocolbuffers)
 Generation template name | [`go`](https://buf.build/protocolbuffers/templates/go)
 Generation template version | [`v1`](https://buf.build/protocolbuffers/templates/go)
@@ -37,7 +37,7 @@ A module [reference] | [`6e230f46113f498392c82d12b1a07b70`](https://buf.build/ac
 
 ## Tarball options
 
-There are three different tarballs that you can download for each template/module combination:
+You can download one of three tarballs for each [template]/[repository] combination:
 
 * A tarball with [no Protobuf dependencies](#no-deps) included
 * A tarball with the [full Protobuf dependency tree](#full-deps) included
@@ -45,7 +45,7 @@ There are three different tarballs that you can download for each template/modul
 
 ### No dependencies {#no-deps}
 
-The URL structure for downloading a generic registry tarball with no Protobuf dependencies is
+The URL structure for downloading a tarball registry tarball with no Protobuf dependencies is
 shown in the diagram below.
 
 import Syntax from "@site/src/components/Syntax";
@@ -79,14 +79,14 @@ import Syntax from "@site/src/components/Syntax";
 
 ### Full dependency tree {#full-deps}
 
-The URL structure for downloading a generic registry tarball with [all Protobuf
+The URL structure for downloading a tarball registry tarball with [all Protobuf
 dependencies](../../bsr/overview.md#dependencies) is shown in the diagram below.
 
 <Syntax
   title="Tarball with the full dependency tree"
   examples={[
-    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz",
-    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/main.include_imports.tar.gz"
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/main.include_imports.tar.gz",
+    "https://archive.buf.build/v1/protocolbuffers/go/v1/acme/paymentapis/6e230f46113f498392c82d12b1a07b70.include_imports.tar.gz"
   ]}
   segments={[
     {label: "https://", kind: "constant"},
@@ -114,7 +114,7 @@ In contrast with the [no dependencies](#no-deps) variant, note that the tarball 
 
 ### Full dependency tree plus Well-Known Types {#full-deps-wkt}
 
-The URL structure for downloading a generic registry tarball with [all Protobuf
+The URL structure for downloading a tarball registry tarball with [all Protobuf
 dependencies](../../bsr/overview.md#dependencies) plus the [Well-Known Types][wkt] is shown in the
 diagram below.
 
@@ -150,8 +150,8 @@ In contrast with the [full dependency](#no-deps) variant, note that the tarball 
 
 [curl]: https://everything.curl.dev
 [gzip]: https://www.gnu.org/software/gzip
-[module]: ../overview.md#modules
 [reference]: ../overview.md#referencing-a-module
+[repository]: ../overview.md#modules
 [tar]: https://en.wikipedia.org/wiki/Tar_(computing)
 [template]: concepts.md#templates
 [wget]: https://www.gnu.org/software/wget
