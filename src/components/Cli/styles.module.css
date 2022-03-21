@@ -1,7 +1,10 @@
 .cli {
   border: 1px solid #ddd;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .title {
@@ -16,4 +19,35 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.command {
+  font-family: var(--buf-mono-font);
+  background-color: #f3f4f6;
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+}
+
+.arguments {
+  margin-top: 2rem;
+}
+
+.argument {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.argument + .argument {
+  border-top: 1px solid #ddd;
+}
+
+.default {
+  display: flex;
+  flex-flow: row-reverse;
+}
+
+.rawHtml {
+  font-size: 1.1rem;
 }

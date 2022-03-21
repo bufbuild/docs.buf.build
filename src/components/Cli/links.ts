@@ -5,7 +5,8 @@ const link = (name: string, text?: string): string => {
 
 const links: Record<string, string> = {
   bsr: "/bsr/overview",
-  inputs: "/reference/inputs"
+  inputs: "/reference/inputs",
+  source: "#arg-source"
 };
 
 export { link };

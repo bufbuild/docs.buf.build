@@ -11,8 +11,8 @@ import Arg, {
   sourceArg,
   tagArg,
   templateArg,
-  trackArg
-} from "./args";
+  trackArg,
+} from './args';
 import Flag, {
   allFlag,
   configFlag,
@@ -33,9 +33,9 @@ import Flag, {
   reverseFlag,
   templateConfigFlag,
   typeFlag,
-  visibilityFlag
-} from "./flags";
-import { link } from "./links";
+  visibilityFlag,
+} from './flags';
+import { link } from './links';
 
 type Command = {
   name: string;
@@ -47,248 +47,6 @@ type Command = {
 };
 
 const commands: Command[] = [
-  {
-    name: "beta",
-    description: "Beta commands. Unstable and likely to change.",
-    commands: [
-      {
-        name: "convert",
-        description:
-          "Use a source reference to convert a binary or JSON-serialized message supplied through stdin or the input flag.",
-        arg: sourceArg,
-        flags: [errorFormatFlag, inputFlag, outputFlag, typeFlag]
-      },
-      {
-        name: "migrate-v1beta1",
-        description:
-          "Migrate any v1beta1 configuration files in the current directory to the latest version.",
-        arg: directoryArg
-      },
-      {
-        name: "registry",
-        description: `Manage assets on the ${link("bsr", "Buf Schema Registry")} (BSR).`,
-        commands: [
-          {
-            name: "commit",
-            description: "",
-            commands: [
-              {
-                name: "get",
-                description: "",
-                arg: referenceArg,
-                flags: [formatFlag]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: moduleArg,
-                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-              }
-            ]
-          },
-          {
-            name: "organization",
-            description: "",
-            commands: [
-              {
-                name: "create",
-                description: "",
-                arg: organizationArg,
-                flags: [formatFlag]
-              },
-              {
-                name: "delete",
-                description: "",
-                arg: organizationArg,
-                flags: [forceFlag]
-              },
-              {
-                name: "get",
-                description: "",
-                arg: organizationArg,
-                flags: [formatFlag]
-              }
-            ]
-          },
-          {
-            name: "plugin",
-            description: "",
-            commands: [
-              {
-                name: "create",
-                description: "",
-                arg: pluginArg,
-                flags: [formatFlag, visibilityFlag("plugin")]
-              },
-              {
-                name: "delete",
-                description: "",
-                arg: pluginArg,
-                flags: [forceFlag]
-              },
-              {
-                name: "deprecate",
-                description: "",
-                arg: pluginArg,
-                flags: [messageFlag]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: registryArg,
-                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-              },
-              {
-                name: "undeprecate",
-                description: "",
-                arg: pluginArg
-              },
-              {
-                name: "version",
-                description: "",
-                commands: [
-                  {
-                    name: "list",
-                    description: "List versions.",
-                    arg: pluginArg,
-                    flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: "repository",
-            description: "",
-            commands: [
-              {
-                name: "create",
-                description: "",
-                arg: repositoryArg,
-                flags: [formatFlag, visibilityFlag("repository")]
-              },
-              {
-                name: "delete",
-                description: "",
-                arg: repositoryArg,
-                flags: [forceFlag]
-              },
-              {
-                name: "deprecate",
-                description: "",
-                arg: repositoryArg,
-                flags: [messageFlag]
-              },
-              {
-                name: "get",
-                description: "",
-                arg: repositoryArg,
-                flags: [formatFlag]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: registryArg,
-                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-              },
-              {
-                name: "undeprecate",
-                description: "",
-                arg: repositoryArg
-              }
-            ]
-          },
-          {
-            name: "tag",
-            description: "",
-            commands: [
-              {
-                name: "create",
-                description: "",
-                args: [commitArg, tagArg]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: repositoryArg
-              }
-            ]
-          },
-          {
-            name: "template",
-            description: "",
-            commands: [
-              {
-                name: "create",
-                description: "",
-                arg: templateArg,
-                flags: [templateConfigFlag, formatFlag, visibilityFlag("template")]
-              },
-              {
-                name: "delete",
-                description: "",
-                arg: templateArg,
-                flags: [forceFlag]
-              },
-              {
-                name: "deprecate",
-                description: "",
-                arg: templateArg,
-                flags: [messageFlag]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: registryArg,
-                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-              },
-              {
-                name: "undeprecate",
-                description: "",
-                arg: templateArg
-              },
-              {
-                name: "version",
-                description: "",
-                commands: [
-                  {
-                    name: "create",
-                    description: "Create a new template version",
-                    arg: templateArg,
-                    flags: [templateConfigFlag, formatFlag]
-                  },
-                  {
-                    name: "list",
-                    description: "List versions for the specified template.",
-                    arg: templateArg,
-                    flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: "track",
-            description: "",
-            commands: [
-              {
-                name: "delete",
-                description: "",
-                arg: trackArg,
-                flags: [forceFlag]
-              },
-              {
-                name: "list",
-                description: "",
-                arg: repositoryArg,
-                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
   {
     name: "breaking",
     description: "Breaking change detection",
@@ -591,6 +349,250 @@ If specified multiple times, the union is taken.`,
       {
         name: "logout",
         description: `Log out of the ${link("bsr", "Buf Schema Registry")}.`
+      }
+    ]
+  },
+  {
+    name: "beta",
+    description: "Beta commands. Unstable and likely to change.",
+    commands: [
+      {
+        name: "convert",
+        description: `Use a ${link(
+          "source",
+          "source reference"
+        )} to convert a binary or JSON-serialized message supplied through stdin or the input flag.`,
+        arg: sourceArg,
+        flags: [errorFormatFlag, inputFlag, outputFlag, typeFlag]
+      },
+      {
+        name: "migrate-v1beta1",
+        description:
+          "Migrate any v1beta1 configuration files in the current directory to the latest version.",
+        arg: directoryArg
+      },
+      {
+        name: "registry",
+        description: `Manage assets on the ${link("bsr", "Buf Schema Registry")} (BSR).`,
+        commands: [
+          {
+            name: "commit",
+            description: "",
+            commands: [
+              {
+                name: "get",
+                description: "",
+                arg: referenceArg,
+                flags: [formatFlag]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: moduleArg,
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+              }
+            ]
+          },
+          {
+            name: "organization",
+            description: "",
+            commands: [
+              {
+                name: "create",
+                description: "",
+                arg: organizationArg,
+                flags: [formatFlag]
+              },
+              {
+                name: "delete",
+                description: "",
+                arg: organizationArg,
+                flags: [forceFlag]
+              },
+              {
+                name: "get",
+                description: "",
+                arg: organizationArg,
+                flags: [formatFlag]
+              }
+            ]
+          },
+          {
+            name: "plugin",
+            description: "",
+            commands: [
+              {
+                name: "create",
+                description: "",
+                arg: pluginArg,
+                flags: [formatFlag, visibilityFlag("plugin")]
+              },
+              {
+                name: "delete",
+                description: "",
+                arg: pluginArg,
+                flags: [forceFlag]
+              },
+              {
+                name: "deprecate",
+                description: "",
+                arg: pluginArg,
+                flags: [messageFlag]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: registryArg,
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+              },
+              {
+                name: "undeprecate",
+                description: "",
+                arg: pluginArg
+              },
+              {
+                name: "version",
+                description: "",
+                commands: [
+                  {
+                    name: "list",
+                    description: "List versions.",
+                    arg: pluginArg,
+                    flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: "repository",
+            description: "",
+            commands: [
+              {
+                name: "create",
+                description: "",
+                arg: repositoryArg,
+                flags: [formatFlag, visibilityFlag("repository")]
+              },
+              {
+                name: "delete",
+                description: "",
+                arg: repositoryArg,
+                flags: [forceFlag]
+              },
+              {
+                name: "deprecate",
+                description: "",
+                arg: repositoryArg,
+                flags: [messageFlag]
+              },
+              {
+                name: "get",
+                description: "",
+                arg: repositoryArg,
+                flags: [formatFlag]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: registryArg,
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+              },
+              {
+                name: "undeprecate",
+                description: "",
+                arg: repositoryArg
+              }
+            ]
+          },
+          {
+            name: "tag",
+            description: "",
+            commands: [
+              {
+                name: "create",
+                description: "",
+                args: [commitArg, tagArg]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: repositoryArg
+              }
+            ]
+          },
+          {
+            name: "template",
+            description: "",
+            commands: [
+              {
+                name: "create",
+                description: "",
+                arg: templateArg,
+                flags: [templateConfigFlag, formatFlag, visibilityFlag("template")]
+              },
+              {
+                name: "delete",
+                description: "",
+                arg: templateArg,
+                flags: [forceFlag]
+              },
+              {
+                name: "deprecate",
+                description: "",
+                arg: templateArg,
+                flags: [messageFlag]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: registryArg,
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+              },
+              {
+                name: "undeprecate",
+                description: "",
+                arg: templateArg
+              },
+              {
+                name: "version",
+                description: "",
+                commands: [
+                  {
+                    name: "create",
+                    description: "Create a new template version",
+                    arg: templateArg,
+                    flags: [templateConfigFlag, formatFlag]
+                  },
+                  {
+                    name: "list",
+                    description: "List versions for the specified template.",
+                    arg: templateArg,
+                    flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: "track",
+            description: "",
+            commands: [
+              {
+                name: "delete",
+                description: "",
+                arg: trackArg,
+                flags: [forceFlag]
+              },
+              {
+                name: "list",
+                description: "",
+                arg: repositoryArg,
+                flags: [formatFlag, pageSizeFlag, pageTokenFlag, reverseFlag]
+              }
+            ]
+          }
+        ]
       }
     ]
   }

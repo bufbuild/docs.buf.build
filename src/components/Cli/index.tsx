@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { args } from './args';
+import Arg, { args } from './args';
 import Command, { commands } from './commands';
 import styles from './styles.module.css';
 
-type Props = {
+type CommandProps = {
   parent?: string;
   cmd: Command;
 };
 
 const Html = ({ text }: { text: string }) => {
-  return <div dangerouslySetInnerHTML={{ __html: text }} />;
+  return <div className={styles.rawHtml} dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
-const CommandEl = ({ parent, cmd }: Props) => {
+const Cmd = ({ parent, cmd }: CommandProps) => {
   const name: string = parent ? `${parent} ${cmd.name}` : cmd.name;
   const id = name.replace(/ /g, "_");
   const href = `#${id}`;
@@ -21,29 +21,31 @@ const CommandEl = ({ parent, cmd }: Props) => {
   return (
     <div className={styles.cli} id={id}>
       <div className={styles.commandTitle}>
-        <a href={href}>{name}</a>
+        <span className={styles.command}>
+          <a href={href}>{name}</a>
 
-        {cmd.arg && (
-          <>
-            {" "}
-            {"<"}
-            <a href={`#arg-${cmd.arg.name}`}>{cmd.arg.name}</a>
-            {">"}
-          </>
-        )}
+          {cmd.arg && (
+            <>
+              {" "}
+              {"<"}
+              <a href={`#arg-${cmd.arg.name}`}>{cmd.arg.name}</a>
+              {">"}
+            </>
+          )}
 
-        {cmd.args && (
-          <span>
-            {cmd.args.map((arg) => (
-              <>
-                {" "}
-                {"<"}
-                <a href={`#arg-${arg.name}`}>{arg.name}</a>
-                {">"}
-              </>
-            ))}
-          </span>
-        )}
+          {cmd.args && (
+            <span>
+              {cmd.args.map((arg) => (
+                <>
+                  {" "}
+                  {"<"}
+                  <a href={`#arg-${arg.name}`}>{arg.name}</a>
+                  {">"}
+                </>
+              ))}
+            </span>
+          )}
+        </span>
       </div>
 
       <Html text={cmd.description} />
@@ -51,7 +53,7 @@ const CommandEl = ({ parent, cmd }: Props) => {
       {cmd.commands && (
         <div className={styles.commandList}>
           {cmd.commands.map((cmd) => (
-            <CommandEl cmd={cmd} parent={name} />
+            <Cmd cmd={cmd} parent={name} />
           ))}
         </div>
       )}
@@ -59,41 +61,81 @@ const CommandEl = ({ parent, cmd }: Props) => {
   );
 };
 
+const Argument = ({ name, description, argDefault }: Arg) => {
+  const id = `arg-${name}`;
+  const href = `#arg-${name}`;
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Argument</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id={id} className={styles.argument}>
+        <a href={href}>
+          <code>{name}</code>
+        </a>
+
+        <Html text={description} />
+
+        {argDefault && (
+          <div className={styles.default}>
+            <span>
+              Default: <code>{argDefault}</code>
+            </span>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
 const Cli = () => {
   return (
-    <div className={styles.cli}>
-      <p className={styles.title}>
-        The <code>buf</code> command-line interface
-      </p>
-
+    <>
       <div className={styles.commandList}>
         {commands.map((cmd) => (
-          <CommandEl cmd={cmd} parent="buf" />
+          <Cmd cmd={cmd} parent="buf" />
         ))}
       </div>
 
-      <div>
+      <div className={styles.arguments}>
         <h2>Arguments</h2>
 
         <div>
-          {args.map((arg) => (
-            <div id={`arg-${arg.name}`}>
-              <a href={`#arg-${arg.name}`}>
-                <code>{arg.name}</code>
-              </a>
-
-              <Html text={arg.description} />
-
-              {arg.default && (
-                <p>
-                  Default: <code>{arg.default}</code>
-                </p>
-              )}
-            </div>
-          ))}
+          <table>
+            <thead>
+              <tr>
+                <th>Argument</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              {args.map((arg) => (
+                <tr>
+                  <td>
+                    <a id={`arg-${arg.name}`}></a>
+                    <code>{arg.name}</code>
+                  </td>
+                  <td>
+                    <Html text={arg.description} />
+                  </td>
+                  <td>{arg.argDefault && <code>{arg.argDefault}</code>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

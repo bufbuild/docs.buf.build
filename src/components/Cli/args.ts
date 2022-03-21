@@ -1,9 +1,9 @@
-import { link } from "./links";
+import { link } from './links';
 
 type Arg = {
   name: string;
   description: string;
-  default?: string;
+  argDefault?: string;
 };
 
 const commitArg: Arg = {
@@ -14,13 +14,13 @@ const commitArg: Arg = {
 const directoryArg: Arg = {
   name: "directory",
   description: "A directory.",
-  default: "."
+  argDefault: "."
 };
 
 const inputArg: Arg = {
   name: "input",
   description: `The ${link("inputs", "Buf input")}.`,
-  default: "."
+  argDefault: "."
 };
 
 const moduleArg: Arg = {
@@ -46,7 +46,7 @@ const referenceArg: Arg = {
 const registryArg: Arg = {
   name: "registry",
   description: "The schema registry.",
-  default: "buf.build"
+  argDefault: "buf.build"
 };
 
 const repositoryArg: Arg = {
