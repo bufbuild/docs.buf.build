@@ -10,13 +10,22 @@ description: The BSR supports remote code generation, which means you fetch gene
 
 A common frustration when working with Protocol Buffers is that you need to generate code for each
 language that you're working with. Many teams implement custom tooling and scripts to solve this
-problem, but it's often difficult to ensure that every person who works on a given project has all
+problem, but it can be difficult to ensure that every person who works on a given project has all
 of the code generation tooling set up locally. And if you have Protobuf-based APIs, the consumers
 of your APIs shouldn't have to deal with code generation.
 
 The Buf Schema Registry solves this problem with **remote code generation**. With this feature, you
-can eliminate code stub generation from your workflows and install generated code directly from the
-BSR using standard package managers and build tools.
+can eliminate code generation from your workflows and directly [install](#languages) code generated
+from Protobuf definitions using standard package managers and build tools. This diagram illustrates
+how remote generation works:
+
+import Image from '@site/src/components/Image';
+
+<Image alt="BSR module" src="/img/bsr/remote-code-gen.png" width={75} caption="The Buf Schema Registry's remote generation process" />
+
+In essence, you can use generation [templates](#templates) to generate code stubs from [Buf
+modules](../overview.md#modules) that you've pushed to the BSR. All code generation happens _on the
+BSR itself_—not on your laptop, not in a CI/CD environment, only remotely on the BSR.
 
 ## Supported languages {#languages}
 
@@ -40,9 +49,16 @@ The BSR uses Protobuf **plugins** to generate code stubs from Protobuf definitio
 Protobuf plugins include [`protoc-gen-go`][protoc-gen-go] and
 [`protoc-gen-python`][protoc-gen-python].
 
-They belong to an **owner** and may be public or private. Public plugins are available to anyone, while private plugins are only available to the owner or members of the owning organization. Plugins are often referenced together with their owners name, for example, `library/plugins/protoc-gen-go` (or in some contexts just `library/protoc-gen-go`), is used to reference the `protoc-gen-go` plugin maintained by Buf.
+:::info Creating your own plugins
+See the documentation on [authoring plugins](./plugin-example.md) to see how you can create and
+upload your own plugins to use as part of code generation.
+:::
 
-A plugin has instantiations at different **versions**. These versions often map directly to the versions of the existing plugin executables. For example, the `library/protoc-gen-go` plugin has a version `v1.27.1-1` matching the [`v1.27.1` release](https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.27.1) of the official Go Protobuf plugin.
+Plugins belong to an [owner](../user-management.md#owner) and may be public or private. Public plugins are available to anyone,
+while private plugins are only available to the owner or members of the owning organization. Plugins
+are often referenced together with their owner's name, for example, `library/plugins/protoc-gen-go` (or in some contexts just `library/protoc-gen-go`), is used to reference the `protoc-gen-go` plugin maintained by Buf.
+
+A plugin has instantiations at different **versions**. These versions often map directly to the versions of the existing plugin executables. For example, the `protoc-gen-go` plugin has a version `v1.27.1-1` matching the [`v1.27.1` release](https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.27.1) of the official Go Protobuf plugin.
 
 Plugin version executables are managed as Docker images. The Docker image is expected to accept a [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/bd42fcc7a3e04504df895ce2fd0782c0e84b68a5/src/google/protobuf/compiler/plugin.proto#L68) in Protobuf binary format on standard in, and respond with a [CodeGeneratorResponse](https://github.com/protocolbuffers/protobuf/blob/bd42fcc7a3e04504df895ce2fd0782c0e84b68a5/src/google/protobuf/compiler/plugin.proto#L99) in Protobuf binary format on standard out when run. This matches exactly the contract used with existing Protobuf plugins in the ecosystem today, making migration of existing plugins to BSR hosted plugins straightforward.
 
@@ -71,14 +87,26 @@ LABEL "build.buf.plugins.runtime_library_versions.0.name"="google.golang.org/pro
 LABEL "build.buf.plugins.runtime_library_versions.0.version"="v1.27.1"
 ```
 
-You need to give plugins a valid [semantic version](https://semver.org/spec/v2.0.0.html).
+You need to give plugins a valid [semantic version][semver].
+
+:::success Remote plugin execution
+A feature that you may also find useful is [remote plugin execution](./hosted-plugins.md). While
+remote code generation is geared toward eliminating the need to generate code stubs _at all_, remote
+plugin execution enables you to generate code stubs locally without needing to install plugins
+locally.
+:::
 
 ### Templates
 
 A **template** defines a collection of **plugins** and associated configuration to use when
 generating code stubs from Protobuf. With templates, you can run multiple plugins together, such as
 `protoc-gen-go` and `protoc-gen-go-grpc`, where the output of `protoc-gen-go-grpc` depends on the
-output of `protoc-gen-go`. 
+output of `protoc-gen-go`.
+
+:::info Creating your own templates
+See the documentation on [authoring templates](./template-example.md) to see how you can upload your
+own templates to use as part of code generation.
+:::
 
 Templates belong to an [owner](../user-management.md#owner) and can be public or private. Public
 templates are available to anyone, while private templates are available only to the owner or
@@ -98,7 +126,7 @@ generated artifacts.
 
 Template management is designed to discourage introducing breaking changes to consumers. This is why plugin parameters are defined on the template itself rather than on a per-version basis.
 
-### Remote generation registries
+### Remote generation registries {#registries}
 
 A **remote generation registry** is an artifact registry built specifically for integrating the BSR
 remote generation capabilities with a language's dependency management system.
@@ -173,12 +201,13 @@ with one artifact, such as a Python library, BSR versions are the product of two
 * The Protobuf module
 
 When implementing our versioning scheme, we surveyed some popular language registries and found that
-the most common scheme was semantic versioning but _without_ [pre-release and
-build](https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build) labels. In other
-words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not, and we
-opted for the former.
+the most common scheme was semantic versioning but _without_ [pre-release and build][scheme] labels.
+In other words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not,
+and we opted for the former.
 
 [go-mod]: https://golang.org/ref/mod
 [hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
 [protoc-gen-go]: https://pkg.go.dev/google.golang.org/protobuf@v1.27.1/cmd/protoc-gen-go
 [protoc-gen-python]: https://developers.google.com/protocol-buffers/docs/reference/python-generated
+[scheme]: https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build
+[semver]: https://semver.org/spec/v2.0.0.html
