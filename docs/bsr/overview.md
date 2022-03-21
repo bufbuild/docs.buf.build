@@ -7,44 +7,46 @@ import Image from '@site/src/components/Image';
 
 ## Modules
 
-A **module** is a collection of Protobuf files that are configured, built, and versioned as a logical unit. By moving away from individual `.proto` files, the **module** simplifies file discovery and eliminates the need for complex build scripts to `-I` include, exclude, and configure your Protobuf sources.
+A **module** is a set of Protobuf files that's configured, built, and versioned as a logical unit. By moving away from individual `.proto` files, the **module** simplifies file discovery and eliminates the need for complex build scripts to `-I` include, exclude, and configure your Protobuf sources.
 
 <Image alt="BSR module" src="/img/bsr/module_2_with_yaml.png" caption="How modules map to Buf YAML configs" />
 
-Storing modules in the BSR, a Protobuf-aware registry, protects you from publishing broken builds. Module consumers have confidence that the modules that they pull compile, something that isn't possible with traditional version control systems.
+Storing modules in the BSR, a Protobuf-aware registry, protects you from publishing broken builds. Module consumers have confidence that the modules that they pull compile, which traditional version control systems don't provide.
 
-The module's name uniquely identifies and gives ownership to a collection of Protobuf files, which means you can push modules to authorized repositories within the BSR, add hosted modules as dependencies, consume modules as part of code generation, and much more.
+The module's name uniquely identifies and gives ownership to a collection of Protobuf files, which means you can push modules to the BSR, add hosted modules as dependencies, consume modules as part of code generation, and much more.
 
-A **module** is identified by a `name` key in the [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which is placed at the root of the Protobuf source files it defines. This tells `buf` where to search for `.proto` files, and how to handle imports. Unlike `protoc`, where you manually specify `.proto` files, `buf` recursively discovers all `.proto` files under configuration to build the module.
+A **module** is identified by the `name` key in the [`buf.yaml`](../configuration/v1/buf-yaml.md) file, which is placed at the root of the Protobuf source files it defines. This tells `buf` where to search for `.proto` files and how to handle imports. Unlike `protoc`, where you manually specify `.proto` files, `buf` recursively discovers all `.proto` files under your configuration to build the module.
 
 ```yaml title=buf.yaml {2}
 version: v1
 name: buf.build/acme/weather
 ```
 
-The module `name` is composed of three parts: the remote, owner, and repository:
+The fully qualified module name has three parts:
+
+* the remote
+* the owner (user or organization)
+* module name
 
 import Syntax from "@site/src/components/Syntax";
 
 <Syntax
-  title="Module name syntax"
+  title="Fully qualified module name syntax"
   examples={["buf.build/acme/weather"]}
   segments={[
     {label: "buf.build", kind: "default", varName: "remote"},
     {separator: "/"},
     {label: "owner", kind: "variable"},
     {separator: "/"},
-    {label: "repository", kind: "variable"},
+    {label: "module", kind: "variable"},
   ]
 } />
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
-- **Owner**: An entity that is either a user or organization within the BSR ecosystem.
-- **Repository**: Stores a single module and all versions of that module.
+- **Owner**: Either a user or organization within the BSR ecosystem.
+- **Module**: Stores a single module and all versions of that module.
 
-    While roughly analogous to Git repositories, a Buf repository is only a remote location — there is no concept of a repository "clone" or "fork". Repositories do not exist in multiple locations.
-
-    Every repository is identified by its module name, allowing it to be imported by other modules and uniquely identified within the BSR.
+    Every module is identified by its fully qualified name, enabling other modules to depend on it.
 
 Many organizations with public Protobuf files are already using the BSR, and some of the bigger ones are officially maintained by Buf. These include
 
@@ -59,13 +61,13 @@ Many organizations with public Protobuf files are already using the BSR, and som
 
 ## Documentation
 
-Every push to the BSR generates documentation. You may browse the documentation section of a repository by navigating to the `Docs` tab.
+Every push to the BSR generates documentation. You may browse the documentation section of a module by navigating to the **Docs** tab.
 
 For more information, see [Generated documentation](documentation).
 
 ## Dependencies
 
-A module can declare dependencies on other modules, which is configured in the `deps` key of your `buf.yaml`. You can add dependencies by adding their module name to the `deps` list. For example:
+A module can declare dependencies on other modules, which is configured in the `deps` key of your `buf.yaml`. You can add dependencies by adding their fully qualified module name to the `deps` list. For example:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -108,13 +110,16 @@ The `buf` CLI automatically resolves the module(s) specified in the `deps` list.
 
 ## Referencing a module
 
-Each module on the BSR exists as a snapshot, and contains a unique reference associated with every change.
+Each module on the BSR consists of one or more **snapshots** of the state of the module as you push changes over time.
 
-A reference is a way to refer to a single version of the repository. While a reference always _resolves_ to a single snapshot of the repository, it can be either a commit or a tag.
+Each snapshot is assigned:
 
-**Commit**: Every push of new content to a repository is associated with a commit that identifies that change in the schema. The commit is created after a successful push. This means that unlike Git, the commit only exists on the BSR repository and not locally.
+* A generated **unique ID**, such as `6e230f46113f498392c82d12b1a07b70`.
+* A snapshot **sequence ID**, such as `25`, that increments by one each time you push changes.
 
-**Tag**: A reference to a single commit but with a human readable name, similar to a Git tag. It is useful for identifying commonly referenced commits — like a release.
+Optionally, you can add one or more **tags** to a snapshot upon push. Tags are human-readable names, similar to Git tags, that are useful for identifying commonly referenced snapshots, like releases.
+
+All module snapshots are part of a **track**. All snapshots are pushed to a `main` track by default, but you can optionally push to non-`main` tracks.
 
 ## Local modules with workspaces
 
