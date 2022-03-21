@@ -199,7 +199,7 @@ const urls: UrlProps[] = [
   },
   {
     title: "Hosted template",
-    docsPath: "/bsr/remote-generation/concepts#templates",
+    docsPath: "/bsr/remote-generation/overview#templates",
     example: example("protocolbuffers/templates/python"),
     segments: [
       root,
@@ -213,13 +213,13 @@ const urls: UrlProps[] = [
   },
   {
     title: "Hosted templates associated with a user or organization",
-    docsPath: "/bsr/remote-generation/concepts#templates",
+    docsPath: "/bsr/remote-generation/overview#templates",
     example: example("protocolbuffers/templates"),
     segments: [root, slash, variable("user|organization"), slash, constant("templates")]
   },
   {
     title: "Hosted plugin",
-    docsPath: "/bsr/remote-generation/concepts#plugins",
+    docsPath: "/bsr/remote-generation/overview#plugins",
     example: example("protocolbuffers/plugins/python"),
     segments: [
       root,
@@ -233,7 +233,7 @@ const urls: UrlProps[] = [
   },
   {
     title: "Hosted plugins associated with a user or organization",
-    docsPath: "/bsr/remote-generation/concepts#plugins",
+    docsPath: "/bsr/remote-generation/overview#plugins",
     example: example("protocolbuffers/plugins"),
     segments: [root, slash, variable("user|organization"), slash, constant("plugins")]
   },

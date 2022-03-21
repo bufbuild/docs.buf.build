@@ -36,7 +36,9 @@ Remote generation for the BSR revolves around a few core concepts:
 
 ### Plugins
 
-A **plugin** is used by the BSR remote generation to generate assets given Protobuf definitions. They are based on the established concept of Protobuf plugins in local generation, such as [`protoc-gen-go`](https://pkg.go.dev/google.golang.org/protobuf@v1.27.1/cmd/protoc-gen-go).
+The BSR uses Protobuf **plugins** to generate code stubs from Protobuf definitions. Examples of
+Protobuf plugins include [`protoc-gen-go`][protoc-gen-go] and
+[`protoc-gen-python`][protoc-gen-python].
 
 They belong to an **owner** and may be public or private. Public plugins are available to anyone, while private plugins are only available to the owner or members of the owning organization. Plugins are often referenced together with their owners name, for example, `library/plugins/protoc-gen-go` (or in some contexts just `library/protoc-gen-go`), is used to reference the `protoc-gen-go` plugin maintained by Buf.
 
@@ -178,3 +180,5 @@ opted for the former.
 
 [go-mod]: https://golang.org/ref/mod
 [hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
+[protoc-gen-go]: https://pkg.go.dev/google.golang.org/protobuf@v1.27.1/cmd/protoc-gen-go
+[protoc-gen-python]: https://developers.google.com/protocol-buffers/docs/reference/python-generated
