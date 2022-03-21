@@ -50,6 +50,54 @@ const Cmd = ({ parent, cmd }: CommandProps) => {
 
       <Html text={cmd.description} />
 
+      {cmd.flags && (
+        <table>
+          <thead>
+            <tr>
+              <th>Flag</th>
+              <th>Description</th>
+              <th>Options</th>
+              <th>Multiple?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cmd.flags.map((flag) => (
+              <tr>
+                <td>
+                  <code>{`--${flag.name}`}</code>
+                  {flag.short && (
+                    <>
+                      {", "}
+                      <code>{`-${flag.short}`}</code>
+                    </>
+                  )}
+                </td>
+                <td>
+                  <Html text={flag.description} />
+                </td>
+                <td>
+                  {flag.enum && (
+                    <table>
+                      <tbody>
+                        {Object.keys(flag.enum).map((key) => (
+                          <tr>
+                            <td>{flag.enum[key]}</td>
+                            <td>
+                              <code>{key}</code>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </td>
+                <td>{flag.multiple && <span>✅</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
       {cmd.commands && (
         <div className={styles.commandList}>
           {cmd.commands.map((cmd) => (
@@ -58,42 +106,6 @@ const Cmd = ({ parent, cmd }: CommandProps) => {
         </div>
       )}
     </div>
-  );
-};
-
-const Argument = ({ name, description, argDefault }: Arg) => {
-  const id = `arg-${name}`;
-  const href = `#arg-${name}`;
-
-  return (
-    <>
-      <table>
-        <thead>
-          <tr>
-            <th>Argument</th>
-            <th>Description</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-
-      <div id={id} className={styles.argument}>
-        <a href={href}>
-          <code>{name}</code>
-        </a>
-
-        <Html text={description} />
-
-        {argDefault && (
-          <div className={styles.default}>
-            <span>
-              Default: <code>{argDefault}</code>
-            </span>
-          </div>
-        )}
-      </div>
-    </>
   );
 };
 
@@ -107,7 +119,7 @@ const Cli = () => {
       </div>
 
       <div className={styles.arguments}>
-        <h2>Arguments</h2>
+        <h2>Available arguments</h2>
 
         <div>
           <table>

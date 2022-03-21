@@ -51,3 +51,8 @@
 .rawHtml {
   font-size: 1.1rem;
 }
+
+.option {
+  display: grid;
+  grid-auto-columns: auto;
+}
