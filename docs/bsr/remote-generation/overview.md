@@ -4,69 +4,35 @@ title: Overview
 description: The BSR supports remote code generation, which means you fetch generated source code like any other dependency.
 ---
 
-> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
+> The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**.
+> We currently support [Go](go.md) and [JavaScript and TypeScript](npm.md) and have plans to support
+> other languages.
 
-A common frustration when working with Protobuf is the dependency on language
-specific generated code. Many teams implement custom tooling and scripts
-to manage the lifecycle of code generation. It can be an uninteresting challenge to
-ensure that every person that works on a given project has all of the code generation
-tooling set up locally.
+A common frustration when working with Protocol Buffers is that you need to generate code for each
+language that you're working with. Many teams implement custom tooling and scripts to solve this
+problem, but it's often difficult to ensure that every person who works on a given project has all
+of the code generation tooling set up locally. And if you have Protobuf-based APIs, the consumers
+of your APIs shouldn't have to deal with code generation.
 
-Furthermore, if you have Protobuf-based services your clients shouldn't have to deal
-with code generation. They should be able to consume your API immediately. *And* it should
-involve nothing more than pulling a generated client from their language's registry, that's it!
+The Buf Schema Registry solves this problem with **remote code generation**. With this feature, you
+can eliminate code stub generation from your workflows and install generated code directly from the
+BSR using standard package managers and build tools.
 
-import Image from '@site/src/components/Image';
+## Supported languages {#languages}
 
-<Image alt="BSR module" src="/img/bsr/remote-code-gen.png" width={75} caption="The Buf Schema Registry's remote generation process" />
+The BSR currently [supports](#registries) remote generation for these languages:
 
-## Hosted plugins
+- [Go](go.md)
+- [Javascript and TypeScript](npm.md)
 
-Hosted plugins are reusable units of code generation packaged as Docker containers. The entrypoint is
-a binary Protobuf encoded
-[CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/b24d0c2b7aeb2923d6e8e0c23946e7e2f493053b/src/google/protobuf/compiler/plugin.proto#L68-L96)
-on standard in, and the output is a binary encoded
-[CodeGeneratorResponse](https://github.com/protocolbuffers/protobuf/blob/b24d0c2b7aeb2923d6e8e0c23946e7e2f493053b/src/google/protobuf/compiler/plugin.proto#L99-L118)
-on standard out. They are designed to be shared, and their packaging should be as generic as possible.
-
-> Buf maintains a number of official plugins for various languages and grpc. See the [official plugins](https://docs.buf.build/bsr/remote-generation/remote-plugin-execution#official-plugins) for more details.
-
-## Hosted templates
-
-Hosted templates represent a collection of one or more plugins that run together to create a single result,
-along with the parameters for, and version of, each plugin. A hosted template enables you to include
-all the parameters you currently use to generate code locally.
-
-Templates, like plugins, are intended to be shared. They should express a particular use case,
-but shouldn't be specific to an input module. For example, you may create a template that generates
-JavaScript for Node.js, and one that generates JavaScript optimized for web browsers. Neither of these concepts
-are specific to a given input module, and they could be reused by others.
-
-Buf maintains several official templates:
-
-- https://buf.build/protocolbuffers/templates/js
-- https://buf.build/protocolbuffers/templates/go
-- https://buf.build/grpc/templates/web
-- https://buf.build/grpc/templates/go
-
-## Remote generation registries
-
-With a specific Template version and a specific Module version, the BSR has enough information
-to perform code generation. The output of this operation is stored in a remote generation registry.
-This is **extremely** powerful, because producers and consumers of Protobuf-based API
-can import type definitions and/or service stubs in their language directly from the registry without having
-to deal with code generation.
-
-Initially we are targeting the Go ecosystem. Most modern language ecosystems, however, have some
-concept of a "registry" where you can depend on external code artifacts in a well versioned way.
-Examples include: Maven Central, RubyGems, Go modules, PyPI, crates.io, NPM, etc.
-
-Remote generation registries must have a consistent way of versioning the output of code generation,
-and it must ensure that it always serves the exact same content once a version has been released.
-To accomplish this consistent versioning, the BSR adopts something we call
-[synthetic versions](#synthetic-versions).
+We plan to support remote code generation for more languages in the future.
 
 ## Remote generation concepts {#concepts}
+
+Remote generation for the BSR revolves around a few core concepts:
+
+* [Protobuf plugins](#plugins) generate code from Protobuf definitions
+* [Generation templates](#templates) define collections of [plugins](#plugins)
 
 ### Plugins
 
@@ -107,9 +73,14 @@ You need to give plugins a valid [semantic version](https://semver.org/spec/v2.0
 
 ### Templates
 
-A **template** is a collection of **plugins** and associated configuration. It is used to identify a set of plugins that should be run together, such as `library/protoc-gen-go` and `library/protoc-gen-go-grpc`, where the output of the latter depends on the output of the former. Its primary utility is in our **remote generation registries**, where it is used to easily identify a collection of plugins, that when put together provide some functionality, such as the Go gRPC capabilities afforded by combining the aforementioned plugins.
+A **template** defines a collection of **plugins** and associated configuration to use when
+generating code stubs from Protobuf. With templates, you can run multiple plugins together, such as
+`protoc-gen-go` and `protoc-gen-go-grpc`, where the output of `protoc-gen-go-grpc` depends on the
+output of `protoc-gen-go`. 
 
-They belong to an **owner** and can be public or private. Public templates are available to anyone, while private templates are only available to the owner or members of the owning organization.
+Templates belong to an [owner](../user-management.md#owner) and can be public or private. Public
+templates are available to anyone, while private templates are available only to the owner or
+members of the owner's organization.
 
 Buf maintains several official templates:
 
@@ -118,13 +89,20 @@ Buf maintains several official templates:
 - https://buf.build/grpc/templates/web
 - https://buf.build/grpc/templates/go
 
-A template **version** defines the plugin versions to use. This enables a template owner to keep their template up to date with new versions of plugins in their template. A template version can only be of the form `v[1-9][0-9]*`. The template version makes up part of the **synthetic version** of a remote generation artifact.
+A template **version** defines the plugin versions to use. This enables you to keep templates up to
+date with new versions of plugins in the template. A template version is of the form `v[1-9][0-9]*`.
+The template version makes up part of the [synthetic version](#synthetic-versions) of remotely
+generated artifacts.
 
 Template management is designed to discourage introducing breaking changes to consumers. This is why plugin parameters are defined on the template itself rather than on a per-version basis.
 
 ### Remote generation registries
 
-A **remote generation registry** is an artifact registry built specifically for integrating the BSR remote generation capabilities with a language's dependency management system. For example, the BSR Go Module Proxy at `go.buf.build` integrates remote generation with the [Go modules ecosystem](https://golang.org/ref/mod).
+A **remote generation registry** is an artifact registry built specifically for integrating the BSR
+remote generation capabilities with a language's dependency management system.
+
+For [generated Go code][go.md], for example, the BSR offers a Go module proxy at `go.buf.build` that
+integrates remote generation with the [Go modules ecosystem][go-mod].
 
 Upcoming remote generation registries include the [CommonJS Registry](http://wiki.commonjs.org/wiki/Packages/Registry) and others.
 
@@ -138,11 +116,12 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   examples={["v1.3.5"]}
   segments={[
-    {label: "v1", kind: "constant"},
+    {label: "v", kind: "constant"},
+    {label: "1", kind: "constant"},
     {separator: "."},
-    {label: "template version", kind: "variable"},
+    {label: "templateVersion", kind: "variable"},
     {separator: "."},
-    {label: "commit sequence ID", kind: "variable"},
+    {label: "commitSequenceID", kind: "variable"},
   ]
 } />
 
@@ -197,4 +176,5 @@ build](https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build) 
 words, we found that versions like `v1.2.3` were common whereas `v1.2.3-alpha.1` were not, and we
 opted for the former.
 
+[go-mod]: https://golang.org/ref/mod
 [hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
