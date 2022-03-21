@@ -154,6 +154,7 @@ lint:
     - ENUM_NO_ALLOW_ALIAS
     - IMPORT_NO_WEAK
     - IMPORT_NO_PUBLIC
+    - IMPORT_USED
 ```
 
 #### `ENUM_PASCAL_CASE`
@@ -284,6 +285,24 @@ just learned in this sentence, and regardless do not use these.
 
 Similar to the `IMPORT_NO_WEAK` rule, this rule outlaws declaring imports as `public`. If you didn't
 know this was possible, forget what you just learned in this sentence, and regardless do not use these.
+
+#### `IMPORT_USED`
+
+This rule checks that all the imports declared across your Protobuf files are actually used. This
+`.proto` file, for example, would fail this rule:
+
+```protobuf
+syntax = "proto3";
+
+package payments.v1;
+
+import "product.proto"; // Unused import
+
+message Payment {
+  string payment_id = 1;
+  // other fields
+}
+```
 
 ### `DEFAULT`
 
