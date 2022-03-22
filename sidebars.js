@@ -73,7 +73,6 @@ const sidebars = {
           },
           items: [
             "bsr/remote-generation/overview",
-            "bsr/remote-generation/concepts",
             "bsr/remote-generation/go",
             "bsr/remote-generation/npm",
             "bsr/remote-generation/tarball",

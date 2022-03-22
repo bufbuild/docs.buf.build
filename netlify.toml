@@ -357,3 +357,8 @@
   from = "/bsr/remote-generation/consuming-generated-code"
   to = "/bsr/remote-generation/go"
   status = 301
+
+[[redirects]]
+  from = "/bsr/remote-generation/concepts"
+  to = "/bsr/remote-generation/overview#concepts"
+  status = 301

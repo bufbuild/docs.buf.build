@@ -73,7 +73,7 @@ managed:
     default: github.com/acme/weather/private/gen/proto/go
       except:
         - buf.build/googleapis/googleapis
-   override:
+  override:
     JAVA_PACKAGE:
       acme/weather/v1/weather.proto: org
 plugins:

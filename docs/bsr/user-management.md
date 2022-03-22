@@ -11,7 +11,7 @@ Every user that is part of an organization has an explicit role. Note that users
 
 - Users that require unrestricted access to the organization, its settings and all resources owned by the organization. 
 - Can delete organization. All resources such as repositories, templates and plugins must be deleted before the organization can be deleted.
-- Can add and delete resources such as [repositories](../bsr/overview.md#modules), [templates](../bsr/remote-generation/concepts/#templates) and [plugins](../bsr/remote-generation/concepts/#plugins).
+- Can add and delete resources such as [repositories](../bsr/overview.md#modules), [templates](../bsr/remote-generation/overview#templates) and [plugins](../bsr/remote-generation/overview#plugins).
 
 ### Admin
 
