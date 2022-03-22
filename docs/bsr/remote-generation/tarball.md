@@ -28,7 +28,7 @@ Tarball URLs consist of these components:
 Component | Example
 :---------|:-------
 Tarball registry version | `v1` (currently the only version)
-Generation [template] owner | [`protocolbuffers`](https://buf.build/protocolbuffers)
+Generation [template](overview.md#templates) owner | [`protocolbuffers`](https://buf.build/protocolbuffers)
 Generation template name | [`go`](https://buf.build/protocolbuffers/templates/go)
 Generation template version | [`v1`](https://buf.build/protocolbuffers/templates/go)
 BSR [repository](../../bsr/overview.md#modules) owner | [`acme`](https://buf.build/acme)
@@ -37,7 +37,8 @@ A module [reference] | [`6e230f46113f498392c82d12b1a07b70`](https://buf.build/ac
 
 ## Tarball options
 
-You can download one of three tarballs for each [template]/[repository] combination:
+You can download one of three tarballs for each
+[template](overview.md#templates)/[repository]((../../bsr/overview.md#modules)) combination:
 
 * A tarball with [no Protobuf dependencies](#no-deps) included
 * A tarball with the [full Protobuf dependency tree](#full-deps) included
@@ -153,6 +154,5 @@ In contrast with the [full dependency](#no-deps) variant, note that the tarball 
 [reference]: ../overview.md#referencing-a-module
 [repository]: ../overview.md#modules
 [tar]: https://en.wikipedia.org/wiki/Tar_(computing)
-[template]: concepts.md#templates
 [wget]: https://www.gnu.org/software/wget
 [wkt]: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
