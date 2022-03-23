@@ -173,6 +173,6 @@ module.exports = {
   },
   customFields: {
     // Used to configure the release version downloaded from the installation.mdx buttons
-    downloadRelease: "1.1.0"
+    downloadRelease: "1.1.1"
   }
 };

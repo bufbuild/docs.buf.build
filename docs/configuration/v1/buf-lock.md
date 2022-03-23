@@ -3,7 +3,7 @@ id: buf-lock
 title: buf.lock
 ---
 
-If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it's be accompanied by a `buf.lock` file that contains your
+If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it will be accompanied by a `buf.lock` file that contains your
 [module](../../bsr/overview.md#modules)'s dependency manifest. This manifest represents a single, reproducible build of your module.
 
 You can create or update a `buf.lock` file for your module by running the `buf mod update` command. For
