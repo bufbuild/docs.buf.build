@@ -103,7 +103,7 @@ const slash: SegmentProps = {
   separator: "/"
 };
 
-const example = (path: string): string => {
+const bsrEndpoint = (path: string): string => {
   return `https://buf.build/${path}`;
 };
 
@@ -114,32 +114,32 @@ const urls: UrlProps[] = [
   },
   {
     title: "User profile",
-    example: example("bufbot"),
+    example: bsrEndpoint("bufbot"),
     segments: [root, slash, variable("user")]
   },
   {
-    title: "Organization info",
-    example: example("acme"),
+    title: "Organization profile",
+    example: bsrEndpoint("acme"),
     segments: [root, slash, variable("organization")]
   },
   {
     title: "Members of an organization",
-    example: example("acme/members"),
+    example: bsrEndpoint("acme/members"),
     segments: [root, slash, variable("organization"), slash, constant("members")]
   },
   {
     title: "Organizations a user belongs to",
-    example: example("bufbot/organizations"),
+    example: bsrEndpoint("bufbot/organizations"),
     segments: [root, slash, variable("user"), slash, constant("organizations")]
   },
   {
     title: "Module repository",
-    example: example("acme/paymentapis"),
+    example: bsrEndpoint("acme/paymentapis"),
     segments: [root, slash, variable("owner"), slash, variable("repository")]
   },
   {
     title: "Repository documentation",
-    example: example("acme/paymentapis/docs"),
+    example: bsrEndpoint("acme/paymentapis/docs"),
     segments: [
       root,
       slash,
@@ -151,31 +151,52 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Module code",
-    example: example("acme/paymentapis/tree"),
-    segments: [root, slash, variable("owner"), slash, variable("module"), slash, constant("tree")]
-  },
-  {
-    title: "Generated module assets",
-    example: example("acme/paymentapis/assets"),
-    segments: [root, slash, variable("owner"), slash, variable("module"), slash, constant("assets")]
-  },
-  {
-    title: "Module history",
-    example: example("acme/paymentapis/history"),
+    title: "Repository code",
+    example: bsrEndpoint("acme/paymentapis/tree"),
     segments: [
       root,
       slash,
       variable("owner"),
       slash,
-      variable("module"),
+      variable("repository"),
+      slash,
+      constant("tree")
+    ]
+  },
+  {
+    title: "Generated respository assets",
+    example: bsrEndpoint("acme/paymentapis/assets"),
+    segments: [
+      root,
+      slash,
+      variable("owner"),
+      slash,
+      variable("repository"),
+      slash,
+      constant("assets")
+    ]
+  },
+  {
+    title: "Repository history",
+    example: bsrEndpoint("acme/paymentapis/history"),
+    segments: [
+      root,
+      slash,
+      variable("owner"),
+      slash,
+      variable("repository"),
       slash,
       constant("history")
     ]
   },
   {
+    title: "Hosted templates associated with an owner",
+    example: bsrEndpoint("protocolbuffers/templates"),
+    segments: [root, slash, variable("owner"), slash, constant("templates")]
+  },
+  {
     title: "Hosted template",
-    example: example("protocolbuffers/templates/python"),
+    example: bsrEndpoint("protocolbuffers/templates/python"),
     segments: [
       root,
       slash,
@@ -187,13 +208,13 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Hosted templates associated with a user or organization",
-    example: example("protocolbuffers/templates"),
-    segments: [root, slash, variable("owner"), slash, constant("templates")]
+    title: "Hosted plugins associated with an owner",
+    example: bsrEndpoint("protocolbuffers/plugins"),
+    segments: [root, slash, variable("owner"), slash, constant("plugins")]
   },
   {
     title: "Hosted plugin",
-    example: example("protocolbuffers/plugins/python"),
+    example: bsrEndpoint("protocolbuffers/plugins/python"),
     segments: [
       root,
       slash,
@@ -205,19 +226,14 @@ const urls: UrlProps[] = [
     ]
   },
   {
-    title: "Hosted plugins associated with a user or organization",
-    example: example("protocolbuffers/plugins"),
-    segments: [root, slash, variable("owner"), slash, constant("plugins")]
-  },
-  {
     title: "Generated documentation for a specific reference",
-    example: example("acme/paymentapis/docs/6e230f46113f498392c82d12b1a07b70"),
+    example: bsrEndpoint("acme/paymentapis/docs/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
       slash,
       variable("owner"),
       slash,
-      variable("module"),
+      variable("repository"),
       slash,
       constant("docs"),
       slash,
@@ -226,13 +242,13 @@ const urls: UrlProps[] = [
   },
   {
     title: "Code for a specific reference",
-    example: example("acme/paymentapis/tree/6e230f46113f498392c82d12b1a07b70"),
+    example: bsrEndpoint("acme/paymentapis/tree/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
       slash,
       variable("owner"),
       slash,
-      variable("module"),
+      variable("repository"),
       slash,
       constant("tree"),
       slash,
@@ -241,13 +257,13 @@ const urls: UrlProps[] = [
   },
   {
     title: "Generated assets for a specific reference",
-    example: example("acme/paymentapis/assets/6e230f46113f498392c82d12b1a07b70"),
+    example: bsrEndpoint("acme/paymentapis/assets/6e230f46113f498392c82d12b1a07b70"),
     segments: [
       root,
       slash,
       variable("owner"),
       slash,
-      variable("module"),
+      variable("repository"),
       slash,
       constant("assets"),
       slash,
