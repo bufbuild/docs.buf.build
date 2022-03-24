@@ -12,7 +12,7 @@ type SegmentProps = {
   label: string;
   kind?: Kind;
   separator?: string;
-  varName?: string;
+  href?: string;
 };
 
 type Props = {
@@ -51,29 +51,47 @@ const Example = ({ examples }: { examples: string[] }) => {
   );
 };
 
-const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
-  let item: JSX.Element;
+const Segment = ({ label, kind, separator, href }: SegmentProps) => {
+  let item: JSX.Element | undefined = undefined;
   switch (kind) {
     case Kind.CONSTANT:
       item = <span className={styles.constant}>{label}</span>;
       break;
     case Kind.DEFAULT:
-      item = (
-        <span className={styles.default}>
-          {`(${varName && `${varName}:`}`}
-          {label}
-          {")"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.default}>
+              {"("}
+              {label}
+              {")"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.default}>
+            {"("}
+            {label}
+            {")"}
+          </span>
+        );
       break;
     case Kind.VARIABLE:
-      item = (
-        <span className={styles.variable}>
-          {"{"}
-          {label}
-          {"}"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.variable}>
+              {"{"}
+              {label}
+              {"}"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.variable}>
+            {"{"}
+            {label}
+            {"}"}
+          </span>
+        );
       break;
   }
   return separator != undefined ? <span className={styles.separator}>{separator}</span> : item;

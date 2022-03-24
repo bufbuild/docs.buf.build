@@ -30,13 +30,13 @@ import Syntax from "@site/src/components/Syntax";
   title="Module name syntax"
   examples={["buf.build/acme/weather"]}
   segments={[
-    {label: "buf.build", kind: "default", varName: "remote"},
+    {label: "buf.build", kind: "default"},
     {separator: "/"},
-    {label: "owner", kind: "variable"},
+    {label: "owner", kind: "variable", href: "/bsr/user-management#resource-owner"},
     {separator: "/"},
-    {label: "repository", kind: "variable"},
-  ]
-} />
+    {label: "repository", kind: "variable", href: "/bsr/overview#modules"},
+  ]}
+/>
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.

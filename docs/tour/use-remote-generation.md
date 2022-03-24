@@ -59,8 +59,8 @@ to generate *with*:
     {"label": "module owner", "kind": "variable"},
     {"separator": "/"},
     {"label": "module name", "kind": "variable"},
-  ]
-} />
+  ]}
+/>
 
 With the module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, for example, the
 import path looks like this:
@@ -207,11 +207,11 @@ import Syntax from "@site/src/components/Syntax";
     {label: "v", kind: "constant"},
     {label: "1", kind: "constant"},
     {separator: "."},
-    {label: "templateVersion", kind: "variable"},
+    {label: "templateVersion", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "."},
-    {label: "commitSequenceID", kind: "variable"},
-  ]
-} />
+    {label: "commitSequenceID", kind: "variable", href: "/bsr/remote-generation/overview#commits"},
+  ]}
+/>
 
 In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the
 **5**th commit of a Protobuf module. In the example `go.mod` below, the `petapis` module uses

@@ -152,14 +152,13 @@ import Syntax from "@site/src/components/Syntax";
   title="Synthetic version syntax"
   examples={["v1.3.5", "v1.2.26"]}
   segments={[
-    {label: "v", kind: "constant"},
-    {label: "1", kind: "constant"},
+    {label: "v1", kind: "constant"},
     {separator: "."},
-    {label: "templateVersion", kind: "variable"},
+    {label: "templateVersion", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "."},
-    {label: "commitSequenceID", kind: "variable"},
-  ]
-} />
+    {label: "commitSequenceID", kind: "variable", href: "/bsr/remote-generation/overview#commits"},
+  ]}
+/>
 
 Within this scheme:
 

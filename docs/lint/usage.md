@@ -70,8 +70,8 @@ import Syntax from "@site/src/components/Syntax";
     {label: "column", kind: "variable"},
     {separator: ":"},
     {label: "message", kind: "variable"}
-  ]
-} />
+  ]}
+/>
 
 Here's a full example output:
 

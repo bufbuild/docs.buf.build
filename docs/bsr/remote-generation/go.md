@@ -37,18 +37,21 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
 	title="Generated Go module path syntax"
-	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
+	examples={[
+		"go.buf.build/grpc/go/googleapis/googleapis"
+	]}
 	segments={[
-	{"label": "go.buf.build", "kind": "constant"},
-	{"separator": "/"},
-	{"label": "templateOwner", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "templateName", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "moduleOwner", "kind": "variable"},
-	{"separator": "/"},
-	{"label": "moduleName", "kind": "variable"},
-]} />
+		{"label": "go.buf.build", "kind": "constant"},
+		{"separator": "/"},
+		{"label": "templateOwner", "kind": "variable", href: "/bsr/remote-generation/overview#templates"},
+		{"separator": "/"},
+		{"label": "templateName", "kind": "variable", href: "/bsr/remote-generation/overview#templates"},
+		{"separator": "/"},
+		{"label": "moduleOwner", "kind": "variable", href: "/bsr/overview#modules"},
+		{"separator": "/"},
+		{"label": "moduleName", "kind": "variable", href: "/bsr/overview#modules"},
+	]}
+/>
 
 So if you wanted to, for example, generate the [`acme/paymentapis`][api] Protobuf module using the
 [`grpc/go`][grpc-go] template, you could install the generated code like this:
