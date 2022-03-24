@@ -26,12 +26,25 @@ const hasKind = (segments: SegmentProps[], kind: Kind): boolean => {
 };
 
 const Example = ({ examples }: { examples: string[] }) => {
+  const multiple: boolean = examples.length > 1;
+
   return (
     <div className={styles.examples}>
-      {examples.length == 1 && (
-        <span className={styles.exampleTitle}>
-          <span>Example</span>
+      {!multiple && (
+        <span className={styles.exampleContainer}>
+          <span className={styles.exampleTitle}>Example</span>
           <span className={styles.example}>{examples[0]}</span>
+        </span>
+      )}
+
+      {multiple && (
+        <span className={styles.exampleContainer}>
+          <span className={styles.exampleTitle}>Examples</span>
+          <div className={styles.exampleList}>
+            {examples.map((example) => (
+              <span className={styles.example}>{example}</span>
+            ))}
+          </div>
         </span>
       )}
     </div>

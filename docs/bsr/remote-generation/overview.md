@@ -150,7 +150,7 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Synthetic version syntax"
-  examples={["v1.3.5"]}
+  examples={["v1.3.5", "v1.2.26"]}
   segments={[
     {label: "v", kind: "constant"},
     {label: "1", kind: "constant"},

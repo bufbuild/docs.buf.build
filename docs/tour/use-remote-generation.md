@@ -202,13 +202,14 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Synthetic version syntax"
-  examples={["v1.3.5"]}
+  examples={["v1.3.5", "v1.2.26"]}
   segments={[
-    {label: "v1", kind: "constant"},
+    {label: "v", kind: "constant"},
+    {label: "1", kind: "constant"},
     {separator: "."},
-    {label: "template version", kind: "variable"},
+    {label: "templateVersion", kind: "variable"},
     {separator: "."},
-    {label: "commit sequence ID", kind: "variable"},
+    {label: "commitSequenceID", kind: "variable"},
   ]
 } />
 

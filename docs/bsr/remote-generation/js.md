@@ -24,6 +24,22 @@ $ npm config set @buf:registry https://npm.buf.build
 
 This binds the `@buf` package scope to the BSR and updates your global [`.npmrc`][npmrc] accordingly.
 
+You can configure [Yarn] in an analogous way:
+
+```terminal
+$ yarn config set @buf:registry https://npm.buf.build
+```
+
+## Available templates
+
+The table below lists the generation [templates][template] that you can use with npm:
+
+Template | What it generates
+:--------|:-----------------
+[`protocolbuffers/js`][pb-js] | JavaScript
+[`grpc/web`][grpc-web] | JavaScript and TypeScript type definitions
+
+
 ## Installing packages {#install}
 
 With your npm config set, you can install `@buf/*` packages in any standard npm project. Here's an example installation command:
@@ -40,11 +56,12 @@ You may notice that installing packages from the BSR npm registry using `npm ins
 
 The BSR npm registry has a special syntax for package names that you need to adhere to when installing packages:
 
-import Syntax from "@site/src/components/Syntax";
-
 <Syntax
   title="Syntax for BSR npm registry package names"
-  examples={["@buf/protocolbuffers_js_acme_petapis"]}
+  examples={[
+    "@buf/protocolbuffers_js_acme_petapis",
+    "@buf/grpc_web_acme_paymentapis"
+  ]}
   segments={[
     {label: "@buf", kind: "constant"},
     {separator: "/"},
@@ -58,6 +75,8 @@ import Syntax from "@site/src/components/Syntax";
   ]
 } />
 
+
+
 In this example, the BSR npm registry generates the `@buf/protocolbuffers_js_acme_petapis` package applying the [`protocolbuffers/js`](https://buf.build/protocolbuffers/templates/js) template to the [`acme/petapis`](https://buf.build/acme/petapis) module.
 
 This table shows some example template/module/package name combinations:
@@ -67,6 +86,25 @@ Template | Buf module | Package name
 `grpc/web` | `acme/petapis` | `@buf/grpc_web_acme_petapis`
 `protocolbuffers/js` | `bufbuild/buf` | `@buf/protocolbuffers_js_bufbuild_buf`
 `protocolbuffers/js` | `acme/paymentapis` | `@buf/protocolbuffers_js_acme_paymentapis`
+
+## Package versions
+
+A **synthetic version** combines the [template](#templates) and [module](../overview.md#modules) versions into a [semantic version](https://semver.org/spec/v2.0.0.html) of this form:
+
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Synthetic version syntax"
+  examples={["v1.3.5", "v1.2.26"]}
+  segments={[
+    {label: "v", kind: "constant"},
+    {label: "1", kind: "constant"},
+    {separator: "."},
+    {label: "templateVersion", kind: "variable"},
+    {separator: "."},
+    {label: "commitSequenceID", kind: "variable"},
+  ]
+} />
 
 ## Using private packages {#private}
 
@@ -131,12 +169,14 @@ If you're a plugin author, be sure to heed this naming structure; otherwise, con
 [bsr]: /bsr/overview
 [buf-npm]: https://npm.buf.build
 [deps]: /bsr/overview#dependencies
+[grpc-web]: https://buf.build/grpc/templates/web
 [javascript]: https://javascript.com
 [labels]: /bsr/remote-generation/plugin-example#3-prepare-the-dockerfile
 [modules]: /bsr/overview#modules
 [npm]: https://npmjs.org
 [npm-config]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
 [npmrc]: https://docs.npmjs.com/cli/v8/configuring-npm/npmrc
+[pb-js]: https://buf.build/protocolbuffers/templates/js
 [plugins]: /bsr/remote-generation/concepts#plugins
 [protoc]: https://github.com/protocolbuffers/protobuf
 [pnpm]: https://pnpm.io
