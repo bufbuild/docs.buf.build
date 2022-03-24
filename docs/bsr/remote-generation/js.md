@@ -150,7 +150,7 @@ $ npm install @buf/protocolbuffers_js_acme_paymentapis@1.1.2
     {separator: "_"},
     {label: "moduleName", kind: "variable", href: "/bsr/overview#modules"},
     {separator: "@"},
-    {label: "syntheticVersion", kind: "variable", href: "/bsr/remote-generation/overview#synthetic-versions"}
+    {label: "packageVersion", kind: "variable"}
   ]}
 />
 
