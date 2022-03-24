@@ -32,7 +32,7 @@ $ yarn config set @buf:registry https://npm.buf.build
 
 ## Available templates
 
-The table below lists the generation [templates][template] that you can use with npm:
+The table below lists the generation [templates](overview.md#templates) that you can use with npm:
 
 Template | What it generates
 :--------|:-----------------
@@ -88,8 +88,6 @@ Template | Buf module | Package name
 `protocolbuffers/js` | `acme/paymentapis` | `@buf/protocolbuffers_js_acme_paymentapis`
 
 ## Package versions
-
-A **synthetic version** combines the [template](#templates) and [module](../overview.md#modules) versions into a [semantic version](https://semver.org/spec/v2.0.0.html) of this form:
 
 import Syntax from "@site/src/components/Syntax";
 
@@ -177,7 +175,6 @@ If you're a plugin author, be sure to heed this naming structure; otherwise, con
 [npm-config]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
 [npmrc]: https://docs.npmjs.com/cli/v8/configuring-npm/npmrc
 [pb-js]: https://buf.build/protocolbuffers/templates/js
-[plugins]: /bsr/remote-generation/concepts#plugins
 [protoc]: https://github.com/protocolbuffers/protobuf
 [pnpm]: https://pnpm.io
 [ranges]: https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
@@ -185,7 +182,6 @@ If you're a plugin author, be sure to heed this naming structure; otherwise, con
 [registry-api]: https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md
 [semver]: https://semver.org
 [settings]: https://buf.build/settings/user
-[template]: /bsr/remote-generation/concepts#templates
 [typescript]: https://typescript.org
 [yarn]: https://yarnpkg.com
 [yarn_v1]: https://github.com/yarnpkg/yarn/releases/tag/v1.10.0
