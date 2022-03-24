@@ -32,17 +32,17 @@ import Syntax from "@site/src/components/Syntax";
   segments={[
     {label: "buf.build", kind: "default"},
     {separator: "/"},
-    {label: "owner", kind: "variable"},
+    {label: "owner", kind: "variable", href: "/bsr/user-management#resource-owner"},
     {separator: "/"},
-    {label: "repository", kind: "variable"},
-  ]
-} />
+    {label: "repository", kind: "variable", href: "/bsr/overview#modules"},
+  ]}
+/>
 
 - **Remote**: The DNS name for the server hosting the BSR. This is always `buf.build`.
 - **Owner**: An entity that is either a user or organization within the BSR ecosystem.
 - **Repository**: Stores a single module and all versions of that module.
 
-    While roughly analogous to Git repositories, a Buf repository is only a remote location — there is no concept of a repository "clone" or "fork". Repositories do not exist in multiple locations.
+    While roughly analogous to Git repositories, a Buf repository is only a remote location&mdash;there is no concept of a repository "clone" or "fork". Repositories do not exist in multiple locations.
 
     Every repository is identified by its module name, allowing it to be imported by other modules and uniquely identified within the BSR.
 
@@ -114,7 +114,7 @@ A reference is a way to refer to a single version of the repository. While a ref
 
 **Commit**: Every push of new content to a repository is associated with a commit that identifies that change in the schema. The commit is created after a successful push. This means that unlike Git, the commit only exists on the BSR repository and not locally.
 
-**Tag**: A reference to a single commit but with a human readable name, similar to a Git tag. It is useful for identifying commonly referenced commits — like a release.
+**Tag**: A reference to a single commit but with a human readable name, similar to a Git tag. It is useful for identifying commonly referenced commits&mdash;like a release.
 
 ## Local modules with workspaces
 

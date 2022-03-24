@@ -12,6 +12,7 @@ type SegmentProps = {
   label: string;
   kind?: Kind;
   separator?: string;
+  href?: string;
 };
 
 type Props = {
@@ -30,46 +31,57 @@ const Example = ({ examples }: { examples: string[] }) => {
 
   return (
     <div className={styles.examples}>
-      <div className={styles.exampleContainer}>
-        <p>
-          <strong>{title}</strong>
-        </p>
-        {!multiple && <span className={styles.example}>{examples[0]}</span>}
-        {multiple && (
-          <div className={styles.multipleExamples}>
-            {examples.map((example) => (
-              <pre className={styles.example}>{example}</pre>
-            ))}
-          </div>
-        )}
-      </div>
+      {examples.length == 1 && (
+        <span className={styles.exampleTitle}>
+          <span>Example</span>
+          <span className={styles.example}>{examples[0]}</span>
+        </span>
+      )}
     </div>
   );
 };
 
-const Segment = ({ label, kind, separator }: SegmentProps) => {
-  let item: JSX.Element;
+const Segment = ({ label, kind, separator, href }: SegmentProps) => {
+  let item: JSX.Element | undefined = undefined;
   switch (kind) {
     case Kind.CONSTANT:
       item = <span className={styles.constant}>{label}</span>;
       break;
     case Kind.DEFAULT:
-      item = (
-        <span className={styles.default}>
-          {"("}
-          {label}
-          {")"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.default}>
+              {"("}
+              {label}
+              {")"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.default}>
+            {"("}
+            {label}
+            {")"}
+          </span>
+        );
       break;
     case Kind.VARIABLE:
-      item = (
-        <span className={styles.variable}>
-          {"{"}
-          {label}
-          {"}"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.variable}>
+              {"{"}
+              {label}
+              {"}"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.variable}>
+            {"{"}
+            {label}
+            {"}"}
+          </span>
+        );
       break;
   }
   return separator != undefined ? <span className={styles.separator}>{separator}</span> : item;

@@ -29,7 +29,7 @@ option go_package = "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1;p
 
 This option is required by `proto` and `protoc-gen-go` but it has nothing to do with the actual
 API definition in Protobuf. It's an API *consumer* concern, not an API *producer* concern.
-Different consumers may—and usually do—want to provide custom values for this option, especially
+Different consumers may&mdash;and usually do&mdash;want to provide custom values for this option, especially
 when a set of Protobuf definitions has many different consumers.
 
 With managed mode, you can remove the `go_package` option altogether, as in these two diffs:

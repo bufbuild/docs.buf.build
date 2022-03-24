@@ -151,6 +151,10 @@ figcaption {
   border: 2px solid #e67e22;
 }
 
+.admonition-heading {
+  text-transform: none;
+}
+
 .admonition ul,
 .admonition p {
   margin: 0;

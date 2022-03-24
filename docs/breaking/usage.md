@@ -3,8 +3,8 @@ id: usage
 title: Usage
 ---
 
-> We highly recommend completing [the tour](../tour/detect-breaking-changes.md) to get an overview
-> of `buf breaking`.
+> We recommend completing [the tour](../tour/detect-breaking-changes.md) for an overview of breaking
+> change detection with the `buf breaking` command.
 
 ## Define a module
 

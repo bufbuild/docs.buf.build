@@ -6,11 +6,11 @@ title: Tarball registry
 The [Buf Schema Registry](../../bsr/overview.md) (BSR) enables you to [remotely
 generate](../remote-generation/overview.md) code stubs from [Buf
 modules](../../bsr/overview.md#modules) that you've pushed to the registry. While the BSR offers
-language-specific registries for [Go](go.md) and [JavaScript/TypeScript](npm.md), you may need to
+language-specific registries for [Go](go.md) and [JavaScript/TypeScript](js.md), you may need to
 use code stubs for languages that aren't officially supported. To fill this gap, the BSR's **tarball
 registry** enables you to download remote-generated assets as [tarballs][tar].
 
-As with the [Go module proxy](go.md) and the [npm registry](npm.md), the tarball registry generates 
+As with the [Go module proxy](go.md) and the [npm registry](js.md), the tarball registry generates 
 assets on the fly, that is, it generates first only upon request and then caches the result for the
 sake of future requests.
 

@@ -48,13 +48,13 @@ See [the Releases page](https://github.com/bufbuild/buf/releases) for the curren
 
 The binary is all that is needed to get started.
 
-To install just the `buf` binary to `/usr/local/bin` for version `1.1.1`:
+To install just the `buf` binary to `/usr/local/bin` for version `1.2.0`:
 
 ```sh
 # Substitute BIN for your bin directory.
 # Substitute VERSION for the current released version.
 BIN="/usr/local/bin" && \
-VERSION="1.1.1" && \
+VERSION="1.2.0" && \
   curl -sSL \
     "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
     -o "${BIN}/buf" && \
@@ -74,13 +74,13 @@ BIN="/usr/local/bin" && \
 ### Tarball
 
 To install the `buf`, `protoc-gen-buf-breaking`, and `protoc-gen-buf-lint` binaries,
-bash completion, fish completion, and zsh completion to `/usr/local` for version `1.1.1`:
+bash completion, fish completion, and zsh completion to `/usr/local` for version `1.2.0`:
 
 ```sh
 # Substitute PREFIX for your install prefix.
 # Substitute VERSION for the current released version.
 PREFIX="/usr/local" && \
-VERSION="1.1.1" && \
+VERSION="1.2.0" && \
   curl -sSL \
     "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m).tar.gz" | \
     tar -xvzf - -C "${PREFIX}" --strip-components 1
@@ -114,7 +114,7 @@ The release assets can be verified using this command (assuming that `minisign` 
 
 ```sh
 # Substitute VERSION for the current released version.
-VERSION="1.1.1" && \
+VERSION="1.2.0" && \
   curl -OL https://github.com/bufbuild/buf/releases/download/v${VERSION}/sha256.txt && \
   curl -OL https://github.com/bufbuild/buf/releases/download/v${VERSION}/sha256.txt.minisig && \
   minisign -Vm sha256.txt -P RWQ/i9xseZwBVE7pEniCNjlNOeeyp4BQgdZDLQcAohxEAH5Uj5DEKjv6
@@ -129,7 +129,7 @@ the release assets instead.
 # Substitute GOBIN for your bin directory
 # Leave unset to default to $GOPATH/bin
 GO111MODULE=on GOBIN=/usr/local/bin go install \
-  github.com/bufbuild/buf/cmd/buf@v1.1.1
+  github.com/bufbuild/buf/cmd/buf@v1.2.0
 ```
 
 ## Using the Docker image

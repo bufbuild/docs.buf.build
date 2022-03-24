@@ -3,9 +3,6 @@ id: remote-plugin-execution
 title: Remote plugin execution
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 One of the greatest challenges with Protobuf code generation is the complexity of working with `protoc` and custom plugins. Time and time again we've heard that developers want the benefits of code generation, but the existing tooling gets in the way.
 
 There is a high barrier to entry due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem is compounded as you scale out code generation across many developers.
@@ -74,6 +71,9 @@ We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweathe
 A remote plugin can have a version specified, as is done below, or it can be omitted, if you want to always use the latest version of the plugin.
 
 Create a template file with these contents: 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   groupId="language-selection"

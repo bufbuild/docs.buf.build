@@ -3,18 +3,20 @@ id: usage
 title: Usage
 ---
 
-> We highly recommend completing [the tour](../tour/lint-your-api.md) to get an overview of
-> `buf lint`.
+> We recommend completing [the Tour of Buf](../tour/lint-your-api.md) for an overview of Protobuf
+> linting with the `buf lint` command.
 
 ## Define a module
 
-To get started, create a [module](../bsr/overview.md#modules) by adding a [`buf.yaml`](../configuration/v1/buf-yaml.md)
-file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
-file with this command:
+To get started linting your Protobuf sources, create a [Buf module](../bsr/overview.md#modules) by
+adding a [`buf.yaml`](../configuration/v1/buf-yaml.md) file to the root of the directory that
+holds your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
 ```teminal
 $ buf mod init
 ```
+
+That creates this file:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -26,24 +28,52 @@ breaking:
     - FILE
 ```
 
+As you can see, the default configuration applies the [`DEFAULT`](./rules.md#default) rules.
+
 ## Run lint
 
-You can run `buf lint` on your module by specifying the filepath to the directory containing the `buf.yaml`.
-In the above example, you can target the [input](../reference/inputs.md) defined in the current directory
-with this command:
+You can run `buf lint` on your module by specifying the filepath to the directory containing the
+`buf.yaml`. It uses the current directory by default, so you can target the
+[input](../reference/inputs.md) defined in the current directory with this command:
 
 ```terminal
 $ buf lint
 ```
 
-The `buf lint` command:
+The `buf lint` command performs these actions in order:
 
-  - Discovers all Protobuf files per your `buf.yaml` configuration.
-  - Copies the Protobuf files into memory.
-  - Compiles all Protobuf files.
-  - Runs the compilation result against the configured lint rules.
+  - **Discovers** all of the Protobuf files per your `buf.yaml` configuration.
+  - **Copies** them into memory.
+  - **Compiles** them
+  - **Runs** the compilation result against the configured lint rules.
 
-If there are errors, they are printed out in a `file:line:column:message` format by default:
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="linting Protobuf sources with Buf" projects={["linting"]} />
+
+### Error syntax {#syntax}
+
+Any lint errors discovered are printed out in this format:
+
+import Syntax from "@site/src/components/Syntax";
+
+<Syntax
+  title="Lint error syntax"
+  examples={[
+    "pet/v1/pet.proto:47:9:Service name \"PetStore\" should be suffixed with \"Service\"."
+  ]}
+  segments={[
+    {label: "file", kind: "variable"},
+    {separator: ":"},
+    {label: "line", kind: "variable"},
+    {separator: ":"},
+    {label: "column", kind: "variable"},
+    {separator: ":"},
+    {label: "message", kind: "variable"}
+  ]}
+/>
+
+Here's a full example output:
 
 ```terminal
 $ buf lint
@@ -53,7 +83,9 @@ pet/v1/pet.proto:42:10:Field name "petID" should be lower_snake_case, such as "p
 pet/v1/pet.proto:47:9:Service name "PetStore" should be suffixed with "Service".
 ```
 
-Lint output can also be printed as JSON:
+### JSON output {#json}
+
+You can print lint output as JSON:
 
 ```terminal
 $ buf lint --error-format=json
@@ -63,8 +95,11 @@ $ buf lint --error-format=json
 {"path":"pet/v1/pet.proto","start_line":47,"start_column":9,"end_line":47,"end_column":17,"type":"SERVICE_SUFFIX","message":"Service name \"PetStore\" should be suffixed with \"Service\"."}
 ```
 
-We can also output errors in a format you can then copy into your `buf.yaml` file. This
-lets you ignore all existing lint errors and correct them over time:
+### Copy errors into your configuration {#copy}
+
+We can output errors in a format that you can copy into your
+[`buf.yaml`](../configuration/v1/buf-yaml.md) configuration file. This enables you to ignore
+specific lint errors and gradually correct them over time:
 
 ```terminal
 $ buf lint --error-format=config-ignore-yaml
@@ -80,18 +115,12 @@ lint:
       - pet/v1/pet.proto
 ```
 
-import Examples from "@site/src/components/Examples";
-
-<Examples subject="linting Protobuf sources with Buf" projects={["linting"]} />
-
 ## Common use cases
 
-`buf` can lint additional inputs instead of just your local Protobuf files. This is useful in a
-variety of scenarios, including enabling `protoc` output be used as `buf` input.
-
-See the [input documentation](../reference/inputs.md) for details on all available inputs.
-
-For example,
+`buf` can lint [inputs](../reference/inputs.md) beyond your local Protobuf files, such as [Git
+repositories](../reference/inputs.md#git) and [tarballs](../reference/inputs.md#tar). This can be
+useful in a variety of scenarios, such as using [protoc] output as `buf` input. Here are some
+examples script:
 
 ```sh
 # Lint output from protoc passed to stdin.
@@ -100,34 +129,41 @@ protoc -I . --include_source_info $(find . -name '*.proto') -o /dev/stdout | buf
 # Lint a remote git repository on the fly and override the config to be your local config file.
 buf lint 'https://github.com/googleapis/googleapis.git' --config buf.yaml
 
-# Lint a module published to the BSR.
+# Lint a module published to the Buf Schema Registry.
 buf lint buf.build/acme/petapis
 ```
 
-For remote locations that require authentication, see [HTTPS Authentication](../reference/inputs.md#https)
-and [SSH Authentication](../reference/inputs.md#ssh) for more details.
+For remote locations that require authentication, see [HTTPS
+Authentication](../reference/inputs.md#https) and [SSH Authentication](../reference/inputs.md#ssh).
 
 ## Limit to specific files
 
-By default, `buf` builds all files under the `buf.yaml` configuration file. You can instead
-manually specify the file or directory paths to lint. This is an advanced feature intended to be
-used for editor or Bazel integration - it is better to let `buf` discover all files under management
-and handle this for you in general.
+By default, the `buf` CLI builds all files under your [`buf.yaml`](../configuration/v1/buf-yaml.md)
+configuration file. But you can optionally lint only specific files or directories. This is an
+advanced feature that's mostly intended to be used by other systems, like editors. In general, it's
+better to let the `buf` CLI discover all files and handle this for you. But if you do need this,
+you can use the `--path` flag:
 
 ```terminal
-$ buf lint --path path/to/foo.proto --path path/to/bar.proto
+$ buf lint \
+  --path path/to/foo.proto \
+  --path path/to/bar.proto
 ```
 
-You can combine this with an in-line [configuration override](../configuration/overview.md#configuration-override), too:
+You can also combine this with an in-line [configuration
+override](../configuration/overview.md#configuration-override):
 
 ```terminal
-$ buf lint --path path/to/foo.proto --path path/to/bar.proto --config '{"lint":{"use":["BASIC"]}}'
+$ buf lint \
+  --path path/to/foo.proto \
+  --path path/to/bar.proto \
+  --config '{"version":"v1","lint":{"use":["BASIC"]}}'
 ```
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
-you to use `buf` as part of your Docker workflow. For example:
+Buf ships a Docker image, [`bufbuild/buf`][image], that enables
+you to use `buf` as part of your Docker workflow. Here's an example:
 
 ```terminal
 $ docker run \
@@ -135,3 +171,6 @@ $ docker run \
   --workdir /workspace \
   bufbuild/buf lint
 ```
+
+[image]: https://hub.docker.com/r/bufbuild/buf
+[protoc]: https://github.com/protocolbuffers/protobuf
