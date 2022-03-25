@@ -16,13 +16,13 @@ As with the [Go module proxy](go.md) and the [npm registry](js.md), the archive 
 
 ## Downloading generated assets
 
-You can download generated assets from the archive registry by making requests to the correct URL using a file retrieval tool like [cURL] or [wget]. Here's an example request:
+You can download generated assets from the archive registry by making requests to the [correct URL](#urls) using a file retrieval tool like [cURL] or [wget]. Here's an example request:
 
 ```terminal
-$ wget https://dl.buf.build/v1/protocolbuffers/go/v2/acme/paymentapis/main.tar.gz
+$ curl -O "https://dl.buf.build/v1/protocolbuffers/go/v2/acme/paymentapis/main.tar.gz"
 ```
 
-### Archive registry URL structure
+### Archive registry URL structure {#urls}
 
 Archive URLs consist of these components:
 
@@ -52,23 +52,38 @@ import Syntax from "@site/src/components/Syntax";
     {separator: "/"},
     {label: "v1", kind: "constant"},
     {separator: "/"},
-    {label: "templateOwner", kind: "variable"},
+    {label: "templateOwner", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "/"},
-    {label: "templateName", kind: "variable"},
+    {label: "templateName", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "/"},
-    {label: "templateVersion", kind: "variable"},
+    {label: "templateVersion", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "/"},
-    {label: "repoOwner", kind: "variable"},
+    {label: "repoOwner", kind: "variable", href: "/bsr/overview#modules"},
     {separator: "/"},
-    {label: "repoName", kind: "variable"},
+    {label: "repoName", kind: "variable", href: "/bsr/overview#modules"},
     {separator: "/"},
-    {label: "reference", kind: "variable"},
+    {label: "reference", kind: "variable", href: "/bsr/overview#referencing-a-module"},
     {label: ".tar.gz", kind: "constant"},
   ]
 } />
 
+## Private modules
+
+In order to download tarballs for assets generated from private Buf modules, you need to be [logged into](../authentication.md) to the BSR:
+
+```terminal
+$ buf registry login
+```
+
+When you successfully log in, the `buf` CLI adds the appropriate credentials to your [`.netrc`](../authentication.md#netrc-file) file. [wget] reads from your `.netrc` by default, so you can use wget with no special flags to download assets for private modules. Buf if you use [cURL], you need to use the [`--netrc`][netrc] flag:
+
+```terminal
+$ curl --netrc -O "https://dl.buf.build/v1/protocolbuffers/js/v2/acme/someprivatemodule/main.tar.gz"
+```
+
 [curl]: https://everything.curl.dev
 [gzip]: https://www.gnu.org/software/gzip
+[netrc]: https://everything.curl.dev/usingcurl/netrc#enable-netrc
 [reference]: ../overview.md#referencing-a-module
 [repository]: ../overview.md#modules
 [tar]: https://en.wikipedia.org/wiki/Tar_(computing)
