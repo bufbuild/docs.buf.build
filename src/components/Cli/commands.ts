@@ -1,4 +1,5 @@
 import Arg, {
+  args,
   commitArg,
   directoryArg,
   inputArg,
@@ -178,6 +179,31 @@ Note that Buf images are wire compatible with <code>FileDescriptorSet</code>s, b
         description: `Limit to specific files or directories, such as <code>proto/a/a.proto</code> or <code>proto/a</code>.
 
 If specified multiple times, the union is taken.`,
+        multiple: false
+      }
+    ]
+  },
+  {
+    name: "format",
+    description: "Format Protobuf files.",
+    arg: inputArg,
+    flags: [
+      configFlag,
+      {
+        name: "diff",
+        short: "d",
+        description: "Display diffs instead of rewriting files.",
+        multiple: false
+      },
+      disableSymlinksFlag,
+      errorFormatFlag,
+      excludePathFlag,
+      outputFlag,
+      pathFlag,
+      {
+        name: "write",
+        short: "w",
+        description: "Rewrite files in place.",
         multiple: false
       }
     ]
