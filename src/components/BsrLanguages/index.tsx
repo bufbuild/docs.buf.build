@@ -18,6 +18,11 @@ const languages: LanguageProps[] = [
     name: "JavaScript and TypeScript",
     logos: ["/img/logos/js.svg", "/img/logos/ts.svg"],
     href: "./js"
+  },
+  {
+    name: "Archive",
+    logos: ["/img/logos/js.svg"],
+    href: "./archive"
   }
 ];
 

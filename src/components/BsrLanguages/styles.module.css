@@ -18,7 +18,7 @@
 }
 
 .logo {
-  height: 2.5rem;
+  height: 2rem;
   width: auto;
 }
 
@@ -38,5 +38,5 @@
 .title {
   color: #000;
   font-weight: 400;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
 }

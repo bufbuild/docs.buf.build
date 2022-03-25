@@ -16,7 +16,7 @@
 .syntax {
   font-family: var(--ifm-font-family-monospace);
   font-size: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 10px;
   background-color: rgb(246, 248, 250);
   letter-spacing: -0.05rem;
   border-radius: 0.2rem;
@@ -34,7 +34,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .legend .legendName {
@@ -50,12 +50,23 @@
 .exampleContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
 }
 
 .example {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.exampleTitle {
+  font-weight: 600;
+  padding-bottom: 0.25rem;
+}
+
+.exampleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .constant {
@@ -73,5 +84,4 @@
 .separator {
   color: black;
   font-weight: 500;
-  padding: 0 0.05rem 0 0.05rem;
 }

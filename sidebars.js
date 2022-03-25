@@ -75,7 +75,7 @@ const sidebars = {
             "bsr/remote-generation/overview",
             "bsr/remote-generation/go",
             "bsr/remote-generation/js",
-            "bsr/remote-generation/tarball",
+            "bsr/remote-generation/archive",
             "bsr/remote-generation/plugin-example",
             "bsr/remote-generation/template-example",
             "bsr/remote-generation/remote-plugin-execution"
