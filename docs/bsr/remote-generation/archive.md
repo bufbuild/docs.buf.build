@@ -75,7 +75,7 @@ In order to download tarballs for assets generated from private Buf modules, you
 $ buf registry login
 ```
 
-When you successfully log in, the `buf` CLI adds the appropriate credentials to your [`.netrc`](../authentication.md#netrc-file) file. [wget] reads from your `.netrc` by default, so you can use wget with no special flags to download assets for private modules. Buf if you use [cURL], you need to use the [`--netrc`][netrc] flag:
+When you successfully log in, the `buf` CLI adds the appropriate credentials to your [`.netrc`](../authentication.md#netrc-file) file. [wget] reads from your `.netrc` by default, so you can use wget with no special flags to download assets for private modules. Buf if you use [cURL], you need to instruct it to use your BSR credentials with the [`--netrc`][netrc] flag:
 
 ```terminal
 $ curl --netrc -O "https://dl.buf.build/v1/protocolbuffers/js/v2/acme/someprivatemodule/main.tar.gz"
