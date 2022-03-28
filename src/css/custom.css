@@ -156,7 +156,7 @@ figcaption {
 }
 
 .admonition ul,
-.admonition p {
+.admonition pre {
   margin: 0;
 }
 

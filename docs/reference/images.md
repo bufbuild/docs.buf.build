@@ -6,7 +6,7 @@ title: Images
 Throughout the documentation, you may occasionally see references to Buf **images**. We'll go over what
 images are, how they are used, and the various options associated with them here.
 
-## How Protobuf plugins work
+## How Protobuf plugins work {#plugins}
 
 First we need to provide a short overview of how Protobuf plugins work.
 
