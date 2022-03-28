@@ -39,7 +39,7 @@ Template | What it generates
 [`protocolbuffers/js`][pb-js] | JavaScript code stubs (`.js`)
 [`grpc/web`][grpc-web] | JavaScript code stubs (`.js`), TypeScript type definitions (`.d.ts`)
 
-In addition to these official templates, you can use any templates you like with npm&mdash;including templates that [you upload yourself](../remote-generation/template-example.md)&mdash;provided that those templates generate valid JavaScript and/or TypeScript code stubs. Templates that generate invalid JavaScript/TypeScript or other languages aren't supported. This operation, for example, would fail because the template, [`protocolbuffers/go`][pb-go], isn't supported:
+In addition to these official templates, you can use any templates you like with npm&mdash;including templates that [you upload yourself](../remote-generation/template-example.md)&mdash;provided that those templates generate valid JavaScript and/or TypeScript declaration files. Templates that generate invalid code aren't supported. This operation, for example, would fail because the template, [`protocolbuffers/go`][pb-go], isn't supported:
 
 ```terminal
 $ npm install @buf/protocol_buffers_go_acme_paymentapis
