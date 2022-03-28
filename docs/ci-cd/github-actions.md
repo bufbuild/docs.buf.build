@@ -53,7 +53,7 @@ To pin the `buf` CLI to a specific version, update your setup step to include a 
 ```yaml {2-3}
 - uses: bufbuild/buf-setup-action@v0.6.0
   with:
-    version: '1.1.1'
+    version: '1.3.0'
 ```
 
 To resolve the latest release from GitHub, you can specify `latest`, but this is **not** recommended:
