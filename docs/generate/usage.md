@@ -199,25 +199,11 @@ $ docker run \
   bufbuild/buf generate
 ```
 
-:::warning Docker container doesn't include plugins
-The `bufbuild/buf` ships with neither [protoc] nor any [Protobuf plugins](../reference/images.md#plugins). If you need to generate code stubs using protoc or plugins, we recommend using the `bufbuild/buf` image as part of a [multi-stage build][multi-stage], as in this example `Dockerfile`:
+:::info Docker image doesn't include protoc or plugins
+If you need to generate code stubs using [protoc] or [Protobuf plugins](../reference/images.md#plugins), be aware that the `bufbuild/buf` ships with neither. We recommend one of these approaches:
 
-```dockerfile
-FROM bufbuild/buf:latest AS buf
-
-# Install or load plugin in a different build container
-FROM some-image AS plugin-container
-
-# Final image
-FROM scratch
-
-# Copy Buf executable into image
-COPY --from=buf /usr/local/bin/buf /usr/local/bin/buf
-# Copy plugin from plugin-container
-COPY --from=plugin-container /usr/local/bin/protoc-gen-myplugin
-
-ENTRYPOINT ["/usr/local/bin/buf"]
-```
+1. Use [remote plugin execution](../bsr/remote-generation/hosted-plugins.md) to generate code stubs without needing to install any additional executables.
+1. Use the `bufbuild/buf` image as part of a [multi-stage build][multi-stage] that includes any required executables as part of the final image.
 :::
 
 [image]: https://hub.docker.com/r/bufbuild/buf
