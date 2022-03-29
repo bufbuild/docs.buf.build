@@ -168,6 +168,14 @@ To generate Go code from private modules you'll need to make sure the Go tooling
 
    For more information, see the official [private modules documentation][private].
 
+## Other languages
+
+Remote code generation is also supported for:
+
+import BsrLanguages from "@site/src/components/BsrLanguages";
+
+<BsrLanguages languages={["js", "archive"]} />
+
 [api]: https://buf.build/acme/paymentapis
 [go]: https://golang.org
 [googleapis]: https://buf.build/googleapis/googleapis

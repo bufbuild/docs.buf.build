@@ -5,7 +5,6 @@ description: The BSR supports remote code generation, which means you fetch gene
 ---
 
 import Breaking from "@site/src/components/Breaking";
-import BsrLanguages from "@site/src/components/BsrLanguages";
 
 <Breaking 
   feature="Remote code generation"
@@ -35,7 +34,9 @@ BSR itself_&mdash;not on your laptop, not in a CI/CD environment, only remotely 
 
 The BSR currently [supports](#registries) remote generation for these languages:
 
-<BsrLanguages />
+import BsrLanguages from "@site/src/components/BsrLanguages";
+
+<BsrLanguages languages={["go", "js", "archive"]} />
 
 We plan to support remote generation for additional languages in the near future.
 

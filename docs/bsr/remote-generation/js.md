@@ -128,6 +128,14 @@ Proto filepath | Path of generated file | Acceptable?
 
 If you're a plugin author, be sure to heed this naming structure; otherwise, consumers of your APIs are likely to experience broken imports.
 
+## Other languages
+
+Remote code generation is also supported for:
+
+import BsrLanguages from "@site/src/components/BsrLanguages";
+
+<BsrLanguages languages={["go", "archive"]} />
+
 [bsr]: /bsr/overview
 [buf-npm]: https://npm.buf.build
 [deps]: /bsr/overview#dependencies

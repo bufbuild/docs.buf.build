@@ -9,25 +9,31 @@ type LanguageProps = {
   href: string;
 };
 
-const languages: LanguageProps[] = [
-  {
+type Props = {
+  languages: string[];
+};
+
+type Languages = { [key: string]: LanguageProps };
+
+const allLanguages: Languages = {
+  go: {
     name: "Go",
     logos: ["/img/logos/go.svg"],
     href: "./go"
   },
-  {
+  js: {
     name: "JavaScript and TypeScript",
     logos: ["/img/logos/js.svg", "/img/logos/ts.svg"],
     href: "./js"
   },
-  {
+  archive: {
     name: "Archive",
-    description: "All other templates",
+    description: "All other languages",
     // Original icon: https://www.flaticon.com/free-icon/tar-file-format-symbol_29575
     logos: ["/img/logos/tar.svg"],
     href: "./archive"
   }
-];
+};
 
 const Language = ({ name, description, logos, href }: LanguageProps) => {
   return (
@@ -47,10 +53,12 @@ const Language = ({ name, description, logos, href }: LanguageProps) => {
   );
 };
 
-const BsrLanguages = () => {
+const BsrLanguages = ({ languages }: Props) => {
+  const langs: LanguageProps[] = Array.from(languages, (lang) => allLanguages[lang]);
+
   return (
     <div className={styles.languages}>
-      {languages.map((language) => (
+      {langs.map((language) => (
         <Language {...language} />
       ))}
     </div>
