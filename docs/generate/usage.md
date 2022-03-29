@@ -190,8 +190,7 @@ $ buf generate https://github.com/foo/bar.git --template data/generate.yaml --pa
 
 ## Docker
 
-Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables you to
-use `buf` as part of your Docker workflow. For example:
+Buf ships a Docker image, [`bufbuild/buf`][image], that enables you to use `buf` as part of your Docker workflows. Here's an example of using the image to run `buf generate`:
 
 ```terminal
 $ docker run \
@@ -199,3 +198,14 @@ $ docker run \
   --workdir /workspace \
   bufbuild/buf generate
 ```
+
+:::info Docker image doesn't include protoc or plugins
+If you need to generate code stubs using [protoc] or [Protobuf plugins](../reference/images.md#plugins), be aware that the `bufbuild/buf` image ships with neither. We recommend one of these approaches:
+
+1. Use [remote plugin execution](../bsr/remote-generation/hosted-plugins.md) to generate code stubs without needing to install any additional executables.
+1. Use the `bufbuild/buf` image as part of a [multi-stage build][multi-stage] that includes any required executables as part of the final image.
+:::
+
+[image]: https://hub.docker.com/r/bufbuild/buf
+[multi-stage]: https://docs.docker.com/develop/develop-images/multistage-build/
+[protoc]: https://

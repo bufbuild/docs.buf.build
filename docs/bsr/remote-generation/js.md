@@ -24,9 +24,33 @@ $ npm config set @buf:registry https://npm.buf.build
 
 This binds the `@buf` package scope to the BSR and updates your global [`.npmrc`][npmrc] accordingly.
 
+You can configure [Yarn] in an analogous way:
+
+```terminal
+$ yarn config set @buf:registry https://npm.buf.build
+```
+
+## Available templates {#templates}
+
+The table below lists the generation [templates](overview.md#templates) that are officially supported by the BSR:
+
+Template | What it generates
+:--------|:-----------------
+[`protocolbuffers/js`][pb-js] | JavaScript code stubs (`.js`)
+[`grpc/web`][grpc-web] | JavaScript code stubs (`.js`), TypeScript type definitions (`.d.ts`)
+
+In addition to these official templates, you can use any templates you like with npm&mdash;including templates that [you upload yourself](../remote-generation/template-example.md)&mdash;provided that those templates generate valid JavaScript and/or TypeScript declaration files. Templates that generate invalid code aren't supported. This operation, for example, would fail because the template, [`protocolbuffers/go`][pb-go], isn't supported:
+
+```terminal
+$ npm install @buf/protocol_buffers_go_acme_paymentapis
+---
+npm ERR! code E400
+npm ERR! 400 Bad Request - GET https://npm.buf.build/@buf%2fprotocol_buffers_go_acme_paymentapis
+```
+
 ## Installing packages {#install}
 
-With your npm config set, you can install `@buf/*` packages in any standard npm project. Here's an example installation command:
+With your npm config [set](#setup), you can install `@buf/*` [packages](#package-names) in any standard npm project. Here's an example installation command:
 
 ```terminal
 $ npm install @buf/protocolbuffers_js_acme_paymentapis
@@ -38,14 +62,84 @@ You may notice that installing packages from the BSR npm registry using `npm ins
 
 ## Package names
 
-The BSR npm registry has a special syntax for package names that you need to adhere to when installing packages:
+The BSR npm registry has a special syntax for package names:
+
+<Syntax
+  title="Syntax for package names"
+  examples={[
+    "npm install @buf/protocolbuffers_js_acme_petapis",
+    "npm install @buf/grpc_web_acme_paymentapis"
+  ]}
+  segments={[
+    {label: "npm install", kind: "constant"},
+    {separator: " "},
+    {label: "@buf", kind: "constant"},
+    {separator: "/"},
+    {label: "templateOwner", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
+    {separator: "_"},
+    {label: "templateName", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
+    {separator: "_"},
+    {label: "moduleOwner", kind: "variable", href: "/bsr/overview#modules"},
+    {separator: "_"},
+    {label: "moduleName", kind: "variable", href: "/bsr/overview#modules"}
+  ]
+} />
+
+In the first example, `@buf/protocolbuffers_js_acme_petapis`, the BSR applies the [`protocolbuffers/js`](https://buf.build/protocolbuffers/templates/js) template to the [`acme/petapis`](https://buf.build/acme/petapis) module and thus generates JavaScript code stubs for the Protobuf definitions in that module.
+
+This table shows some example template/module name combinations and the resulting package name:
+
+Template | Buf module | Package name
+:--------|:-----------|:------------
+`grpc/web` | `acme/petapis` | `@buf/grpc_web_acme_petapis`
+`protocolbuffers/js` | `bufbuild/buf` | `@buf/protocolbuffers_js_bufbuild_buf`
+`protocolbuffers/js` | `acme/paymentapis` | `@buf/protocolbuffers_js_acme_paymentapis`
+
+## Package versions
+
+By default, when you `npm install` a [Buf module][modules], the BSR generates code from the most recent [reference](../overview.md#referencing-a-module) for the module. But you can also install a specific package version using npm's standard `@` syntax:
+
+```terminal
+$ npm install @buf/protocolbuffers_js_acme_paymentapis@1.1.2
+```
+
+Package version syntax is based on the BSR's concept of [synthetic versions](overview.md#synthetic-versions):
 
 import Syntax from "@site/src/components/Syntax";
 
 <Syntax
-  title="Syntax for BSR npm registry package names"
-  examples={["@buf/protocolbuffers_js_acme_petapis"]}
+  title="Package version syntax"
+  examples={["1.3.5", "1.2.26"]}
   segments={[
+    {label: "1", kind: "constant"},
+    {separator: "."},
+    {label: "templateVersion", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
+    {separator: "."},
+    {label: "commitSequenceID", kind: "variable", href: "/bsr/remote-generation/overview#commits"}
+  ]
+} />
+
+With package versions:
+
+* The major version is always **1**.
+* The minor version (**3** in the first example) corresponds to the [template](overview.md#templates) version (without the `v` prefix). Template versions increase monotonically and have the form `v1`, `v2`, `v3`...
+* The patch version (**5** in the first example) corresponds to the module, which is identified by a [commit sequence ID](overview.md#commits) that's incremented each time a new version of a module is pushed.
+
+This command, for example, applies [version **1**][v1] of the [`protocolbuffers/js`][pb-js] template to a commit with an ID of **2** (the second commit pushed to the module):
+
+```terminal
+$ npm install @buf/protocolbuffers_js_acme_paymentapis@1.1.2
+```
+
+<Syntax
+  title="Specific version installation syntax"
+  examples={[
+    "npm install @buf/protocolbuffers_js_acme_paymentapis@1.1.2",
+    "npm install @buf/grpc_web_acme_petapis@1.2.1"
+  ]}
+  segments={[
+    {label: "npm install", kind: "constant"},
+    {separator: " "},
     {label: "@buf", kind: "constant"},
     {separator: "/"},
     {label: "templateOwner", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
@@ -55,18 +149,10 @@ import Syntax from "@site/src/components/Syntax";
     {label: "moduleOwner", kind: "variable", href: "/bsr/overview#modules"},
     {separator: "_"},
     {label: "moduleName", kind: "variable", href: "/bsr/overview#modules"},
-  ]
-} />
-
-In this example, the BSR npm registry generates the `@buf/protocolbuffers_js_acme_petapis` package applying the [`protocolbuffers/js`](https://buf.build/protocolbuffers/templates/js) template to the [`acme/petapis`](https://buf.build/acme/petapis) module.
-
-This table shows some example template/module/package name combinations:
-
-Template | Buf module | Package name
-:--------|:-----------|:------------
-`grpc/web` | `acme/petapis` | `@buf/grpc_web_acme_petapis`
-`protocolbuffers/js` | `bufbuild/buf` | `@buf/protocolbuffers_js_bufbuild_buf`
-`protocolbuffers/js` | `acme/paymentapis` | `@buf/protocolbuffers_js_acme_paymentapis`
+    {separator: "@"},
+    {label: "packageVersion", kind: "variable"}
+  ]}
+/>
 
 ## Using private packages {#private}
 
@@ -139,13 +225,15 @@ import BsrLanguages from "@site/src/components/BsrLanguages";
 [bsr]: /bsr/overview
 [buf-npm]: https://npm.buf.build
 [deps]: /bsr/overview#dependencies
+[grpc-web]: https://buf.build/grpc/templates/web
 [javascript]: https://javascript.com
 [labels]: /bsr/remote-generation/plugin-example#3-prepare-the-dockerfile
 [modules]: /bsr/overview#modules
 [npm]: https://npmjs.org
 [npm-config]: https://docs.npmjs.com/cli/v8/commands/npm-config#set
 [npmrc]: https://docs.npmjs.com/cli/v8/configuring-npm/npmrc
-[plugins]: /bsr/remote-generation/concepts#plugins
+[pb-go]: https://buf.build/protocolbuffers/templates/go
+[pb-js]: https://buf.build/protocolbuffers/templates/js
 [protoc]: https://github.com/protocolbuffers/protobuf
 [pnpm]: https://pnpm.io
 [ranges]: https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
@@ -153,8 +241,8 @@ import BsrLanguages from "@site/src/components/BsrLanguages";
 [registry-api]: https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md
 [semver]: https://semver.org
 [settings]: https://buf.build/settings/user
-[template]: /bsr/remote-generation/concepts#templates
 [typescript]: https://typescript.org
+[v1]: https://buf.build/protocolbuffers/templates/js/v1
 [yarn]: https://yarnpkg.com
 [yarn_v1]: https://github.com/yarnpkg/yarn/releases/tag/v1.10.0
 [yarn_v2]: https://github.com/yarnpkg/berry

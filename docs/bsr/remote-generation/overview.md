@@ -36,7 +36,7 @@ The BSR currently [supports](#registries) remote generation for these languages:
 
 import BsrLanguages from "@site/src/components/BsrLanguages";
 
-<BsrLanguages languages={["go", "js", "archive"]} />
+<BsrLanguages />
 
 We plan to support remote generation for additional languages in the near future.
 
@@ -119,10 +119,10 @@ members of the owner's organization.
 
 Buf maintains several official templates:
 
-- https://buf.build/protocolbuffers/templates/js
-- https://buf.build/protocolbuffers/templates/go
-- https://buf.build/grpc/templates/web
-- https://buf.build/grpc/templates/go
+- [`protocolbuffers/go`][pb-go]
+- [`protocolbuffers/js`][pb-js]
+- [`grpc/go`][grpc-go]
+- [`grpc/web`][grpc-web]
 
 A template **version** defines the plugin versions to use. This enables you to keep templates up to
 date with new versions of plugins in the template. A template version is of the form `v[1-9][0-9]*`.
@@ -151,7 +151,7 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Synthetic version syntax"
-  examples={["v1.3.5"]}
+  examples={["v1.3.5", "v1.2.26"]}
   segments={[
     {label: "v1", kind: "constant"},
     {separator: "."},
@@ -212,8 +212,12 @@ In other words, we found that versions like `v1.2.3` were common whereas `v1.2.3
 and we opted for the former.
 
 [go-mod]: https://golang.org/ref/mod
+[grpc-go]: https://buf.build/grpc/templates/go
+[grpc-web]: https://buf.build/grpc/templates/web
 [hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
 [npm]: https://npmjs.org
+[pb-go]: https://buf.build/protocolbuffers/templates/go
+[pb-js]: https://buf.build/protocolbuffers/templates/js
 [protoc-gen-go]: https://pkg.go.dev/google.golang.org/protobuf@v1.27.1/cmd/protoc-gen-go
 [protoc-gen-python]: https://developers.google.com/protocol-buffers/docs/reference/python-generated
 [scheme]: https://www.baeldung.com/cs/semantic-versioning#4-pre-release-and-build
