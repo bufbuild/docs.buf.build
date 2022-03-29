@@ -36,7 +36,7 @@ The BSR currently [supports](#registries) remote generation for these languages:
 
 import BsrLanguages from "@site/src/components/BsrLanguages";
 
-<BsrLanguages />
+<BsrLanguages languages={["go", "js", "archive"]} />
 
 We plan to support remote generation for additional languages in the near future.
 
