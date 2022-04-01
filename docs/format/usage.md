@@ -3,7 +3,7 @@ id: usage
 title: Usage
 ---
 
-T`buf format` command rewrites `.proto` files in-place according to an opinionated
+The `buf format` command rewrites `.proto` files in-place according to an opinionated
 [style](style.md).
 
 ## Configuration
