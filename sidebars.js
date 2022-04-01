@@ -54,6 +54,12 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Format",
+      items: ["format/usage", "format/style"],
+      collapsed: false
+    },
+    {
+      type: "category",
       label: "The Buf Schema Registry (BSR)",
       items: [
         "bsr/introduction",
