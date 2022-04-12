@@ -156,6 +156,8 @@ This generates C++ and Java code in the local `/gen/proto/{cpp,java}` directorie
 
 If you don't want to manage plugins and generate code manually and would prefer to simply consume generated code, check out the [remote code generation](remote-generation/overview.md) feature, which is currently in **alpha**.
 
+## Manage a repository
+
 ### Deprecate or undeprecate a repository
 
 BSR repositories can be deprecated. `buf` warns you when you run `buf mod update` on a module that depends on a 
@@ -172,6 +174,18 @@ Undeprecate a deprecated repository with
 ```terminal
 $ buf beta registry repository undeprecate <buf.build/owner/repository>
 ```
+
+### Update the visibility of a repository
+
+The visibility of a BSR repositories can be updated.
+
+You can update the visibility with
+
+```terminal
+$ buf beta registry repository update <buf.build/owner/repository> --visibility [public,private]
+```
+
+The `--visibility` flag must be one of: `private` or `public`.
 
 ## Buf Schema Registry URLs {#urls}
 
