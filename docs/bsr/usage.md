@@ -177,7 +177,7 @@ $ buf beta registry repository undeprecate <buf.build/owner/repository>
 
 ### Update the visibility of a repository
 
-The visibility of a BSR repositories can be updated.
+The visibility of BSR repositories can be updated.
 
 You can update the visibility with
 
