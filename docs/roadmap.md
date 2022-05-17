@@ -89,11 +89,7 @@ to using fully qualified import paths if you like in your project.
 A large part of the BSR API is usable with the `buf` CLI, but we will soon expose the BSR API so that
 you can build your own tools and integrations with it.
 
-## `buf` CLI
-
-### Formatter
-
-We'll be releasing `buf format` soon, which will enable you to apply consistent formatting to your Protobuf files. This formatter will also enable you to print unified diffs instead of editing your files directly.
+<h2> <code>buf</code> CLI </h2>
 
 ### Bazel rules
 
