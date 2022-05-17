@@ -89,7 +89,7 @@ to using fully qualified import paths if you like in your project.
 A large part of the BSR API is usable with the `buf` CLI, but we will soon expose the BSR API so that
 you can build your own tools and integrations with it.
 
-<h2> <code>buf</code> CLI </h2>
+## `buf` CLI
 
 ### Bazel rules
 
