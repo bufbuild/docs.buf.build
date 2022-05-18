@@ -82,8 +82,8 @@ option to your `buf.gen.yaml` template and set a package prefix with the
 > the module.
 
 
-With managed mode you don't have to worry about this nuanced behavior. You can set the
-set the `go_package_prefix.default` value to the `name` in your `go.mod` joined with the `out` path
+With managed mode you don't have to worry about this nuanced behavior. You can set the 
+`go_package_prefix.default` value to the `name` in your `go.mod` joined with the `out` path
 configured for the `protoc-gen-go` plugin. In the example below, the module path
 (`github.com/bufbuild/buf-tour/petstore`) and the plugin output path (`gen/proto/go`) result in a
 [`go_package_prefix.default`](/configuration/v1/buf-gen-yaml#default) setting of
