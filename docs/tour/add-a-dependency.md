@@ -31,6 +31,7 @@ Now remove the `google/type/datetime.proto` reference from your [`buf.yaml`](../
 
 ```yaml title="buf.yaml" {5-6}
  version: v1
+ name: buf.build/$BUF_USER/petapis
  lint:
    use:
      - DEFAULT
@@ -57,6 +58,7 @@ the `buf.build/googleapis/googleapis` module, so you can configure it like this:
 
 ```yaml title="buf.yaml" {2-3}
  version: v1
+ name: buf.build/$BUF_USER/petapis
 +deps:
 +  - buf.build/googleapis/googleapis
  lint:
@@ -129,6 +131,7 @@ you can specify it like this:
 
 ```yaml title="buf.yaml" {3-4}
  version: v1
+ name: buf.build/$BUF_USER/petapis
  deps:
 -  - buf.build/googleapis/googleapis
 +  - buf.build/googleapis/googleapis:4bdf33e750fb409da9d403e1e98031f4
@@ -146,6 +149,7 @@ With that said, restore the `buf.yaml` file to its previous state before you con
 
 ```yaml title="buf.yaml" {3-4}
  version: v1
+ name: buf.build/$BUF_USER/petapis
  deps:
 -  - buf.build/googleapis/googleapis:4bdf33e750fb409da9d403e1e98031f4
 +  - buf.build/googleapis/googleapis

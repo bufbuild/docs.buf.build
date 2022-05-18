@@ -78,6 +78,7 @@ $ cd ../petapis
 
 ```yaml title="petapis/buf.yaml" {4}
  version: v1
+ name: buf.build/$BUF_USER/petapis
  deps:
    - buf.build/googleapis/googleapis
 +  - buf.build/$BUF_USER/paymentapis
