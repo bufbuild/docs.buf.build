@@ -35,6 +35,7 @@ BSR itself_&mdash;not on your laptop, not in a CI/CD environment, only remotely 
 The BSR currently [supports](#registries) remote generation for these languages:
 
 import BsrLanguages from "@site/src/components/BsrLanguages";
+
 <BsrLanguages />
 
 We plan to support remote generation for additional languages in the near future.
