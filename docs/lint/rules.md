@@ -5,7 +5,7 @@ title: Rules and categories
 
 > The rules and categories described here belong to the latest [`v1`](../configuration/v1/buf-yaml.md)
 > release. If you're still using `v1beta1` and haven't [migrated](../configuration/v1beta1-migration-guide.md) yet,
-> please refer to the previous [reference](../configuration/v1beta1/lint-rules.md).
+> refer to the previous [reference](../configuration/v1beta1/lint-rules.md).
 
 `buf` provides a carefully curated set of lint rules designed to provide consistency and maintainability
 across a Protobuf schema of any size and any purpose, but without being so opinionated as to restrict
@@ -100,7 +100,7 @@ only one such directory exists. For example, consider this `tree`:
                 └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-`protoc` doesn't enforce file structure in any way, but you're likely to have a *very* bad time
+`protoc` doesn't enforce file structure in any way, but you're likely to have a rough time
 with many Protobuf plugins across various languages if you do not do this.
 
 This structure has the effect of allowing imports to self-document their package. For example,
@@ -154,6 +154,7 @@ lint:
     - ENUM_NO_ALLOW_ALIAS
     - IMPORT_NO_WEAK
     - IMPORT_NO_PUBLIC
+    - IMPORT_USED
 ```
 
 #### `ENUM_PASCAL_CASE`
@@ -284,6 +285,24 @@ just learned in this sentence, and regardless do not use these.
 
 Similar to the `IMPORT_NO_WEAK` rule, this rule outlaws declaring imports as `public`. If you didn't
 know this was possible, forget what you just learned in this sentence, and regardless do not use these.
+
+#### `IMPORT_USED`
+
+This rule checks that all the imports declared across your Protobuf files are actually used. This
+`.proto` file, for example, would fail this rule:
+
+```protobuf
+syntax = "proto3";
+
+package payments.v1;
+
+import "product.proto"; // Unused import
+
+message Payment {
+  string payment_id = 1;
+  // other fields
+}
+```
 
 ### `DEFAULT`
 
@@ -632,7 +651,7 @@ with managed mode you can remove your file option declarations altogether and le
 There are no lint rules for widely used custom options such as [google.api options](https://github.com/googleapis/googleapis/tree/master/google/api)
 or [protoc-gen-validate](https://github.com/envoyproxy/protoc-gen-validate/blob/master/validate/validate.proto).
 There's a lot of thought that needs to go into issues such as forwards and backwards compatibility for custom options,
-so we currently only support the standard set of file options. Please [contact us](../contact.md) if this is a big need for
+so we currently only support the standard set of file options. [Contact us](../contact.md) if this is a big need for
 your organization.
 
 ### Naming opinions
@@ -643,6 +662,6 @@ standardization. This is to provide maximum usefulness of the `DEFAULT` category
 
 ## Adding or requesting new rules
 
-If you'd like a new rule added, please [contact us](../contact.md) to discuss it. We'll add rules if we think
-they're maintainable and could have widespread value. Most rules can be very easily added, and although
+If you'd like a new rule added, [contact us](../contact.md) to discuss it. We'll add rules if we think
+they're maintainable and could have widespread value. Most rules can be easily added, and although
 [Buf is OSS](https://github.com/bufbuild/buf), it's usually more efficient for us to add it ourselves.

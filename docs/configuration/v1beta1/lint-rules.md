@@ -100,7 +100,7 @@ assuming we have a single [root](buf-yaml.md#roots), `proto`:
                     └── baz_service.proto // package foo.bar.baz.v1
 ```
 
-`protoc` doesn't enforce file structure in any way, however you're like to have a very bad time
+`protoc` doesn't enforce file structure in any way, however you're like to have a rough time
 with many Protobuf plugins across various languages if you do not do this.
 
 This also has the effect of allowing imports to self-document their package, for example

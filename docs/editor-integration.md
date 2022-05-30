@@ -7,7 +7,7 @@ title: Editor integration
 and [breaking change](breaking/overview) errors which integrate with IDEs, scripts, and other tools.
 
 We currently provide Vim and Visual Studio Code integrations and intend to support Emacs and
-Intellij in the future. Please [contact us](contact) if you are interested in any of these, or others
+Intellij in the future. [Contact us](contact) if you are interested in any of these, or others
 not already listed here.
 
 ## Vim

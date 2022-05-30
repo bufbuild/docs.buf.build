@@ -3,11 +3,6 @@ id: remote-plugin-execution
 title: Remote plugin execution
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-## Remote plugin execution
-
 One of the greatest challenges with Protobuf code generation is the complexity of working with `protoc` and custom plugins. Time and time again we've heard that developers want the benefits of code generation, but the existing tooling gets in the way.
 
 There is a high barrier to entry due to the complex web of different compiler and plugin versions. Managing and maintaining a stable environment locally on a single machine is hard enough, and the problem is compounded as you scale out code generation across many developers.
@@ -29,7 +24,7 @@ With this setup a single developer or thousands of developers at a large organiz
 The Buf team has published a set of [official plugins](#official-plugins) for you to use, starting with all the built-in `protoc` Protobuf plugins and popular ones such as gRPC plugins. 
 
 > Interested in publishing your own community plugin? Check out [Authoring a Plugin](plugin-example.md).
-> To learn more about Buf Plugins check out the [Key concepts docs](concepts.md).
+> To learn more about Buf Plugins check out the [Key concepts documentation](overview.md#concepts).
 
 ## Official plugins
 
@@ -37,16 +32,17 @@ The Buf team has published a set of [official plugins](#official-plugins) for yo
 
 The Buf team has developed tooling to automatically sync and publish all of the plugins built-in to `protoc`, which are located under the `protocolbuffers` organization. Here is a list of supported `protoc`-based plugins:
 
-- https://buf.build/protocolbuffers/plugins/go
-- https://buf.build/protocolbuffers/plugins/java
-- https://buf.build/protocolbuffers/plugins/python
 - https://buf.build/protocolbuffers/plugins/cpp
 - https://buf.build/protocolbuffers/plugins/csharp
+- https://buf.build/protocolbuffers/plugins/dart
+- https://buf.build/protocolbuffers/plugins/go
+- https://buf.build/protocolbuffers/plugins/java
 - https://buf.build/protocolbuffers/plugins/js
+- https://buf.build/protocolbuffers/plugins/kotlin
 - https://buf.build/protocolbuffers/plugins/objc
 - https://buf.build/protocolbuffers/plugins/php
+- https://buf.build/protocolbuffers/plugins/python
 - https://buf.build/protocolbuffers/plugins/ruby
-- https://buf.build/protocolbuffers/plugins/kotlin
 
 This is powerful because you no longer need to have `protoc` installed, or understand how to invoke it (a daunting task in and of itself). Furthermore you don't need to install additional plugins not already built-in to the `protoc` compiler, such as [protoc-gen-go](https://pkg.go.dev/github.com/golang/protobuf/protoc-gen-go).
 
@@ -54,17 +50,17 @@ This is powerful because you no longer need to have `protoc` installed, or under
 
 In addition to the plugins mentioned above, we're also adding support for popular gRPC plugins for nearly all of the same languages. These plugins are located under the `grpc` organization. Here is a list of supported gRPC plugins:
 
-- https://buf.build/grpc/plugins/go
-- https://buf.build/grpc/plugins/java
-- https://buf.build/grpc/plugins/python
 - https://buf.build/grpc/plugins/cpp
 - https://buf.build/grpc/plugins/csharp
+- https://buf.build/grpc/plugins/go
+- https://buf.build/grpc/plugins/java
+- https://buf.build/grpc/plugins/kotlin
 - https://buf.build/grpc/plugins/node
-- https://buf.build/grpc/plugins/web
 - https://buf.build/grpc/plugins/objc
 - https://buf.build/grpc/plugins/php
+- https://buf.build/grpc/plugins/python
 - https://buf.build/grpc/plugins/ruby
-- https://buf.build/grpc/plugins/kotlin
+- https://buf.build/grpc/plugins/web
 
 ## Example
 
@@ -75,6 +71,9 @@ We'll use the [buf.build/demolab/theweather](https://buf.build/demolab/theweathe
 A remote plugin can have a version specified, as is done below, or it can be omitted, if you want to always use the latest version of the plugin.
 
 Create a template file with these contents: 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   groupId="language-selection"
@@ -193,7 +192,7 @@ You should end up with this structure:
   ]}>
   <TabItem value="go">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -207,7 +206,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="javascript">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -221,7 +220,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="python">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -235,7 +234,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="ruby">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen
@@ -249,7 +248,7 @@ You should end up with this structure:
   </TabItem>
   <TabItem value="java">
 
-```bash
+```sh
 .
 ├── buf.gen.yaml
 └── gen

@@ -43,9 +43,9 @@ and migration.
   from `protoc` output, which has breaking changes across minor versions of `protoc`. By default, Prototool
   downloads `protoc` for you, which is helpful for many cases, but can cause issues if the download [fails](https://github.com/uber/prototool/issues/512),
   the cache is corrupted, or if the `protoc` version is not locked. We highly recommend reading [our
-  discussion](../build/internal-compiler) on Protobuf compilation for more details.
+  discussion](../reference/internal-compiler) on Protobuf compilation for more details.
 
-  Instead, `buf` lets you use either the [internal compiler](../build/internal-compiler.md)
+  Instead, `buf` lets you use either the [internal compiler](../reference/internal-compiler.md)
   that is tested to cover every edge case and only parse valid files, or use `protoc` output as `buf` input.
   `buf` can actually use [many types of input](../reference/inputs.md), including `protoc` output,
   local or remote Git repositories, and local or remote archives. `buf` never shells out to external commands
@@ -84,8 +84,8 @@ and migration.
   can be outputted as text or JSON, with other formats coming in the future.
   Prototool prints out unreferenced messages.
 - Since `buf` can process `FileDescriptorSet`s as input, `buf` provides
-  `protoc` plugins [protoc-gen-buf-lint](../lint/protoc-plugin.md) and
-  [protoc-gen-buf-breaking](../breaking/protoc-plugin.md) to allow you to use `buf`'s
+  `protoc` plugins [protoc-gen-buf-lint](../reference/protoc-plugins.md#lint) and
+  [protoc-gen-buf-breaking](../reference/protoc-plugins.md#breaking) to allow you to use `buf`'s
   lint breaking change detection functionality with your current `protoc` setup.
 
 ## Prototool lint groups to `buf` lint categories
@@ -280,7 +280,7 @@ $ buf build
 ```
 
 `buf` handles `/dev/null` on Mac and Linux, and `nul` in Windows as a special-case,
-and even though writing to `/dev/null` is very quick, `buf` stops short on writing if this is
+and even though writing to `/dev/null` is fast, `buf` stops short on writing if this is
 specified.
 
 ### `prototool config init`

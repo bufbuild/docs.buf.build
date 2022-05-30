@@ -8,7 +8,7 @@ products that utilize the BSR as a foundation to understand and reason about API
 including in real time.
 
 Here, we outline some (but not all!) of the products on our roadmap. We'd love your input
-and feedback, please [contact us](contact.md) to discuss any of the below, or any other products
+and feedback, [Contact us](contact.md) to discuss any of the below, or any other products
 you'd like to see.
 
 ## The Buf Schema Registry (BSR) {#bsr}
@@ -28,7 +28,7 @@ generated code for:
 
 All via a `go` command that results in a Go module:
 
-```sh
+```terminal
 $ go get go.buf.build/grpc/go/acme/weather
 ```
 
@@ -72,7 +72,7 @@ not be resolved, and the developer can simply adjust their requirements as neede
 
 ### Reflection Service
 
-The BSR holds all of your Protobuf API definitions so it can very easily act as a reflection server for your
+The BSR holds all of your Protobuf API definitions so it can easily act as a reflection server for your
 Protobuf messages. This typically involves exposing a set of reflection endpoints on *your* server, but this
 is no longer required because the BSR has all of your definitions and it can host this functionality for you.
 
@@ -89,12 +89,6 @@ to using fully qualified import paths if you like in your project.
 A large part of the BSR API is usable with the `buf` CLI, but we will soon expose the BSR API so that
 you can build your own tools and integrations with it.
 
-## `buf` CLI
-
-### Formatter
-
-We'll be releasing `buf format` soon, which will enable you to apply consistent formatting to your Protobuf files. This formatter will also enable you to print unified diffs instead of editing your files directly.
-
 ## Ecosystem
 
 ### Better IDE integration
@@ -102,7 +96,7 @@ We'll be releasing `buf format` soon, which will enable you to apply consistent 
 Buf currently supports both a [vim plugin](https://github.com/bufbuild/vim-buf) and a
 [VSCode plugin](https://github.com/bufbuild/vscode-buf) to provide Protobuf linting in these editors.
 But we recognize that we can do a lot more in this area, such as formatting your Protobuf files
-on save (via the formatter mentioned above), and a full -fledged *Protobuf language server*, which
+on save (via the formatter mentioned above), and a full-fledged *Protobuf language server*, which
 involves implementing the [Language Server Protocol (LSP)](https://langserver.org).
 
 With this, you will be able to use more editor features, such as auto-completion and
@@ -133,3 +127,4 @@ old API structures into their current API structures.
 The BSR is perfectly positioned to bring this solution to Protobuf users. The BSR tracks the entire history of
 your module, and can theoretically apply a series of changes (specified in a changelog) to your API so that
 you can stop worrying about API compatibility entirely.
+

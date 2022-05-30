@@ -35,7 +35,7 @@ The `excludes` key is **optional**, and lists directories to ignore from `.proto
 added to this list are completely skipped and excluded in the result. **We do not recommend using this
 option in general**, however in some situations it is unavoidable.
 
-For more information on the `buf.yaml` configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
+For more information on `buf.yaml` configuration, see the [reference](../configuration/v1/buf-yaml.md).
 
 ### Default values
 
@@ -48,7 +48,7 @@ root of your `.proto` files hierarchy, as this is how `.proto` import paths are 
 To get started, create a [module](../bsr/overview.md#modules) by adding a `buf.yaml` file to the root of the directory
 that contains your Protobuf definitions. You can create the default `buf.yaml` file with this command:
 
-```sh
+```terminal
 $ buf mod init
 ```
 
@@ -72,7 +72,7 @@ together with a [`buf.work.yaml`](../configuration/v1/buf-work-yaml.md), which d
 To illustrate how all these pieces fit together here's a quick example using `protoc` and its equivalent
 in `buf`:
 
-```sh
+```terminal
 $ protoc \
     -I proto \
     -I vendor/protoc-gen-validate \
@@ -113,8 +113,8 @@ a `buf.work.yaml` acts upon *all* of the modules defined in the `buf.work.yaml`.
 ## Workspace requirements
 
 There are two additional requirements that `buf` imposes on your `.proto` file structure
-for compilation to succeed that are not enforced by `protoc`, both of which are very
-important for successful modern Protobuf development across a number of languages
+for compilation to succeed that are not enforced by `protoc`, both of which are essential to
+successful modern Protobuf development across a number of languages.
 
 **1. Workspace modules must not overlap, that is one workspace module can not be a sub-directory of another workspace module.**
 
@@ -163,9 +163,9 @@ import "baz/baz.proto";
 
 Which file is being imported here? Is it `foo/baz/baz.proto`? `bar/baz/baz.proto`? The answer depends
 on the order of the `-I` flags given to `protoc`, or (if `buf` didn't error in this scenario
-pre-compilation, which `buf` does) the order of the imports given to the internal compiler. If
-the authors are being honest, we can't remember if it's the first `-I` or second `-I` that wins -
-we have outlawed this in our own builds for a long time.
+pre-compilation, which `buf` does) the order of the imports given to the
+[internal compiler](../reference/internal-compiler.md). If the authors are being honest, we can't
+remember if it's the first `-I` or second `-I` that wins - we have outlawed this in our own builds for a long time.
 
 While the above example is relatively contrived, the common error that comes up is when you
 have vendored `.proto` files. For example, [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/cc01a282127b54a81f92d6b8e8fb8971dab8be9b/third_party/googleapis)
@@ -188,7 +188,7 @@ Which copy of `google/api/*.proto` wins? The answer: no one wins. So Buf doesn't
 You can run `buf build` on your module by specifying the filepath to the directory containing the
 `buf.yaml` configuration file. To target the module defined in the current directory:
 
-```sh
+```terminal
 $ buf build
 ```
 
@@ -202,15 +202,17 @@ The `buf build` command:
 If there are errors, they are printed out in a `file:line:column:message` format by default.
 For example:
 
-```sh
+```terminal
 $ buf build
+---
 acme/pet/v1/pet.proto:5:8:acme/payment/v1alpha1/payment.proto: does not exist
 ```
 
 Build output can also be printed as JSON:
 
-```sh
+```terminal
 $ buf build --error-format=json
+---
 {"path":"acme/pet/v1/pet.proto","start_line":5,"start_column":8,"end_line":5,"end_column":8,"type":"COMPILE","message":"acme/payment/v1alpha1/payment.proto: does not exist"}
 ```
 
@@ -225,7 +227,7 @@ can be formatted in a variety of ways.
 
 `buf build` can deduce the output format by the file extension, see the documentation on [automatically derived formats](../reference/inputs.md#automatically-derived-formats). For example,
 
-```sh
+```terminal
 $ buf build -o image.bin
 $ buf build -o image.bin.gz
 $ buf build -o image.bin.zst
@@ -236,15 +238,16 @@ $ buf build -o image.json.zst
 
 The special value `-` is used to denote stdout, and you can manually set the format. For example:
 
-```sh
+```terminal
 $ buf build -o -#format=json
 ```
 
 When combined with [jq](https://stedolan.github.io/jq), `buf build` also allows for introspection. For example,
 to see a list of all packages, you can run this command:
 
-```
+```terminal
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+---
 "google.actions.type"
 "google.ads.admob.v1"
 "google.ads.googleads.v1.common"
@@ -260,7 +263,7 @@ $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
 Images always include the `ImageExtension` field. But if you want a pure `FileDescriptorSet` without
 this field set, and thus to mimic `protoc` entirely, you can use the `--as-file-descriptor-set` flag:
 
-```sh
+```terminal
 $ buf build -o image.bin --as-file-descriptor-set
 ```
 
@@ -277,20 +280,109 @@ is better to let `buf` discover all files under management and handle this for y
 The compiled result is limited to the given files if the `--path` flag is specified, as in this
 command:
 
-```sh
+```terminal
 $ buf build --path path/to/foo.proto --path path/to/bar.proto
 ```
+
+## Limit to specific types
+
+When you run `buf build` to create a [`FileDescriptorSet`][filedescriptorset] or Buf [image], the
+output contains all of the Protobuf types declared in the [module] by default. But for some advanced
+use cases, you may want the image or `FileDescriptorSet` to contain only a subset of the types
+described in your Protobuf API.
+
+Versions 1.1.0 and later of the `buf` CLI include a `--type` option for the `buf build` command that
+enables you to supply a fully qualified Protobuf name and limit the resulting image or
+`FileDescriptorSet` to only those descriptors required to represent those types and their required
+dependencies. This example usage restricts the output types to those required to represent
+`pkg.foo.Bar`:
+
+```terminal
+$ buf build --type pkg.foo.Bar
+```
+
+The `--type` flag accepts fully qualified names for [messages], [enums], and [services]. These
+dependent descriptors are included in the build:
+
+- [Messages]
+  - Messages and enums referenced in message fields
+  - Any [proto2] extension declarations for message fields
+  - The parent message if this message is a nested definition
+  - Any custom options for the message, its fields, and the file in which the message is defined
+- [Enums]
+  - The enum value descriptors for this enum
+  - The parent message is this enum is a nested definition
+  - Any custom options for the enum, enum values, and the file in which the enum is defined
+- [Services]
+  - Request and response types referenced in service methods
+  - Any custom options for the services, its methods, and the file in which the service is defined
+
+:::success Supplying multiple types
+You can specify multiple types by applying the `--type` option multiple times, as in this example:
+
+```terminal
+$ buf build \
+  --type acme.weather.v1.Units \
+  --type acme.weather.v1.CurrentWeather.Temperature
+```
+
+In this case, dependent descriptors for both `acme.weather.v1.Units` and
+`acme.weather.v1.CurrentWeather.Temperature` are included in the output.
+:::
+
+### Type restriction example
+
+As an example, consider these two `.proto` files:
+
+```protobuf title="foo.proto"
+package pkg;
+message Foo {
+  optional Bar bar = 1;
+  extensions 2 to 3;
+}
+message Bar { ... }
+message Baz {
+  other.Qux qux = 1 [(other.my_option).field = "buf"];
+}
+```
+
+```protobuf title="bar.proto"
+package other;
+extend Foo {
+  optional Qux baz = 2;
+}
+message Qux{ ... }
+message Quux{ ... }
+extend google.protobuf.FieldOptions {
+  optional Quux my_option = 51234;
+}
+```
+
+This table shows which files, messages, and extensions would be included for various types from
+`foo.proto` and `bar.proto` if specified as the argument to `--type`:
+
+Type | Files | Messages | Extensions
+:----|:------|:---------|:----------
+`buf build --type pkg.Foo` | `foo.proto`, `bar.proto` | `pkg.Foo`, `pkg.Bar`, `other.Qux` | `other.baz`
+`buf build --type pkg.Bar` | `foo.proto` | `pkg.Bar` | |
+`buf build --type pkg.Baz` | `foo.proto`, `bar.proto` | `pkg.Baz`, `other.Quux`, `other.Qux` | `other.my_option`
 
 ## Docker
 
 Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
-```sh
+```terminal
 $ docker run \
   --volume "$(pwd):/workspace" \
   --workdir /workspace \
   bufbuild/buf build
 ```
 
+[enums]: https://developers.google.com/protocol-buffers/docs/proto3#enum
 [filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
+[image]: ../reference/images.md
+[messages]: https://developers.google.com/protocol-buffers/docs/proto3#simple
+[module]: ../bsr/overview.md#modules
+[proto2]: https://developers.google.com/protocol-buffers/docs/proto
+[services]: https://developers.google.com/protocol-buffers/docs/proto3#services

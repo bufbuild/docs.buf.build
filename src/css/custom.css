@@ -68,7 +68,7 @@
   --ifm-color-warning: rgba(230, 126, 34, 0.1);
 
   /* Syntax widget */
-  --syntax-color-static: var(--ifm-color-gray);
+  --syntax-color-constant: var(--ifm-color-gray);
   --syntax-color-variable: var(--ifm-color-primary);
   --syntax-color-default: var(--ifm-color-orange);
 }
@@ -125,6 +125,10 @@ figcaption {
   color: var(--ifm-font-color-base);
 }
 
+.admonition .prism-code {
+  border: 1px solid var(--ifm-color-gray);
+}
+
 .admonition.admonition-success,
 .admonition.admonition-tip {
   border: 2px solid rgb(0, 200, 83);
@@ -145,6 +149,24 @@ figcaption {
 
 .admonition.admonition-warning {
   border: 2px solid #e67e22;
+}
+
+.admonition-heading {
+  text-transform: none;
+}
+
+.admonition ul,
+.admonition pre {
+  margin: 0;
+}
+
+.admonition a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.admonition a:hover {
+  text-decoration: underline;
 }
 
 /* Markdown blockquotes */

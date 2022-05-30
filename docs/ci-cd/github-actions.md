@@ -21,7 +21,7 @@ all pull requests, and `buf push` pushes your module to the BSR when your pull r
 
 ## Create a BSR token
 
-The `buf-push` step requires access to the BSR. For steps on obtaining a token, please see the
+The `buf-push` step requires access to the BSR. For steps on obtaining a token, see the
 [Authentication](../bsr/authentication.md) page for more details. This needs to be added as an encrypted
 [GitHub Secret](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-setup-action@v1
 ```
 
 This ensures that `buf` is installed with the latest release version and is available for all subsequent steps
@@ -51,9 +51,9 @@ within the current job.
 To pin the `buf` CLI to a specific version, update your setup step to include a version:
 
 ```yaml {2-3}
-- uses: bufbuild/buf-setup-action@v0.6.0
+- uses: bufbuild/buf-setup-action@v1
   with:
-    version: 1.0.0
+    version: '1.4.0'
 ```
 
 To resolve the latest release from GitHub, you can specify `latest`, but this is **not** recommended:
@@ -61,7 +61,7 @@ To resolve the latest release from GitHub, you can specify `latest`, but this is
 ```yaml
 steps:
   - uses: actions/checkout@v2
-  - uses: bufbuild/buf-setup-action@v0.6.0
+  - uses: bufbuild/buf-setup-action@v1
     with:
       version: 'latest'
 ```
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-lint-action@v1
 ```
 
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-lint-action@v1
       - uses: bufbuild/buf-breaking-action@v1
         with:
@@ -130,7 +130,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-lint-action@v1
       - uses: bufbuild/buf-breaking-action@v1
         with:
@@ -181,7 +181,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-lint-action@v1
         with:
           input: 'proto'

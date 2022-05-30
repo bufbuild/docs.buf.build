@@ -23,7 +23,7 @@ Failure: pet/v1/pet.proto:5:8:payment/v1alpha1/payment.proto: does not exist.
 
 This is a bit puzzling because you can successfully build the module locally:
 
-```
+```terminal
 $ buf build
 ```
 
@@ -78,6 +78,7 @@ $ cd ../petapis
 
 ```yaml title="petapis/buf.yaml" {4}
  version: v1
+ name: buf.build/$BUF_USER/petapis
  deps:
    - buf.build/googleapis/googleapis
 +  - buf.build/$BUF_USER/paymentapis

@@ -5,7 +5,7 @@ title: Migrate From Protolock
 
 [Protolock](https://github.com/nilslice/protolock) is a widely used Protobuf tool that primarily
 concentrates on breaking change detection. It deserves a lot of praise - in the OSS world, it
-largely pioneered the breaking change detection effort, and has been very well maintained. We
+largely pioneered the breaking change detection effort, and has been well maintained. We
 can't heap enough praise on this effort, it's helped the Protobuf ecosystem move forward in
 a big way.
 
@@ -29,7 +29,7 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
   can both have breakages for valid Protobuf file, and happily parse Protobuf files that are
   not valid. Instead, `buf` lets you use either the internal compiler that is tested to
   cover every edge case and parses only valid files, or use `protoc` output
-  as `buf` input. See our [compiler](../build/internal-compiler.md) discussion
+  as `buf` input. See our [compiler](../reference/internal-compiler.md) discussion
   for more details.
 - Protolock uses a custom structure, represented in [JSON](https://github.com/nilslice/protolock/blob/1a3dd1a15d36f26d0a616be4584da6a4589e7844/parse.go#L19),
   to store your Protobuf schema state. This structure is populated based on the results
@@ -69,8 +69,8 @@ detector](../breaking/overview), as well as `buf`-equivalent commands and migrat
       a local location or a remote http/https location.
 - Both Protolock and `buf` run file discovery for your Protobuf files, however `buf` allows
   you to skip file discovery and specify your files [manually](../build/usage.md#limit-to-specific-files)
-  for use cases that require this, such as [Bazel](../build-systems/bazel.md).
-- Since `buf` can process FileDescriptorSets as input, `buf` provides a [protoc plugin](../breaking/protoc-plugin.md)
+  for use cases that require this, such as [Bazel](/build-systems/bazel.md).
+- Since `buf` can process `FileDescriptorSet`s as input, `buf` provides a [protoc plugin](../reference/protoc-plugins.md#breaking)
   to allow you to use `buf`'s breaking change detection functionality with your current `protoc` setup.
 
 ## Configuration

@@ -21,7 +21,7 @@ The BSR comes with a browsable UI, dependency management, API validation and ver
 
 3. **UI and documentation** - The BSR offers complete documentation for your Protobuf files through a browsable UI with syntax highlighting, definitions, and references.
 
-4. **Code Generation** - The BSR makes possible two distinct forms of code generation:
+4. **Code generation** - The BSR makes possible two distinct forms of code generation:
 
     - *Local code generation*: The BSR contains remote references that allow you to immediately generate code for your language of choice. Use your existing `protoc` plugins,
       run `buf generate`, and you're ready to go.
@@ -34,7 +34,6 @@ The BSR comes with a browsable UI, dependency management, API validation and ver
 ### Why the BSR?
 
 You're probably wondering why adopting the Buf Schema Registry (BSR) is an improvement over your existing Protobuf workflows. Above we highlighted *what* features are available, but let's break down why the BSR aims to solve existing problems.
-
 
 **The Protobuf ecosystem deserves build guarantees**
 
@@ -83,6 +82,6 @@ Here are a few ways to get moving:
 
 ## Experimental features
 
-[Remote Generation](remote-generation/overview.md) is currently an *alpha feature*. This feature lets the BSR generate data types and service stubs for your modules and store the generated code in a **hosted registry**. With this, you can consume the generated code like any other library in your language of choice.
+[Remote generation](remote-generation/overview.md) is currently an *alpha feature*. This feature lets the BSR generate data types and service stubs for your modules and store the generated code in a **hosted registry**. With this, you can consume the generated code like any other library in your language of choice.
 
 > Note, this feature is currently available for Go. But we have plans to add additional support for other languages.

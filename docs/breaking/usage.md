@@ -3,8 +3,8 @@ id: usage
 title: Usage
 ---
 
-> We highly recommend completing [the tour](../tour/detect-breaking-changes.md) to get an overview
-> of `buf breaking`.
+> We recommend completing [the tour](../tour/detect-breaking-changes.md) for an overview of breaking
+> change detection with the `buf breaking` command.
 
 ## Define a module
 
@@ -12,7 +12,7 @@ To get started, create a [module](../bsr/overview.md#modules) by adding a [`buf.
 file to the root of the directory that contains your Protobuf definitions. You can create the default `buf.yaml`
 file with this command:
 
-```sh
+```terminal
 $ buf mod init
 ```
 
@@ -32,7 +32,7 @@ You can run `buf breaking` on your module by specifying the filepath to the dire
 and choosing an [input](../reference/inputs.md) to compare it against. In the above example, you can target the
 input defined in the current directory and compare it against the `main` `git` branch:
 
-```sh
+```terminal
 $ buf breaking --against '.git#branch=main'
 ```
 
@@ -47,17 +47,23 @@ The above `buf breaking` command:
 
 If there are errors, they are printed out in a `file:line:column:message` format by default:
 
-```sh
+```terminal
 $ buf breaking --against '.git#branch=main'
+---
 pet/v1/pet.proto:18:3:Field "1" on message "Pet" changed type from "enum" to "string".
 ```
 
 Breaking output can also be printed as JSON:
 
-```sh
+```terminal
 $ buf breaking --against '.git#branch=main' --error-format=json
+---
 {"path":"acme/pet/v1/pet.proto","start_line":18,"start_column":3,"end_line":18,"end_column":9,"type":"FIELD_SAME_TYPE","message":"Field \"1\" on message \"Pet\" changed type from \"enum\" to \"string\"."}
 ```
+
+import Examples from "@site/src/components/Examples";
+
+<Examples subject="breaking change detection with the Buf CLI" projects={["breaking-change-detection"]} />
 
 ## Common use cases
 
@@ -80,7 +86,7 @@ See the inputs documentation for details on `git` branches and `git` tags.
 As an example, if you are currently in the root of your `git` repository, you should have a `.git`
 directory. To compare against your Protobuf schema as committed on the `main` branch:
 
-```sh
+```terminal
 $ buf breaking --against '.git#branch=main'
 ```
 
@@ -91,9 +97,9 @@ in your clone within CI, so the above doesn't work. While you could work around 
 clone and doing it manually](https://docs.travis-ci.com/user/customizing-the-build/#disabling-git-clone),
 a better alternative is to give the remote path directly to `buf` to clone itself:
 
-```sh
-# Assuming your repo is github.com/foo/bar
+```terminal
 $ buf breaking --against 'https://github.com/foo/bar.git'
+# Assuming your repo is github.com/foo/bar
 ```
 
 `buf` only clones the single commit at the `HEAD` of the branch, so even for large repositories, this
@@ -101,7 +107,7 @@ should be quick.
 
 You can also compare against a `git` tag, for example `v1.0.0`:
 
-```sh
+```terminal
 $ buf breaking --against '.git#tag=v1.0.0'
 ```
 
@@ -109,7 +115,7 @@ You can also compare against a subdirectory in your git repository. For example,
 stored in the subdirectory `proto`:
 
 
-```sh
+```terminal
 $ buf breaking --against '.git#tag=v1.0.0,subdir=proto'
 ```
 
@@ -121,11 +127,11 @@ For remote locations that require authentication, see [HTTPS Authentication](../
 You can compare against a tar or zip archive of your `.proto` files as well. This is especially useful for
 GitHub where tarballs and zip archives can be retrieved for any commit or branch.
 
-```sh
-# Assuming your repo is github.com/foo/bar and COMMIT is a variable storing the commit
-# to compare against
+```terminal
 $ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.tar.gz#strip_components=1"
 $ buf breaking --against "https://github.com/foo/bar/archive/${COMMIT}.zip#strip_components=1"
+# Assuming your repo is github.com/foo/bar and COMMIT is a variable storing the commit
+# to compare against
 ```
 
 ## Deleted references
@@ -140,8 +146,9 @@ references the enclosing message as well.
 
 For example, from the tour:
 
-```sh
+```terminal
 $ buf breaking --against "https://github.com/googleapis/googleapis/archive/${GOOGLEAPIS_COMMIT}.tar.gz#strip_components=1"
+---
 google/type/date.proto:50:3:Field "3" on message "Date" changed type from "int32" to "string".
 ```
 
@@ -156,13 +163,13 @@ using the `FILE` category.
 Breaking change detection is limited to the given files if the `--path` flag is specified, as in
 this command:
 
-```sh
+```terminal
 $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/to/bar.proto
 ```
 
 You can combine this with an in-line [configuration override](../configuration/overview.md#configuration-override), too:
 
-```sh
+```terminal
 $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/to/bar.proto --config '{"breaking":{"use":["WIRE_JSON"]}}'
 ```
 
@@ -171,7 +178,7 @@ $ buf breaking --against .git#branch=main --path path/to/foo.proto --path path/t
 Buf ships a Docker image [bufbuild/buf](https://hub.docker.com/r/bufbuild/buf) that enables
 you to use `buf` as part of your Docker workflow. For example:
 
-```sh
+```terminal
 $ docker run \
   --volume "$(pwd):/workspace" \
   --workdir /workspace \

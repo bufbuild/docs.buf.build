@@ -123,6 +123,6 @@ v8.1.0-1: digest: sha256:782f6522b2bc8cc943338b61a73e795c4309969f9974ef3431e4aa1
 
 Awesome, you've successfully published your first BSR plugin! 
 
-Remember, plugins are the smallest reusable components required for Code Generation. In the next section we'll prepare a BSR Template and use the `demolab/twirp` plugin created above.
+Remember, plugins are the smallest reusable components required for code generation. In the next section we'll prepare a BSR Template and use the `demolab/twirp` plugin created above.
 
 Continue to the next section to learn more about authoring *and using* [BSR Templates](template-example.md)

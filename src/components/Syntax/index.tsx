@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 enum Kind {
-  STATIC = "static",
+  CONSTANT = "constant",
   DEFAULT = "default",
   VARIABLE = "variable"
 }
@@ -12,7 +12,7 @@ type SegmentProps = {
   label: string;
   kind?: Kind;
   separator?: string;
-  varName?: string;
+  href?: string;
 };
 
 type Props = {
@@ -26,41 +26,72 @@ const hasKind = (segments: SegmentProps[], kind: Kind): boolean => {
 };
 
 const Example = ({ examples }: { examples: string[] }) => {
+  const multiple: boolean = examples.length > 1;
+
   return (
     <div className={styles.examples}>
-      {examples.length == 1 && (
-        <span>
-          Example:&nbsp;&nbsp;
+      {!multiple && (
+        <span className={styles.exampleContainer}>
+          <span className={styles.exampleTitle}>Example</span>
           <span className={styles.example}>{examples[0]}</span>
+        </span>
+      )}
+
+      {multiple && (
+        <span className={styles.exampleContainer}>
+          <span className={styles.exampleTitle}>Examples</span>
+          <div className={styles.exampleList}>
+            {examples.map((example) => (
+              <span className={styles.example}>{example}</span>
+            ))}
+          </div>
         </span>
       )}
     </div>
   );
 };
 
-const Segment = ({ label, kind, separator, varName }: SegmentProps) => {
-  let item: JSX.Element;
+const Segment = ({ label, kind, separator, href }: SegmentProps) => {
+  let item: JSX.Element | undefined = undefined;
   switch (kind) {
-    case Kind.STATIC:
-      item = <span className={styles.static}>{label}</span>;
+    case Kind.CONSTANT:
+      item = <span className={styles.constant}>{label}</span>;
       break;
     case Kind.DEFAULT:
-      item = (
-        <span className={styles.default}>
-          {`(${varName && `${varName}:`}`}
-          {label}
-          {")"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.default}>
+              {"("}
+              {label}
+              {")"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.default}>
+            {"("}
+            {label}
+            {")"}
+          </span>
+        );
       break;
     case Kind.VARIABLE:
-      item = (
-        <span className={styles.variable}>
-          {"{"}
-          {label}
-          {"}"}
-        </span>
-      );
+      item =
+        href != undefined ? (
+          <a href={href}>
+            <span className={styles.variable}>
+              {"{"}
+              {label}
+              {"}"}
+            </span>
+          </a>
+        ) : (
+          <span className={styles.variable}>
+            {"{"}
+            {label}
+            {"}"}
+          </span>
+        );
       break;
   }
   return separator != undefined ? <span className={styles.separator}>{separator}</span> : item;
@@ -74,7 +105,7 @@ const Legend = ({ segments }: { segments: SegmentProps[] }) => {
         <span>:</span>
       </span>
       <span className={styles.legendContent}>
-        {hasKind(segments, Kind.STATIC) && <span className={styles.static}>static</span>}
+        {hasKind(segments, Kind.CONSTANT) && <span className={styles.constant}>constant</span>}
         {hasKind(segments, Kind.DEFAULT) && (
           <span className={styles.default}>
             {"("}default{")"}

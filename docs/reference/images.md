@@ -6,7 +6,7 @@ title: Images
 Throughout the documentation, you may occasionally see references to Buf **images**. We'll go over what
 images are, how they are used, and the various options associated with them here.
 
-## How Protobuf plugins work
+## How Protobuf plugins work {#plugins}
 
 First we need to provide a short overview of how Protobuf plugins work.
 
@@ -248,11 +248,12 @@ The special value `-` is used to denote stdout. You can manually set the format.
 $ buf build -o -#format=json
 ```
 
-When combined with [jq](https://stedolan.github.io/jq), this also allows for introspection. For example,
-to see a list of all packages:
+You can combine this with [jq](https://stedolan.github.io/jq) to introspect the built image. To see
+a list of all packages:
 
-```sh
+```terminal
 $ buf build -o -#format=json | jq '.file[] | .package' | sort | uniq | head
+---
 "google.actions.type"
 "google.ads.admob.v1"
 "google.ads.googleads.v1.common"
@@ -281,14 +282,14 @@ Since `buf` speaks in terms of [Buf images](../reference/images.md) and
 [`FileDescriptorSet`s][filescriptorset] are images, we can use`protoc` output as `buf` input. Here's
 an example for [`buf lint`](../lint/usage.md):
 
-```sh
+```terminal
 $ protoc -I . --include_source_info -o /dev/stdout foo.proto | buf lint -
 ```
 
 ## Protoc lint and breaking change detection plugins
 
 Since `buf` "understands" [`FileDescriptorSet`s][filedescriptorset], we can provide
-plugins [`protoc-gen-buf-lint`](../lint/protoc-plugin.md) and [`protoc-gen-buf-breaking`](../breaking/protoc-plugin.md)
+plugins [`protoc-gen-buf-lint`](../reference/protoc-plugins.md#lint) and [`protoc-gen-buf-breaking`](../reference/protoc-plugins.md#breaking)
 as standard Protobuf plugins as well.
 
 [codegeneratorrequest]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/plugin.proto#L68

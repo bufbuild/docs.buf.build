@@ -3,16 +3,13 @@ id: configuration
 title: Configuration
 ---
 
-`buf`'s linter is configured through a [`buf.yaml`](../configuration/v1/buf-yaml.md) file that is
-placed at the root of the Protobuf source files it defines. If `buf lint` is executed for an
-[input](../reference/inputs.md) that contains a `buf.yaml` file, its `lint` configuration is
-used for the given operation.
+You can configure the `buf` CLI's linter with a [`buf.yaml`](../configuration/v1/buf-yaml.md) file
+at the root of the Protobuf  source files you want to lint. If you run `buf lint` against an
+[input](../reference/inputs.md) that contains a `buf.yaml` file, the lint configuration in that file
+is used. If the input doesn't contain a `buf.yaml` file, the `buf` CLI operates _as if_ a `buf.yaml`
+file with the [default values](#default-values) were present.
 
-If a `buf.yaml` file is not contained in the input, `buf` operates as if there is a `buf.yaml` file with the
-[default values](#default-values).
-
-The example config below shows all available configuration options. For more information on the `buf.yaml`
-configuration, please refer to the [reference](../configuration/v1/buf-yaml.md).
+This example config shows all of the available configuration options:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -38,10 +35,15 @@ lint:
   allow_comment_ignores: true
 ```
 
+For more info, see the [`buf.yaml` reference](../configuration/v1/buf-yaml.md).
+
+## Options
+
 ### `use`
 
-The `use` key is **optional**, and lists the IDs or categories to use for linting. For example,
-this config selects the `BASIC` lint category, as well as the `FILE_LOWER_SNAKE_CASE` ID:
+The `use` key is **optional** and lists the IDs or categories to use for linting. For example,
+this config applies the [`BASIC`](./rules.md#basic) lint category and the
+[`FILE_LOWER_SNAKE_CASE`](./rules.md#file_lower_snake_case) rule:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -51,13 +53,19 @@ lint:
     - FILE_LOWER_SNAKE_CASE
 ```
 
-The default `use` value is the single item, `DEFAULT`.
+The default `use` value is `DEFAULT` as a single item:
+
+```yaml
+use:
+  - DEFAULT
+```
 
 ### `except`
 
-The `except` key is **optional**, and removes IDs or categories from the `use` list. For example,
-this config results in all lint rules in the `DEFAULT` lint category being used except for
-`ENUM_NO_ALLOW_ALIAS` and all lint rules in the `BASIC` category:
+The `except` key is **optional** and removes IDs or categories from the `use` list. For example,
+this config results in all lint rules in the [`DEFAULT`](./rules.md#default) lint category being
+used _except_ [`ENUM_NO_ALLOW_ALIAS`](./rules.md#enum_no_allow_alias) and all lint rules in the
+[`BASIC`](./rules.md#basic) category:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -81,9 +89,9 @@ lint:
 
 ### `ignore`
 
-The `ignore` key is **optional**, and enables you to exclude directories or files from all lint
+The `ignore` key is **optional** and enables you to exclude directories or files from all lint
 rules when running `buf lint`. The specified directory or file paths **must** be relative to the
-`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with the config:
+`buf.yaml`. For example, the lint result in `foo/bar.proto` is ignored with this config:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -94,7 +102,7 @@ lint:
 
 ### `ignore_only`
 
-The `ignore_only` key is **optional**, and enables you to exclude directories or files from specific
+The `ignore_only` key is **optional** and enables you to exclude directories or files from specific
 lint rules when running `buf lint` by taking a map from lint rule ID or category to path. As with
 `ignore`, the paths **must** be relative to the `buf.yaml`
 
@@ -114,7 +122,7 @@ lint:
 
 ### `allow_comment_ignores`
 
-The `allow_comment_ignores` key is **optional**, and turns on comment-driven ignores.
+The `allow_comment_ignores` key is **optional** and turns on comment-driven ignores.
 
 ```yaml title="buf.yaml"
 version: v1
@@ -135,13 +143,13 @@ package A;
 ```
 
 **We do not recommend using this.** Buf's goal is to help everyone develop consistent Protobuf
-schemas regardless of organization, and for a large organization, it would not be helpful
+schemas regardless of organization, and for a large organization it would _not_ be helpful
 for individual engineers to decide what should and should not be ignored. This should instead be
 surfaced in a repository-wide configuration file such as `buf.yaml`.
 
-If you do have  specific items that you want to ignore, we recommended adding the offending
+If you do have specific items that you want to ignore, we recommended adding the offending
 types to a special file, for example `foo_lint_ignore.proto`, and setting the corresponding
-`ignore` or `ignore_only`. For example, say we have a legacy enum that uses `allow_alias`.
+`ignore` or `ignore_only`. For example, imagine a legacy enum that uses `allow_alias`:
 
 ```protobuf
 enum Foo {
@@ -152,7 +160,8 @@ enum Foo {
 }
 ```
 
-Place this enum in a file `foo_lint_ignore.proto` and then set up this configuration:
+You could place this enum in a file called `foo_lint_ignore.proto` and apply this lint
+configuration:
 
 ```yaml title="buf.yaml"
 version: v1
@@ -163,18 +172,17 @@ lint:
 ```
 
 We do recognize, however, that there are situations where comment-driven ignores are necessary,
-and we want users to be able to make informed decisions. Therefore, `allow_comment_ignores` is
-added as an opt-in option. This also has the effect of making it possible to keep commen-driven
-ignores disabled. For example, if you have commit checks for files via an authors/owners file,
-you can make sure `buf.yaml` is owned by a top-level repository owner, and prevent
-`allow_comment_ignores` from being set. so that `buf` ignores any `buf:lint:ignore`
-annotations.
+and we want users to be able to make informed decisions, so we added the `allow_comment_ignores`
+option. This also has the effect of making it possible to keep commen-driven ignores disabled. If
+you have commit checks for files via an authors/owners file, for example, you can make sure
+that `buf.yaml` is owned by a top-level repository owner and prevent `allow_comment_ignores` from
+being set, so that `buf` ignores any `buf:lint:ignore` annotations.
 
 ### `enum_zero_value_suffix`
 
 The `enum_zero_value_suffix` key is **optional**, and controls the behavior of the
 `ENUM_ZERO_VALUE_SUFFIX` lint rule. By default, this rule verifies that the zero value of all
-enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide](https://developers.google.com/protocol-buffers/docs/style#enums).
+enums ends in `_UNSPECIFIED`, as recommended by the [Google Protobuf Style Guide][style].
 But organizations may have a different preferred suffix, for example `_NONE`, and `enum_zero_value_suffix`
 enables you to set a suffix like this:
 
@@ -229,14 +237,14 @@ somewhat:
 
 - `rpc_allow_same_request_response` allows the same message type to be used for a single RPC's
   request and response type.
-- `rpc_allow_google_protobuf_empty_requests` allows RPC requests to be [google.protobuf.Empty](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/empty.proto)
+- `rpc_allow_google_protobuf_empty_requests` allows RPC requests to be [`google.protobuf.Empty`][empty]
   messages. This can be set if you want to allow messages to be void forever, that is, to
   never take any parameters.
 - `rpc_allow_google_protobuf_empty_responses` allows RPC responses to be `google.protobuf.Empty`
   messages. This can be set if you want to allow messages to never return any parameters.
 
-The file `google/protobuf/empty.proto` is part of the [Well-Known Types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf),
-and can be directly included in any Protobuf schema. For example:
+The file `google/protobuf/empty.proto` is part of the [Well-Known Types][wkt], and can be directly
+included in any Protobuf schema. For example:
 
 ```protobuf
 syntax = "proto3";
@@ -286,3 +294,7 @@ lint:
   rpc_allow_google_protobuf_empty_responses: false
   service_suffix: Service
 ```
+
+[empty]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/empty.proto
+[style]: https://developers.google.com/protocol-buffers/docs/style#enums
+[wkt]: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf

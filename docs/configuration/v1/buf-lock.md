@@ -3,7 +3,7 @@ id: buf-lock
 title: buf.lock
 ---
 
-If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it's be accompanied by a `buf.lock` file that contains your
+If your [`buf.yaml`](buf-yaml.md) declares any `deps`, it will be accompanied by a `buf.lock` file that contains your
 [module](../../bsr/overview.md#modules)'s dependency manifest. This manifest represents a single, reproducible build of your module.
 
 You can create or update a `buf.lock` file for your module by running the `buf mod update` command. For
@@ -40,9 +40,9 @@ are uniquely represented and reproducible.
 ### Push and update modules
 
 You can then publish and share this particular snapshot with your consumers and/or collaborators by
-pushing it to the [BSR](../../bsr/overview.md) with th command:
+pushing it to the [BSR](../../bsr/overview.md) with the command:
 
-```sh
+```terminal
 $ buf push
 ```
 
@@ -64,4 +64,4 @@ deps:
 > as a part of the dependencies. Your `buf.lock` shouldn't include these fields if you've
 > run `buf mod update` with a newer version of `buf`.
 
-For more on updating dependencies and pushing modules, please refer to the [Iterate on Modules](../../how-to/iterate-on-modules.md) guide.
+For more on updating dependencies and pushing modules, see the guide to [iterating on Modules](../../how-to/iterate-on-modules.md).

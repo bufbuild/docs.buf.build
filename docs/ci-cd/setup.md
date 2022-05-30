@@ -20,12 +20,12 @@ This guide is also supplemented by the [buf-example](https://github.com/bufbuild
 repository, which provides a functional example for integrating `buf` into [CircleCI](https://circleci.com),
 [TravisCI](https://travis-ci.org), or [GitHub Actions](https://github.com/features/actions).
 For a quick solution that uses a [Makefile](https://github.com/bufbuild/buf-example/blob/master/Makefile),
-please refer to [buf-example](https://github.com/bufbuild/buf-example)!
+see to [buf-example](https://github.com/bufbuild/buf-example)!
 
 ## Installation
 
-> This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
-> repository for a functional example.
+> For a functional example, see the [buf-example](https://github.com/bufbuild/buf-example)
+> repository.
 
 The first step is to get `buf` running on your CI/CD worker. In order to do so, you'll need an install
 script. `buf` can be downloaded from a release or built from source.
@@ -46,12 +46,12 @@ import TabItem from '@theme/TabItem';
 
 PROJECT=<your-project-name>
 # Use your desired buf version
-BUF_VERSION=1.0.0
+BUF_VERSION=1.4.0
 # buf is installed to ~/bin/your-project-name.
-BIN_DIR=$HOME/bin/$(PROJECT)
+BIN_DIR=$HOME/bin/$PROJECT
 
 curl -sSL \
-	"https://github.com/bufbuild/buf/releases/download/v$BUF_VERSION/buf-$(shell uname -s)-$(shell uname -m)" \
+	"https://github.com/bufbuild/buf/releases/download/v$BUF_VERSION/buf-$(uname -s)-$(uname -m)" \
 	-o "$BIN_DIR/buf"
 chmod +x "$BIN_DIR/buf"
 ```
@@ -63,7 +63,7 @@ for the given `BUF_VERSION` and operating system. The binary is then given execu
 <TabItem value="build">
 
 If you intend on building `buf` from source, this assumes that you have the Go toolchain available in your CI/CD.
-If not, please refer to the [Go Documentation](https://golang.org/) for more details.
+If not, see the [Go Documentation](https://golang.org/) for more details.
 
 ```bash title="install.sh"
 #!/bin/bash
@@ -78,42 +78,49 @@ rm -rf $BUF_TMP
 
 ## Running lint and breaking change detection {#checks}
 
-> This is demonstrated in [buf-example](https://github.com/bufbuild/buf-example), so please refer to that
-> repository for a functional example.
+> For a functional example, see the [buf-example](https://github.com/bufbuild/buf-example) repository.
 
 To run lint checks with your job, simply add `buf lint` to it and you're good to go!
 
 If your [`buf.yaml`](../configuration/v1/buf-yaml.md) is defined at the root of your repository, you
 can run the linter with this command:
 
-```sh
-buf lint
+```terminal
+$ buf lint
 ```
 
 If, on the other hand, your `buf.yaml` is defined in a nested directory, such as the `proto`
 directory, the command looks like this:
 
-```sh
-buf lint proto
+```terminal
+$ buf lint proto
 ```
 
 For `buf breaking`, the process is similar, but be sure to set the full `https` or `ssh`
 remote as the target. If your `buf.yaml` is defined at the root of your repository,
 the command looks like this:
 
-```sh
-buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
-# or
-buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main"
+```terminal
+$ buf breaking --against "https://github.com/<your-org>/<your-repo>.git#branch=main"
+```
+
+Also valid:
+
+```terminal
+$ buf breaking --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main"
 ```
 
 Again, if your `buf.yaml` is defined in a nested directory, such as the `proto` directory,
 the command looks like this (notice the `subdir` parameter):
 
-```sh
-buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
-# or
-buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
+```terminal
+$ buf breaking proto --against "https://github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
+```
+
+Also valid:
+
+```terminal
+$ buf breaking proto --against "ssh://git@github.com/<your-org>/<your-repo>.git#branch=main,subdir=proto"
 ```
 
 If you are on [TravisCI](https://travis-ci.org) or [CircleCI](https://circleci.com) they
@@ -139,7 +146,7 @@ and your username as `BUF_USER`:
 $ echo ${BUF_API_TOKEN} | buf registry login --username ${BUF_USER} --token-stdin
 ```
 
-For more details on authenticating to the `BSR`, please see [Authentication](../bsr/authentication.md).
+For more details on authenticating to the `BSR`, see [Authentication](../bsr/authentication.md).
 
 ## CI caching
 

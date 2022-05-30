@@ -1,0 +1,59 @@
+.urlsContainer {
+  border: 1.5px solid var(--buf-light-button-border-color);
+  border-radius: 0.25rem;
+}
+
+.urlsContainer h3,
+.urlsContainer h4,
+.urlsContainer p {
+  margin: 0;
+  padding: 0;
+}
+
+.urlContainer {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.urlContainer + .urlContainer {
+  border-top: 1.25px solid var(--buf-light-button-border-color);
+}
+
+.urlTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.docsPath {
+  font-size: 0.75rem;
+}
+
+.url {
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  font-family: var(--ifm-font-family-monospace);
+  background-color: rgb(246, 248, 250);
+}
+
+.constant {
+  color: var(--syntax-color-static);
+}
+
+.variable {
+  color: var(--syntax-color-variable);
+}
+
+.separator {
+  color: var(--syntax-color-static);
+}
+
+.example {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 0.8rem;
+}

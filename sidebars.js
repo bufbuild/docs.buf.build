@@ -31,7 +31,7 @@ const sidebars = {
     {
       type: "category",
       label: "Build",
-      items: ["build/usage", "build/internal-compiler"],
+      items: ["build/usage"],
       collapsed: false
     },
     {
@@ -43,25 +43,19 @@ const sidebars = {
     {
       type: "category",
       label: "Lint",
-      items: [
-        "lint/overview",
-        "lint/usage",
-        "lint/configuration",
-        "lint/rules",
-        "lint/protoc-plugin"
-      ],
+      items: ["lint/overview", "lint/usage", "lint/configuration", "lint/rules"],
       collapsed: false
     },
     {
       type: "category",
       label: "Breaking Change Detection",
-      items: [
-        "breaking/overview",
-        "breaking/usage",
-        "breaking/configuration",
-        "breaking/rules",
-        "breaking/protoc-plugin"
-      ],
+      items: ["breaking/overview", "breaking/usage", "breaking/configuration", "breaking/rules"],
+      collapsed: false
+    },
+    {
+      type: "category",
+      label: "Format",
+      items: ["format/usage", "format/style"],
       collapsed: false
     },
     {
@@ -85,11 +79,11 @@ const sidebars = {
           },
           items: [
             "bsr/remote-generation/overview",
-            "bsr/remote-generation/concepts",
+            "bsr/remote-generation/go",
+            "bsr/remote-generation/js",
             "bsr/remote-generation/plugin-example",
             "bsr/remote-generation/template-example",
-            "bsr/remote-generation/remote-plugin-execution",
-            "bsr/remote-generation/consume-generated-go-code"
+            "bsr/remote-generation/remote-plugin-execution"
           ],
           collapsed: false
         }
@@ -160,7 +154,13 @@ const sidebars = {
     {
       type: "category",
       label: "Reference",
-      items: ["reference/workspaces", "reference/images", "reference/inputs"],
+      items: [
+        "reference/workspaces",
+        "reference/images",
+        "reference/inputs",
+        "reference/internal-compiler",
+        "reference/protoc-plugins"
+      ],
       collapsed: false
     },
     "editor-integration",

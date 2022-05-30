@@ -20,8 +20,8 @@ First, some basic terminology to help our discussion:
   `buf build` command.
 - A Buf **image** is encoded as an [`Image`][image-proto] Protobuf message. The mechanics of Buf
   images are described in the [reference docs](images.md).
-- An **input** is either a **source**—a set of `.proto` files—or an **image**—a set of `.proto`
-  files built into a single, encapsulating Protobuf [`Image`][image-proto] message.
+- An **input** is either a **source**&mdash;a set of `.proto` files&mdash;or an **image**&mdash;a
+  set of `.proto` files built into a single, encapsulating Protobuf [`Image`][image-proto] message.
 - All **inputs** have a **format** that describes the type of the **input**. Commonly used formats
   include [`dir`](#dir) and [`git`](#git). The **format** of an **input** is usually derived
   automatically but you can opt to set it explicitly.
@@ -126,6 +126,14 @@ Examples:
   - `path/to/dir` says to compile the files in this relative directory path.
   - `/absolute/path/to/dir` says to compile the files in this absolute directory path.
 
+### mod
+
+A Module on the Buf Schema Registry. This uses whatever is in this Module for the sources.
+
+Example:
+
+  - `buf.build/googleapis/googleapis` says to compile the files within [buf.build/googleapis/googleapis](https://buf.build/googleapis/googleapis).
+
 ### tar
 
 A tarball. The path to this tarball can be either a local file, a remote http/https location, or
@@ -217,7 +225,7 @@ Examples:
   - `ssh://git@github.com/org/private-repo.git#branch=master` is also valid.
   - `https://github.com/googleapis/googleapis#format=git,branch=master` is also valid.
 
-### file
+### protofile
 
 A local proto file. The path can be either relative or absolute, similar to the [dir](#dir) input.
 This is a special input that uses the file and its imports as the input to `buf` commands.
@@ -239,7 +247,7 @@ Examples:
 
 ### Symlinks
 
-Note that symlinks are supported for `dir` and `file` inputs only, while `git`, `tar`, and `zip` inputs
+Note that symlinks are supported for `dir` and `protofile` inputs only, while `mod`, `git`, `tar`, and `zip` inputs
 ignore all symlinks.
 
 ## Image formats
@@ -262,7 +270,7 @@ You can create images using `buf build`. Examples:
 
 Note that `-o` is an alias for `--output`.
 
-**You can also create Buf images in the `bin` format using `protoc`**. See the [internal compiler](../build/internal-compiler.md)
+**You can also create Buf images in the `bin` format using `protoc`**. See the [internal compiler](../reference/internal-compiler.md)
 documentation for more details.
 
 The command below, for examples, shows a way to compile all Protobuf files in your current directory,

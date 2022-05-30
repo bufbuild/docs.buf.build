@@ -68,7 +68,7 @@ deps:
 
 > Depending on specific references is an advanced feature; you should depend on the latest commit whenever
 > possible. In other words, your `deps` don't need to include the `:<reference>` suffix in most cases.
-> Please refer to `buf`'s [best practices](../../best-practices/module-development.md) to learn more!
+> See `buf`'s [best practices](../../best-practices/module-development.md) to learn more!
 
 ### `build`
 
@@ -94,7 +94,7 @@ using this option in general**, however in some situations it is unavoidable.
 #### `roots`
 
 > `roots` are no longer recommended and have been removed in `v1` in favor of [workspaces](../../reference/workspaces.md). If you
-> have any `roots` configured, please refer to the [migration guide](../v1beta1-migration-guide.md).
+> have any `roots` configured, see the [migration guide](../v1beta1-migration-guide.md).
 
 This is a list of the directories that contain your `.proto` files. The directory paths must be relative
 to the root of your `buf.yaml`, and cannot point to a location outside of your `buf.yaml`. They also represent
@@ -127,10 +127,10 @@ import "foo/bar/bar.proto";
 #### Root requirements
 
 > These requirements are no longer relevant in `v1` because `roots` have been removed. These guidelines remain for users
-> that are still using `v1beta1`. For more information, please refer to the [migration guide](../v1beta1-migration-guide.md).
+> that are still using `v1beta1`. For more information, see the [migration guide](../v1beta1-migration-guide.md).
 
 There are two additional requirements that `buf` imposes on your `.proto` file structure for compilation to succeed that
-are not enforced by `protoc`, both of which are very important for successful modern Protobuf development across a number
+are not enforced by `protoc`, both of which are essential to successful modern Protobuf development across a number
 of languages.
 
 **1. Roots must not overlap, that is one root can not be a sub-directory of another root.**
@@ -202,11 +202,11 @@ Which copy of `google/api/*.proto` wins? The answer is no one wins. So Buf doesn
 ### `lint`
 
 The `lint` key is **optional**, and specifies the `lint` rules enforced on the files contained within the
-module. The `lint` configuration shape is unchanged between `v1beta1` and `v1`, so please refer
+module. The `lint` configuration shape is unchanged between `v1beta1` and `v1`, so refer
 to the [lint configuration](../../lint/configuration.md) for more information.
 
 ### `breaking`
 
 The `breaking` key is **optional**, and specifies the breaking change detection rules enforced on the files
 contained within the module. The `breaking` configuration shape is unchanged between `v1beta1` and
-`v1`, so please refer to the [breaking configuration](../../breaking/configuration.md) for more information.
+`v1`, so refer to the [breaking configuration](../../breaking/configuration.md) for more information.

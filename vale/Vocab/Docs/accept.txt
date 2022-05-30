@@ -51,6 +51,7 @@ grpcurl
 gz
 gzip
 hardcoding
+href
 html
 http
 https
@@ -136,10 +137,11 @@ Twirp
 Uber
 uname
 uncategorized
-Undeprecate
+undeprecate
 uniq
 unreferenced
-Uri
+uri
+urls
 usingcurl
 usr
 vendored

@@ -29,7 +29,7 @@ option go_package = "github.com/bufbuild/buf-tour/petstore/gen/proto/go/pet/v1;p
 
 This option is required by `proto` and `protoc-gen-go` but it has nothing to do with the actual
 API definition in Protobuf. It's an API *consumer* concern, not an API *producer* concern.
-Different consumers may—and usually do—want to provide custom values for this option, especially
+Different consumers may&mdash;and usually do&mdash;want to provide custom values for this option, especially
 when a set of Protobuf definitions has many different consumers.
 
 With managed mode, you can remove the `go_package` option altogether, as in these two diffs:
@@ -82,8 +82,8 @@ option to your `buf.gen.yaml` template and set a package prefix with the
 > the module.
 
 
-With managed mode you don't have to worry about this nuanced behavior. You can set the
-set the `go_package_prefix.default` value to the `name` in your `go.mod` joined with the `out` path
+With managed mode you don't have to worry about this nuanced behavior. You can set the 
+`go_package_prefix.default` value to the `name` in your `go.mod` joined with the `out` path
 configured for the `protoc-gen-go` plugin. In the example below, the module path
 (`github.com/bufbuild/buf-tour/petstore`) and the plugin output path (`gen/proto/go`) result in a
 [`go_package_prefix.default`](/configuration/v1/buf-gen-yaml#default) setting of
@@ -195,9 +195,9 @@ With the `except` setting, the `go_package` option in all of the files provided 
 
 If you regenerate the stubs, you'll notice that it's successful:
 
-```terminal
-$ rm -rf gen
-$ buf generate
+```sh
+rm -rf gen
+buf generate
 ```
 
 You can also verify that the generated code compiles with this command:

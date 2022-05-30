@@ -17,7 +17,7 @@ is not available on a server, which is the common case.
 We recommend using [grpcurl](https://github.com/fullstorydev/grpcurl) for gRPC operations
 from the command line. We feel that `grpcurl` is the most reliable gRPC CLI tool while
 providing most necessary functionality. Additionally, `grpcurl` actually uses the same
-Protobuf library that Buf's [internal compiler](../build/internal-compiler.md)
+Protobuf library that Buf's [internal compiler](../reference/internal-compiler.md)
 is derived from.
 
 To use `buf`-produced `FileDescriptorSet`s with `grpcurl` on the fly:

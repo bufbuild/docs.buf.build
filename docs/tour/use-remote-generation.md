@@ -6,7 +6,7 @@ title: 16 Bonus — Use remote generation
 > The [remote code generation](/bsr/remote-generation/overview) feature is currently in **alpha**. We started with Go and have plans to add support for other languages. [Let us know](/contact.md) which language we should tackle next.
 
 In this section, you'll learn how to use Buf's Go Module Proxy to import the Go/gRPC client and
-server stubs as you would import any other Go library. Remote Generation thus reduces the code
+server stubs as you would import any other Go library. Remote generation thus reduces the code
 generation workflow to two steps:
 
 1. `buf push`
@@ -17,9 +17,9 @@ generation workflow to two steps:
 You won't need to generate any code locally at this stage, so you can remove the `buf.gen.yaml` as
 well as the generated code in the `gen` directory:
 
-```terminal
-$ rm buf.gen.yaml
-$ rm -rf gen
+```sh
+rm buf.gen.yaml
+rm -rf gen
 ```
 
 As expected, if you try to recompile your Go program, you'll notice a compilation error:
@@ -50,7 +50,7 @@ to generate *with*:
 	title="Generated Go module path syntax"
 	examples={["go.buf.build/grpc/go/googleapis/googleapis"]}
 	segments={[
-    {"label": "go.buf.build", "kind": "static"},
+    {"label": "go.buf.build", "kind": "constant"},
     {"separator": "/"},
     {"label": "template owner", "kind": "variable"},
     {"separator": "/"},
@@ -59,8 +59,8 @@ to generate *with*:
     {"label": "module owner", "kind": "variable"},
     {"separator": "/"},
     {"label": "module name", "kind": "variable"},
-  ]
-} />
+  ]}
+/>
 
 With the module `buf.build/$BUF_USER/petapis` and template `buf.build/grpc/templates/go`, for example, the
 import path looks like this:
@@ -177,7 +177,7 @@ start/
 ## 16.4 Synthetic versions
 
 Now that your Go code depends on a remote-generated library, it's important to be aware of how it's
-versioned. The challenge with versioning Remote Generation is that the generated code is the product
+versioned. The challenge with versioning remote generation is that the generated code is the product
 of two inputs:
 
 * The Protobuf module
@@ -202,15 +202,16 @@ import Syntax from "@site/src/components/Syntax";
 
 <Syntax
   title="Synthetic version syntax"
-  examples={["v1.3.5"]}
+  examples={["v1.3.5", "v1.2.26"]}
   segments={[
-    {label: "v1", kind: "static"},
+    {label: "v", kind: "constant"},
+    {label: "1", kind: "constant"},
     {separator: "."},
-    {label: "template version", kind: "variable"},
+    {label: "templateVersion", kind: "variable", href: "/bsr/remote-generation/overview#templates"},
     {separator: "."},
-    {label: "commit sequence ID", kind: "variable"},
-  ]
-} />
+    {label: "commitSequenceID", kind: "variable", href: "/bsr/remote-generation/overview#commits"},
+  ]}
+/>
 
 In the example above, the version `v1.3.5` represents the **3**rd version of a hosted template and the
 **5**th commit of a Protobuf module. In the example `go.mod` below, the `petapis` module uses

@@ -327,8 +327,43 @@
   to = "/tour/introduction"
   status = 301
 
+[[redirects]]
+  from = "/build/internal-compiler"
+  to = "/reference/internal-compiler"
+  status = 301
+
+[[redirects]]
+  from = "/breaking/protoc-plugin"
+  to = "/reference/protoc-plugins#breaking"
+  status = 301
+
+[[redirects]]
+  from = "/lint/protoc-plugin"
+  to = "/reference/protoc-plugins#lint"
+  status = 301
+
 # Corrects a prior misspelling
 [[redirects]]
   from = "/tour/login-to-the-bsr"
   to = "/tour/log-into-the-bsr"
+  status = 301
+
+[[redirects]]
+  from = "/bsr-npm"
+  to = "/bsr/remote-generation/js"
+  status = 301
+ 
+[[redirects]]
+  from = "/bsr/remote-generation/npm"
+  to = "/bsr/remote-generation/js"
+  status = 301
+
+[[redirects]]
+  from = "/bsr/remote-generation/consuming-generated-code"
+  to = "/bsr/remote-generation/go"
+  status = 301
+
+[[redirects]]
+  from = "/bsr/remote-generation/concepts"
+  to = "/bsr/remote-generation/overview#concepts"
   status = 301

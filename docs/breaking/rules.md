@@ -500,7 +500,7 @@ can result in different HTTP verbs being used.
 
 We think the rules above represent a complete view of what is and isn't compatible with respect to Protobuf schema. We cover
 every available field within a [`FileDescriptorSet`][filedescriptorset]
-as of protobuf v3.11.4, as well as additional fields as added. If we missed something, please [let us know](../contact.md).
+as of protobuf v3.11.4, as well as additional fields as added. If we've missed something, [let us know](../contact.md).
 
 We did leave out custom options, though. There's no way for `buf` to know the effects of your custom options, so we cannot
 reliably determine their compatibility. We may add the [google.api](https://github.com/googleapis/googleapis/tree/master/google/api)
