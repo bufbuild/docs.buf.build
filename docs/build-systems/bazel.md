@@ -43,7 +43,7 @@ rules_proto_toolchains()
 
 ### Using a specific version of the Protobuf rules
 
-[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, it automatically loads `rules_proto``, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
+[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, it automatically loads `rules_proto`, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
 
 ```python title="WORKSPACE"
 # Prerequisites
@@ -66,12 +66,12 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-# Load rules_buf version 1.0.0-rc11
+# Load rules_buf version 0.1.0
 http_archive(
     name = "rules_buf",
     sha256 = "d6b2513456fe2229811da7eb67a444be7785f5323c6708b38d851d2b51e54d83",
     urls = [        
-         "https://github.com/bufbuild/rules_buf/releases/download/v1.0.0-rc11/rules_go-v1.0.0-rc11.zip",
+         "https://github.com/bufbuild/rules_buf/releases/download/v0.1.0/rules_buf-v0.1.0.zip",
     ],
 )
 
@@ -80,21 +80,7 @@ http_archive(
 
 ## Rules
 
-You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. There are two ways to reference that file in Bazel rules:
-
-1. Using a raw reference:
-
-    ```python
-    config = "buf.yaml",
-    ```
-
-1. Using Bazel's built-in [`exports_files`][exports_files] function:
-
-    ```python
-    config = exports_files(["buf.yaml"])
-    ```
-
-For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
+The rules work alongside `proto_library` rules. You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
 
 > We recommend using the [Gazelle extension](#gazelle) to generate these rules.
 
