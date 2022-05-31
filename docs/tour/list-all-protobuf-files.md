@@ -22,7 +22,7 @@ necessary nor recommended.
 The `ls-files` command also works with remote inputs, such as this Git input:
 
 ```terminal
-$ buf ls-files https://github.com/bufbuild/buf-tour.git#branch=main,subdir=start/petapis
+$ buf ls-files "https://github.com/bufbuild/buf-tour.git#branch=main,subdir=start/petapis"
 ---
 start/petapis/google/type/datetime.proto
 start/petapis/pet/v1/pet.proto
