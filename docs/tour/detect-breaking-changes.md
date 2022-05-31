@@ -50,7 +50,7 @@ Now, you can verify that this is a breaking change against the local `main` bran
 notice errors related to the changes you made in the [previous step](lint-your-api.md):
 
 ```terminal
-$ buf breaking --against ../../.git#branch=main,subdir=start/petapis
+$ buf breaking --against "../../.git#branch=main,subdir=start/petapis"
 ---
 pet/v1/pet.proto:1:1:Previously present service "PetStore" was deleted from file.
 pet/v1/pet.proto:20:3:Field "1" on message "Pet" changed type from "enum" to "string".
