@@ -78,6 +78,15 @@ http_archive(
 # Load the other rules_buf assets
 ```
 
+### Pinning the `buf` cli version
+
+By default, `rules_buf_toolchains` loads the latest buf version. For hermetic builds pin the cli version using the version attribute.
+
+```python title="WORKSPACE" {1-2}
+-rules_buf_toolchains()
++rules_buf_toolchains(version = "v1.5.0")
+```
+
 ## Rules
 
 The rules work alongside `proto_library` rules. You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
