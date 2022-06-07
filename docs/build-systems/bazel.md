@@ -89,9 +89,9 @@ By default, `rules_buf_toolchains` loads the latest buf version. For hermetic bu
 
 ## Rules
 
-The rules work alongside `proto_library` rules. You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references to multiple `buf.yaml` files, you need to reference each `buf.yaml` file independently.
+The rules work alongside `proto_library` rules. You can configure `rules_buf` using a [`buf.yaml`][buf_yaml] configuration file. Export the `buf.yaml` using `exports_files(["buf.yaml"])` to reference it. For repositories that contain a [`buf.work.yaml`][buf_work_yaml] that references multiple `buf.yaml` files, you need to export and reference each `buf.yaml` file independently.
 
-> We recommend using the [Gazelle extension](#gazelle) to generate these rules.
+> We recommend using the [Gazelle extension](#gazelle) to generate the following rules.
 
 ### `buf_lint_test` {#buf-lint-test}
 
@@ -241,7 +241,15 @@ buf_ls_files = rule(
 
 Start by [setting up](#overview) `rules_buf`, then set up Gazelle using the [official instructions][gazelle_setup].
 
-Once Gazelle is set up, modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
+Once Gazelle is set up, add the following snippet at the end of the `WORKSPACE` file:
+
+```python title="WORKSPACE"
+load("@rules_buf//gazelle/buf:repositories.bzl", "gazelle_buf_dependencies")
+
+gazelle_buf_dependencies()
+```
+
+Now modify the `BUILD` file with the `gazelle` target to include the `buf` extension:
 
 ```python title="BUILD" {1-2,4-13,17}
 -load("@bazel_gazelle//:def.bzl", "gazelle")
