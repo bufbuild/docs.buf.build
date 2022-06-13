@@ -106,7 +106,7 @@ const sidebars = {
       type: "category",
       label: "Build systems",
       items: ["build-systems/bazel"],
-      collapsed: true
+      collapsed: false
     },
     {
       type: "category",
