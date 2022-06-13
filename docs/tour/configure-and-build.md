@@ -77,7 +77,7 @@ a `buf.work.yaml` that contains this:
             └── validate.proto
 ```
 
-```yaml title="buf.work"
+```yaml title="buf.work.yaml"
 version: v1
 directories:
   - proto

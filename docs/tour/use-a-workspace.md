@@ -9,7 +9,7 @@ That's a great start, but product requirements always evolve and new features ne
 time.
 
 In this section, you'll incorporate another dependency into your `PetStoreService` API
-and use a [workspace](../reference/workspaces.md) to make better organize your Protobuf
+and use a [workspace](../reference/workspaces.md) to better organize your Protobuf
 definitions.
 
 ## 12.1 Create `paymentapis` {#create-paymentapis}
@@ -195,7 +195,7 @@ start/
 With the workspace initialized, you can freely import `.proto` files between the `petapis`
 and `paymentapis` modules.
 
-Adapt the `PetStoreService` with the `PurhcasePet` endpoint like this:
+Adapt the `PetStoreService` with the `PurchasePet` endpoint like this:
 
 ```protobuf title="petapis/pet/v1/pet.proto" {7,12-18,23}
  syntax = "proto3";
@@ -216,7 +216,7 @@ Adapt the `PetStoreService` with the `PurhcasePet` endpoint like this:
 +
 +message PurchasePetResponse {}
 +
- service PetStore {
+ service PetStoreService {
    rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
    rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
    rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
