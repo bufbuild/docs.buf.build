@@ -74,7 +74,7 @@ http_archive(
 
 ### Pinning the `buf` version
 
-By default, `rules_buf_toolchains` loads the latest buf version. For hermetic builds pin the cli version using the version attribute.
+By default, `rules_buf_toolchains` loads the latest `buf` version. For hermetic builds pin the `buf` version using the version attribute.
 
 ```python title="WORKSPACE" {1-2}
 # rules_buf fetches the sha based on the version number, the version is enough for hermetic builds.
