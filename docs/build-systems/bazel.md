@@ -40,7 +40,7 @@ rules_proto_toolchains()
 
 ### Using a specific version of the `rules_proto`
 
-[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, it automatically loads `rules_proto`, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
+[`rules_proto`][rules_proto] is required to use `rules_buf`. By default, `rules_buf` automatically loads `rules_proto`, but you can use a specific version of it by loading it _before_ `rules_buf`. Here's an example:
 
 ```python title="WORKSPACE"
 # Prerequisites
@@ -127,7 +127,7 @@ proto_library(
 )
 ```
 
-We recomment using a single `buf_dependencies` rule for each `buf.yaml` file. The [Gazelle extension](#gazelle-dependencies) can generate them in the same pattern.
+We recomment using a single `buf_dependencies` rule for each `buf.yaml` file. The [Gazelle extension](#gazelle-dependencies) does this by default.
 
 ### `buf_lint_test` {#buf-lint-test}
 
@@ -211,7 +211,7 @@ This can be run as:
 $ bazel test :foo_proto_breaking
 ```
 
-We recommend having a single `buf_breaking_test` for each Buf module. For repositories that contain a `buf.work.yaml` that references multiple `buf.yaml` files, there needs to be exactly one `buf_breaking_test` for each `buf.yaml` file.
+We recommend having a single `buf_breaking_test` for each `buf.yaml`. For repositories that contain a `buf.work.yaml` that references multiple `buf.yaml` files, there needs to be exactly one `buf_breaking_test` for each `buf.yaml` file.
 
 Alternatively, a single `buf_breaking_test` can be used against each `proto_library` target. For this to work, `limit_to_input_files` attribute must be set to `True` as the against image file may contain other Protobuf files. Although this is closer to how bazel operates, for this particular use case it is not recommended. See the [module vs package mode example](#example-module-vs-package-mode) for a concrete example of the differences.
 
@@ -225,7 +225,7 @@ You can generate an [Image] file like this:
 $ buf build --exclude-imports -o image.bin <input>
 ```
 
-The `<input>` can be a path to a Buf module or in one of [several other Image formats](/reference/inputs).
+The `<input>` is often a directory containing a `buf.yaml`, but all of the other [Input formats](/reference/inputs) are also supported.
 
 We recommend storing the Image file in a `testdata` directory and checking it in to version control and updating it as needed. In the case of repositories that follow a versioning scheme like [semver], you can update it on each new release either manually or with a post-release hook.
 
