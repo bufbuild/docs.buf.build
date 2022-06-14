@@ -358,7 +358,7 @@ Argument  | Mandatory | Default
 :-----|:--- | :--- 
 `-from_file file` <br/><br/> Must be one of `buf.work.yaml`, `buf.yaml`, `buf.lock`. When using `buf.work.yaml` or `buf.yaml` the rule will import from the associated `buf.lock` file(s). | required |  
 `-to_macro macroFile%defName` <br/><br/> Tells Gazelle to write new repository rules into a `.bzl` macro function rather than the `WORKSPACE` file. | optional | 
-`-prune true&#124;false` <br/><br/> When true, Gazelle will remove `buf_dependencies` rules that no longer have equivalent `buf.yaml` files. | optional | `false`
+<code>-prune true&#124;false</code> <br/><br/> When true, Gazelle will remove `buf_dependencies` rules that no longer have equivalent `buf.yaml` files. | optional | `false`
 
 ### Lint
 
