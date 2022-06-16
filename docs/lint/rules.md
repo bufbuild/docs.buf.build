@@ -201,7 +201,7 @@ if you do use them.
   - `PACKAGE_SAME_JAVA_PACKAGE` checks that all files with a given package have the same value for the `java_package` option.
   - `PACKAGE_SAME_PHP_NAMESPACE` checks that all files with a given package have the same value for the `php_namespace` option.
   - `PACKAGE_SAME_RUBY_PACKAGE` checks that all files with a given package have the same value for the `ruby_package` option.
-  - `PACKAGE_SAME_SWIFT_PREFIX` checks that all files with a given package have the same value for the swift_prefix` option.
+  - `PACKAGE_SAME_SWIFT_PREFIX` checks that all files with a given package have the same value for the `swift_prefix` option.
 
 Each of these rules verify if a given file option is used in one file in a given package, it is used in every file in that package.
 
