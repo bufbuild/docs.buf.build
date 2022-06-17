@@ -291,7 +291,7 @@ Now run Gazelle
 $ bazel run //:gazelle
 ```
 
-This will now take care of updating your proto build files, just run `//:gazelle` whenever proto files are added/removed.
+This will take care of updating your proto build files, just run `//:gazelle` whenever proto files are added/removed.
 
 ### Dependencies {#gazelle-dependencies}
 
