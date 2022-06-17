@@ -7,7 +7,6 @@ Buf provides official support for the [Bazel][bazel] build tool with [`rules_buf
 
 * [Lint][lint] Protobuf sources using the [`buf_lint_test`](#buf-lint-test) rule.
 * Perform [breaking change detection][breaking] for Protobuf [Inputs][inputs] using the [`buf_breaking_test`](#buf-breaking-test) rule.
-* Use the [`buf`][buf_cli] CLI as a Bazel [toolchain](#toolchains).
 * Use the [Gazelle](#gazelle) extension to generate Bazel rules.
 
 ## Setup
@@ -244,30 +243,6 @@ This file can be referenced from `buf_breaking_test`. The commit and sha256 need
 
 > For repositories using [`buf.work.yaml`][buf_work_yaml] that reference multiple `buf.yaml` files. A single image file should be maintained for each `buf.yaml` file. This is true for both module and package level granularity of `buf_breaking_test`.
 
-## Toolchains
-
-The [`buf`][buf_cli] CLI tool is packaged as a Bazel [toolchain][toolchain]. You can be use it to create custom rules that depend on `buf`. Here's an example of a custom rule that uses the `buf` CLI as a toolchain:
-
-```python
-def _buf_ls_files_impl(ctx):
-    buf = ctx.toolchains["@rules_buf//tools/buf:toolchain_type"].cli
-    ...
-    ctx.actions.run(
-        ...
-        arguments = ["ls-files"],
-        executable = buf,
-    )
-
-buf_ls_files = rule(
-    implementation = _buf_ls_files_impl,
-    attrs = {
-        "srcs": attr.label_list(allow_files = True),  
-        # Other attributes
-    },
-    toolchains = ["@rules_buf//tools/buf:toolchain_type"]
-)
-```
-
 ## Gazelle
 
 [Gazelle][gazelle] is a build file generator for Bazel projects that natively supports Protobuf. [`rules_buf`][rules_buf] includes a Gazelle extension for generating [`buf_breaking_test`](#buf-breaking-test) and [`buf_lint_test`](#buf-lint-test) rules out of [`buf.yaml`][buf_yaml] configuration files.
@@ -488,6 +463,5 @@ Check out some of the [sample workspaces][examples] that demonstrate usage in va
 [s3]: https://aws.amazon.com/s3
 [semver]: https://semver.org
 [test]: https://docs.bazel.build/versions/main/skylark/rules.html#executable-rules-and-test-rules
-[toolchain]: https://docs.bazel.build/versions/main/toolchains.html
 [travis]: https://travis-ci.com
 [workspaces]: /reference/workspaces
