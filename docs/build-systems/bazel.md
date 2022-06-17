@@ -62,9 +62,9 @@ rules_proto_toolchains()
 
 http_archive(
     name = "rules_buf",
-    sha256 = "d6b2513456fe2229811da7eb67a444be7785f5323c6708b38d851d2b51e54d83",
+    sha256 = "<SHA256>",
     urls = [        
-         "https://github.com/bufbuild/rules_buf/releases/download/v0.1.0/rules_buf-v0.1.0.zip",
+         "https://github.com/bufbuild/rules_buf/releases/download/<VERSION>/rules_buf-<VERSION>.zip",
     ],
 )
 
@@ -136,7 +136,7 @@ We recomment using a single `buf_dependencies` rule for each `buf.yaml` file. Th
 Name  | Description | Type | Mandatory | Default
 :-----| :-----------| :--- | :-------- | :------
 `name` |  A unique name for this target.   | [Name][config_name] | required |  |
-`config` |  The [`buf.yaml`][buf_yaml] file. | [Label][config_label] | optional | None |
+`config` |  The [`buf.yaml`][buf_yaml] file. | [Label][config_label] | optional | Applies the [default][default_config] `buf.yaml` |
 `targets` |  `proto_library` targets to lint | [List of labels][config_label] | required |  |
 
 #### Example
@@ -177,7 +177,7 @@ Name  | Description | Type | Mandatory | Default
 :-----|:----------- | :--- | :-------- | :------
 `name` |  A unique name for this target.   | [Name][config_name] | required |  |
 `against` |  The image file to check against.  | [Label][config_label] | required |  |
-`config` |  The `buf.yaml` file.  | [Label][config_label] | optional | `None` |
+`config` |  The `buf.yaml` file.  | [Label][config_label] | optional | Applies the [default][default_config] `buf.yaml` |
 `exclude_imports` |  Exclude imports from breaking change detection.  | Boolean | optional | `False` |
 `limit_to_input_files` |  Only run breaking checks against the files in the targets. This has the effect of filtering the against image to only contain the files in the input. | Boolean | optional | `True` |
 `targets`|  `proto_library` targets to check for breaking changes | [List of labels][config_label] | required | `[]` |
@@ -447,6 +447,7 @@ Check out some of the [sample workspaces][examples] that demonstrate usage in va
 [build_files]: https://docs.bazel.build/versions/main/build-ref.html#BUILD_files
 [config_label]: https://bazel.build/docs/build-ref.html#labels
 [config_name]: https://bazel.build/concepts/labels
+[default_config]: https://docs.buf.build/configuration/v1beta1/buf-yaml#default-values
 [examples]: https://github.com/bufbuild/rules_buf/tree/main/examples
 [exports_files]: https://docs.bazel.build/versions/main/be/functions.html#exports_files
 [gazelle]: https://github.com/bazelbuild/bazel-gazelle
