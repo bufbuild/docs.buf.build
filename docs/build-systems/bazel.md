@@ -97,7 +97,7 @@ The rules work alongside `proto_library` rules. You can configure `rules_buf` us
 | Name  | Description | Type | Mandatory | Default |
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | name |  A unique name for this repository.   | [Name][config_name] | required |  |
-| deps |  The module pins `remote/owner/repo:revision`   | List of strings | required |  |
+| modules |  The module pins `remote/owner/repo:revision`   | List of strings | required |  |
 
 #### Example
 
@@ -106,7 +106,7 @@ load("@rules_buf//buf:defs.bzl", "buf_dependencies")
 
 buf_dependencies(
     name = "buf_deps",
-    deps = [
+    modules = [
         "buf.build/envoyproxy/protoc-gen-validate:dc09a417d27241f7b069feae2cd74a0e", 
         "buf.build/acme/petapis:84a33a06f0954823a6f2a089fb1bb82e",
     ],
@@ -120,7 +120,7 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 proto_library(
     name = "foo_proto",
     srcs = ["pet.proto"],    
-    deps = ["@buf_deps_barapis//validate:validate_proto"],
+    deps = ["@buf_deps//validate:validate_proto"],
 )
 ```
 
@@ -460,6 +460,10 @@ Let's break down this scenario,
 - The CI will run `bazel test //...`.
 - This will always pass as along with the file the test is also removed.
 
+## Examples
+
+Check out some of the [sample workspaces][examples] that demonstrate usage in various scenarios.
+
 [bazel]: https://bazel.build
 [breaking]: /breaking/overview
 [bsr]: /bsr/introduction
@@ -469,6 +473,7 @@ Let's break down this scenario,
 [build_files]: https://docs.bazel.build/versions/main/build-ref.html#BUILD_files
 [config_label]: https://bazel.build/docs/build-ref.html#labels
 [config_name]: https://bazel.build/concepts/labels
+[examples]: https://github.com/bufbuild/rules_buf/tree/main/examples
 [exports_files]: https://docs.bazel.build/versions/main/be/functions.html#exports_files
 [gazelle]: https://github.com/bazelbuild/bazel-gazelle
 [gazelle_directive]: https://github.com/bazelbuild/bazel-gazelle#directives
