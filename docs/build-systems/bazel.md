@@ -123,7 +123,7 @@ proto_library(
 )
 ```
 
-We recomment using a single `buf_dependencies` rule for each `buf.yaml` file. The [Gazelle extension](#gazelle-dependencies) does this by default.
+We recommend using a single `buf_dependencies` rule for each `buf.yaml` file. The [Gazelle extension](#gazelle-dependencies) does this by default.
 
 ### `buf_lint_test` {#buf-lint-test}
 
