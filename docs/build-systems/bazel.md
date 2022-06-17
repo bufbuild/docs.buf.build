@@ -343,7 +343,7 @@ $ bazel query 'kind(buf_lint_test, //...)'
 
 ### Breaking change detection
 
-To run [breaking change detection][breaking] against Protobuf sources, you need to add a Gazelle [directive][gazelle_directive] that points to an [Image][image] target to generate breaking change detection rules. Gazelle directives are top-level commits in Bazel [`BUILD` files][build_files] that provide Gazelle with configuration.
+To run [breaking change detection][breaking] against Protobuf sources, you need to add a Gazelle [directive][gazelle_directive] that points to an [Image][image] target to generate breaking change detection rules. Gazelle directives are top-level comments in Bazel [`BUILD` files][build_files] that provide Gazelle with configuration.
 
 > Scroll to the section on [Image inputs](#image-input) for instructions on maintaining Image files themselves.
 
