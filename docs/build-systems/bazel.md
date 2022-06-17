@@ -181,7 +181,7 @@ Name  | Description | Type | Mandatory | Default
 `config` |  The `buf.yaml` file.  | [Label][config_label] | optional | `None` |
 `exclude_imports` |  Exclude imports from breaking change detection.  | Boolean | optional | `False` |
 `limit_to_input_files` |  Only run breaking checks against the files in the targets. This has the effect of filtering the against image to only contain the files in the input. | Boolean | optional | `True` |
-`targets`|  `proto_library` targets to check for breaking changes | [List of labels][config_label] | `[]` |
+`targets`|  `proto_library` targets to check for breaking changes | [List of labels][config_label] | required | `[]` |
 
 #### Example
 
@@ -210,7 +210,7 @@ $ bazel test :foo_proto_breaking
 
 We recommend having a single `buf_breaking_test` for each `buf.yaml`. For repositories that contain a `buf.work.yaml` that references multiple `buf.yaml` files, there needs to be exactly one `buf_breaking_test` for each `buf.yaml` file.
 
-Alternatively, a single `buf_breaking_test` can be used against each `proto_library` target. For this to work, `limit_to_input_files` attribute must be set to `True` as the against image file may contain other Protobuf files. Although this is closer to how bazel operates, for this particular use case it is not recommended. See the [module vs package mode example](#example-module-vs-package-mode) for a concrete example of the differences.
+Alternatively, a single `buf_breaking_test` can be used against each `proto_library` target. For this to work, `limit_to_input_files` attribute must be set to `True` as the `against` image file may contain other Protobuf files. Although this is closer to how Bazel operates, for this particular use case it is not recommended. See the [module vs package mode example](#example-module-vs-package-mode) for a concrete example of the differences.
 
 The [Gazelle extension](#gazelle) can generate `buf_breaking_test` in either levels of granularity.
 
@@ -231,19 +231,18 @@ As an alternative to checking the Image file into version control, you can use C
 ```python title="WORKSPACE"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 
-# Assuming your using s3 and bucket is at http://s3-us-east-1.amazonaws.com/bucket/foo/bar 
+# Assuming you're using s3 and bucket is at http://s3-us-east-1.amazonaws.com/bucket/foo/bar 
 # and COMMIT is a variable storing the commit to compare against
 http_file(
     name = "buf_module",
     urls = ["http://s3-us-east-1.amazonaws.com/bucket/foo/bar/images/${COMMIT}/image.bin"],
     sha256 = "...",
 )
-``` 
+```
 
 This file can be referenced from `buf_breaking_test`. The commit and sha256 need to be updated as needed.
 
 > For repositories using [`buf.work.yaml`][buf_work_yaml] that reference multiple `buf.yaml` files. A single image file should be maintained for each `buf.yaml` file. This is true for both module and package level granularity of `buf_breaking_test`.
-
 
 ## Toolchains
 
@@ -317,7 +316,7 @@ Now run Gazelle
 $ bazel run //:gazelle
 ```
 
-The buf gazelle extension will now take care of updating your proto build files, just run `//:gazelle` whenever proto files are added/removed.
+This will now take care of updating your proto build files, just run `//:gazelle` whenever proto files are added/removed.
 
 ### Dependencies {#gazelle-dependencies}
 
@@ -342,7 +341,7 @@ gazelle(
 )
 ```
 
-Now run Gazelle update-repos command
+Now run Gazelle `update-repos` command
 ```terminal
 $ bazel run //:gazelle-update-repos
 ```
@@ -354,7 +353,7 @@ This will create the file `buf_deps.bzl` with the `buf_deps` macro that loads th
 Argument  | Mandatory | Default
 :-----|:--- | :--- 
 `-from_file file` <br/><br/> Must be one of `buf.work.yaml`, `buf.yaml`, `buf.lock`. When using `buf.work.yaml` or `buf.yaml` the rule will import from the associated `buf.lock` file(s). | required |  
-`-to_macro macroFile%defName` <br/><br/> Tells Gazelle to write new repository rules into a `.bzl` macro function rather than the `WORKSPACE` file. | optional | 
+`-to_macro macroFile%defName` <br/><br/> Tells Gazelle to write new repository rules into a `.bzl` macro function rather than the `WORKSPACE` file. | optional | ''
 <code>-prune true&#124;false</code> <br/><br/> When true, Gazelle will remove `buf_dependencies` rules that no longer have equivalent `buf.yaml` files. | optional | `false`
 
 ### Lint
@@ -397,7 +396,7 @@ Run this command to list the generated breaking rules:
 $ bazel query 'kind(buf_breaking_test, //...)'
 ```
 
-This mimics running `buf breaking` on a module. This is the most accurate way to check for breaking changes. However, depending on multiple targets at once is an anti-pattern in bazel, so that's why we've provided package mode as an alternative.
+This mimics running `buf breaking` on a module. This is the most accurate way to check for breaking changes. However, depending on multiple targets at once is an anti-pattern in Bazel, so that's why we've provided package mode as an alternative.
 
 #### Package mode
 
