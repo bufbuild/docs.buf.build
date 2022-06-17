@@ -89,7 +89,7 @@ The rules work alongside `proto_library` rules. You can configure `rules_buf` us
 
 ### `buf_dependencies` {#buf-dependencies}
 
-`buf_dependencies` is a [repository rule][repository_rule] that downloads one or more modules from the [BSR][bsr] and generates build files using Gazelle. [Setup Gazelle][gazelle_setup] to use this rule. To also use Gazelle to generate this rule see the [Dependencies](#gazelle-dependencies) section.
+`buf_dependencies` is a [repository rule][repository_rule] that downloads one or more modules from the [BSR][bsr] and generates build files using Gazelle. [Setup Gazelle][gazelle_setup] to use this rule. To also use Gazelle to generate this rule and update `deps` in `proto_library` targets see the [Dependencies](#gazelle-dependencies) section.
 
 #### Attributes
 
