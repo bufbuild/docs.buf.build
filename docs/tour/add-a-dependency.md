@@ -29,7 +29,7 @@ $ rm -rf google
 
 Now remove the `google/type/datetime.proto` reference from your [`buf.yaml`](../configuration/v1/buf-yaml.md):
 
-```yaml title="buf.yaml" {5-6}
+```yaml title="buf.yaml" {6-7}
  version: v1
  name: buf.build/$BUF_USER/petapis
  lint:
@@ -56,7 +56,7 @@ You can resolve this error by configuring a dependency in your `buf.yaml`'s
 [`deps`](/configuration/v1/buf-yaml#deps) key. The `google/type/datetime.proto` file is provided by
 the `buf.build/googleapis/googleapis` module, so you can configure it like this:
 
-```yaml title="buf.yaml" {2-3}
+```yaml title="buf.yaml" {3-4}
  version: v1
  name: buf.build/$BUF_USER/petapis
 +deps:
@@ -129,7 +129,7 @@ You can pin to a specific tag or commit by specifying it in your `deps` after th
 if you want to depend on the same commit you resolved above and prevent `buf` from updating it in the future,
 you can specify it like this:
 
-```yaml title="buf.yaml" {3-4}
+```yaml title="buf.yaml" {4-5}
  version: v1
  name: buf.build/$BUF_USER/petapis
  deps:
@@ -147,7 +147,7 @@ This is **not recommended** in general since you should _always_ be able to upda
 your dependencies if they remain backwards compatible. But in some situations it's unavoidable.
 With that said, restore the `buf.yaml` file to its previous state before you continue:
 
-```yaml title="buf.yaml" {3-4}
+```yaml title="buf.yaml" {4-5}
  version: v1
  name: buf.build/$BUF_USER/petapis
  deps:
