@@ -108,7 +108,8 @@ jobs:
 ```
 
 If any breaking changes are detected against the provided remote, `buf-breaking` adds
-inline comments to your pull request to indicate these changes.
+inline comments to your pull request to indicate these changes. The results will also be accessible from the 
+following steps with `steps.<BUF_BREAKING_STEP_ID>.outputs.results`.
 
 ## `buf-push`
 
