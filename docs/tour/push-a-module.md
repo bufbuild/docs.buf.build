@@ -27,7 +27,7 @@ no concept of a repository "clone". In other words, repositories do not exist in
 
 ### 7.1.3 Module names {#module-names}
 
-A module has a `name` and three other components:
+A fully qualified module name consists of three components:
 
   - **Remote**: The DNS name for the server hosting the BSR, such as `buf.build`.
   - **Owner**: The user or organization that owns the repository.
