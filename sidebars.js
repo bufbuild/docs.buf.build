@@ -69,6 +69,16 @@ const sidebars = {
         "bsr/documentation",
         "bsr/user-management",
         {
+          type: 'doc',
+          id: 'bsr/studio',
+          customProps: {
+            badge: {
+              label: "beta",
+              severity: "info",
+            }
+          }
+        },
+        {
           type: "category",
           label: "Remote generation",
           customProps: {

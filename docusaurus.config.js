@@ -14,7 +14,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           admonitions: {
             icons: "none"
-          }
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
