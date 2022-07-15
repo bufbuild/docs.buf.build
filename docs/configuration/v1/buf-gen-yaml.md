@@ -78,8 +78,9 @@ tree
 │       └── v1
 │           └── pet.proto
 ├── gen
-│   └── go
-│       └── ...
+│   └── proto
+│       └── go
+│           └── ...
 ├── buf.gen.yaml
 ├── buf.lock
 └── buf.yaml
