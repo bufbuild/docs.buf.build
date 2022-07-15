@@ -33,7 +33,7 @@ Traditionally, adopting Protobuf presents a number of challenges across the API 
     manner, organizations often struggle with distributing their Protobuf files and stubs. This creates substantial overhead, and often requires a dedicated team to manage
     the process. Even when using a build system like [Bazel](/build-systems/bazel.md), exposing APIs to external customers remains problematic.
 
-  - **The tooling ecosystem is limited**: Many user-friendly tools exist for REST/JSON APIs today. but mock server generation, fuzz testing, documentation, and other daily
+  - **The tooling ecosystem is limited**: Many user-friendly tools exist for REST/JSON APIs today. But mock server generation, fuzz testing, documentation, and other daily
     API concerns are not widely standardized or user friendly for Protobuf APIs. As a result, teams regularly reinvent the wheel and build custom tooling to replicate the
     JSON ecosystem.
 
