@@ -26,7 +26,7 @@ NOTE: Even though the `docker` CLI says `Login Succeeded`, it doesn't actually t
 
 ## 2. Create BSR plugin
 
-Before we can push a plugin to the BSR, a repository must exist. You can create a repository through the UI or the `buf` CLI.
+Before we can push a plugin to the BSR, it must exist first. You can create a plugin through the UI or the `buf` CLI.
 
 From the UI click your avatar in the top-right corner, select Plugins and click
 the Create Plugin button. Follow the on-screen instructions.
