@@ -3,6 +3,7 @@ id: studio
 title: Studio
 ---
 
+import Image from '@site/src/components/Image';
 import Mermaid from "@site/src/components/Mermaid";
 
 # Studio: A Production UI for Your Protobuf Services
@@ -28,7 +29,9 @@ Start by searching for the Protobuf definition of the RPC you’re looking to ma
 to. This is done through the “Select Method” menu, where you can search for the module that
 contains the desired service and RPC definition.
 
-[INSERT SCREENSHOTS OF TARGET URL AND REPOSITORY SELECTION]
+<Image alt="Studio method select button" src="/img/bsr/studio-method-select-1.png" width={60} />
+<Image alt="Studio method select modal, search for repository" src="/img/bsr/studio-method-select-2.png" width={60} />
+<Image alt="Studio method select modal, method list" src="/img/bsr/studio-method-select-3.png" width={60} />
 
 Note that Studio only supports unary RPCs currently.
 
@@ -36,7 +39,7 @@ Once you’ve selected your RPC, declare the **target URL** of the Protobuf API 
 looking to make a request to. This does not need to include the service or RPC path, since
 Studio will set that based on your selected RPC definition.
 
-[INSERT SCREENSHOTS OF METHOD SELECTION AND TARGET SET]
+<Image alt="Studio target url input" src="/img/bsr/studio-target-url.png" />
 
 ### Calling Your Target and RPC
 
@@ -75,7 +78,7 @@ sequenceDiagram
 	Sa->>St: Response forwarded to Studio UI.
 `} id={2} />
 
-[INSERT SCREENSHOT ]
+<Image alt="Studio Agent url" src="/img/bsr/studio-agent-url.png" width={60} />
 
 For more information on configuring Studio to talk to your services, see the section below
 on [Connecting Studio to Your Production Environment](bsr/studio).
@@ -88,16 +91,19 @@ also supports autocompletion to defaults.
 You can also set the headers for your request. This can be useful for any metadata you want
 to send through, authorization headers, etc.
 
-[SCREENSHOT OF REQUEST EDITOR AND HEADER]
+<Image alt="Studio request editor" src="/img/bsr/studio-request-editor.png" width={60} />
+<Image alt="Studio request headers" src="/img/bsr/studio-request-headers.png" />
 
 Once everything is set, all you need to do is press “Send”, and Studio will serialize the
 request, with the provided headers to the target and deserialize and display the response.
 
-[SCREENSHOT OF REQUEST AND RESPONSE]
+<Image alt="Studio full view with response" src="/img/bsr/studio-full-view-response.png" />
 
 ### Sharing Your Request
 
 You can also share your request with the request body, headers, and options you have set.
+
+<Image alt="Studio share modal" src="/img/bsr/studio-share.png" />
 
 ## Connecting Studio to Your Production Environment
 
@@ -122,7 +128,7 @@ Access-Control-Allow-Origin: https://studio.buf.build
 In addition to CORS policies, your service may use cookies to authenticate a request. If so,
 you can pass on the cookies from your Studio request by checking the following option:
 
-[SCREENSHOT OF COOKIES OPTION]
+<Image alt="Studio options tab with cookies option" src="/img/bsr/studio-cookies.png" />
 
 You’ll also need to set the following CORS policies on your server to allow the Studio
 request origin and credentials:
@@ -136,7 +142,7 @@ Access-Control-Allow-Credentials: true
 
 You can also add any authorization/bearer tokens to the headers of your request:
 
-[SCREENSHOT OF BEARER TOKEN HEADER]
+<Image alt="Studio headers with bearer token option" src="/img/bsr/studio-token-header.png" />
 
 ### Proxying
 
