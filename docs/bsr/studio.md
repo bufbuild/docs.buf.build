@@ -60,6 +60,11 @@ for example:
 
 <Image alt="Studio headers with bearer token option" src="/img/bsr/studio-token-header.png" />
 
+Lastly, you can select a protocol for sending your request. This is dependent on your target
+server and the method you use to send your request, covered in detail in the following section.
+
+<Image alt="Studio protocol selection" src="/img/bsr/studio-protocol-selection.png" width={75} />
+
 ### Sending Requests
 
 Once your request has been configured, there are two ways to send your request using Studio:
