@@ -158,7 +158,7 @@ Access-Control-Allow-Credentials: true
 For internal Protobuf services, we made a proxy available for Studio in the `buf` CLI,
 `buf beta studio-agent`.
 
-This runs an HTTP(S) server that forwards requests from the Studio UI to the target URL.
+This runs an HTTP(S) server that forwards requests from the Studio to the target URL.
 
 `buf beta studio-agent` is available in CLI versions v1.5.0+
 
