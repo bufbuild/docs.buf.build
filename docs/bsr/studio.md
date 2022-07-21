@@ -186,5 +186,13 @@ experience to streaming RPCs. By first restricting Studio to unary APIs, we can 
 feedback on the overall experience and incorporate it in building out our feature set for
 streaming.
 
+### Collections
+
+Currently Studio allows you access all of your BSR modules, however you can only set one
+module and RPC at a given time. We want to add the ability to define "collections" of RPCs
+across modules for easy access as you're working with Studio for your development. Also, we
+want to make "collections" shareable across users with access to the same modules for better
+collaboration on a project.
+
 As always, if you have suggestions of features or any feedback in general, feel free to
 [reach out to us](../contact).
