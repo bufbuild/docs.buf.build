@@ -13,12 +13,14 @@ host on the BSR.
 
 ## Features
 
-- You can interact with all Protobuf definitions in public and private BSR modules you have
-  access to.
-- You can inspect and edit your request in JSON. The editor provides autocomplete based on
+- You can use Protobuf definitions hosted on the BSR to compose and send requests to any API.
+- You can create and edit your request in JSON. The editor provides autocomplete based on
   the Protobuf definition selected.
 - You can set headers for your request and view headers for your responses.
 - You can also configure cookies on your requests.
+- When using Studio to directly call an API server that uses cookies for authentication, you
+  can configure that server to share cookies with Studio and instruct Studio to send authenticated
+  API requests with those cookies.
 - You can share the target URL, request body, and headers in a URL.
 
 ## Usage
@@ -113,7 +115,7 @@ for access control and authentication.
 ### CORS Policies
 
 [CORS (Cross-Origin Resource Sharing)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-is a mechanism built into HTTP headers that allow servers and clients to “declare” where a
+is a browser mechanism using HTTP headers that allow servers and clients to “declare” where a
 request is coming from. Requests from Studio will have the origin https//studio.buf.build
 set. CORS policies on the server-side are a way to restrict access based on the origin of
 the request. In order to ensure that your API servers are able to take requests from Studio,
