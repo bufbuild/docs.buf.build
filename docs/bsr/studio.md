@@ -20,7 +20,7 @@ Protobuf definitions hosted on the BSR. With Studio you can:
 - Configure headers to further customize outgoing requests.
 - Optionally include cookies in outgoing request to send authenticated requests
   to private APIs (or Studio Agent instances).
-- Share links to team members access to share ready to send Studio pages.
+- Create sharable links for requests defined on Studio to team members with access.
 
 ## Composing Requests
 
@@ -35,7 +35,7 @@ select the desired service and method for you request:
 
 Note that the streaming endpoints are currently greyed out as Studio currently
 only supports unary RPC. We intend to support streaming RPC in the future (see
-the [roadmap](#roadmap).
+the [roadmap](#roadmap)).
 
 Once you’ve selected your RPC, declare the **target URL** of the Protobuf API
 that you’re looking to make a request to. This should not include the service or
@@ -46,10 +46,12 @@ RPC path, which Studio will append based on your selected RPC definition.
 Once you've configured your RPC and target URL, create the payload of your
 request using the built-in editor on Studio. Based on the schema for your RPC's
 request message, the editor will give you:
-- Autocompletion (use "ctrl + space" to trigger suggestions).
-- Validation (invalid field types, invalid json, etc. will underline the invalid
-  region).
-- Documentation (hover over fields, or use the "docs" tab above the editor).
+
+- Autocompletion: use "ctrl + space" to trigger suggestions.
+- Validation: invalid field types, invalid json, etc. The editor will underline the invalid
+  region.
+- Documentation: hover over fields, or use the "Docs" tab above the editor to view documentation
+  for the Protobuf definition.
 
 <!-- TODO: make this into a gif -->
 <Image alt="Studio request editor" src="/img/bsr/studio-request-editor.png" width={60} />
