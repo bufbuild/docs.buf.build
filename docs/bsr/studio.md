@@ -6,116 +6,112 @@ title: Studio
 import Image from '@site/src/components/Image';
 import Mermaid from "@site/src/components/Mermaid";
 
-# Studio: A Production UI for Your Protobuf Services
+# Studio: A UI for Your Protobuf Services
 
-Studio allows you to interact with APIs directly from your browser using Protobuf definitions
-host on the BSR.
+## Overview
+Buf Studio is a web interface that lets you call APIs from the browser using
+Protobuf definitions hosted on the BSR. With Studio you can:
 
-## Features
+- Select an endpoint from any BSR module to send requests to a compatible API.
+  Studio works best with [Connect](https://connect.build/) compatible servers,
+  or you can use the [studio-agent](#proxying) to reach gRPC-only endpoints.
+- Use the editor with schema based autocompletion, validation and documentation
+  to draft JSON based request messages.
+- Configure headers to further customize outgoing requests.
+- Optionally include cookies in outgoing request to send authenticated requests
+  to private APIs (or studio agents).
+- Share links to team members access to share ready to send Studio pages.
 
-- You can use Protobuf definitions hosted on the BSR to compose and send requests to any API.
-- You can create and edit your request in JSON. The editor provides autocomplete based on
-  the Protobuf definition selected.
-- You can set headers for your request and view headers for your responses.
-- You can also configure cookies on your requests.
-- When using Studio to directly call an API server that uses cookies for authentication, you
-  can configure that server to share cookies with Studio and instruct Studio to send authenticated
-  API requests with those cookies.
-- You can share the target URL, request body, and headers in a URL.
+## Composing Requests
 
-## Usage
-
-This section walks the ways you can use Studio and the steps involved.
-
-### Composing Requests
-
-Start by searching for the Protobuf definition of the RPC you’re looking to make a request
-to. This is done through the “Select Method” menu, where you can search for the module that
-contains the desired service and RPC definition.
+Start by selecting the Protobuf method you’re looking to make a request with.
+With the “Select Method” menu you can choose a BSR module and use Studio's fuzzy search to
+select the desired service and method for you request:
 
 <Image alt="Studio method select button" src="/img/bsr/studio-method-select-1.png" width={60} />
 <Image alt="Studio method select modal, search for repository" src="/img/bsr/studio-method-select-2.png" width={60} />
 <Image alt="Studio method select modal, method list" src="/img/bsr/studio-method-select-3.png" width={60} />
 
-Note that currently Studio only supports unary RPCs.
+Note that the streaming endpoints are currently greyed out as Studio currently
+only supports unary RPC. We intend to support streaming rpc in the future (see
+the [roadmap](#roadmap).
 
-Once you’ve selected your RPC, declare the **target URL** of the Protobuf API that you’re
-looking to make a request to. This does not need to include the service or RPC path, since
-Studio will set that based on your selected RPC definition.
+Once you’ve selected your RPC, declare the **target URL** of the Protobuf API
+that you’re looking to make a request to. This should not include the service or
+RPC path, which Studio will append based on your selected RPC definition.
 
 <Image alt="Studio target url input" src="/img/bsr/studio-target-url.png" />
 
-Once you've set your RPC and target URL, you can edit the payload of your request using the
-built-in editor on Studio. The editor also supports autocompletion to defaults.
+Once you've configured your RPC and target URL, create the payload of your
+request using the built-in editor on Studio. Based on the schema for your rpc's
+request message, the editor will give you:
+- Autocompletion (use "ctrl + space" to trigger suggestions).
+- Validation (invalid field types, invalid json, etc. will underline the invalid
+  region).
+- Documentation (hover over fields, or use the "docs" tab above the editor).
 
 <Image alt="Studio request editor" src="/img/bsr/studio-request-editor.png" width={60} />
 
-You can also set the headers for your request. This can be useful for any metadata you want
-to send through, authorization headers, etc.
+You can also set the headers for your request. This can be useful for any
+metadata you want to send through, authorization headers, etc.
 
 <Image alt="Studio request headers" src="/img/bsr/studio-request-headers.png" />
 
-This may be used to send any authorization tokens you may want to attach to your request,
-for example:
+## Sending Requests
 
-<Image alt="Studio headers with bearer token option" src="/img/bsr/studio-token-header.png" />
+Once you've composed the request and are ready to call the API, Studio can
+send it in two ways:
 
-Lastly, you can select a protocol for sending your request. This is dependent on your target
-server and the method you use to send your request, covered in detail in the following section.
+1. Directly from your browser to the target API, or
+2. From your browser through a Studio Agent proxy to the target API.
 
-<Image alt="Studio protocol selection" src="/img/bsr/studio-protocol-selection.png" width={75} />
+By making requests directly from the browser your requests stay private to you,
+in neither case the request is routed through Buf servers.
 
-### Sending Requests
+### Direct
 
-Once your request has been configured, there are two ways to send your request using Studio:
-
-1. Directly to your server using the Connect protocol, or
-2. Through the Studio Agent proxy.
-
-In both cases, Buf is **not** in the request path in any way.
-
-#### Have Studio call the target server directly
-
-Requests from Studio made directly to your target server and RPC use the fetch API through
-the browser, thus gRPC is not supported:
+Without studio-agent, requests are made directly from the browser using the
+standard `fetch()` API. This works great in combination with browser compatible
+Protobuf servers such as [Connect](https://connect.build/).
 
 <Mermaid chart={`
 sequenceDiagram
 	participant St as Studio
 	participant S as Server (Target URL)
-	St->>S: fetch({request headers and body})
+  St->>S: fetch({request headers and body})
 	S->>St: {response headers and body}
 `} id={1} />
 
-If you are sending requests directly to your server using Studio, make sure that your server
-is configured with the correct [CORS (Cross-Origin Resource Sharing)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-policies.
-
-CORS is a browser mechanism using HTTP headers that allow servers and clients to declare
-where a request is coming from and apply restrictions to these requests. Requests from Studio
-will have the origin `https//studio.buf.build` set. CORS policies on the server-side are a
-way to restrict access based on the origin of the request. In order to ensure that your API
-servers are able to take requests from Studio, you’ll need to set your CORS policies to allow
-for them:
+The server should be setup with a [CORS (Cross-Origin Resource
+Sharing)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policy
+permitting requests from `https://studio.buf.build`. CORS is a standard HTTP
+mechanism used to indicate to browsers which origins are allowed to request a
+resource. CORS has a variety of options and can be configured easily in most
+popular server libraries and reverse proxies, it requires servers to
+respond with the following header to make studio be able to receive a response:
 
 ```
 Access-Control-Allow-Origin: https://studio.buf.build
 ```
+Note that CORS policies can restrict the response headers studio is allowed to
+access by the browser, be sure to configure `Access-Control-Allow-Headers` as
+required by your use-case.
 
-It is also important to note that CORS policies can restrict the headers set on your request,
-so ensure that your policies allow for any headers set on your request.
+If you are unable to configure the target service to allow requests from studio,
+you use `studio-agent` or a CORS proxy to reach the service instead.
 
-#### Proxy the request through Studio Agent
+Due to limitations in the design of the gRPC protocol, browsers are unable to
+communicate with gRPC servers. To use Studio with servers that only expose the
+gRPC protocol, read on to the next section.
 
-The other way is to proxy the request through Studio Agent. This is useful for two different
-use cases:
+### Via Studio Agent
 
-1. gRPC servers: the browser is unable to talk to gRPC servers directly, so you'll need to
-  proxy your request through Studio Agent.
-2. Services that do not have CORS configured to allow `studio.buf.build`: Studio Agent has
-  the CORS setup by default to accept requests from `studio.buf.build`, and since Studio Agent
-  does not operate within the browser, requests from Studio Agent are not restricted by CORS.
+Studio agent is tool that can be used to expand the use of Studio to protocols
+and servers normally out of reach for browsers. It is OSS that ships as part of
+the `buf` cli and uses [connect-go](https://github.com/bufbuild/connect-go) to implement a
+small proxy to unlock this extra functionality.
 
+With studio-agent, the request flow is as follows:
 
 <Mermaid chart={`
 sequenceDiagram
@@ -128,37 +124,70 @@ sequenceDiagram
 	Sa->>St: {response headers and body}
 `} id={2} />
 
-To route your request through Studio Agent, you can configure the Studio Agent URL:
+When using studio agent, studio can now also reach:
+
+1. gRPC servers. While browsers cannot use the gRPC protocol, studio-agent can!
+Communication between studio-agent and studio is handled in a with a protocol
+understandable by browsers, which studio-agent will dynamically reframe to
+communicate with the target server.
+
+2. Servers without the required CORS configuration.
+As CORS is abrowser specific limitation, studio-agent can issue requests to any server. The
+required CORS config is built into studio-agent by default, so the browser
+will be able to reach studio agent which will forward your request to the target
+server.
+
+To use studio-agent, configure the Studio Agent URL in the UI with a URL to a running instance of studio-agent:
 
 <Image alt="Studio Agent url" src="/img/bsr/studio-agent-url.png" width={60} />
 
-For more information on the Studio Agent, see the section on [Proxying](#proxying).
+For more information on running studio-agent, see the reference section below.
 
 ## Advanced Setup
 
-This section provides information on more advanced settings you could configure in Studio.
+This section provides information on more advanced uses of Studio.
 
 ### Cookies
 
-In addition to CORS policies, your service may use cookies to authenticate a request. If so,
-you can pass on the cookies from your Studio request by checking the following option:
+Some APIs use cookies to authenticate requests. You can configure Studio to
+include cookies with your requests by checking the following option:
 
 <Image alt="Studio options tab with cookies option" src="/img/bsr/studio-cookies.png" />
 
-You’ll also need to set the following CORS policies on your server to allow the Studio
-request origin and credentials:
+Cookies for the target URL need to contain `SameSite=None; Secure` to be
+included in requests from Studio. Servers that accept cross-origin cookies for
+authentication should also use CORS to indicate to the browser that Studio
+requests may include credentials by using the
+`Access-Control-Allow-Credentials` header:
 
 ```
 Access-Control-Allow-Origin: https://studio.buf.build
 Access-Control-Allow-Credentials: true
 ```
 
-### Proxying
+Note: allowing credentials puts limitations on other CORS features such as using
+a wildcard for allowable response headers. Please refer to documentation on
+[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to understand the
+requirements.
 
-For internal Protobuf services, we made a proxy available for Studio in the `buf` CLI,
-`buf beta studio-agent`.
+### Long running studio-agents
 
-This runs an HTTP(S) server that forwards requests from the Studio to the target URL.
+At Buf we deploy long running studio-agents with our internal infrastructure.
+Their endpoint are protected by SSO and combined with the Cookies option
+described above this allows us to reach any public or internal protobuf endpoint
+from Studio. Together with our public and private
+APIs on the BSR, this setup allows us to test and debug any endpoint with
+ease.
+
+With BSR enterprise, administrators can configure default Studio Agent URLs for
+anyone on their instance. Combined with Cookies & studio-agent header
+forwarding, this transforms Studio into the practical UI for any proto service
+at the company. [Please reach out to learn more](https://buf.build/request-a-demo/).
+
+### Reference: studio-agent flags
+
+Studio agent is included in the cli under `buf beta studio-agent`. This runs an
+HTTP(S) server that forwards requests from the Studio to the target URL.
 
 `buf beta studio-agent` is available in CLI versions v1.5.0+
 
@@ -184,11 +213,11 @@ This runs an HTTP(S) server that forwards requests from the Studio to the target
 - Studio Agent can be configured to set specific accepted origins for CORS policies
     - `origin` - Allowed origin for CORS, defaults to “studio.buf.build”
 - For a long-running instance of Studio Agent, an indefinite timeout will need to be
-  set `--timeout=0s`.
+  set with `--timeout=0s`.
 
 ## Roadmap
 
-### Streaming
+#### Streaming
 
 Currently, Studio only supports communications with unary RPCs. We plan on expanding this
 experience to streaming RPCs. By first restricting Studio to unary APIs, we can gather
