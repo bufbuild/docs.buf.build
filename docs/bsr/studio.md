@@ -172,7 +172,7 @@ a wildcard for allowable response headers. Please refer to documentation on
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to understand the
 requirements.
 
-### Long running Studio Agent Instances
+### Long-Running Studio Agent Instances
 
 At Buf we deploy long running Studio Agent instances with our internal infrastructure.
 Their endpoint are protected by SSO and combined with the Cookies option
