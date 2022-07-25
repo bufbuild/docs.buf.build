@@ -14,12 +14,12 @@ Protobuf definitions hosted on the BSR. With Studio you can:
 
 - Select an endpoint from any BSR module to send requests to a compatible API.
   Studio works best with [Connect](https://connect.build/) compatible servers,
-  or you can use the [studio-agent](#proxying) to reach gRPC-only endpoints.
+  or you can use the [Studio Agent](#proxying) to reach gRPC-only endpoints.
 - Use the editor with schema based autocompletion, validation and documentation
   to draft JSON based request messages.
 - Configure headers to further customize outgoing requests.
 - Optionally include cookies in outgoing request to send authenticated requests
-  to private APIs (or studio agents).
+  to private APIs (or Studio Agent instances).
 - Share links to team members access to share ready to send Studio pages.
 
 ## Composing Requests
@@ -28,12 +28,13 @@ Start by selecting the Protobuf method you’re looking to make a request with.
 With the “Select Method” menu you can choose a BSR module and use Studio's fuzzy search to
 select the desired service and method for you request:
 
+<!-- TODO: make this into a gif -->
 <Image alt="Studio method select button" src="/img/bsr/studio-method-select-1.png" width={60} />
 <Image alt="Studio method select modal, search for repository" src="/img/bsr/studio-method-select-2.png" width={60} />
 <Image alt="Studio method select modal, method list" src="/img/bsr/studio-method-select-3.png" width={60} />
 
 Note that the streaming endpoints are currently greyed out as Studio currently
-only supports unary RPC. We intend to support streaming rpc in the future (see
+only supports unary RPC. We intend to support streaming RPC in the future (see
 the [roadmap](#roadmap).
 
 Once you’ve selected your RPC, declare the **target URL** of the Protobuf API
@@ -43,13 +44,14 @@ RPC path, which Studio will append based on your selected RPC definition.
 <Image alt="Studio target url input" src="/img/bsr/studio-target-url.png" />
 
 Once you've configured your RPC and target URL, create the payload of your
-request using the built-in editor on Studio. Based on the schema for your rpc's
+request using the built-in editor on Studio. Based on the schema for your RPC's
 request message, the editor will give you:
 - Autocompletion (use "ctrl + space" to trigger suggestions).
 - Validation (invalid field types, invalid json, etc. will underline the invalid
   region).
 - Documentation (hover over fields, or use the "docs" tab above the editor).
 
+<!-- TODO: make this into a gif -->
 <Image alt="Studio request editor" src="/img/bsr/studio-request-editor.png" width={60} />
 
 You can also set the headers for your request. This can be useful for any
@@ -70,7 +72,7 @@ in neither case the request is routed through Buf servers.
 
 ### Direct
 
-Without studio-agent, requests are made directly from the browser using the
+Without Studio Agent, requests are made directly from the browser using the
 standard `fetch()` API. This works great in combination with browser compatible
 Protobuf servers such as [Connect](https://connect.build/).
 
@@ -98,7 +100,7 @@ access by the browser, be sure to configure `Access-Control-Allow-Headers` as
 required by your use-case.
 
 If you are unable to configure the target service to allow requests from studio,
-you use `studio-agent` or a CORS proxy to reach the service instead.
+you use `Studio Agent` or a CORS proxy to reach the service instead.
 
 Due to limitations in the design of the gRPC protocol, browsers are unable to
 communicate with gRPC servers. To use Studio with servers that only expose the
@@ -111,7 +113,7 @@ and servers normally out of reach for browsers. It is OSS that ships as part of
 the `buf` cli and uses [connect-go](https://github.com/bufbuild/connect-go) to implement a
 small proxy to unlock this extra functionality.
 
-With studio-agent, the request flow is as follows:
+With Studio Agent, the request flow is as follows:
 
 <Mermaid chart={`
 sequenceDiagram
@@ -124,24 +126,24 @@ sequenceDiagram
 	Sa->>St: {response headers and body}
 `} id={2} />
 
-When using studio agent, studio can now also reach:
+When using Studio Agent, studio can now also reach:
 
-1. gRPC servers. While browsers cannot use the gRPC protocol, studio-agent can!
-Communication between studio-agent and studio is handled in a with a protocol
-understandable by browsers, which studio-agent will dynamically reframe to
+1. gRPC servers: while browsers cannot use the gRPC protocol, Studio Agent can!
+Communication between Studio Agent and Studio is handled in a with a protocol
+understandable by browsers, which Studio Agent will dynamically reframe to
 communicate with the target server.
 
-2. Servers without the required CORS configuration.
-As CORS is abrowser specific limitation, studio-agent can issue requests to any server. The
-required CORS config is built into studio-agent by default, so the browser
-will be able to reach studio agent which will forward your request to the target
-server.
+2. Servers without the required CORS configuration: as CORS is abrowser specific limitation,
+Studio Agent can issue requests to any server. The required CORS config is built into Studio
+Agent by default, so the browser will be able to reach Studio Agent which will forward your
+request to the target server.
 
-To use studio-agent, configure the Studio Agent URL in the UI with a URL to a running instance of studio-agent:
+To use Studio Agent, configure the Studio Agent URL in the UI with a URL to a running instance
+of Studio Agent:
 
 <Image alt="Studio Agent url" src="/img/bsr/studio-agent-url.png" width={60} />
 
-For more information on running studio-agent, see the reference section below.
+For more information on running Studio Agent, see the [reference section](#reference-studio-agent-flags) below.
 
 ## Advanced Setup
 
@@ -170,9 +172,9 @@ a wildcard for allowable response headers. Please refer to documentation on
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to understand the
 requirements.
 
-### Long running studio-agents
+### Long running Studio Agent Instances
 
-At Buf we deploy long running studio-agents with our internal infrastructure.
+At Buf we deploy long running Studio Agent instances with our internal infrastructure.
 Their endpoint are protected by SSO and combined with the Cookies option
 described above this allows us to reach any public or internal protobuf endpoint
 from Studio. Together with our public and private
@@ -180,11 +182,11 @@ APIs on the BSR, this setup allows us to test and debug any endpoint with
 ease.
 
 With BSR enterprise, administrators can configure default Studio Agent URLs for
-anyone on their instance. Combined with Cookies & studio-agent header
+anyone on their instance. Combined with Cookies & Studio Agent header
 forwarding, this transforms Studio into the practical UI for any proto service
 at the company. [Please reach out to learn more](https://buf.build/request-a-demo/).
 
-### Reference: studio-agent flags
+### Reference: Studio Agent flags
 
 Studio agent is included in the cli under `buf beta studio-agent`. This runs an
 HTTP(S) server that forwards requests from the Studio to the target URL.
