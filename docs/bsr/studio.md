@@ -174,15 +174,15 @@ requirements.
 
 ### Long-Running Studio Agent Instances
 
-At Buf we deploy long running Studio Agent instances with our internal infrastructure.
+At Buf we deploy long-running Studio Agent instances with our internal infrastructure.
 Their endpoint are protected by SSO and combined with the Cookies option
-described above this allows us to reach any public or internal protobuf endpoint
+described above this allows us to reach any public or internal Protobuf endpoint
 from Studio. Together with our public and private
 APIs on the BSR, this setup allows us to test and debug any endpoint with
 ease.
 
-With BSR enterprise, administrators can configure default Studio Agent URLs for
-anyone on their instance. Combined with Cookies & Studio Agent header
+With BSR Enterprise, administrators can configure default Studio Agent URLs for
+anyone on their cluster. Combined with Cookies & Studio Agent header
 forwarding, this transforms Studio into the practical UI for any proto service
 at the company. [Please reach out to learn more](https://buf.build/request-a-demo/).
 
