@@ -133,7 +133,9 @@ $ buf generate
 
 But if you try to compile the Go code, you'll notice this error:
 
-```sh
+```terminal
+$ go build ./...
+---
 gen/proto/go/pet/v1/pet.pb.go:10:2: no required module provides package github.com/bufbuild/buf-tour/petstore/gen/proto/go/google/type; to add it:
 	go get github.com/bufbuild/buf-tour/petstore/gen/proto/go/google/type
 ```
@@ -195,9 +197,9 @@ With the `except` setting, the `go_package` option in all of the files provided 
 
 If you regenerate the stubs, you'll notice that it's successful:
 
-```sh
-rm -rf gen
-buf generate
+```terminal
+$ rm -rf gen
+$ buf generate
 ```
 
 You can also verify that the generated code compiles with this command:
