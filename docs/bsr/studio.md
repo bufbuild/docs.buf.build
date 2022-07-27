@@ -28,9 +28,7 @@ With the “Select Method” menu you can choose a BSR module and use Studio's f
 select the desired service and method for you request:
 
 <!-- TODO: make this into a gif -->
-<Image alt="Studio method select button" src="/img/bsr/studio-method-select-1.png" width={60} />
-<Image alt="Studio method select modal, search for repository" src="/img/bsr/studio-method-select-2.png" width={60} />
-<Image alt="Studio method select modal, method list" src="/img/bsr/studio-method-select-3.png" width={60} />
+<Image alt="Studio method select demo" src="/img/bsr/studio-method-select.gif" width={60} />
 
 Note that the streaming endpoints are currently greyed out as Studio currently
 only supports unary RPC. We intend to support streaming RPC in the future (see
@@ -52,8 +50,7 @@ request message, the editor will give you:
 - Documentation: hover over fields, or use the "Docs" tab above the editor to view documentation
   for the Protobuf definition.
 
-<!-- TODO: make this into a gif -->
-<Image alt="Studio request editor" src="/img/bsr/studio-request-editor.png" width={60} />
+<Image alt="Studio request editor" src="/img/bsr/studio-request-editor.gif" width={60} />
 
 You can also set the headers for your request. This can be useful for any
 metadata you want to send through, authorization headers, etc.
