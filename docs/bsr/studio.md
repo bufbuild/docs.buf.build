@@ -9,13 +9,12 @@ import Mermaid from "@site/src/components/Mermaid";
 # Studio: A UI for Your Protobuf Services
 
 ## Overview
-Buf Studio is a web interface that lets you call APIs from the browser using
+Buf Studio is a web application that lets you call APIs from the browser using
 Protobuf definitions hosted on the BSR. With Studio you can:
 
-- Select an endpoint from any BSR module to send requests to a compatible API.
-  Studio works best with [Connect](https://connect.build/) compatible servers,
-  or you can use the [Studio Agent](#proxying) to reach gRPC-only endpoints.
-- Use the editor with schema based autocompletion, validation and documentation
+- Select an endpoint from any BSR module to send requests to either [gRPC](#proxying)
+  or [Connect](https://connect.build) APIs.
+- Use the editor with schema-based autocompletion, validation and documentation
   to draft JSON based request messages.
 - Configure headers to further customize outgoing requests.
 - Optionally include cookies in outgoing request to send authenticated requests
@@ -44,7 +43,7 @@ RPC path, which Studio will append based on your selected RPC definition.
 <Image alt="Studio target url input" src="/img/bsr/studio-target-url.png" />
 
 Once you've configured your RPC and target URL, create the payload of your
-request using the built-in editor on Studio. Based on the schema for your RPC's
+request using the Studio's built-in editor. Based on the schema for your RPC's
 request message, the editor will give you:
 
 - Autocompletion: use "ctrl + space" to trigger suggestions.
@@ -130,7 +129,8 @@ sequenceDiagram
 
 When using Studio Agent, studio can now also reach:
 
-1. gRPC servers: while browsers cannot use the gRPC protocol, Studio Agent can!
+1. gRPC servers: The gRPC protocol is not able to be used with any major browser, however
+while browsers cannot use the gRPC protocol, Studio Agent can!
 Communication between Studio Agent and Studio is handled in a with a protocol
 understandable by browsers, which Studio Agent will dynamically reframe to
 communicate with the target server.
@@ -148,8 +148,6 @@ of Studio Agent:
 For more information on running Studio Agent, see the [reference section](#reference-studio-agent-flags) below.
 
 ## Advanced Setup
-
-This section provides information on more advanced uses of Studio.
 
 ### Cookies
 
