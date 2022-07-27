@@ -29,7 +29,7 @@ With the “Select Method” menu you can choose a BSR module and use Studio's f
 select the desired service and method for you request:
 
 <!-- TODO: make this into a gif -->
-<Image alt="Studio method select demo" src="/img/bsr/studio-method-select.gif" width={60} />
+<Image alt="Studio method select demo" src="/img/bsr/studio-method-select.gif" width={90} />
 
 Note that the streaming endpoints are currently greyed out as Studio currently
 only supports unary RPC. We intend to support streaming RPC in the future (see
