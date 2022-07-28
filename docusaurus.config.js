@@ -5,10 +5,6 @@ const path = require("path");
 const starGazers =
     (process.env.STARGAZER_COUNT ?? "")?.length === 0 ? 4903 : process.env.STARGAZER_COUNT;
 
-console.log({
-  starGazers
-})
-
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   presets: [
