@@ -36,7 +36,6 @@ module.exports = {
   onBrokenMarkdownLinks: "warn",
   organizationName: "bufbuild",
   projectName: "buf",
-  trailingSlash: false,
   // Ref: https://docusaurus.io/docs/2.0.0-beta.3/api/themes/configuration
   themeConfig: {
     algolia: {
