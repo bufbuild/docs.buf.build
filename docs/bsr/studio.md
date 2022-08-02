@@ -170,7 +170,7 @@ requirements.
 
 ### Long-Running Buf Studio Agent Instances
 
-At Buf we deploy long-running Buf Studio Agent instances with our internal infrastructure.
+At Buf we deploy long-running Buf Studio Agent instances within our internal infrastructure.
 Their endpoint are protected by SSO and combined with the Cookies option
 described above this allows us to reach any public or internal Protobuf endpoint
 from Buf Studio. Together with our public and private
