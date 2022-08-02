@@ -2,6 +2,9 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const path = require("path");
 
+const starGazers =
+    (process.env.STARGAZER_COUNT ?? "")?.length === 0 ? 4903 : process.env.STARGAZER_COUNT;
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   presets: [
@@ -105,7 +108,7 @@ module.exports = {
           label: "GitHub",
           position: "right",
           bufAppearance: "github",
-          stargazers: 4000
+          stargazers: starGazers
         }
       ]
     },
